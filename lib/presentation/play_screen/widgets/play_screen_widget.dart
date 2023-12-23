@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
 
 import '../../resources/color_manager.dart';
+import '../../resources/string_manager.dart';
 import '../../resources/value_manager.dart';
+
+class PlayAppBarWidget extends StatelessWidget {
+  const PlayAppBarWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        const PlayScreenIconWidget(iconData: Icons.arrow_back_ios_new_sharp),
+        Text(StringManager.playingNow),
+        const PlayScreenIconWidget(iconData: Icons.menu),
+      ],
+    );
+  }
+}
 
 class PlayScreenIconWidget extends StatelessWidget {
   final IconData iconData;
