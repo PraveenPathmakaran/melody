@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:melody/presentation/play_screen/play_screen.dart';
-import 'package:melody/presentation/resources/theme_manger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/application/home_bloc/home_bloc.dart';
+import 'package:melody/infrastructure/audio_repository.dart';
+import 'package:melody/injection_container.dart';
+
+import 'presentation/home_screen/screen_home.dart';
 
 void main() {
+  initGetIt();
   runApp(const MyApp());
 }
 
@@ -11,10 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AudioRepository().getAllAudio();
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: getApplicationTheme(),
-      home: PlayScreen(),
+      //theme: getApplicationTheme(),
+      home: BlocProvider(
+        create: (context) =>
+            getIt<HomeBloc>()..add(const HomeEvent.fetchAllSongs()),
+        child: const ScreenHomeMain(),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
