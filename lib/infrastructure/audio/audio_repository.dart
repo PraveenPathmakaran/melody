@@ -4,9 +4,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
-import 'package:melody/infrastructure/audio_dtos.dart';
 
-import '../domain/songs/audio_failure.dart';
+import '../../domain/songs/audio_failure.dart';
+import 'audio_dtos.dart';
 
 class AudioRepository implements IAudioRepository {
   static const String channelName = "audio";

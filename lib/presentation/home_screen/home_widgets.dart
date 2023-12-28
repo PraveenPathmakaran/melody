@@ -1,7 +1,12 @@
+import 'dart:developer';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/home_bloc/home_bloc.dart';
+import '../../injection_container.dart';
+import '../play_screen/screen_play.dart';
 import '../widgets.dart';
 
 class ScreenHome extends StatelessWidget {
@@ -35,7 +40,17 @@ class ScreenHome extends StatelessWidget {
                     margin: const EdgeInsets.all(3),
                     color: const Color(0xFF14202E),
                     child: ListTile(
-                        onTap: () async {},
+                        onTap: () async {
+                          await getIt<AudioPlayer>()
+                              .play(DeviceFileSource(
+                                  state.audios[index].path.getOrCrash()))
+                              .then((value) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ScreenPlay()));
+                          }).onError((error, stackTrace) {
+                            log(error.toString());
+                          });
+                        },
                         leading: const CircleAvatar(
                           radius: 28,
                           backgroundColor: Colors.transparent,
@@ -43,13 +58,13 @@ class ScreenHome extends StatelessWidget {
                               AssetImage('assets/images/musicIcon1.png'),
                         ),
                         title: Text(
-                          state.audios[index].name.toString(),
+                          state.audios[index].name.getOrCrash(),
                           maxLines: 1,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 15),
                         ),
                         subtitle: Text(
-                          state.audios[index].artist.toString(),
+                          state.audios[index].artist.getOrCrash(),
                           maxLines: 1,
                           style: const TextStyle(
                               color: Colors.white, fontSize: 10),

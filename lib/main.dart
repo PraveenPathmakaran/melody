@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/application/home_bloc/home_bloc.dart';
-import 'package:melody/infrastructure/audio_repository.dart';
+import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
 import 'package:melody/injection_container.dart';
-
-import 'presentation/home_screen/screen_home.dart';
+import 'package:melody/presentation/splash_screen/screen_splash.dart';
 
 void main() {
   initGetIt();
@@ -16,14 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AudioRepository().getAllAudio();
     return MaterialApp(
       title: 'Flutter Demo',
       //theme: getApplicationTheme(),
-      home: BlocProvider(
-        create: (context) =>
-            getIt<HomeBloc>()..add(const HomeEvent.fetchAllSongs()),
-        child: const ScreenHomeMain(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<PermissionHandlerBloc>()
+              ..add(const PermissionHandlerEvent.checkPermission()),
+          ),
+        ],
+        child: const ScreenSplash(),
       ),
       debugShowCheckedModeBanner: false,
     );

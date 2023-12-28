@@ -1,9 +1,7 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 
 import 'core/colors.dart';
 
-bool songSkip = true;
 
 //---------------------------functions for common usage
 
@@ -79,24 +77,24 @@ Widget functionTextButton(Function() textFunction, String text) {
 //   );
 // }
 
-Widget timeStamps(RealtimePlayingInfos realtimePlayingInfos) {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          transformString(realtimePlayingInfos.currentPosition.inSeconds),
-          style: const TextStyle(color: Colors.grey),
-        ),
-        Text(
-          transformString(realtimePlayingInfos.duration.inSeconds),
-          style: const TextStyle(color: Colors.grey),
-        ),
-      ],
-    ),
-  );
-}
+// Widget timeStamps(RealtimePlayingInfos realtimePlayingInfos) {
+//   return Padding(
+//     padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+//     child: Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: <Widget>[
+//         Text(
+//           transformString(realtimePlayingInfos.currentPosition.inSeconds),
+//           style: const TextStyle(color: Colors.grey),
+//         ),
+//         Text(
+//           transformString(realtimePlayingInfos.duration.inSeconds),
+//           style: const TextStyle(color: Colors.grey),
+//         ),
+//       ],
+//     ),
+//   );
+// }
 
 String transformString(int seconds) {
   final String minuteString =
