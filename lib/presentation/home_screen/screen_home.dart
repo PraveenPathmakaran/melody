@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/application/home_bloc/home_bloc.dart';
-import 'package:melody/injection_container.dart';
 
 import '../core/colors.dart';
 import '../widgets.dart';
@@ -19,136 +15,127 @@ class ScreenHomeMain extends StatelessWidget {
       // canPop: () => _onBackButtonPressed(context),
       child: DefaultTabController(
         length: 3,
-        child: Builder(
-          builder: (BuildContext context) {
-            return BlocProvider(
-              create: (context) =>
-                  getIt<HomeBloc>()..add(const HomeEvent.fetchAllSongs()),
-              child: Scaffold(
-                floatingActionButton: FloatingActionButton(
-                    backgroundColor: kAppbarColor,
-                    onPressed: () async {
-                      // if (tabIndex == 1) {
-                      //   showModalBottomSheet(
-                      //       backgroundColor: Colors.black,
-                      //       context: context,
-                      //       shape: const RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.vertical(
-                      //           top: Radius.circular(30),
-                      //         ),
-                      //       ),
-                      //       builder: (BuildContext ctx) {
-                      //         return const ScreenAddToFavourits();
-                      //       });
-                      // } else if (tabIndex == 2) {
-                      //   playlistCreateDialogue(context);
-                      // }
-                    },
-                    child: functionIcon(Icons.add, 20, Colors.white)),
-                backgroundColor: Colors.black,
-                extendBodyBehindAppBar: true,
-                // drawer: Drawer(
-                //   width: 250,
-                //   backgroundColor: kAppbarColor,
-                //   child: DrawerContent(),
-                // ),
-                appBar: AppBar(
-                  title: const Text(
-                    'Music Player',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  centerTitle: true,
-                  backgroundColor: kAppbarColor,
-                  bottom: TabBar(
-                    onTap: (int value) {
-                      tabIndex = value;
-                    },
-                    tabs: <Widget>[
-                      Tab(
-                        text: 'Home',
-                        icon: functionIcon(Icons.home, 25, kWhiteColor),
-                      ),
-                      Tab(
-                        text: 'Favourites',
-                        icon: functionIcon(Icons.favorite, 25, kWhiteColor),
-                      ),
-                      Tab(
-                        text: 'Playlist',
-                        icon:
-                            functionIcon(Icons.playlist_play, 25, kWhiteColor),
-                      ),
-                    ],
-                  ),
-                  elevation: 0,
-                  actions: <Widget>[
-                    IconButton(
-                        onPressed: () {
-                          // showSearch(
-                          //   context: context,
-                          //   delegate: MusicSearch(),
-                          // );
-                        },
-                        icon: const Icon(Icons.search))
-                  ],
-                  leading: Builder(
-                    builder: (BuildContext context) {
-                      return IconButton(
-                          onPressed: () {
-                            //  Scaffold.of(context).openDrawer();
-                          },
-                          icon: const Icon(Icons.settings));
-                    },
-                  ),
+        child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: kAppbarColor,
+              onPressed: () async {
+                // if (tabIndex == 1) {
+                //   showModalBottomSheet(
+                //       backgroundColor: Colors.black,
+                //       context: context,
+                //       shape: const RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.vertical(
+                //           top: Radius.circular(30),
+                //         ),
+                //       ),
+                //       builder: (BuildContext ctx) {
+                //         return const ScreenAddToFavourits();
+                //       });
+                // } else if (tabIndex == 2) {
+                //   playlistCreateDialogue(context);
+                // }
+              },
+              child: functionIcon(Icons.add, 20, Colors.white)),
+          backgroundColor: Colors.black,
+          extendBodyBehindAppBar: true,
+          // drawer: Drawer(
+          //   width: 250,
+          //   backgroundColor: kAppbarColor,
+          //   child: DrawerContent(),
+          // ),
+          appBar: AppBar(
+            title: const Text(
+              'Music Player',
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
+            backgroundColor: kAppbarColor,
+            bottom: TabBar(
+              onTap: (int value) {
+                tabIndex = value;
+              },
+              tabs: <Widget>[
+                Tab(
+                  text: 'Home',
+                  icon: functionIcon(Icons.home, 25, kWhiteColor),
                 ),
-                body: const TabBarView(
-                  children: <Widget>[
-                    ScreenHome(),
-                    Scaffold(
-                      body: Center(
-                        child: Text('1'),
-                      ),
-                    ),
-                    Scaffold(
-                      body: Center(
-                        child: Text('2'),
-                      ),
-                    ),
-
-                    // ScreenFavourite(),
-                    // ScreenPlaylist(),
-                  ],
+                Tab(
+                  text: 'Favourites',
+                  icon: functionIcon(Icons.favorite, 25, kWhiteColor),
                 ),
-                //bottomNavigationBar: MiniPlayer()
+                Tab(
+                  text: 'Playlist',
+                  icon: functionIcon(Icons.playlist_play, 25, kWhiteColor),
+                ),
+              ],
+            ),
+            elevation: 0,
+            actions: <Widget>[
+              IconButton(
+                  onPressed: () {
+                    // showSearch(
+                    //   context: context,
+                    //   delegate: MusicSearch(),
+                    // );
+                  },
+                  icon: const Icon(Icons.search))
+            ],
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                    onPressed: () {
+                      //  Scaffold.of(context).openDrawer();
+                    },
+                    icon: const Icon(Icons.settings));
+              },
+            ),
+          ),
+          body: const TabBarView(
+            children: <Widget>[
+              ScreenHome(),
+              Scaffold(
+                body: Center(
+                  child: Text('1'),
+                ),
               ),
-            );
-          },
+              Scaffold(
+                body: Center(
+                  child: Text('2'),
+                ),
+              ),
+
+              // ScreenFavourite(),
+              // ScreenPlaylist(),
+            ],
+          ),
+          //bottomNavigationBar: MiniPlayer()
         ),
       ),
     );
   }
 }
 
-Future<bool> _onBackButtonPressed(BuildContext context) async {
-  final bool? exitApp = await showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Really'),
-        content: const Text('Do you want to close the app?'),
-        actions: <Widget>[
-          TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('No')),
-          TextButton(
-              onPressed: () {
-                SystemNavigator.pop();
-              },
-              child: const Text('Yes'))
-        ],
-      );
-    },
-  );
-  return exitApp!;
-}
+// Future<bool> _onBackButtonPressed(BuildContext context) async {
+//   final bool? exitApp = await showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: const Text('Really'),
+//         content: const Text('Do you want to close the app?'),
+//         actions: <Widget>[
+//           TextButton(
+//               onPressed: () {
+//                 Navigator.of(context).pop();
+//               },
+//               child: const Text('No')),
+//           TextButton(
+//               onPressed: () {
+//                 SystemNavigator.pop();
+//               },
+//               child: const Text('Yes'))
+//         ],
+//       );
+//     },
+//   );
+//   return exitApp!;
+// }

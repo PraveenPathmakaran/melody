@@ -17,7 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       await event.map(
         fetchAllSongs: (value) async {
           emit(const HomeState.loadInProgress());
-          final Either<AudiFailure, List<Audio>> allSongs =
+          final Either<AudioFailure, List<Audio>> allSongs =
               await _audioRepository.getAllAudio();
 
           emit(allSongs.fold((f) => HomeState.loadFailure(f),

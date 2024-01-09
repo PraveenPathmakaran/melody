@@ -66,6 +66,7 @@ class _ScreenSplashState extends State<ScreenSplash>
                   initial: (value) {
                     return const SizedBox();
                   },
+                  //permission granted then show this widget
                   granted: (value) {
                     return const PermissionGrantedWidget();
                   },

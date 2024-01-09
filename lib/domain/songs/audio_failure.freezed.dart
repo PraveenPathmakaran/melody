@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AudiFailure {
+mixin _$AudioFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() platFormFailure,
@@ -57,16 +57,16 @@ mixin _$AudiFailure {
 }
 
 /// @nodoc
-abstract class $AudiFailureCopyWith<$Res> {
-  factory $AudiFailureCopyWith(
-          AudiFailure value, $Res Function(AudiFailure) then) =
-      _$AudiFailureCopyWithImpl<$Res, AudiFailure>;
+abstract class $AudioFailureCopyWith<$Res> {
+  factory $AudioFailureCopyWith(
+          AudioFailure value, $Res Function(AudioFailure) then) =
+      _$AudioFailureCopyWithImpl<$Res, AudioFailure>;
 }
 
 /// @nodoc
-class _$AudiFailureCopyWithImpl<$Res, $Val extends AudiFailure>
-    implements $AudiFailureCopyWith<$Res> {
-  _$AudiFailureCopyWithImpl(this._value, this._then);
+class _$AudioFailureCopyWithImpl<$Res, $Val extends AudioFailure>
+    implements $AudioFailureCopyWith<$Res> {
+  _$AudioFailureCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,7 +83,7 @@ abstract class _$$PlatFormFailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$PlatFormFailureImplCopyWithImpl<$Res>
-    extends _$AudiFailureCopyWithImpl<$Res, _$PlatFormFailureImpl>
+    extends _$AudioFailureCopyWithImpl<$Res, _$PlatFormFailureImpl>
     implements _$$PlatFormFailureImplCopyWith<$Res> {
   __$$PlatFormFailureImplCopyWithImpl(
       _$PlatFormFailureImpl _value, $Res Function(_$PlatFormFailureImpl) _then)
@@ -97,7 +97,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
 
   @override
   String toString() {
-    return 'AudiFailure.platFormFailure()';
+    return 'AudioFailure.platFormFailure()';
   }
 
   @override
@@ -172,7 +172,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
   }
 }
 
-abstract class _PlatFormFailure implements AudiFailure {
+abstract class _PlatFormFailure implements AudioFailure {
   const factory _PlatFormFailure() = _$PlatFormFailureImpl;
 }
 
@@ -185,7 +185,7 @@ abstract class _$$AudioNotFoundImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$AudioNotFoundImplCopyWithImpl<$Res>
-    extends _$AudiFailureCopyWithImpl<$Res, _$AudioNotFoundImpl>
+    extends _$AudioFailureCopyWithImpl<$Res, _$AudioNotFoundImpl>
     implements _$$AudioNotFoundImplCopyWith<$Res> {
   __$$AudioNotFoundImplCopyWithImpl(
       _$AudioNotFoundImpl _value, $Res Function(_$AudioNotFoundImpl) _then)
@@ -199,7 +199,7 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
 
   @override
   String toString() {
-    return 'AudiFailure.audioNotFound()';
+    return 'AudioFailure.audioNotFound()';
   }
 
   @override
@@ -274,6 +274,6 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
   }
 }
 
-abstract class _AudioNotFound implements AudiFailure {
+abstract class _AudioNotFound implements AudioFailure {
   const factory _AudioNotFound() = _$AudioNotFoundImpl;
 }

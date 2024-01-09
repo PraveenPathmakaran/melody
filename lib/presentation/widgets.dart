@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'core/colors.dart';
 
-
 //---------------------------functions for common usage
 
 //common text function
@@ -45,37 +44,7 @@ Widget functionTextButton(Function() textFunction, String text) {
   );
 }
 
-//------------------------------playscreen slider
 
-// Widget slider(RealtimePlayingInfos realtimePlayingInfos) {
-//   return Stack(
-//     children: <Widget>[
-//       SliderTheme(
-//         data: const SliderThemeData(
-//             thumbColor: Colors.white,
-//             activeTrackColor: Color(0xffe45923),
-//             inactiveTrackColor: Colors.grey,
-//             overlayColor: Colors.transparent),
-//         child: Slider.adaptive(
-//           value: realtimePlayingInfos.currentPosition.inSeconds.toDouble(),
-//           //added 10000 some songs failed assertion value>=min&&valu<=max is not true
-//           max: realtimePlayingInfos.duration.inSeconds <= 0
-//               ? 10000
-//               : realtimePlayingInfos.duration.inSeconds.toDouble() + 3,
-//           onChanged: (double value) {
-//             if (value <= 0) {
-//               audioPlayer.seek(Duration.zero);
-//             } else if (value >= realtimePlayingInfos.duration.inSeconds) {
-//               audioPlayer.seek(realtimePlayingInfos.duration);
-//             } else {
-//               audioPlayer.seek(Duration(seconds: value.toInt()));
-//             }
-//           },
-//         ),
-//       ),
-//     ],
-//   );
-// }
 
 // Widget timeStamps(RealtimePlayingInfos realtimePlayingInfos) {
 //   return Padding(
@@ -112,3 +81,7 @@ void snackBar(String content, Color color, BuildContext context) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
+Widget cicularPindicator = const Center(
+  child: CircularProgressIndicator(),
+);

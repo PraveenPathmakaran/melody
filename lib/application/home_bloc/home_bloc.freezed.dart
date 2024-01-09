@@ -170,7 +170,7 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudiFailure audiFailure) loadFailure,
+    required TResult Function(AudioFailure audiFailure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -178,7 +178,7 @@ mixin _$HomeState {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudiFailure audiFailure)? loadFailure,
+    TResult? Function(AudioFailure audiFailure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,7 +186,7 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudiFailure audiFailure)? loadFailure,
+    TResult Function(AudioFailure audiFailure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -275,7 +275,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudiFailure audiFailure) loadFailure,
+    required TResult Function(AudioFailure audiFailure) loadFailure,
   }) {
     return initial();
   }
@@ -286,7 +286,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudiFailure audiFailure)? loadFailure,
+    TResult? Function(AudioFailure audiFailure)? loadFailure,
   }) {
     return initial?.call();
   }
@@ -297,7 +297,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudiFailure audiFailure)? loadFailure,
+    TResult Function(AudioFailure audiFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -389,7 +389,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudiFailure audiFailure) loadFailure,
+    required TResult Function(AudioFailure audiFailure) loadFailure,
   }) {
     return loadInProgress();
   }
@@ -400,7 +400,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudiFailure audiFailure)? loadFailure,
+    TResult? Function(AudioFailure audiFailure)? loadFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -411,7 +411,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudiFailure audiFailure)? loadFailure,
+    TResult Function(AudioFailure audiFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -535,7 +535,7 @@ class _$LoadSuccessImpl implements _LoadSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudiFailure audiFailure) loadFailure,
+    required TResult Function(AudioFailure audiFailure) loadFailure,
   }) {
     return loadSuccess(audios);
   }
@@ -546,7 +546,7 @@ class _$LoadSuccessImpl implements _LoadSuccess {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudiFailure audiFailure)? loadFailure,
+    TResult? Function(AudioFailure audiFailure)? loadFailure,
   }) {
     return loadSuccess?.call(audios);
   }
@@ -557,7 +557,7 @@ class _$LoadSuccessImpl implements _LoadSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudiFailure audiFailure)? loadFailure,
+    TResult Function(AudioFailure audiFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -619,9 +619,9 @@ abstract class _$$LoadFailureImplCopyWith<$Res> {
           _$LoadFailureImpl value, $Res Function(_$LoadFailureImpl) then) =
       __$$LoadFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AudiFailure audiFailure});
+  $Res call({AudioFailure audiFailure});
 
-  $AudiFailureCopyWith<$Res> get audiFailure;
+  $AudioFailureCopyWith<$Res> get audiFailure;
 }
 
 /// @nodoc
@@ -641,14 +641,14 @@ class __$$LoadFailureImplCopyWithImpl<$Res>
       null == audiFailure
           ? _value.audiFailure
           : audiFailure // ignore: cast_nullable_to_non_nullable
-              as AudiFailure,
+              as AudioFailure,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AudiFailureCopyWith<$Res> get audiFailure {
-    return $AudiFailureCopyWith<$Res>(_value.audiFailure, (value) {
+  $AudioFailureCopyWith<$Res> get audiFailure {
+    return $AudioFailureCopyWith<$Res>(_value.audiFailure, (value) {
       return _then(_value.copyWith(audiFailure: value));
     });
   }
@@ -660,7 +660,7 @@ class _$LoadFailureImpl implements _LoadFailure {
   const _$LoadFailureImpl(this.audiFailure);
 
   @override
-  final AudiFailure audiFailure;
+  final AudioFailure audiFailure;
 
   @override
   String toString() {
@@ -691,7 +691,7 @@ class _$LoadFailureImpl implements _LoadFailure {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudiFailure audiFailure) loadFailure,
+    required TResult Function(AudioFailure audiFailure) loadFailure,
   }) {
     return loadFailure(audiFailure);
   }
@@ -702,7 +702,7 @@ class _$LoadFailureImpl implements _LoadFailure {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudiFailure audiFailure)? loadFailure,
+    TResult? Function(AudioFailure audiFailure)? loadFailure,
   }) {
     return loadFailure?.call(audiFailure);
   }
@@ -713,7 +713,7 @@ class _$LoadFailureImpl implements _LoadFailure {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudiFailure audiFailure)? loadFailure,
+    TResult Function(AudioFailure audiFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -761,9 +761,10 @@ class _$LoadFailureImpl implements _LoadFailure {
 }
 
 abstract class _LoadFailure implements HomeState {
-  const factory _LoadFailure(final AudiFailure audiFailure) = _$LoadFailureImpl;
+  const factory _LoadFailure(final AudioFailure audiFailure) =
+      _$LoadFailureImpl;
 
-  AudiFailure get audiFailure;
+  AudioFailure get audiFailure;
   @JsonKey(ignore: true)
   _$$LoadFailureImplCopyWith<_$LoadFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
