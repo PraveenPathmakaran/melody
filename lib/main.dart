@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/application/listen_audio_bloc/listen_audio_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
 import 'package:melody/injection_container.dart';
 import 'package:melody/presentation/splash_screen/screen_splash.dart';
@@ -22,14 +21,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<PermissionHandlerBloc>(
-          create: (context) => getIt<PermissionHandlerBloc>()
+          create: (_) => getIt<PermissionHandlerBloc>()
             ..add(const PermissionHandlerEvent.checkPermission()),
         ),
         BlocProvider(
-            create: (context) =>
+            create: (_) =>
                 getIt<HomeBloc>()..add(const HomeEvent.fetchAllSongs())),
-        BlocProvider<AudioBloc>(create: (context) => getIt<AudioBloc>()),
-        BlocProvider<ListenAudioBloc>(create: (context) => getIt<ListenAudioBloc>()),
+        BlocProvider<AudioBloc>(create: (_) => getIt<AudioBloc>()),
       ],
       child: const MaterialApp(
         title: 'Flutter Demo',

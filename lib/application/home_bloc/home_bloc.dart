@@ -12,16 +12,17 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final AudioRepository _audioRepository;
-  HomeBloc(this._audioRepository) : super(const HomeState.initial()) {
+  HomeBloc(this._audioRepository) : super(HomeState.initail()) {
     on<HomeEvent>((event, emit) async {
       await event.map(
         fetchAllSongs: (value) async {
-          emit(const HomeState.loadInProgress());
-          final Either<AudioFailure, List<Audio>> allSongs =
+          emit(state.copyWith(isLoading: true));
+          final Either<AudioFailure, List<Audio>> failureOrSuccess =
               await _audioRepository.getAllAudio();
-
-          emit(allSongs.fold((f) => HomeState.loadFailure(f),
-              (audios) => HomeState.loadSuccess(audios)));
+          failureOrSuccess.fold(
+              (failure) => emit(
+                  state.copyWith(isLoading: false, failure: optionOf(failure))),
+              (auio) => emit(state.copyWith(isLoading: false, audios: auio)));
         },
       );
     });

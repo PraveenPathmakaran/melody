@@ -19,7 +19,7 @@ mixin _$Audio {
   Id get uid => throw _privateConstructorUsedError;
   Name get name => throw _privateConstructorUsedError;
   Artist get artist => throw _privateConstructorUsedError;
-  Path get path => throw _privateConstructorUsedError;
+  AudioPath get path => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioCopyWith<Audio> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ abstract class $AudioCopyWith<$Res> {
   factory $AudioCopyWith(Audio value, $Res Function(Audio) then) =
       _$AudioCopyWithImpl<$Res, Audio>;
   @useResult
-  $Res call({Id uid, Name name, Artist artist, Path path});
+  $Res call({Id uid, Name name, Artist artist, AudioPath path});
 }
 
 /// @nodoc
@@ -67,7 +67,7 @@ class _$AudioCopyWithImpl<$Res, $Val extends Audio>
       path: null == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
-              as Path,
+              as AudioPath,
     ) as $Val);
   }
 }
@@ -79,7 +79,7 @@ abstract class _$$AudioImplCopyWith<$Res> implements $AudioCopyWith<$Res> {
       __$$AudioImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Id uid, Name name, Artist artist, Path path});
+  $Res call({Id uid, Name name, Artist artist, AudioPath path});
 }
 
 /// @nodoc
@@ -114,7 +114,7 @@ class __$$AudioImplCopyWithImpl<$Res>
       path: null == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
-              as Path,
+              as AudioPath,
     ));
   }
 }
@@ -136,7 +136,7 @@ class _$AudioImpl extends _Audio {
   @override
   final Artist artist;
   @override
-  final Path path;
+  final AudioPath path;
 
   @override
   String toString() {
@@ -169,7 +169,7 @@ abstract class _Audio extends Audio {
       {required final Id uid,
       required final Name name,
       required final Artist artist,
-      required final Path path}) = _$AudioImpl;
+      required final AudioPath path}) = _$AudioImpl;
   const _Audio._() : super._();
 
   @override
@@ -179,7 +179,7 @@ abstract class _Audio extends Audio {
   @override
   Artist get artist;
   @override
-  Path get path;
+  AudioPath get path;
   @override
   @JsonKey(ignore: true)
   _$$AudioImplCopyWith<_$AudioImpl> get copyWith =>

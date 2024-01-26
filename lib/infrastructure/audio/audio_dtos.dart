@@ -21,7 +21,7 @@ abstract class AudioDto implements _$AudioDto {
       uid: Id(id ?? ""),
       name: Name(name ?? ""),
       artist: Artist(artist ?? ""),
-      path: Path(path ?? ""),
+      path: AudioPath(path ?? ""),
     );
   }
 

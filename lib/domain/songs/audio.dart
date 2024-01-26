@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart' ;
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:melody/domain/core/value_failures.dart';
 
@@ -13,8 +13,15 @@ abstract class Audio implements _$Audio {
     required Id uid,
     required Name name,
     required Artist artist,
-    required Path path,
+    required AudioPath path,
   }) = _Audio;
+
+  factory Audio.emptyAudio() => Audio(
+        uid: Id(""),
+        name: Name(""),
+        artist: Artist(""),
+        path: AudioPath(""),
+      );
 
   Option<ValueFailure<dynamic>> get failureOption {
     return name.failureOrUnit

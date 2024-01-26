@@ -25,15 +25,15 @@ class Artist extends ValueObjects<String> {
   Artist._(this.value);
 }
 
-class Path extends ValueObjects<String> {
+class AudioPath extends ValueObjects<String> {
   @override
   Either<ValueFailure<String>, String> value;
 
-  factory Path(String input) {
-    return Path._(validateStringNotEmpty(input));
+  factory AudioPath(String input) {
+    return AudioPath._(validateStringNotEmpty(input));
   }
 
-  Path._(this.value);
+  AudioPath._(this.value);
 }
 
 class Duration extends ValueObjects<String> {

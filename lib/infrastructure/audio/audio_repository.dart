@@ -1,12 +1,11 @@
 import 'dart:developer';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../../domain/songs/audio_failure.dart';
 import 'audio_dtos.dart';
@@ -40,40 +39,31 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Future<Either<AudioFailure, Unit>> pauseAudio(
-      {required bool pauseOrPlay}) async {
-    try {
-      if (pauseOrPlay) {
-        await audioPlayer.pause();
-      } else {
-        await audioPlayer.resume();
-      }
-
-      return right(unit);
-    } catch (e) {
-      log("pause Failure");
-      return left(const AudioFailure.platFormFailure());
-    }
+  Future<void> pauseAudio() async {
+    await audioPlayer.pause();
   }
 
   @override
-  Future<Either<AudioFailure, Unit>> playAudio({required Path path}) async {
+  Future<void> playAudio() async {
+    await audioPlayer.play();
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> playAudioFromStorage(
+      {required AudioPath path}) async {
     try {
-      await audioPlayer.play(DeviceFileSource(path.getOrCrash()));
+      await audioPlayer.setFilePath(path.getOrCrash());
       return right(unit);
     } catch (e) {
       log("play Failure");
       return left(const AudioFailure.platFormFailure());
     }
   }
-
-  @override
-  Stream<Either<AudioFailure, int>> streamAudio() async* {
-    yield* audioPlayer.eventStream.map<Either<AudioFailure, int>>((event) {
-      log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<${event.duration.toString()}");
-      return right(event.duration?.inSeconds ?? 0);
-    }).onErrorReturnWith((error, stackTrace) {
-      return left(const AudioFailure.platFormFailure());
-    });
-  }
 }
+  // @override
+  // Stream<Either<AudioFailure, bool>> isPlaying() async* {
+  //   yield* audioPlayer.playingStream
+  //       .map<Either<AudioFailure, bool>>((event) => right(event))
+  //       .onErrorReturnWith(
+  //           (error, stackTrace) => left(const AudioFailure.platFormFailure()));
+  // }

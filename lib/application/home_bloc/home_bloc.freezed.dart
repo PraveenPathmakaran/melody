@@ -165,55 +165,12 @@ abstract class _FetchAllSongs implements HomeEvent {
 
 /// @nodoc
 mixin _$HomeState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudioFailure audiFailure) loadFailure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudioFailure audiFailure)? loadFailure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudioFailure audiFailure)? loadFailure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_LoadFailure value) loadFailure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_LoadSuccess value)? loadSuccess,
-    TResult? Function(_LoadFailure value)? loadFailure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    required TResult orElse(),
-  }) =>
+  List<Audio> get audios => throw _privateConstructorUsedError;
+  Option<AudioFailure> get failure => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -221,6 +178,8 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
+  @useResult
+  $Res call({List<Audio> audios, Option<AudioFailure> failure, bool isLoading});
 }
 
 /// @nodoc
@@ -232,271 +191,82 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? audios = null,
+    Object? failure = null,
+    Object? isLoading = null,
+  }) {
+    return _then(_value.copyWith(
+      audios: null == audios
+          ? _value.audios
+          : audios // ignore: cast_nullable_to_non_nullable
+              as List<Audio>,
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Option<AudioFailure>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
+abstract class _$$HomeStateImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$$HomeStateImplCopyWith(
+          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
+      __$$HomeStateImplCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'HomeState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudioFailure audiFailure) loadFailure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudioFailure audiFailure)? loadFailure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudioFailure audiFailure)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_LoadFailure value) loadFailure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_LoadSuccess value)? loadSuccess,
-    TResult? Function(_LoadFailure value)? loadFailure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements HomeState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadInProgressImplCopyWith<$Res> {
-  factory _$$LoadInProgressImplCopyWith(_$LoadInProgressImpl value,
-          $Res Function(_$LoadInProgressImpl) then) =
-      __$$LoadInProgressImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadInProgressImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$LoadInProgressImpl>
-    implements _$$LoadInProgressImplCopyWith<$Res> {
-  __$$LoadInProgressImplCopyWithImpl(
-      _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LoadInProgressImpl implements _LoadInProgress {
-  const _$LoadInProgressImpl();
-
-  @override
-  String toString() {
-    return 'HomeState.loadInProgress()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadInProgressImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudioFailure audiFailure) loadFailure,
-  }) {
-    return loadInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudioFailure audiFailure)? loadFailure,
-  }) {
-    return loadInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudioFailure audiFailure)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_LoadFailure value) loadFailure,
-  }) {
-    return loadInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_LoadSuccess value)? loadSuccess,
-    TResult? Function(_LoadFailure value)? loadFailure,
-  }) {
-    return loadInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadInProgress implements HomeState {
-  const factory _LoadInProgress() = _$LoadInProgressImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadSuccessImplCopyWith<$Res> {
-  factory _$$LoadSuccessImplCopyWith(
-          _$LoadSuccessImpl value, $Res Function(_$LoadSuccessImpl) then) =
-      __$$LoadSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Audio> audios});
+  $Res call({List<Audio> audios, Option<AudioFailure> failure, bool isLoading});
 }
 
 /// @nodoc
-class __$$LoadSuccessImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$LoadSuccessImpl>
-    implements _$$LoadSuccessImplCopyWith<$Res> {
-  __$$LoadSuccessImplCopyWithImpl(
-      _$LoadSuccessImpl _value, $Res Function(_$LoadSuccessImpl) _then)
+class __$$HomeStateImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
+    implements _$$HomeStateImplCopyWith<$Res> {
+  __$$HomeStateImplCopyWithImpl(
+      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? audios = null,
+    Object? failure = null,
+    Object? isLoading = null,
   }) {
-    return _then(_$LoadSuccessImpl(
-      null == audios
+    return _then(_$HomeStateImpl(
+      audios: null == audios
           ? _value._audios
           : audios // ignore: cast_nullable_to_non_nullable
               as List<Audio>,
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Option<AudioFailure>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LoadSuccessImpl implements _LoadSuccess {
-  const _$LoadSuccessImpl(final List<Audio> audios) : _audios = audios;
+class _$HomeStateImpl implements _HomeState {
+  const _$HomeStateImpl(
+      {required final List<Audio> audios,
+      required this.failure,
+      required this.isLoading})
+      : _audios = audios;
 
   final List<Audio> _audios;
   @override
@@ -507,265 +277,51 @@ class _$LoadSuccessImpl implements _LoadSuccess {
   }
 
   @override
+  final Option<AudioFailure> failure;
+  @override
+  final bool isLoading;
+
+  @override
   String toString() {
-    return 'HomeState.loadSuccess(audios: $audios)';
+    return 'HomeState(audios: $audios, failure: $failure, isLoading: $isLoading)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadSuccessImpl &&
-            const DeepCollectionEquality().equals(other._audios, _audios));
+            other is _$HomeStateImpl &&
+            const DeepCollectionEquality().equals(other._audios, _audios) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_audios));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_audios), failure, isLoading);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadSuccessImplCopyWith<_$LoadSuccessImpl> get copyWith =>
-      __$$LoadSuccessImplCopyWithImpl<_$LoadSuccessImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudioFailure audiFailure) loadFailure,
-  }) {
-    return loadSuccess(audios);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudioFailure audiFailure)? loadFailure,
-  }) {
-    return loadSuccess?.call(audios);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudioFailure audiFailure)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadSuccess != null) {
-      return loadSuccess(audios);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_LoadFailure value) loadFailure,
-  }) {
-    return loadSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_LoadSuccess value)? loadSuccess,
-    TResult? Function(_LoadFailure value)? loadFailure,
-  }) {
-    return loadSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadSuccess != null) {
-      return loadSuccess(this);
-    }
-    return orElse();
-  }
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
 }
 
-abstract class _LoadSuccess implements HomeState {
-  const factory _LoadSuccess(final List<Audio> audios) = _$LoadSuccessImpl;
+abstract class _HomeState implements HomeState {
+  const factory _HomeState(
+      {required final List<Audio> audios,
+      required final Option<AudioFailure> failure,
+      required final bool isLoading}) = _$HomeStateImpl;
 
+  @override
   List<Audio> get audios;
+  @override
+  Option<AudioFailure> get failure;
+  @override
+  bool get isLoading;
+  @override
   @JsonKey(ignore: true)
-  _$$LoadSuccessImplCopyWith<_$LoadSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LoadFailureImplCopyWith<$Res> {
-  factory _$$LoadFailureImplCopyWith(
-          _$LoadFailureImpl value, $Res Function(_$LoadFailureImpl) then) =
-      __$$LoadFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({AudioFailure audiFailure});
-
-  $AudioFailureCopyWith<$Res> get audiFailure;
-}
-
-/// @nodoc
-class __$$LoadFailureImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$LoadFailureImpl>
-    implements _$$LoadFailureImplCopyWith<$Res> {
-  __$$LoadFailureImplCopyWithImpl(
-      _$LoadFailureImpl _value, $Res Function(_$LoadFailureImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? audiFailure = null,
-  }) {
-    return _then(_$LoadFailureImpl(
-      null == audiFailure
-          ? _value.audiFailure
-          : audiFailure // ignore: cast_nullable_to_non_nullable
-              as AudioFailure,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AudioFailureCopyWith<$Res> get audiFailure {
-    return $AudioFailureCopyWith<$Res>(_value.audiFailure, (value) {
-      return _then(_value.copyWith(audiFailure: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$LoadFailureImpl implements _LoadFailure {
-  const _$LoadFailureImpl(this.audiFailure);
-
-  @override
-  final AudioFailure audiFailure;
-
-  @override
-  String toString() {
-    return 'HomeState.loadFailure(audiFailure: $audiFailure)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadFailureImpl &&
-            (identical(other.audiFailure, audiFailure) ||
-                other.audiFailure == audiFailure));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, audiFailure);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadFailureImplCopyWith<_$LoadFailureImpl> get copyWith =>
-      __$$LoadFailureImplCopyWithImpl<_$LoadFailureImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loadInProgress,
-    required TResult Function(List<Audio> audios) loadSuccess,
-    required TResult Function(AudioFailure audiFailure) loadFailure,
-  }) {
-    return loadFailure(audiFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loadInProgress,
-    TResult? Function(List<Audio> audios)? loadSuccess,
-    TResult? Function(AudioFailure audiFailure)? loadFailure,
-  }) {
-    return loadFailure?.call(audiFailure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Audio> audios)? loadSuccess,
-    TResult Function(AudioFailure audiFailure)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadFailure != null) {
-      return loadFailure(audiFailure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_LoadFailure value) loadFailure,
-  }) {
-    return loadFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_LoadSuccess value)? loadSuccess,
-    TResult? Function(_LoadFailure value)? loadFailure,
-  }) {
-    return loadFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
-    required TResult orElse(),
-  }) {
-    if (loadFailure != null) {
-      return loadFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadFailure implements HomeState {
-  const factory _LoadFailure(final AudioFailure audiFailure) =
-      _$LoadFailureImpl;
-
-  AudioFailure get audiFailure;
-  @JsonKey(ignore: true)
-  _$$LoadFailureImplCopyWith<_$LoadFailureImpl> get copyWith =>
+  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

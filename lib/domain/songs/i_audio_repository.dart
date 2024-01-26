@@ -6,8 +6,7 @@ import 'audio_value_objects.dart';
 
 abstract class IAudioRepository {
   Future<Either<AudioFailure, List<Audio>>> getAllAudio();
-  Future<Either<AudioFailure, Unit>> playAudio({required Path path});
-  Future<Either<AudioFailure, Unit>> pauseAudio({required bool pauseOrPlay});
-
-  Stream<Either<AudioFailure, int>> streamAudio();
+  Future<Either<AudioFailure, Unit>> playAudioFromStorage({required AudioPath path});
+  Future<void> playAudio();
+  Future<void> pauseAudio();
 }
