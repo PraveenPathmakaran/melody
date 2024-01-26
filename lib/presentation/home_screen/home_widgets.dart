@@ -13,92 +13,100 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      color: Colors.black,
-      child: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return cicularPindicator;
-          }
-          if (state.audios.isNotEmpty) {
-            return ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  margin: const EdgeInsets.all(3),
-                  color: const Color(0xFF14202E),
-                  child: ListTile(
-                      onTap: () async {
-                        context.read<AudioBloc>().add(
-                              AudioEvent.playStorageAudio(
-                                audio: state.audios[index],
-                                index: index,
-                              ),
-                            );
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ScreenPlay(),
-                        ));
-                      },
-                      leading: const CircleAvatar(
-                        radius: 28,
-                        backgroundColor: Colors.transparent,
-                        backgroundImage:
-                            AssetImage('assets/images/musicIcon1.png'),
-                      ),
-                      title: Text(
-                        state.audios[index].name.getOrCrash(),
-                        maxLines: 1,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 15),
-                      ),
-                      subtitle: Text(
-                        state.audios[index].artist.getOrCrash(),
-                        maxLines: 1,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
-                      ),
-                      trailing: IconButton(
-                        icon: functionIcon(Icons.more_vert, 20, Colors.white),
-                        onPressed: () {
-                          // showModalBottomSheet(
-                          //     backgroundColor: kAppbarColor,
-                          //     context: context,
-                          //     shape: const RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.vertical(
-                          //         top: Radius.circular(30),
-                          //       ),
-                          //     ),
-                          //     builder: (BuildContext ctx) {
-                          //       return SizedBox(
-                          //         height: 300,
-                          //         child: HomeBottomSheet(
-                          //           id: allAudioListFromDB[index].id.toString(),
-                          //         ),
-                          //       );
-                          //     });
+    return BlocListener<AudioBloc, AudioState>(
+      listenWhen: (previous, current) =>
+          previous.isNavigationEnable != current.isNavigationEnable,
+      listener: (context, state) {
+        if (state.isNavigationEnable) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const ScreenPlay(),
+          ));
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        color: Colors.black,
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return cicularPindicator;
+            }
+            if (state.audios.isNotEmpty) {
+              return ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    margin: const EdgeInsets.all(3),
+                    color: const Color(0xFF14202E),
+                    child: ListTile(
+                        onTap: () async {
+                          context.read<AudioBloc>().add(
+                                AudioEvent.playStorageAudio(
+                                    audio: state.audios[index],
+                                    index: index,
+                                    isNavigationEnabled: true),
+                              );
                         },
-                      )),
-                );
-              },
-              itemCount: state.audios.length,
-              shrinkWrap: true,
-            );
-          }
+                        leading: const CircleAvatar(
+                          radius: 28,
+                          backgroundColor: Colors.transparent,
+                          backgroundImage:
+                              AssetImage('assets/images/musicIcon1.png'),
+                        ),
+                        title: Text(
+                          state.audios[index].name.getOrCrash(),
+                          maxLines: 1,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 15),
+                        ),
+                        subtitle: Text(
+                          state.audios[index].artist.getOrCrash(),
+                          maxLines: 1,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 10),
+                        ),
+                        trailing: IconButton(
+                          icon: functionIcon(Icons.more_vert, 20, Colors.white),
+                          onPressed: () {
+                            // showModalBottomSheet(
+                            //     backgroundColor: kAppbarColor,
+                            //     context: context,
+                            //     shape: const RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.vertical(
+                            //         top: Radius.circular(30),
+                            //       ),
+                            //     ),
+                            //     builder: (BuildContext ctx) {
+                            //       return SizedBox(
+                            //         height: 300,
+                            //         child: HomeBottomSheet(
+                            //           id: allAudioListFromDB[index].id.toString(),
+                            //         ),
+                            //       );
+                            //     });
+                          },
+                        )),
+                  );
+                },
+                itemCount: state.audios.length,
+                shrinkWrap: true,
+              );
+            }
 
-          if (state.audios.isEmpty) {
-            return const EmptyDataWidget();
-          }
-          if (state.failure.isSome()) {
-            return const AppErrorWidget(
-              errorMessage: "Something went wrong",
-            );
-          }
+            if (state.audios.isEmpty) {
+              return const EmptyDataWidget();
+            }
+            if (state.failure.isSome()) {
+              return const AppErrorWidget(
+                errorMessage: "Something went wrong",
+              );
+            }
 
-          return const SizedBox();
-        },
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }

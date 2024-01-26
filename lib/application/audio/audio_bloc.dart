@@ -23,7 +23,10 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
             (l) => emit(state.copyWith(
                 failureOrSuccessOption: optionOf(failureOrSuccess))),
             (r) {
-              emit(state.copyWith(audio: value.audio, index: value.index));
+              emit(state.copyWith(
+                  audio: value.audio,
+                  index: value.index,
+                  isNavigationEnable: value.isNavigationEnabled));
               add(const AudioEvent.playAudio());
             },
           );
@@ -35,6 +38,9 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
         pauseAudio: (value) async {
           audioRepository.pauseAudio();
           emit(state.copyWith(isPlaying: false));
+        },
+        backButtonPressed: (value) {
+          emit(state.copyWith(isNavigationEnable: false));
         },
       );
     });

@@ -31,6 +31,7 @@ class AudioControllerWidget extends StatelessWidget {
                 context.read<AudioBloc>().add(AudioEvent.playStorageAudio(
                       audio: audio,
                       index: nextIndex,
+                      isNavigationEnabled: true,
                     ));
               },
               child: functionIcon(Icons.skip_previous, 55, Colors.white),
@@ -62,6 +63,7 @@ class AudioControllerWidget extends StatelessWidget {
                 context.read<AudioBloc>().add(AudioEvent.playStorageAudio(
                       audio: audio,
                       index: nextIndex,
+                      isNavigationEnabled: true,
                     ));
               },
               child: functionIcon(Icons.skip_next, 55, Colors.white),

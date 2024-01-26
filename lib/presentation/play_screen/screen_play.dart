@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/application/audio/audio_bloc.dart';
 
 import '../core/colors.dart';
 import '../widgets.dart';
@@ -9,18 +11,22 @@ class ScreenPlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
+    return PopScope(
+      onPopInvoked: (_) =>
+          context.read<AudioBloc>().add(const AudioEvent.backButtonPressed()),
+      child: Scaffold(
           backgroundColor: Colors.black,
-          elevation: 0,
-          title: const Text(
-            'Now Playing',
-            style: TextStyle(color: Colors.white),
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            elevation: 0,
+            title: const Text(
+              'Now Playing',
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
           ),
-          centerTitle: true,
-        ),
-        body: const PlayContainer());
+          body: const PlayContainer()),
+    );
   }
 }
 
@@ -47,13 +53,19 @@ class PlayContainer extends StatelessWidget {
           SizedBox(
             height: size.height * 0.05,
           ),
-          // Container(
-          //     height: size.height * 0.03,
-          //     margin: const EdgeInsets.fromLTRB(0, 10, 0, 7),
-          //     child: _buildMarquee(
-          //       realtimePlayingInfos1!.current!.audio.audio.metas.title
-          //           .toString(),
-          //     )),
+          BlocBuilder<AudioBloc, AudioState>(
+            buildWhen: (previous, current) =>
+                previous.audio.name != current.audio.name,
+            builder: (context, state) {
+              return Container(
+                  height: size.height * 0.03,
+                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 7),
+                  child: Text(
+                    state.audio.name.getOrCrash(),
+                    style: const TextStyle(color: Colors.white),
+                  ));
+            },
+          ),
           SizedBox(
             height: size.height * 0.02,
           ),

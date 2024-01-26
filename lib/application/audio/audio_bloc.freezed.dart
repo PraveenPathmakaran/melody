@@ -18,23 +18,29 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AudioEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Audio audio, int index) playStorageAudio,
+    required TResult Function(Audio audio, int index, bool isNavigationEnabled)
+        playStorageAudio,
     required TResult Function() playAudio,
     required TResult Function() pauseAudio,
+    required TResult Function() backButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Audio audio, int index)? playStorageAudio,
+    TResult? Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult? Function()? playAudio,
     TResult? Function()? pauseAudio,
+    TResult? Function()? backButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Audio audio, int index)? playStorageAudio,
+    TResult Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult Function()? playAudio,
     TResult Function()? pauseAudio,
+    TResult Function()? backButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +49,7 @@ mixin _$AudioEvent {
     required TResult Function(_PlayStorageAudio value) playStorageAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_PauseAudio value) pauseAudio,
+    required TResult Function(_BackButtonPressed value) backButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +57,7 @@ mixin _$AudioEvent {
     TResult? Function(_PlayStorageAudio value)? playStorageAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_PauseAudio value)? pauseAudio,
+    TResult? Function(_BackButtonPressed value)? backButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +65,7 @@ mixin _$AudioEvent {
     TResult Function(_PlayStorageAudio value)? playStorageAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_PauseAudio value)? pauseAudio,
+    TResult Function(_BackButtonPressed value)? backButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,7 +95,7 @@ abstract class _$$PlayStorageAudioImplCopyWith<$Res> {
           $Res Function(_$PlayStorageAudioImpl) then) =
       __$$PlayStorageAudioImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Audio audio, int index});
+  $Res call({Audio audio, int index, bool isNavigationEnabled});
 
   $AudioCopyWith<$Res> get audio;
 }
@@ -104,6 +113,7 @@ class __$$PlayStorageAudioImplCopyWithImpl<$Res>
   $Res call({
     Object? audio = null,
     Object? index = null,
+    Object? isNavigationEnabled = null,
   }) {
     return _then(_$PlayStorageAudioImpl(
       audio: null == audio
@@ -114,6 +124,10 @@ class __$$PlayStorageAudioImplCopyWithImpl<$Res>
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
+      isNavigationEnabled: null == isNavigationEnabled
+          ? _value.isNavigationEnabled
+          : isNavigationEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -129,16 +143,21 @@ class __$$PlayStorageAudioImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PlayStorageAudioImpl implements _PlayStorageAudio {
-  const _$PlayStorageAudioImpl({required this.audio, required this.index});
+  const _$PlayStorageAudioImpl(
+      {required this.audio,
+      required this.index,
+      required this.isNavigationEnabled});
 
   @override
   final Audio audio;
   @override
   final int index;
+  @override
+  final bool isNavigationEnabled;
 
   @override
   String toString() {
-    return 'AudioEvent.playStorageAudio(audio: $audio, index: $index)';
+    return 'AudioEvent.playStorageAudio(audio: $audio, index: $index, isNavigationEnabled: $isNavigationEnabled)';
   }
 
   @override
@@ -147,11 +166,14 @@ class _$PlayStorageAudioImpl implements _PlayStorageAudio {
         (other.runtimeType == runtimeType &&
             other is _$PlayStorageAudioImpl &&
             (identical(other.audio, audio) || other.audio == audio) &&
-            (identical(other.index, index) || other.index == index));
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.isNavigationEnabled, isNavigationEnabled) ||
+                other.isNavigationEnabled == isNavigationEnabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, audio, index);
+  int get hashCode =>
+      Object.hash(runtimeType, audio, index, isNavigationEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -163,33 +185,39 @@ class _$PlayStorageAudioImpl implements _PlayStorageAudio {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Audio audio, int index) playStorageAudio,
+    required TResult Function(Audio audio, int index, bool isNavigationEnabled)
+        playStorageAudio,
     required TResult Function() playAudio,
     required TResult Function() pauseAudio,
+    required TResult Function() backButtonPressed,
   }) {
-    return playStorageAudio(audio, index);
+    return playStorageAudio(audio, index, isNavigationEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Audio audio, int index)? playStorageAudio,
+    TResult? Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult? Function()? playAudio,
     TResult? Function()? pauseAudio,
+    TResult? Function()? backButtonPressed,
   }) {
-    return playStorageAudio?.call(audio, index);
+    return playStorageAudio?.call(audio, index, isNavigationEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Audio audio, int index)? playStorageAudio,
+    TResult Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult Function()? playAudio,
     TResult Function()? pauseAudio,
+    TResult Function()? backButtonPressed,
     required TResult orElse(),
   }) {
     if (playStorageAudio != null) {
-      return playStorageAudio(audio, index);
+      return playStorageAudio(audio, index, isNavigationEnabled);
     }
     return orElse();
   }
@@ -200,6 +228,7 @@ class _$PlayStorageAudioImpl implements _PlayStorageAudio {
     required TResult Function(_PlayStorageAudio value) playStorageAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_PauseAudio value) pauseAudio,
+    required TResult Function(_BackButtonPressed value) backButtonPressed,
   }) {
     return playStorageAudio(this);
   }
@@ -210,6 +239,7 @@ class _$PlayStorageAudioImpl implements _PlayStorageAudio {
     TResult? Function(_PlayStorageAudio value)? playStorageAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_PauseAudio value)? pauseAudio,
+    TResult? Function(_BackButtonPressed value)? backButtonPressed,
   }) {
     return playStorageAudio?.call(this);
   }
@@ -220,6 +250,7 @@ class _$PlayStorageAudioImpl implements _PlayStorageAudio {
     TResult Function(_PlayStorageAudio value)? playStorageAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_PauseAudio value)? pauseAudio,
+    TResult Function(_BackButtonPressed value)? backButtonPressed,
     required TResult orElse(),
   }) {
     if (playStorageAudio != null) {
@@ -232,10 +263,12 @@ class _$PlayStorageAudioImpl implements _PlayStorageAudio {
 abstract class _PlayStorageAudio implements AudioEvent {
   const factory _PlayStorageAudio(
       {required final Audio audio,
-      required final int index}) = _$PlayStorageAudioImpl;
+      required final int index,
+      required final bool isNavigationEnabled}) = _$PlayStorageAudioImpl;
 
   Audio get audio;
   int get index;
+  bool get isNavigationEnabled;
   @JsonKey(ignore: true)
   _$$PlayStorageAudioImplCopyWith<_$PlayStorageAudioImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -279,9 +312,11 @@ class _$PlayAudioImpl implements _PlayAudio {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Audio audio, int index) playStorageAudio,
+    required TResult Function(Audio audio, int index, bool isNavigationEnabled)
+        playStorageAudio,
     required TResult Function() playAudio,
     required TResult Function() pauseAudio,
+    required TResult Function() backButtonPressed,
   }) {
     return playAudio();
   }
@@ -289,9 +324,11 @@ class _$PlayAudioImpl implements _PlayAudio {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Audio audio, int index)? playStorageAudio,
+    TResult? Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult? Function()? playAudio,
     TResult? Function()? pauseAudio,
+    TResult? Function()? backButtonPressed,
   }) {
     return playAudio?.call();
   }
@@ -299,9 +336,11 @@ class _$PlayAudioImpl implements _PlayAudio {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Audio audio, int index)? playStorageAudio,
+    TResult Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult Function()? playAudio,
     TResult Function()? pauseAudio,
+    TResult Function()? backButtonPressed,
     required TResult orElse(),
   }) {
     if (playAudio != null) {
@@ -316,6 +355,7 @@ class _$PlayAudioImpl implements _PlayAudio {
     required TResult Function(_PlayStorageAudio value) playStorageAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_PauseAudio value) pauseAudio,
+    required TResult Function(_BackButtonPressed value) backButtonPressed,
   }) {
     return playAudio(this);
   }
@@ -326,6 +366,7 @@ class _$PlayAudioImpl implements _PlayAudio {
     TResult? Function(_PlayStorageAudio value)? playStorageAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_PauseAudio value)? pauseAudio,
+    TResult? Function(_BackButtonPressed value)? backButtonPressed,
   }) {
     return playAudio?.call(this);
   }
@@ -336,6 +377,7 @@ class _$PlayAudioImpl implements _PlayAudio {
     TResult Function(_PlayStorageAudio value)? playStorageAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_PauseAudio value)? pauseAudio,
+    TResult Function(_BackButtonPressed value)? backButtonPressed,
     required TResult orElse(),
   }) {
     if (playAudio != null) {
@@ -387,9 +429,11 @@ class _$PauseAudioImpl implements _PauseAudio {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Audio audio, int index) playStorageAudio,
+    required TResult Function(Audio audio, int index, bool isNavigationEnabled)
+        playStorageAudio,
     required TResult Function() playAudio,
     required TResult Function() pauseAudio,
+    required TResult Function() backButtonPressed,
   }) {
     return pauseAudio();
   }
@@ -397,9 +441,11 @@ class _$PauseAudioImpl implements _PauseAudio {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Audio audio, int index)? playStorageAudio,
+    TResult? Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult? Function()? playAudio,
     TResult? Function()? pauseAudio,
+    TResult? Function()? backButtonPressed,
   }) {
     return pauseAudio?.call();
   }
@@ -407,9 +453,11 @@ class _$PauseAudioImpl implements _PauseAudio {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Audio audio, int index)? playStorageAudio,
+    TResult Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
     TResult Function()? playAudio,
     TResult Function()? pauseAudio,
+    TResult Function()? backButtonPressed,
     required TResult orElse(),
   }) {
     if (pauseAudio != null) {
@@ -424,6 +472,7 @@ class _$PauseAudioImpl implements _PauseAudio {
     required TResult Function(_PlayStorageAudio value) playStorageAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_PauseAudio value) pauseAudio,
+    required TResult Function(_BackButtonPressed value) backButtonPressed,
   }) {
     return pauseAudio(this);
   }
@@ -434,6 +483,7 @@ class _$PauseAudioImpl implements _PauseAudio {
     TResult? Function(_PlayStorageAudio value)? playStorageAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_PauseAudio value)? pauseAudio,
+    TResult? Function(_BackButtonPressed value)? backButtonPressed,
   }) {
     return pauseAudio?.call(this);
   }
@@ -444,6 +494,7 @@ class _$PauseAudioImpl implements _PauseAudio {
     TResult Function(_PlayStorageAudio value)? playStorageAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_PauseAudio value)? pauseAudio,
+    TResult Function(_BackButtonPressed value)? backButtonPressed,
     required TResult orElse(),
   }) {
     if (pauseAudio != null) {
@@ -458,9 +509,128 @@ abstract class _PauseAudio implements AudioEvent {
 }
 
 /// @nodoc
+abstract class _$$BackButtonPressedImplCopyWith<$Res> {
+  factory _$$BackButtonPressedImplCopyWith(_$BackButtonPressedImpl value,
+          $Res Function(_$BackButtonPressedImpl) then) =
+      __$$BackButtonPressedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BackButtonPressedImplCopyWithImpl<$Res>
+    extends _$AudioEventCopyWithImpl<$Res, _$BackButtonPressedImpl>
+    implements _$$BackButtonPressedImplCopyWith<$Res> {
+  __$$BackButtonPressedImplCopyWithImpl(_$BackButtonPressedImpl _value,
+      $Res Function(_$BackButtonPressedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$BackButtonPressedImpl implements _BackButtonPressed {
+  const _$BackButtonPressedImpl();
+
+  @override
+  String toString() {
+    return 'AudioEvent.backButtonPressed()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$BackButtonPressedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Audio audio, int index, bool isNavigationEnabled)
+        playStorageAudio,
+    required TResult Function() playAudio,
+    required TResult Function() pauseAudio,
+    required TResult Function() backButtonPressed,
+  }) {
+    return backButtonPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
+    TResult? Function()? playAudio,
+    TResult? Function()? pauseAudio,
+    TResult? Function()? backButtonPressed,
+  }) {
+    return backButtonPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Audio audio, int index, bool isNavigationEnabled)?
+        playStorageAudio,
+    TResult Function()? playAudio,
+    TResult Function()? pauseAudio,
+    TResult Function()? backButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (backButtonPressed != null) {
+      return backButtonPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PlayStorageAudio value) playStorageAudio,
+    required TResult Function(_PlayAudio value) playAudio,
+    required TResult Function(_PauseAudio value) pauseAudio,
+    required TResult Function(_BackButtonPressed value) backButtonPressed,
+  }) {
+    return backButtonPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PlayStorageAudio value)? playStorageAudio,
+    TResult? Function(_PlayAudio value)? playAudio,
+    TResult? Function(_PauseAudio value)? pauseAudio,
+    TResult? Function(_BackButtonPressed value)? backButtonPressed,
+  }) {
+    return backButtonPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PlayStorageAudio value)? playStorageAudio,
+    TResult Function(_PlayAudio value)? playAudio,
+    TResult Function(_PauseAudio value)? pauseAudio,
+    TResult Function(_BackButtonPressed value)? backButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (backButtonPressed != null) {
+      return backButtonPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BackButtonPressed implements AudioEvent {
+  const factory _BackButtonPressed() = _$BackButtonPressedImpl;
+}
+
+/// @nodoc
 mixin _$AudioState {
   int get index => throw _privateConstructorUsedError;
-  bool get isPlaying => throw _privateConstructorUsedError;
+  bool get isPlaying =>
+      throw _privateConstructorUsedError; //this for playscreennavigation
+  bool get isNavigationEnable => throw _privateConstructorUsedError;
   Audio get audio => throw _privateConstructorUsedError;
   Option<Either<AudioFailure, Unit>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
@@ -479,6 +649,7 @@ abstract class $AudioStateCopyWith<$Res> {
   $Res call(
       {int index,
       bool isPlaying,
+      bool isNavigationEnable,
       Audio audio,
       Option<Either<AudioFailure, Unit>> failureOrSuccessOption});
 
@@ -500,6 +671,7 @@ class _$AudioStateCopyWithImpl<$Res, $Val extends AudioState>
   $Res call({
     Object? index = null,
     Object? isPlaying = null,
+    Object? isNavigationEnable = null,
     Object? audio = null,
     Object? failureOrSuccessOption = null,
   }) {
@@ -511,6 +683,10 @@ class _$AudioStateCopyWithImpl<$Res, $Val extends AudioState>
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNavigationEnable: null == isNavigationEnable
+          ? _value.isNavigationEnable
+          : isNavigationEnable // ignore: cast_nullable_to_non_nullable
               as bool,
       audio: null == audio
           ? _value.audio
@@ -543,6 +719,7 @@ abstract class _$$AudioStateImplCopyWith<$Res>
   $Res call(
       {int index,
       bool isPlaying,
+      bool isNavigationEnable,
       Audio audio,
       Option<Either<AudioFailure, Unit>> failureOrSuccessOption});
 
@@ -563,6 +740,7 @@ class __$$AudioStateImplCopyWithImpl<$Res>
   $Res call({
     Object? index = null,
     Object? isPlaying = null,
+    Object? isNavigationEnable = null,
     Object? audio = null,
     Object? failureOrSuccessOption = null,
   }) {
@@ -574,6 +752,10 @@ class __$$AudioStateImplCopyWithImpl<$Res>
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNavigationEnable: null == isNavigationEnable
+          ? _value.isNavigationEnable
+          : isNavigationEnable // ignore: cast_nullable_to_non_nullable
               as bool,
       audio: null == audio
           ? _value.audio
@@ -593,6 +775,7 @@ class _$AudioStateImpl implements _AudioState {
   const _$AudioStateImpl(
       {required this.index,
       required this.isPlaying,
+      required this.isNavigationEnable,
       required this.audio,
       required this.failureOrSuccessOption});
 
@@ -600,6 +783,9 @@ class _$AudioStateImpl implements _AudioState {
   final int index;
   @override
   final bool isPlaying;
+//this for playscreennavigation
+  @override
+  final bool isNavigationEnable;
   @override
   final Audio audio;
   @override
@@ -607,7 +793,7 @@ class _$AudioStateImpl implements _AudioState {
 
   @override
   String toString() {
-    return 'AudioState(index: $index, isPlaying: $isPlaying, audio: $audio, failureOrSuccessOption: $failureOrSuccessOption)';
+    return 'AudioState(index: $index, isPlaying: $isPlaying, isNavigationEnable: $isNavigationEnable, audio: $audio, failureOrSuccessOption: $failureOrSuccessOption)';
   }
 
   @override
@@ -618,14 +804,16 @@ class _$AudioStateImpl implements _AudioState {
             (identical(other.index, index) || other.index == index) &&
             (identical(other.isPlaying, isPlaying) ||
                 other.isPlaying == isPlaying) &&
+            (identical(other.isNavigationEnable, isNavigationEnable) ||
+                other.isNavigationEnable == isNavigationEnable) &&
             (identical(other.audio, audio) || other.audio == audio) &&
             (identical(other.failureOrSuccessOption, failureOrSuccessOption) ||
                 other.failureOrSuccessOption == failureOrSuccessOption));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, index, isPlaying, audio, failureOrSuccessOption);
+  int get hashCode => Object.hash(runtimeType, index, isPlaying,
+      isNavigationEnable, audio, failureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
@@ -638,6 +826,7 @@ abstract class _AudioState implements AudioState {
   const factory _AudioState(
       {required final int index,
       required final bool isPlaying,
+      required final bool isNavigationEnable,
       required final Audio audio,
       required final Option<Either<AudioFailure, Unit>>
           failureOrSuccessOption}) = _$AudioStateImpl;
@@ -646,6 +835,8 @@ abstract class _AudioState implements AudioState {
   int get index;
   @override
   bool get isPlaying;
+  @override //this for playscreennavigation
+  bool get isNavigationEnable;
   @override
   Audio get audio;
   @override
