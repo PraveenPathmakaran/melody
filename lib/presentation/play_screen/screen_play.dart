@@ -1,9 +1,7 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 
-import '../../infrastructure/audio/audio_repository.dart';
 import '../core/colors.dart';
 import '../widgets.dart';
 import 'widgets/play_controller_widget.dart';
@@ -63,13 +61,13 @@ class PlayContainer extends StatelessWidget {
           SizedBox(
             height: size.height * .10,
           ),
-          ValueListenableBuilder(
-            valueListenable: currentSongTitleNotifier,
-            builder: (context, value, child) => Text(
-              value,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
+          // ValueListenableBuilder(
+          //   valueListenable: currentSongTitleNotifier,
+          //   builder: (context, value, child) => Text(
+          //     value,
+          //     style: const TextStyle(color: Colors.white),
+          //   ),
+          // ),
           SizedBox(
             height: size.height * .05,
           ),
