@@ -1,14 +1,19 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 
+import '../../infrastructure/audio/audio_repository.dart';
 import '../core/colors.dart';
 import '../widgets.dart';
 import 'widgets/play_controller_widget.dart';
 
 class ScreenPlay extends StatelessWidget {
-  const ScreenPlay(
-      {super.key, required this.index, required this.isNavigateFromHome});
+  const ScreenPlay({
+    super.key,
+    required this.index,
+    required this.isNavigateFromHome,
+  });
 
   final int index;
   final bool isNavigateFromHome;
@@ -42,131 +47,86 @@ class PlayContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return SizedBox(
+    final size = MediaQuery.sizeOf(context);
+    return Container(
       height: size.height,
       width: size.width,
-      child: SingleChildScrollView(
-          child: Column(
+      padding: const EdgeInsets.all(30.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(
-            height: size.height * 0.10,
-          ),
-          CircleAvatar(
+          const CircleAvatar(
             backgroundColor: Colors.transparent,
-            backgroundImage: const AssetImage('assets/images/songsImage.png'),
-            radius: size.width * 0.30,
+            backgroundImage: AssetImage('assets/images/songsImage.png'),
+            radius: 100,
           ),
           SizedBox(
-            height: size.height * 0.05,
+            height: size.height * .10,
           ),
-          // BlocBuilder<AudioBloc, AudioState>(
-          //   buildWhen: (previous, current) =>
-          //       previous.audio.name != current.audio.name,
-          //   builder: (context, state) {
-          //     return Container(
-          //         height: size.height * 0.03,
-          //         margin: const EdgeInsets.fromLTRB(0, 10, 0, 7),
-          //         child: Text(
-          //           state.audio.name.getOrCrash(),
-          //           style: const TextStyle(color: Colors.white),
-          //         ));
-          //   },
-          // ),
+          ValueListenableBuilder(
+            valueListenable: currentSongTitleNotifier,
+            builder: (context, value, child) => Text(
+              value,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
           SizedBox(
-            height: size.height * 0.02,
+            height: size.height * .05,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          const Column(
             children: <Widget>[
-              IconButton(
-                  onPressed: () {},
-                  icon: functionIcon(Icons.favorite, 30, Colors.white)),
-              IconButton(
-                onPressed: () {},
-                icon: functionIcon(Icons.repeat_one, 35, kWhiteColor),
-              ),
-              IconButton(
-                  onPressed: () {
-                    // showModalBottomSheet(
-                    //   backgroundColor: kBackgroundColor2,
-                    //   context: context,
-                    //   shape: const RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.vertical(
-                    //       top: Radius.circular(30),
-                    //     ),
-                    //   ),
-                    //   builder: (BuildContext context) {
-                    //     return ScreenAddToPlaylistFromHome(
-                    //       id: realtimePlayingInfos1!
-                    //           .current!.audio.audio.metas.id
-                    //           .toString(),
-                    //     );
-                    //   },
-                    // );
-                  },
-                  icon: functionIcon(Icons.playlist_play, 35, kWhiteColor))
+              PlayTopControllerWidget(),
+              //PlayProgressSlideWidget(),
+              AudioControllerWidget()
             ],
           ),
-          // const SliderWidget(),
-          Container(
-            transform: Matrix4.translationValues(0, -5, 0),
-            margin: const EdgeInsets.fromLTRB(5, 0, 5, 15),
-            //child: timeStamps(realtimePlayingInfos1!),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          const AudioControllerWidget()
         ],
-      )),
+      ),
     );
   }
 }
 
-// Widget _buildMarquee(String text) {
-//   return Marquee(
-//     text: text,
-//     style: const TextStyle(color: kWhiteColor),
-//     blankSpace: 50,
-//   );
-// }
-
-// class SliderWidget extends StatelessWidget {
-//   const SliderWidget({super.key});
+// class PlayProgressSlideWidget extends StatelessWidget {
+//   const PlayProgressSlideWidget({
+//     super.key,
+//   });
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return BlocBuilder<ListenAudioBloc, ListenAudioState>(
-//       builder: (context, state) {
-//         return Stack(
-//           children: <Widget>[
-//             SliderTheme(
-//               data: const SliderThemeData(
-//                   thumbColor: Colors.white,
-//                   activeTrackColor: Color(0xffe45923),
-//                   inactiveTrackColor: Colors.grey,
-//                   overlayColor: Colors.transparent),
-//               child: Slider.adaptive(
-//                 value: state.duration * 1 / 100,
-//                 onChanged: (value) {},
-                // max: realtimePlayingInfos.duration.inSeconds <= 0
-                //     ? 10000
-                //     : realtimePlayingInfos.duration.inSeconds.toDouble() + 3,
-                //   onChanged: (double value) {
-                //     if (value <= 0) {
-                //       audioPlayer.seek(Duration.zero);
-                //     } else if (value >= realtimePlayingInfos.duration.inSeconds) {
-                //       audioPlayer.seek(realtimePlayingInfos.duration);
-                //     } else {
-                //       audioPlayer.seek(Duration(seconds: value.toInt()));
-                //     }
-                //   },
-//               ),
-//             ),
-//           ],
+//     return ValueListenableBuilder<ProgressBarState>(
+//       valueListenable: progressNotifier,
+//       builder: (_, value, __) {
+//         return ProgressBar(
+//           progress: value.current,
+//           buffered: value.buffered,
+//           total: value.total,
 //         );
 //       },
 //     );
 //   }
 // }
+
+class PlayTopControllerWidget extends StatelessWidget {
+  const PlayTopControllerWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        IconButton(
+            onPressed: () {},
+            icon: functionIcon(Icons.favorite, 30, Colors.white)),
+        IconButton(
+          onPressed: () {},
+          icon: functionIcon(Icons.repeat_one, 35, kWhiteColor),
+        ),
+        IconButton(
+            onPressed: () {},
+            icon: functionIcon(Icons.playlist_play, 35, kWhiteColor))
+      ],
+    );
+  }
+}

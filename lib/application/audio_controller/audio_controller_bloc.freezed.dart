@@ -577,6 +577,9 @@ abstract class _PreviuosAudio implements AudioControllerEvent {
 /// @nodoc
 mixin _$AudioControllerState {
   bool get isPlaying => throw _privateConstructorUsedError;
+  Duration get current => throw _privateConstructorUsedError;
+  Duration get buffered => throw _privateConstructorUsedError;
+  Duration get total => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioControllerStateCopyWith<AudioControllerState> get copyWith =>
@@ -589,7 +592,8 @@ abstract class $AudioControllerStateCopyWith<$Res> {
           $Res Function(AudioControllerState) then) =
       _$AudioControllerStateCopyWithImpl<$Res, AudioControllerState>;
   @useResult
-  $Res call({bool isPlaying});
+  $Res call(
+      {bool isPlaying, Duration current, Duration buffered, Duration total});
 }
 
 /// @nodoc
@@ -607,12 +611,27 @@ class _$AudioControllerStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? isPlaying = null,
+    Object? current = null,
+    Object? buffered = null,
+    Object? total = null,
   }) {
     return _then(_value.copyWith(
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
+      current: null == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as Duration,
+      buffered: null == buffered
+          ? _value.buffered
+          : buffered // ignore: cast_nullable_to_non_nullable
+              as Duration,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as Duration,
     ) as $Val);
   }
 }
@@ -625,7 +644,8 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
       __$$AudioControllerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isPlaying});
+  $Res call(
+      {bool isPlaying, Duration current, Duration buffered, Duration total});
 }
 
 /// @nodoc
@@ -640,12 +660,27 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isPlaying = null,
+    Object? current = null,
+    Object? buffered = null,
+    Object? total = null,
   }) {
     return _then(_$AudioControllerStateImpl(
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
+      current: null == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as Duration,
+      buffered: null == buffered
+          ? _value.buffered
+          : buffered // ignore: cast_nullable_to_non_nullable
+              as Duration,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as Duration,
     ));
   }
 }
@@ -653,14 +688,24 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AudioControllerStateImpl implements _AudioControllerState {
-  const _$AudioControllerStateImpl({required this.isPlaying});
+  const _$AudioControllerStateImpl(
+      {required this.isPlaying,
+      required this.current,
+      required this.buffered,
+      required this.total});
 
   @override
   final bool isPlaying;
+  @override
+  final Duration current;
+  @override
+  final Duration buffered;
+  @override
+  final Duration total;
 
   @override
   String toString() {
-    return 'AudioControllerState(isPlaying: $isPlaying)';
+    return 'AudioControllerState(isPlaying: $isPlaying, current: $current, buffered: $buffered, total: $total)';
   }
 
   @override
@@ -669,11 +714,16 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
         (other.runtimeType == runtimeType &&
             other is _$AudioControllerStateImpl &&
             (identical(other.isPlaying, isPlaying) ||
-                other.isPlaying == isPlaying));
+                other.isPlaying == isPlaying) &&
+            (identical(other.current, current) || other.current == current) &&
+            (identical(other.buffered, buffered) ||
+                other.buffered == buffered) &&
+            (identical(other.total, total) || other.total == total));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isPlaying);
+  int get hashCode =>
+      Object.hash(runtimeType, isPlaying, current, buffered, total);
 
   @JsonKey(ignore: true)
   @override
@@ -685,11 +735,20 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
 }
 
 abstract class _AudioControllerState implements AudioControllerState {
-  const factory _AudioControllerState({required final bool isPlaying}) =
-      _$AudioControllerStateImpl;
+  const factory _AudioControllerState(
+      {required final bool isPlaying,
+      required final Duration current,
+      required final Duration buffered,
+      required final Duration total}) = _$AudioControllerStateImpl;
 
   @override
   bool get isPlaying;
+  @override
+  Duration get current;
+  @override
+  Duration get buffered;
+  @override
+  Duration get total;
   @override
   @JsonKey(ignore: true)
   _$$AudioControllerStateImplCopyWith<_$AudioControllerStateImpl>

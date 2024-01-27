@@ -6,6 +6,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_value_objects.dart' as value_object;
 import 'package:melody/domain/songs/i_audio_repository.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../domain/songs/audio_failure.dart';
 import 'audio_dtos.dart';
@@ -87,9 +88,8 @@ class AudioRepository implements IAudioRepository {
   @override
   Future<Either<AudioFailure, Unit>> playAudio({required int index}) async {
     try {
-      await audioPlayer.seek(Duration.zero, index: index);
-      await audioPlayer.play();
-
+      audioPlayer.seek(Duration.zero, index: index);
+      audioPlayer.play();
       return right(unit);
     } catch (e) {
       return left(const AudioFailure.platFormFailure());
@@ -100,7 +100,6 @@ class AudioRepository implements IAudioRepository {
   Future<Either<AudioFailure, Unit>> nextAudio() async {
     try {
       await audioPlayer.seekToNext();
-      //await audioPlayer.play();
 
       return right(unit);
     } catch (e) {
@@ -112,7 +111,6 @@ class AudioRepository implements IAudioRepository {
   Future<Either<AudioFailure, Unit>> previousAudio() async {
     try {
       await audioPlayer.seekToPrevious();
-      await audioPlayer.play();
 
       return right(unit);
     } catch (e) {
@@ -130,11 +128,58 @@ class AudioRepository implements IAudioRepository {
       return left(const AudioFailure.audioNotFound());
     }
   }
+
+  @override
+  Future<Either<AudioFailure, Unit>> seekAudio(
+      {required Duration duration}) async {
+    try {
+      await audioPlayer.seek(duration);
+
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
+  Stream<Either<AudioFailure, Duration>> bufferedPositionStream() async* {
+    yield* audioPlayer.bufferedPositionStream
+        .map<Either<AudioFailure, Duration>>(
+            (bufferedPosition) => right(bufferedPosition))
+        .onErrorReturnWith(
+            (error, stackTrace) => left(const AudioFailure.platFormFailure()));
+  }
+
+  @override
+  Stream<Either<AudioFailure, Duration>> durationStream() async* {
+    yield* audioPlayer.durationStream
+        .map<Either<AudioFailure, Duration>>(
+            (duration) => right(duration ?? Duration.zero))
+        .onErrorReturnWith(
+            (error, stackTrace) => left(const AudioFailure.platFormFailure()));
+  }
+
+  @override
+  Stream<Either<AudioFailure, Duration>> positionStream() async* {
+    yield* audioPlayer.positionStream
+        .map<Either<AudioFailure, Duration>>((position) => right(position))
+        .onErrorReturnWith(
+            (error, stackTrace) => left(const AudioFailure.platFormFailure()));
+  }
+
+  @override
+  Stream<Either<AudioFailure, String>> sequenceStateStream() async* {
+    yield* audioPlayer.sequenceStateStream
+        .map<Either<AudioFailure, String>>((sequenceState) {
+      if (sequenceState == null) {
+        return left(const AudioFailure.platFormFailure());
+      }
+      final currentItem = sequenceState.currentSource;
+      final String audioId = currentItem?.tag ?? "";
+      String value = allAudios[audioId]?.name.getOrCrash() ?? '';
+
+      return right(value);
+    }).onErrorReturnWith(
+            (error, stackTrace) => left(const AudioFailure.platFormFailure()));
+  }
 }
-  // @override
-  // Stream<Either<AudioFailure, bool>> isPlaying() async* {
-  //   yield* audioPlayer.playingStream
-  //       .map<Either<AudioFailure, bool>>((event) => right(event))
-  //       .onErrorReturnWith(
-  //           (error, stackTrace) => left(const AudioFailure.platFormFailure()));
-  // }
