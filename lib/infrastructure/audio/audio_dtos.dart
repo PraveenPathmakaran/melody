@@ -10,7 +10,7 @@ part 'audio_dtos.g.dart';
 abstract class AudioDto implements _$AudioDto {
   const AudioDto._();
   const factory AudioDto({
-    required String? id,
+    required String? uid,
     required String? name,
     required String? artist,
     required String? path,
@@ -18,7 +18,7 @@ abstract class AudioDto implements _$AudioDto {
 
   Audio toDomain() {
     return Audio(
-      uid: Id(id ?? ""),
+      uid: Id(uid ?? ""),
       name: Name(name ?? ""),
       artist: Artist(artist ?? ""),
       path: AudioPath(path ?? ""),

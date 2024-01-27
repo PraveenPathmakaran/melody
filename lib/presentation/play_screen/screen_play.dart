@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/application/audio/audio_bloc.dart';
+import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 
 import '../core/colors.dart';
 import '../widgets.dart';
 import 'widgets/play_controller_widget.dart';
 
 class ScreenPlay extends StatelessWidget {
-  const ScreenPlay({super.key});
+  const ScreenPlay(
+      {super.key, required this.index, required this.isNavigateFromHome});
+
+  final int index;
+  final bool isNavigateFromHome;
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvoked: (_) =>
-          context.read<AudioBloc>().add(const AudioEvent.backButtonPressed()),
-      child: Scaffold(
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (isNavigateFromHome) {
+        context
+            .read<AudioControllerBloc>()
+            .add(AudioControllerEvent.addToPlay(index: index));
+      }
+    });
+    return Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
           backgroundColor: Colors.black,
-          appBar: AppBar(
-            backgroundColor: Colors.black,
-            elevation: 0,
-            title: const Text(
-              'Now Playing',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
+          elevation: 0,
+          title: const Text(
+            'Now Playing',
+            style: TextStyle(color: Colors.white),
           ),
-          body: const PlayContainer()),
-    );
+          centerTitle: true,
+        ),
+        body: const PlayContainer());
   }
 }
 
@@ -53,19 +60,19 @@ class PlayContainer extends StatelessWidget {
           SizedBox(
             height: size.height * 0.05,
           ),
-          BlocBuilder<AudioBloc, AudioState>(
-            buildWhen: (previous, current) =>
-                previous.audio.name != current.audio.name,
-            builder: (context, state) {
-              return Container(
-                  height: size.height * 0.03,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 7),
-                  child: Text(
-                    state.audio.name.getOrCrash(),
-                    style: const TextStyle(color: Colors.white),
-                  ));
-            },
-          ),
+          // BlocBuilder<AudioBloc, AudioState>(
+          //   buildWhen: (previous, current) =>
+          //       previous.audio.name != current.audio.name,
+          //   builder: (context, state) {
+          //     return Container(
+          //         height: size.height * 0.03,
+          //         margin: const EdgeInsets.fromLTRB(0, 10, 0, 7),
+          //         child: Text(
+          //           state.audio.name.getOrCrash(),
+          //           style: const TextStyle(color: Colors.white),
+          //         ));
+          //   },
+          // ),
           SizedBox(
             height: size.height * 0.02,
           ),
@@ -143,18 +150,18 @@ class PlayContainer extends StatelessWidget {
 //               child: Slider.adaptive(
 //                 value: state.duration * 1 / 100,
 //                 onChanged: (value) {},
-//                 // max: realtimePlayingInfos.duration.inSeconds <= 0
-//                 //     ? 10000
-//                 //     : realtimePlayingInfos.duration.inSeconds.toDouble() + 3,
-//                 //   onChanged: (double value) {
-//                 //     if (value <= 0) {
-//                 //       audioPlayer.seek(Duration.zero);
-//                 //     } else if (value >= realtimePlayingInfos.duration.inSeconds) {
-//                 //       audioPlayer.seek(realtimePlayingInfos.duration);
-//                 //     } else {
-//                 //       audioPlayer.seek(Duration(seconds: value.toInt()));
-//                 //     }
-//                 //   },
+                // max: realtimePlayingInfos.duration.inSeconds <= 0
+                //     ? 10000
+                //     : realtimePlayingInfos.duration.inSeconds.toDouble() + 3,
+                //   onChanged: (double value) {
+                //     if (value <= 0) {
+                //       audioPlayer.seek(Duration.zero);
+                //     } else if (value >= realtimePlayingInfos.duration.inSeconds) {
+                //       audioPlayer.seek(realtimePlayingInfos.duration);
+                //     } else {
+                //       audioPlayer.seek(Duration(seconds: value.toInt()));
+                //     }
+                //   },
 //               ),
 //             ),
 //           ],

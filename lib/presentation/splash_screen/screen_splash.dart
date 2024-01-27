@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/application/audio/audio_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
 
 import '../home_screen/screen_home.dart';
@@ -41,21 +42,35 @@ class _ScreenSplashState extends State<ScreenSplash>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PermissionHandlerBloc, PermissionHandlerState>(
-      listener: (context, state) {
-        state.maybeMap(
-            orElse: () {},
-            //permission state is granted then it navigate to ScreenHomeMain
-            granted: (value) async {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const ScreenHomeMain(), // Replace HomeScreen with your actual home screen widget
-                ),
-              );
-            });
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<PermissionHandlerBloc, PermissionHandlerState>(
+          listener: (context, state) {
+            state.maybeMap(
+                orElse: () {},
+                //permission state is granted then it navigate to ScreenHomeMain
+                granted: (value) async {
+                  context
+                      .read<AudioBloc>()
+                      .add(const AudioEvent.concatenatingAudios());
+                });
+          },
+        ),
+        BlocListener<AudioBloc, AudioState>(
+          listenWhen: (p, c) => p != c,
+          listener: (context, state) {
+            state.maybeMap(
+              orElse: () {},
+              loadSuccess: (value) {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ScreenHomeMain(),
+                ));
+              },
+            );
+          },
+          child: Container(),
+        )
+      ],
       child: Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(

@@ -20,7 +20,7 @@ AudioDto _$AudioDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AudioDto {
-  String? get id => throw _privateConstructorUsedError;
+  String? get uid => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get artist => throw _privateConstructorUsedError;
   String? get path => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $AudioDtoCopyWith<$Res> {
   factory $AudioDtoCopyWith(AudioDto value, $Res Function(AudioDto) then) =
       _$AudioDtoCopyWithImpl<$Res, AudioDto>;
   @useResult
-  $Res call({String? id, String? name, String? artist, String? path});
+  $Res call({String? uid, String? name, String? artist, String? path});
 }
 
 /// @nodoc
@@ -52,15 +52,15 @@ class _$AudioDtoCopyWithImpl<$Res, $Val extends AudioDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? uid = freezed,
     Object? name = freezed,
     Object? artist = freezed,
     Object? path = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -86,7 +86,7 @@ abstract class _$$AudioDtoImplCopyWith<$Res>
       __$$AudioDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? name, String? artist, String? path});
+  $Res call({String? uid, String? name, String? artist, String? path});
 }
 
 /// @nodoc
@@ -100,15 +100,15 @@ class __$$AudioDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? uid = freezed,
     Object? name = freezed,
     Object? artist = freezed,
     Object? path = freezed,
   }) {
     return _then(_$AudioDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
           ? _value.name
@@ -130,7 +130,7 @@ class __$$AudioDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
   const _$AudioDtoImpl(
-      {required this.id,
+      {required this.uid,
       required this.name,
       required this.artist,
       required this.path})
@@ -140,7 +140,7 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
       _$$AudioDtoImplFromJson(json);
 
   @override
-  final String? id;
+  final String? uid;
   @override
   final String? name;
   @override
@@ -150,7 +150,7 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AudioDto(id: $id, name: $name, artist: $artist, path: $path)';
+    return 'AudioDto(uid: $uid, name: $name, artist: $artist, path: $path)';
   }
 
   @override
@@ -158,7 +158,7 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AudioDto'))
-      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('artist', artist))
       ..add(DiagnosticsProperty('path', path));
@@ -169,7 +169,7 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AudioDtoImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.artist, artist) || other.artist == artist) &&
             (identical(other.path, path) || other.path == path));
@@ -177,7 +177,7 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, artist, path);
+  int get hashCode => Object.hash(runtimeType, uid, name, artist, path);
 
   @JsonKey(ignore: true)
   @override
@@ -195,7 +195,7 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
 
 abstract class _AudioDto extends AudioDto {
   const factory _AudioDto(
-      {required final String? id,
+      {required final String? uid,
       required final String? name,
       required final String? artist,
       required final String? path}) = _$AudioDtoImpl;
@@ -205,7 +205,7 @@ abstract class _AudioDto extends AudioDto {
       _$AudioDtoImpl.fromJson;
 
   @override
-  String? get id;
+  String? get uid;
   @override
   String? get name;
   @override

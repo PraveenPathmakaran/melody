@@ -8,7 +8,7 @@ part of 'audio_dtos.dart';
 
 _$AudioDtoImpl _$$AudioDtoImplFromJson(Map<String, dynamic> json) =>
     _$AudioDtoImpl(
-      id: json['id'] as String?,
+      uid: json['uid'] as String?,
       name: json['name'] as String?,
       artist: json['artist'] as String?,
       path: json['path'] as String?,
@@ -16,7 +16,7 @@ _$AudioDtoImpl _$$AudioDtoImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$AudioDtoImplToJson(_$AudioDtoImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'uid': instance.uid,
       'name': instance.name,
       'artist': instance.artist,
       'path': instance.path,

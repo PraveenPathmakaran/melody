@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:melody/domain/songs/audio.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart';
+import 'package:melody/domain/songs/audio_value_objects.dart' as value_object;
 import 'package:melody/domain/songs/i_audio_repository.dart';
 
 import '../../domain/songs/audio_failure.dart';
@@ -16,19 +16,24 @@ class AudioRepository implements IAudioRepository {
   static const String functionName = "getAudios";
   static const platform = MethodChannel(channelName);
 
+  // Define the playlist
+  late ConcatenatingAudioSource playlist;
+  late Map<String, Audio> allAudios;
+
   AudioRepository({required this.audioPlayer});
   @override
-  Future<Either<AudioFailure, List<Audio>>> getAllAudio() async {
+  Future<Either<AudioFailure, Unit>> getAllAudio() async {
     try {
-      final allAudios =
-          await platform.invokeMethod<List<dynamic>>(functionName);
-      if (allAudios != null) {
-        List<Audio> songs = allAudios
-            .map((e) =>
-                AudioDto.fromJson(Map<String, dynamic>.from(e)).toDomain())
-            .toList();
+      final data = await platform.invokeMethod<List<dynamic>>(functionName);
+      if (data != null) {
+        final result = data.map(
+            (e) => AudioDto.fromJson(Map<String, dynamic>.from(e)).toDomain());
 
-        return right(songs);
+        allAudios = {
+          for (var element in result) element.uid.getOrCrash(): element
+        };
+
+        return right(unit);
       }
 
       return left(const AudioFailure.platFormFailure());
@@ -39,24 +44,90 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Future<void> pauseAudio() async {
-    await audioPlayer.pause();
-  }
-
-  @override
-  Future<void> playAudio() async {
-    await audioPlayer.play();
-  }
-
-  @override
-  Future<Either<AudioFailure, Unit>> playAudioFromStorage(
-      {required AudioPath path}) async {
+  Future<Either<AudioFailure, Map<String, Audio>>> concatenatingAudios() async {
     try {
-      await audioPlayer.setFilePath(path.getOrCrash());
+      final concatenatedList = allAudios.values
+          .map((e) =>
+              AudioSource.file(e.path.getOrCrash(), tag: e.uid.getOrCrash()))
+          .toList();
+      playlist = ConcatenatingAudioSource(
+        // Start loading next item just before reaching it
+        useLazyPreparation: true,
+        // Customise the shuffle algorithm
+        shuffleOrder: DefaultShuffleOrder(),
+        // Specify the playlist items
+        children: concatenatedList,
+      );
+
+      audioPlayer.setAudioSource(playlist,
+          initialIndex: 0, initialPosition: Duration.zero);
+
+      return right(allAudios);
+    } catch (e) {
+      log("ConcatenatingAudioSource Failure => $e");
+      return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> playOrPause() async {
+    try {
+      if (audioPlayer.playing) {
+        await audioPlayer.pause();
+      } else {
+        await audioPlayer.play();
+      }
+
       return right(unit);
     } catch (e) {
-      log("play Failure");
       return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> playAudio({required int index}) async {
+    try {
+      await audioPlayer.seek(Duration.zero, index: index);
+      await audioPlayer.play();
+
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> nextAudio() async {
+    try {
+      await audioPlayer.seekToNext();
+      //await audioPlayer.play();
+
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> previousAudio() async {
+    try {
+      await audioPlayer.seekToPrevious();
+      await audioPlayer.play();
+
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
+  Either<AudioFailure, Audio> getAudioData({required value_object.Id uid}) {
+    try {
+      final data = allAudios[uid.getOrCrash()]!;
+
+      return right(data);
+    } catch (e) {
+      return left(const AudioFailure.audioNotFound());
     }
   }
 }
