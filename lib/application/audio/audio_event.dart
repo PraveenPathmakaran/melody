@@ -4,7 +4,6 @@ part of 'audio_bloc.dart';
 class AudioEvent with _$AudioEvent {
   const factory AudioEvent.concatenatingAudios() =
       _ConcatenatingAudios;
-    const factory AudioEvent.fetchAudioData({required Id uid}) =
-      _FetchAudioData;
+   
  
 }

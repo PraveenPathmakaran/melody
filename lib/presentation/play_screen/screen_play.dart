@@ -1,3 +1,4 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
@@ -20,9 +21,10 @@ class ScreenPlay extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (isNavigateFromHome) {
+        context.read<AudioControllerBloc>().addToPlay(index);
         context
             .read<AudioControllerBloc>()
-            .add(AudioControllerEvent.addToPlay(index: index));
+            .add(const AudioControllerEvent.listenAllStreams());
       }
     });
     return Scaffold(
@@ -61,20 +63,22 @@ class PlayContainer extends StatelessWidget {
           SizedBox(
             height: size.height * .10,
           ),
-          // ValueListenableBuilder(
-          //   valueListenable: currentSongTitleNotifier,
-          //   builder: (context, value, child) => Text(
-          //     value,
-          //     style: const TextStyle(color: Colors.white),
-          //   ),
-          // ),
+          BlocBuilder<AudioControllerBloc, AudioControllerState>(
+            buildWhen: (p, c) => p.title != c.title,
+            builder: (context, state) {
+              return Text(
+                state.title,
+                style: const TextStyle(color: Colors.white),
+              );
+            },
+          ),
           SizedBox(
             height: size.height * .05,
           ),
           const Column(
             children: <Widget>[
               PlayTopControllerWidget(),
-              //PlayProgressSlideWidget(),
+              PlayProgressSlideWidget(),
               AudioControllerWidget()
             ],
           ),
@@ -84,25 +88,25 @@ class PlayContainer extends StatelessWidget {
   }
 }
 
-// class PlayProgressSlideWidget extends StatelessWidget {
-//   const PlayProgressSlideWidget({
-//     super.key,
-//   });
+class PlayProgressSlideWidget extends StatelessWidget {
+  const PlayProgressSlideWidget({
+    super.key,
+  });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return ValueListenableBuilder<ProgressBarState>(
-//       valueListenable: progressNotifier,
-//       builder: (_, value, __) {
-//         return ProgressBar(
-//           progress: value.current,
-//           buffered: value.buffered,
-//           total: value.total,
-//         );
-//       },
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AudioControllerBloc, AudioControllerState>(
+      builder: (context, state) {
+        return ProgressBar(
+          progress: state.current,
+          buffered: state.buffered,
+          total: state.total,
+          onSeek: context.read<AudioControllerBloc>().onSeek,
+        );
+      },
+    );
+  }
+}
 
 class PlayTopControllerWidget extends StatelessWidget {
   const PlayTopControllerWidget({

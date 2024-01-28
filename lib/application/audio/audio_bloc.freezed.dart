@@ -19,38 +19,32 @@ mixin _$AudioEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() concatenatingAudios,
-    required TResult Function(Id uid) fetchAudioData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? concatenatingAudios,
-    TResult? Function(Id uid)? fetchAudioData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? concatenatingAudios,
-    TResult Function(Id uid)? fetchAudioData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
-    required TResult Function(_FetchAudioData value) fetchAudioData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
-    TResult? Function(_FetchAudioData value)? fetchAudioData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
-    TResult Function(_FetchAudioData value)? fetchAudioData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +108,6 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() concatenatingAudios,
-    required TResult Function(Id uid) fetchAudioData,
   }) {
     return concatenatingAudios();
   }
@@ -123,7 +116,6 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? concatenatingAudios,
-    TResult? Function(Id uid)? fetchAudioData,
   }) {
     return concatenatingAudios?.call();
   }
@@ -132,7 +124,6 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? concatenatingAudios,
-    TResult Function(Id uid)? fetchAudioData,
     required TResult orElse(),
   }) {
     if (concatenatingAudios != null) {
@@ -145,7 +136,6 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
-    required TResult Function(_FetchAudioData value) fetchAudioData,
   }) {
     return concatenatingAudios(this);
   }
@@ -154,7 +144,6 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
-    TResult? Function(_FetchAudioData value)? fetchAudioData,
   }) {
     return concatenatingAudios?.call(this);
   }
@@ -163,7 +152,6 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
-    TResult Function(_FetchAudioData value)? fetchAudioData,
     required TResult orElse(),
   }) {
     if (concatenatingAudios != null) {
@@ -178,146 +166,12 @@ abstract class _ConcatenatingAudios implements AudioEvent {
 }
 
 /// @nodoc
-abstract class _$$FetchAudioDataImplCopyWith<$Res> {
-  factory _$$FetchAudioDataImplCopyWith(_$FetchAudioDataImpl value,
-          $Res Function(_$FetchAudioDataImpl) then) =
-      __$$FetchAudioDataImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Id uid});
-}
-
-/// @nodoc
-class __$$FetchAudioDataImplCopyWithImpl<$Res>
-    extends _$AudioEventCopyWithImpl<$Res, _$FetchAudioDataImpl>
-    implements _$$FetchAudioDataImplCopyWith<$Res> {
-  __$$FetchAudioDataImplCopyWithImpl(
-      _$FetchAudioDataImpl _value, $Res Function(_$FetchAudioDataImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? uid = null,
-  }) {
-    return _then(_$FetchAudioDataImpl(
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as Id,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$FetchAudioDataImpl implements _FetchAudioData {
-  const _$FetchAudioDataImpl({required this.uid});
-
-  @override
-  final Id uid;
-
-  @override
-  String toString() {
-    return 'AudioEvent.fetchAudioData(uid: $uid)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FetchAudioDataImpl &&
-            (identical(other.uid, uid) || other.uid == uid));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, uid);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FetchAudioDataImplCopyWith<_$FetchAudioDataImpl> get copyWith =>
-      __$$FetchAudioDataImplCopyWithImpl<_$FetchAudioDataImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() concatenatingAudios,
-    required TResult Function(Id uid) fetchAudioData,
-  }) {
-    return fetchAudioData(uid);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? concatenatingAudios,
-    TResult? Function(Id uid)? fetchAudioData,
-  }) {
-    return fetchAudioData?.call(uid);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? concatenatingAudios,
-    TResult Function(Id uid)? fetchAudioData,
-    required TResult orElse(),
-  }) {
-    if (fetchAudioData != null) {
-      return fetchAudioData(uid);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
-    required TResult Function(_FetchAudioData value) fetchAudioData,
-  }) {
-    return fetchAudioData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
-    TResult? Function(_FetchAudioData value)? fetchAudioData,
-  }) {
-    return fetchAudioData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
-    TResult Function(_FetchAudioData value)? fetchAudioData,
-    required TResult orElse(),
-  }) {
-    if (fetchAudioData != null) {
-      return fetchAudioData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FetchAudioData implements AudioEvent {
-  const factory _FetchAudioData({required final Id uid}) = _$FetchAudioDataImpl;
-
-  Id get uid;
-  @JsonKey(ignore: true)
-  _$$FetchAudioDataImplCopyWith<_$FetchAudioDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$AudioState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(Map<String, Audio> audios) loadSuccess,
+    required TResult Function(List<String> audioId) loadSuccess,
     required TResult Function(AudioFailure audioFailure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -325,7 +179,7 @@ mixin _$AudioState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(Map<String, Audio> audios)? loadSuccess,
+    TResult? Function(List<String> audioId)? loadSuccess,
     TResult? Function(AudioFailure audioFailure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -333,7 +187,7 @@ mixin _$AudioState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(Map<String, Audio> audios)? loadSuccess,
+    TResult Function(List<String> audioId)? loadSuccess,
     TResult Function(AudioFailure audioFailure)? loadFailure,
     required TResult orElse(),
   }) =>
@@ -423,7 +277,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(Map<String, Audio> audios) loadSuccess,
+    required TResult Function(List<String> audioId) loadSuccess,
     required TResult Function(AudioFailure audioFailure) loadFailure,
   }) {
     return initial();
@@ -434,7 +288,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(Map<String, Audio> audios)? loadSuccess,
+    TResult? Function(List<String> audioId)? loadSuccess,
     TResult? Function(AudioFailure audioFailure)? loadFailure,
   }) {
     return initial?.call();
@@ -445,7 +299,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(Map<String, Audio> audios)? loadSuccess,
+    TResult Function(List<String> audioId)? loadSuccess,
     TResult Function(AudioFailure audioFailure)? loadFailure,
     required TResult orElse(),
   }) {
@@ -537,7 +391,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(Map<String, Audio> audios) loadSuccess,
+    required TResult Function(List<String> audioId) loadSuccess,
     required TResult Function(AudioFailure audioFailure) loadFailure,
   }) {
     return loadInProgress();
@@ -548,7 +402,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(Map<String, Audio> audios)? loadSuccess,
+    TResult? Function(List<String> audioId)? loadSuccess,
     TResult? Function(AudioFailure audioFailure)? loadFailure,
   }) {
     return loadInProgress?.call();
@@ -559,7 +413,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(Map<String, Audio> audios)? loadSuccess,
+    TResult Function(List<String> audioId)? loadSuccess,
     TResult Function(AudioFailure audioFailure)? loadFailure,
     required TResult orElse(),
   }) {
@@ -617,7 +471,7 @@ abstract class _$$LoadSuccessImplCopyWith<$Res> {
           _$LoadSuccessImpl value, $Res Function(_$LoadSuccessImpl) then) =
       __$$LoadSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Map<String, Audio> audios});
+  $Res call({List<String> audioId});
 }
 
 /// @nodoc
@@ -631,13 +485,13 @@ class __$$LoadSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? audios = null,
+    Object? audioId = null,
   }) {
     return _then(_$LoadSuccessImpl(
-      null == audios
-          ? _value._audios
-          : audios // ignore: cast_nullable_to_non_nullable
-              as Map<String, Audio>,
+      null == audioId
+          ? _value._audioId
+          : audioId // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -645,19 +499,19 @@ class __$$LoadSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadSuccessImpl implements _LoadSuccess {
-  const _$LoadSuccessImpl(final Map<String, Audio> audios) : _audios = audios;
+  const _$LoadSuccessImpl(final List<String> audioId) : _audioId = audioId;
 
-  final Map<String, Audio> _audios;
+  final List<String> _audioId;
   @override
-  Map<String, Audio> get audios {
-    if (_audios is EqualUnmodifiableMapView) return _audios;
+  List<String> get audioId {
+    if (_audioId is EqualUnmodifiableListView) return _audioId;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_audios);
+    return EqualUnmodifiableListView(_audioId);
   }
 
   @override
   String toString() {
-    return 'AudioState.loadSuccess(audios: $audios)';
+    return 'AudioState.loadSuccess(audioId: $audioId)';
   }
 
   @override
@@ -665,12 +519,12 @@ class _$LoadSuccessImpl implements _LoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadSuccessImpl &&
-            const DeepCollectionEquality().equals(other._audios, _audios));
+            const DeepCollectionEquality().equals(other._audioId, _audioId));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_audios));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_audioId));
 
   @JsonKey(ignore: true)
   @override
@@ -683,10 +537,10 @@ class _$LoadSuccessImpl implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(Map<String, Audio> audios) loadSuccess,
+    required TResult Function(List<String> audioId) loadSuccess,
     required TResult Function(AudioFailure audioFailure) loadFailure,
   }) {
-    return loadSuccess(audios);
+    return loadSuccess(audioId);
   }
 
   @override
@@ -694,10 +548,10 @@ class _$LoadSuccessImpl implements _LoadSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(Map<String, Audio> audios)? loadSuccess,
+    TResult? Function(List<String> audioId)? loadSuccess,
     TResult? Function(AudioFailure audioFailure)? loadFailure,
   }) {
-    return loadSuccess?.call(audios);
+    return loadSuccess?.call(audioId);
   }
 
   @override
@@ -705,12 +559,12 @@ class _$LoadSuccessImpl implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(Map<String, Audio> audios)? loadSuccess,
+    TResult Function(List<String> audioId)? loadSuccess,
     TResult Function(AudioFailure audioFailure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(audios);
+      return loadSuccess(audioId);
     }
     return orElse();
   }
@@ -754,10 +608,9 @@ class _$LoadSuccessImpl implements _LoadSuccess {
 }
 
 abstract class _LoadSuccess implements AudioState {
-  const factory _LoadSuccess(final Map<String, Audio> audios) =
-      _$LoadSuccessImpl;
+  const factory _LoadSuccess(final List<String> audioId) = _$LoadSuccessImpl;
 
-  Map<String, Audio> get audios;
+  List<String> get audioId;
   @JsonKey(ignore: true)
   _$$LoadSuccessImplCopyWith<_$LoadSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -840,7 +693,7 @@ class _$LoadFailureImpl implements _LoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(Map<String, Audio> audios) loadSuccess,
+    required TResult Function(List<String> audioId) loadSuccess,
     required TResult Function(AudioFailure audioFailure) loadFailure,
   }) {
     return loadFailure(audioFailure);
@@ -851,7 +704,7 @@ class _$LoadFailureImpl implements _LoadFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(Map<String, Audio> audios)? loadSuccess,
+    TResult? Function(List<String> audioId)? loadSuccess,
     TResult? Function(AudioFailure audioFailure)? loadFailure,
   }) {
     return loadFailure?.call(audioFailure);
@@ -862,7 +715,7 @@ class _$LoadFailureImpl implements _LoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(Map<String, Audio> audios)? loadSuccess,
+    TResult Function(List<String> audioId)? loadSuccess,
     TResult Function(AudioFailure audioFailure)? loadFailure,
     required TResult orElse(),
   }) {

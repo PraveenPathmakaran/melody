@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/presentation/play_screen/screen_play.dart';
 
 import '../../application/audio/audio_bloc.dart';
+import '../../domain/songs/audio_value_objects.dart';
 import '../core/error_widget.dart';
 import '../widgets.dart';
 
@@ -23,7 +24,9 @@ class ScreenHome extends StatelessWidget {
           }, loadSuccess: (value) {
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                final allKeys = value.audios.keys.toList();
+                final audioData = context
+                    .read<AudioBloc>()
+                    .fetchAudioData(id: Id(value.audioId[index]));
                 return Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
@@ -31,7 +34,6 @@ class ScreenHome extends StatelessWidget {
                   margin: const EdgeInsets.all(3),
                   color: const Color(0xFF14202E),
                   child: ListTile(
-                      contentPadding: const EdgeInsets.all(10),
                       onTap: () async {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => ScreenPlay(
@@ -45,40 +47,24 @@ class ScreenHome extends StatelessWidget {
                             AssetImage('assets/images/musicIcon1.png'),
                       ),
                       title: Text(
-                        value.audios[allKeys[index]]?.name.getOrCrash() ?? "",
+                        audioData.name.getOrCrash(),
                         maxLines: 1,
                         style:
                             const TextStyle(color: Colors.white, fontSize: 15),
                       ),
-                      // subtitle: const Text(
-                      //   "",
-                      //   maxLines: 1,
-                      //   style: TextStyle(color: Colors.white, fontSize: 10),
-                      // ),
+                      subtitle: Text(
+                        audioData.artist.getOrCrash(),
+                        maxLines: 1,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 10),
+                      ),
                       trailing: IconButton(
                         icon: functionIcon(Icons.more_vert, 20, Colors.white),
-                        onPressed: () {
-                          // showModalBottomSheet(
-                          //     backgroundColor: kAppbarColor,
-                          //     context: context,
-                          //     shape: const RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.vertical(
-                          //         top: Radius.circular(30),
-                          //       ),
-                          //     ),
-                          //     builder: (BuildContext ctx) {
-                          //       return SizedBox(
-                          //         height: 300,
-                          //         child: HomeBottomSheet(
-                          //           id: allAudioListFromDB[index].id.toString(),
-                          //         ),
-                          //       );
-                          //     });
-                        },
+                        onPressed: () {},
                       )),
                 );
               },
-              itemCount: value.audios.length,
+              itemCount: value.audioId.length,
               shrinkWrap: true,
             );
           }, loadFailure: (value) {

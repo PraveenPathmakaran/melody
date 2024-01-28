@@ -19,9 +19,7 @@ class AudioControllerWidget extends StatelessWidget {
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
-                context
-                    .read<AudioControllerBloc>()
-                    .add(const AudioControllerEvent.previuosAudio());
+                context.read<AudioControllerBloc>().previousAudio();
               },
               child: functionIcon(Icons.skip_previous, 55, Colors.white),
             ),
@@ -31,9 +29,7 @@ class AudioControllerWidget extends StatelessWidget {
                 return GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      context
-                          .read<AudioControllerBloc>()
-                          .add(const AudioControllerEvent.playOrPause());
+                      context.read<AudioControllerBloc>().playOrPauseAudio();
                     },
                     child: state.isPlaying
                         ? functionIcon(Icons.pause_rounded, 55, Colors.white)
@@ -44,9 +40,7 @@ class AudioControllerWidget extends StatelessWidget {
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
-                context
-                    .read<AudioControllerBloc>()
-                    .add(const AudioControllerEvent.nextAudio());
+                context.read<AudioControllerBloc>().nextAudio();
               },
               child: functionIcon(Icons.skip_next, 55, Colors.white),
             ),

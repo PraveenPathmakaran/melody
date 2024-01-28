@@ -18,51 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AudioControllerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int index) addToPlay,
-    required TResult Function() playOrPause,
-    required TResult Function() nextAudio,
-    required TResult Function() previuosAudio,
+    required TResult Function() listenAllStreams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? addToPlay,
-    TResult? Function()? playOrPause,
-    TResult? Function()? nextAudio,
-    TResult? Function()? previuosAudio,
+    TResult? Function()? listenAllStreams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? addToPlay,
-    TResult Function()? playOrPause,
-    TResult Function()? nextAudio,
-    TResult Function()? previuosAudio,
+    TResult Function()? listenAllStreams,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddToPlay value) addToPlay,
-    required TResult Function(_PlayOrPause value) playOrPause,
-    required TResult Function(_NextAudio value) nextAudio,
-    required TResult Function(_PreviuosAudio value) previuosAudio,
+    required TResult Function(_ListenAllStreams value) listenAllStreams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddToPlay value)? addToPlay,
-    TResult? Function(_PlayOrPause value)? playOrPause,
-    TResult? Function(_NextAudio value)? nextAudio,
-    TResult? Function(_PreviuosAudio value)? previuosAudio,
+    TResult? Function(_ListenAllStreams value)? listenAllStreams,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddToPlay value)? addToPlay,
-    TResult Function(_PlayOrPause value)? playOrPause,
-    TResult Function(_NextAudio value)? nextAudio,
-    TResult Function(_PreviuosAudio value)? previuosAudio,
+    TResult Function(_ListenAllStreams value)? listenAllStreams,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -88,180 +70,35 @@ class _$AudioControllerEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$AddToPlayImplCopyWith<$Res> {
-  factory _$$AddToPlayImplCopyWith(
-          _$AddToPlayImpl value, $Res Function(_$AddToPlayImpl) then) =
-      __$$AddToPlayImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int index});
+abstract class _$$ListenAllStreamsImplCopyWith<$Res> {
+  factory _$$ListenAllStreamsImplCopyWith(_$ListenAllStreamsImpl value,
+          $Res Function(_$ListenAllStreamsImpl) then) =
+      __$$ListenAllStreamsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AddToPlayImplCopyWithImpl<$Res>
-    extends _$AudioControllerEventCopyWithImpl<$Res, _$AddToPlayImpl>
-    implements _$$AddToPlayImplCopyWith<$Res> {
-  __$$AddToPlayImplCopyWithImpl(
-      _$AddToPlayImpl _value, $Res Function(_$AddToPlayImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? index = null,
-  }) {
-    return _then(_$AddToPlayImpl(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AddToPlayImpl implements _AddToPlay {
-  const _$AddToPlayImpl({required this.index});
-
-  @override
-  final int index;
-
-  @override
-  String toString() {
-    return 'AudioControllerEvent.addToPlay(index: $index)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddToPlayImpl &&
-            (identical(other.index, index) || other.index == index));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, index);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddToPlayImplCopyWith<_$AddToPlayImpl> get copyWith =>
-      __$$AddToPlayImplCopyWithImpl<_$AddToPlayImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int index) addToPlay,
-    required TResult Function() playOrPause,
-    required TResult Function() nextAudio,
-    required TResult Function() previuosAudio,
-  }) {
-    return addToPlay(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? addToPlay,
-    TResult? Function()? playOrPause,
-    TResult? Function()? nextAudio,
-    TResult? Function()? previuosAudio,
-  }) {
-    return addToPlay?.call(index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? addToPlay,
-    TResult Function()? playOrPause,
-    TResult Function()? nextAudio,
-    TResult Function()? previuosAudio,
-    required TResult orElse(),
-  }) {
-    if (addToPlay != null) {
-      return addToPlay(index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddToPlay value) addToPlay,
-    required TResult Function(_PlayOrPause value) playOrPause,
-    required TResult Function(_NextAudio value) nextAudio,
-    required TResult Function(_PreviuosAudio value) previuosAudio,
-  }) {
-    return addToPlay(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddToPlay value)? addToPlay,
-    TResult? Function(_PlayOrPause value)? playOrPause,
-    TResult? Function(_NextAudio value)? nextAudio,
-    TResult? Function(_PreviuosAudio value)? previuosAudio,
-  }) {
-    return addToPlay?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddToPlay value)? addToPlay,
-    TResult Function(_PlayOrPause value)? playOrPause,
-    TResult Function(_NextAudio value)? nextAudio,
-    TResult Function(_PreviuosAudio value)? previuosAudio,
-    required TResult orElse(),
-  }) {
-    if (addToPlay != null) {
-      return addToPlay(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddToPlay implements AudioControllerEvent {
-  const factory _AddToPlay({required final int index}) = _$AddToPlayImpl;
-
-  int get index;
-  @JsonKey(ignore: true)
-  _$$AddToPlayImplCopyWith<_$AddToPlayImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$PlayOrPauseImplCopyWith<$Res> {
-  factory _$$PlayOrPauseImplCopyWith(
-          _$PlayOrPauseImpl value, $Res Function(_$PlayOrPauseImpl) then) =
-      __$$PlayOrPauseImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PlayOrPauseImplCopyWithImpl<$Res>
-    extends _$AudioControllerEventCopyWithImpl<$Res, _$PlayOrPauseImpl>
-    implements _$$PlayOrPauseImplCopyWith<$Res> {
-  __$$PlayOrPauseImplCopyWithImpl(
-      _$PlayOrPauseImpl _value, $Res Function(_$PlayOrPauseImpl) _then)
+class __$$ListenAllStreamsImplCopyWithImpl<$Res>
+    extends _$AudioControllerEventCopyWithImpl<$Res, _$ListenAllStreamsImpl>
+    implements _$$ListenAllStreamsImplCopyWith<$Res> {
+  __$$ListenAllStreamsImplCopyWithImpl(_$ListenAllStreamsImpl _value,
+      $Res Function(_$ListenAllStreamsImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$PlayOrPauseImpl implements _PlayOrPause {
-  const _$PlayOrPauseImpl();
+class _$ListenAllStreamsImpl implements _ListenAllStreams {
+  const _$ListenAllStreamsImpl();
 
   @override
   String toString() {
-    return 'AudioControllerEvent.playOrPause()';
+    return 'AudioControllerEvent.listenAllStreams()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PlayOrPauseImpl);
+        (other.runtimeType == runtimeType && other is _$ListenAllStreamsImpl);
   }
 
   @override
@@ -270,36 +107,27 @@ class _$PlayOrPauseImpl implements _PlayOrPause {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int index) addToPlay,
-    required TResult Function() playOrPause,
-    required TResult Function() nextAudio,
-    required TResult Function() previuosAudio,
+    required TResult Function() listenAllStreams,
   }) {
-    return playOrPause();
+    return listenAllStreams();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? addToPlay,
-    TResult? Function()? playOrPause,
-    TResult? Function()? nextAudio,
-    TResult? Function()? previuosAudio,
+    TResult? Function()? listenAllStreams,
   }) {
-    return playOrPause?.call();
+    return listenAllStreams?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? addToPlay,
-    TResult Function()? playOrPause,
-    TResult Function()? nextAudio,
-    TResult Function()? previuosAudio,
+    TResult Function()? listenAllStreams,
     required TResult orElse(),
   }) {
-    if (playOrPause != null) {
-      return playOrPause();
+    if (listenAllStreams != null) {
+      return listenAllStreams();
     }
     return orElse();
   }
@@ -307,271 +135,34 @@ class _$PlayOrPauseImpl implements _PlayOrPause {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddToPlay value) addToPlay,
-    required TResult Function(_PlayOrPause value) playOrPause,
-    required TResult Function(_NextAudio value) nextAudio,
-    required TResult Function(_PreviuosAudio value) previuosAudio,
+    required TResult Function(_ListenAllStreams value) listenAllStreams,
   }) {
-    return playOrPause(this);
+    return listenAllStreams(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddToPlay value)? addToPlay,
-    TResult? Function(_PlayOrPause value)? playOrPause,
-    TResult? Function(_NextAudio value)? nextAudio,
-    TResult? Function(_PreviuosAudio value)? previuosAudio,
+    TResult? Function(_ListenAllStreams value)? listenAllStreams,
   }) {
-    return playOrPause?.call(this);
+    return listenAllStreams?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddToPlay value)? addToPlay,
-    TResult Function(_PlayOrPause value)? playOrPause,
-    TResult Function(_NextAudio value)? nextAudio,
-    TResult Function(_PreviuosAudio value)? previuosAudio,
+    TResult Function(_ListenAllStreams value)? listenAllStreams,
     required TResult orElse(),
   }) {
-    if (playOrPause != null) {
-      return playOrPause(this);
+    if (listenAllStreams != null) {
+      return listenAllStreams(this);
     }
     return orElse();
   }
 }
 
-abstract class _PlayOrPause implements AudioControllerEvent {
-  const factory _PlayOrPause() = _$PlayOrPauseImpl;
-}
-
-/// @nodoc
-abstract class _$$NextAudioImplCopyWith<$Res> {
-  factory _$$NextAudioImplCopyWith(
-          _$NextAudioImpl value, $Res Function(_$NextAudioImpl) then) =
-      __$$NextAudioImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$NextAudioImplCopyWithImpl<$Res>
-    extends _$AudioControllerEventCopyWithImpl<$Res, _$NextAudioImpl>
-    implements _$$NextAudioImplCopyWith<$Res> {
-  __$$NextAudioImplCopyWithImpl(
-      _$NextAudioImpl _value, $Res Function(_$NextAudioImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$NextAudioImpl implements _NextAudio {
-  const _$NextAudioImpl();
-
-  @override
-  String toString() {
-    return 'AudioControllerEvent.nextAudio()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NextAudioImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int index) addToPlay,
-    required TResult Function() playOrPause,
-    required TResult Function() nextAudio,
-    required TResult Function() previuosAudio,
-  }) {
-    return nextAudio();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? addToPlay,
-    TResult? Function()? playOrPause,
-    TResult? Function()? nextAudio,
-    TResult? Function()? previuosAudio,
-  }) {
-    return nextAudio?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? addToPlay,
-    TResult Function()? playOrPause,
-    TResult Function()? nextAudio,
-    TResult Function()? previuosAudio,
-    required TResult orElse(),
-  }) {
-    if (nextAudio != null) {
-      return nextAudio();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddToPlay value) addToPlay,
-    required TResult Function(_PlayOrPause value) playOrPause,
-    required TResult Function(_NextAudio value) nextAudio,
-    required TResult Function(_PreviuosAudio value) previuosAudio,
-  }) {
-    return nextAudio(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddToPlay value)? addToPlay,
-    TResult? Function(_PlayOrPause value)? playOrPause,
-    TResult? Function(_NextAudio value)? nextAudio,
-    TResult? Function(_PreviuosAudio value)? previuosAudio,
-  }) {
-    return nextAudio?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddToPlay value)? addToPlay,
-    TResult Function(_PlayOrPause value)? playOrPause,
-    TResult Function(_NextAudio value)? nextAudio,
-    TResult Function(_PreviuosAudio value)? previuosAudio,
-    required TResult orElse(),
-  }) {
-    if (nextAudio != null) {
-      return nextAudio(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NextAudio implements AudioControllerEvent {
-  const factory _NextAudio() = _$NextAudioImpl;
-}
-
-/// @nodoc
-abstract class _$$PreviuosAudioImplCopyWith<$Res> {
-  factory _$$PreviuosAudioImplCopyWith(
-          _$PreviuosAudioImpl value, $Res Function(_$PreviuosAudioImpl) then) =
-      __$$PreviuosAudioImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PreviuosAudioImplCopyWithImpl<$Res>
-    extends _$AudioControllerEventCopyWithImpl<$Res, _$PreviuosAudioImpl>
-    implements _$$PreviuosAudioImplCopyWith<$Res> {
-  __$$PreviuosAudioImplCopyWithImpl(
-      _$PreviuosAudioImpl _value, $Res Function(_$PreviuosAudioImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$PreviuosAudioImpl implements _PreviuosAudio {
-  const _$PreviuosAudioImpl();
-
-  @override
-  String toString() {
-    return 'AudioControllerEvent.previuosAudio()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PreviuosAudioImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int index) addToPlay,
-    required TResult Function() playOrPause,
-    required TResult Function() nextAudio,
-    required TResult Function() previuosAudio,
-  }) {
-    return previuosAudio();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index)? addToPlay,
-    TResult? Function()? playOrPause,
-    TResult? Function()? nextAudio,
-    TResult? Function()? previuosAudio,
-  }) {
-    return previuosAudio?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index)? addToPlay,
-    TResult Function()? playOrPause,
-    TResult Function()? nextAudio,
-    TResult Function()? previuosAudio,
-    required TResult orElse(),
-  }) {
-    if (previuosAudio != null) {
-      return previuosAudio();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddToPlay value) addToPlay,
-    required TResult Function(_PlayOrPause value) playOrPause,
-    required TResult Function(_NextAudio value) nextAudio,
-    required TResult Function(_PreviuosAudio value) previuosAudio,
-  }) {
-    return previuosAudio(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddToPlay value)? addToPlay,
-    TResult? Function(_PlayOrPause value)? playOrPause,
-    TResult? Function(_NextAudio value)? nextAudio,
-    TResult? Function(_PreviuosAudio value)? previuosAudio,
-  }) {
-    return previuosAudio?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddToPlay value)? addToPlay,
-    TResult Function(_PlayOrPause value)? playOrPause,
-    TResult Function(_NextAudio value)? nextAudio,
-    TResult Function(_PreviuosAudio value)? previuosAudio,
-    required TResult orElse(),
-  }) {
-    if (previuosAudio != null) {
-      return previuosAudio(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _PreviuosAudio implements AudioControllerEvent {
-  const factory _PreviuosAudio() = _$PreviuosAudioImpl;
+abstract class _ListenAllStreams implements AudioControllerEvent {
+  const factory _ListenAllStreams() = _$ListenAllStreamsImpl;
 }
 
 /// @nodoc
@@ -580,6 +171,7 @@ mixin _$AudioControllerState {
   Duration get current => throw _privateConstructorUsedError;
   Duration get buffered => throw _privateConstructorUsedError;
   Duration get total => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioControllerStateCopyWith<AudioControllerState> get copyWith =>
@@ -593,7 +185,11 @@ abstract class $AudioControllerStateCopyWith<$Res> {
       _$AudioControllerStateCopyWithImpl<$Res, AudioControllerState>;
   @useResult
   $Res call(
-      {bool isPlaying, Duration current, Duration buffered, Duration total});
+      {bool isPlaying,
+      Duration current,
+      Duration buffered,
+      Duration total,
+      String title});
 }
 
 /// @nodoc
@@ -614,6 +210,7 @@ class _$AudioControllerStateCopyWithImpl<$Res,
     Object? current = null,
     Object? buffered = null,
     Object? total = null,
+    Object? title = null,
   }) {
     return _then(_value.copyWith(
       isPlaying: null == isPlaying
@@ -632,6 +229,10 @@ class _$AudioControllerStateCopyWithImpl<$Res,
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as Duration,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -645,7 +246,11 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isPlaying, Duration current, Duration buffered, Duration total});
+      {bool isPlaying,
+      Duration current,
+      Duration buffered,
+      Duration total,
+      String title});
 }
 
 /// @nodoc
@@ -663,6 +268,7 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
     Object? current = null,
     Object? buffered = null,
     Object? total = null,
+    Object? title = null,
   }) {
     return _then(_$AudioControllerStateImpl(
       isPlaying: null == isPlaying
@@ -681,6 +287,10 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as Duration,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -692,7 +302,8 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
       {required this.isPlaying,
       required this.current,
       required this.buffered,
-      required this.total});
+      required this.total,
+      required this.title});
 
   @override
   final bool isPlaying;
@@ -702,10 +313,12 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   final Duration buffered;
   @override
   final Duration total;
+  @override
+  final String title;
 
   @override
   String toString() {
-    return 'AudioControllerState(isPlaying: $isPlaying, current: $current, buffered: $buffered, total: $total)';
+    return 'AudioControllerState(isPlaying: $isPlaying, current: $current, buffered: $buffered, total: $total, title: $title)';
   }
 
   @override
@@ -718,12 +331,13 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
             (identical(other.current, current) || other.current == current) &&
             (identical(other.buffered, buffered) ||
                 other.buffered == buffered) &&
-            (identical(other.total, total) || other.total == total));
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.title, title) || other.title == title));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, isPlaying, current, buffered, total);
+      Object.hash(runtimeType, isPlaying, current, buffered, total, title);
 
   @JsonKey(ignore: true)
   @override
@@ -739,7 +353,8 @@ abstract class _AudioControllerState implements AudioControllerState {
       {required final bool isPlaying,
       required final Duration current,
       required final Duration buffered,
-      required final Duration total}) = _$AudioControllerStateImpl;
+      required final Duration total,
+      required final String title}) = _$AudioControllerStateImpl;
 
   @override
   bool get isPlaying;
@@ -749,6 +364,8 @@ abstract class _AudioControllerState implements AudioControllerState {
   Duration get buffered;
   @override
   Duration get total;
+  @override
+  String get title;
   @override
   @JsonKey(ignore: true)
   _$$AudioControllerStateImplCopyWith<_$AudioControllerStateImpl>

@@ -27,10 +27,11 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
                 (audios) => emit(AudioState.loadSuccess(audios)));
           });
         },
-        fetchAudioData: (value) {
-          final audio = _audioRepository.getAudioData(uid: value.uid);
-        },
       );
     });
+  }
+  Audio fetchAudioData({required Id id}) {
+    final audio = _audioRepository.getAudioData(uid: id);
+    return audio.getOrElse(() => Audio.emptyAudio());
   }
 }

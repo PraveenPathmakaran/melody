@@ -45,7 +45,7 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Future<Either<AudioFailure, Map<String, Audio>>> concatenatingAudios() async {
+  Future<Either<AudioFailure, List<String>>> concatenatingAudios() async {
     try {
       final concatenatedList = allAudios.values
           .map((e) =>
@@ -63,7 +63,7 @@ class AudioRepository implements IAudioRepository {
       audioPlayer.setAudioSource(playlist,
           initialIndex: 0, initialPosition: Duration.zero);
 
-      return right(allAudios);
+      return right(playlist.sequence.map((e) => e.tag as String).toList());
     } catch (e) {
       log("ConcatenatingAudioSource Failure => $e");
       return left(const AudioFailure.platFormFailure());
@@ -144,8 +144,7 @@ class AudioRepository implements IAudioRepository {
   @override
   Stream<Either<AudioFailure, Duration>> bufferedPositionStream() async* {
     yield* audioPlayer.bufferedPositionStream
-        .map<Either<AudioFailure, Duration>>(
-            (bufferedPosition) => right(bufferedPosition))
+        .map<Either<AudioFailure, Duration>>((duration) => right(duration))
         .onErrorReturnWith(
             (error, stackTrace) => left(const AudioFailure.platFormFailure()));
   }
