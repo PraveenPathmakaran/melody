@@ -167,15 +167,15 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Stream<Either<AudioFailure, String>> sequenceStateStream() async* {
+  Stream<Either<AudioFailure, Audio>> sequenceStateStream() async* {
     yield* audioPlayer.sequenceStateStream
-        .map<Either<AudioFailure, String>>((sequenceState) {
+        .map<Either<AudioFailure, Audio>>((sequenceState) {
       if (sequenceState == null) {
         return left(const AudioFailure.platFormFailure());
       }
       final currentItem = sequenceState.currentSource;
       final String audioId = currentItem?.tag ?? "";
-      String value = allAudios[audioId]?.name.getOrCrash() ?? '';
+      Audio value = allAudios[audioId] ?? Audio.emptyAudio();
 
       return right(value);
     }).onErrorReturnWith(

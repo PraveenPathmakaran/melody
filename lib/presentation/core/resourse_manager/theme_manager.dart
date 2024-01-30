@@ -19,6 +19,8 @@ ThemeData getApplicationTheme() {
         color: ColorManager.primary,
         elevation: AppSize.s4,
       ),
+      iconTheme: IconThemeData(color: ColorManager.white),
+
       // App bar theme
       appBarTheme: AppBarTheme(
           centerTitle: true,
@@ -63,7 +65,10 @@ ThemeData getApplicationTheme() {
         labelSmall: getRegularStyle(color: ColorManager.white),
       ),
       listTileTheme: ListTileThemeData(
-          textColor: ColorManager.white, iconColor: Colors.white),
+        textColor: ColorManager.white,
+        iconColor: Colors.white,
+        tileColor: ColorManager.primary,
+      ),
       tabBarTheme: TabBarTheme(
           labelColor: ColorManager.white,
           unselectedLabelColor: ColorManager.grey),
@@ -103,7 +108,7 @@ ThemeData getApplicationTheme() {
             borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8))),
       ),
       colorScheme:
-          ColorScheme.fromSwatch().copyWith(background: ColorManager.black),
+          ColorScheme.fromSwatch().copyWith(background: ColorManager.primary),
       progressIndicatorTheme:
           ProgressIndicatorThemeData(color: ColorManager.white));
 }

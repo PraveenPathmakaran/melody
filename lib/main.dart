@@ -6,12 +6,11 @@ import 'package:melody/injection_container.dart';
 import 'package:melody/presentation/splash_screen/screen_splash.dart';
 
 import 'application/audio/audio_bloc.dart';
-import 'application/core/bloc_observer.dart';
 import 'presentation/core/resourse_manager/theme_manager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = const AppBlocObserver();
+  //Bloc.observer = const AppBlocObserver();
   initGetIt();
 
   runApp(const MyApp());

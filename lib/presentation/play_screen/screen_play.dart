@@ -2,7 +2,9 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
+import 'package:melody/presentation/core/app_size_manage.dart';
 
+import '../core/widgets.dart';
 import 'widgets/play_controller_widget.dart';
 
 class ScreenPlay extends StatelessWidget {
@@ -18,22 +20,28 @@ class ScreenPlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      //open this page from mini player dont need to play new song
       if (isNavigateFromHome) {
         context.read<AudioControllerBloc>().addToPlay(index);
-        context
-            .read<AudioControllerBloc>()
-            .add(const AudioControllerEvent.listenAllStreams());
       }
+      context
+          .read<AudioControllerBloc>()
+          .add(const AudioControllerEvent.listenAllStreams());
     });
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text(
-            'Now Playing',
+    return PopScope(
+      onPopInvoked: (didPop) => context
+          .read<AudioControllerBloc>()
+          .add(const AudioControllerEvent.closeStream()),
+      child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            title: const Text(
+              'Now Playing',
+            ),
+            centerTitle: true,
           ),
-          centerTitle: true,
-        ),
-        body: const PlayContainer());
+          body: const PlayContainer()),
+    );
   }
 }
 
@@ -43,41 +51,51 @@ class PlayContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    return Container(
-      height: size.height,
-      width: size.width,
-      padding: const EdgeInsets.all(30.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const CircleAvatar(
-            backgroundColor: Colors.transparent,
-            backgroundImage: AssetImage('assets/images/songsImage.png'),
-            radius: 100,
-          ),
-          SizedBox(
-            height: size.height * .10,
-          ),
-          BlocBuilder<AudioControllerBloc, AudioControllerState>(
-            buildWhen: (p, c) => p.title != c.title,
-            builder: (context, state) {
-              return Text(
-                state.title,
-              );
-            },
-          ),
-          SizedBox(
-            height: size.height * .05,
-          ),
-          const Column(
+    return BlocBuilder<AudioControllerBloc, AudioControllerState>(
+      buildWhen: (p, c) => p.audio != c.audio,
+      builder: (context, state) {
+        return Container(
+          height: size.height,
+          width: size.width,
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
             children: <Widget>[
-              PlayTopControllerWidget(),
-              PlayProgressSlideWidget(),
-              AudioControllerWidget()
+              //image
+              SizedBox(
+                height: AppMediaQueryManager.height / 2,
+                child: Column(
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      child: CustomImageWidget(
+                        image: state.audio.image,
+                        height: AppMediaQueryManager.getWidthPercentage(90),
+                        width: AppMediaQueryManager.getWidthPercentage(90),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              //controller and details
+              SizedBox(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      state.audio.name.getOrCrash(),
+                    ),
+                    Text(
+                      state.audio.artist.getOrCrash(),
+                    ),
+                    const PlayTopControllerWidget(),
+                    const PlayProgressSlideWidget(),
+                    const AudioControllerWidget()
+                  ],
+                ),
+              ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

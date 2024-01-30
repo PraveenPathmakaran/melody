@@ -1,10 +1,8 @@
 package com.example.melody
 
-import android.content.Context
-import android.provider.MediaStore
-import android.os.Build
 import android.media.MediaMetadataRetriever
-import android.util.Log
+import android.os.Build
+import android.provider.MediaStore
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -36,6 +34,8 @@ class MainActivity : FlutterActivity() {
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.ARTIST,
+            MediaStore.Audio.Media.DURATION,
+
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -47,15 +47,25 @@ class MainActivity : FlutterActivity() {
                 null
             )?.use { cursor ->
                 while (cursor.moveToNext()) {
-//                    val uidData=cursor.getString(2)
-//                    val imageData= getAlbumArt(uidData)
+
+                    //imageData is Audio image metadata
+                    var imageData: ByteArray? = null
+                    val durationString = cursor.getString(4)
+                    //this checking for prevent unwanted call of getAlbumArt method
+                    if (durationString != null && durationString.toIntOrNull() != null) {
+                        val durationInMillis = durationString.toInt()
+
+                        if (durationInMillis > 60000) {
+                            imageData = getAlbumArt(cursor.getString(2))
+                        }
+                    }
                     allAudios.add(
                         mapOf(
                             "uid" to cursor.getString(0),
                             "name" to cursor.getString(1),
                             "path" to cursor.getString(2),
                             "artist" to cursor.getString(3),
-                            "image" to getAlbumArt(cursor.getString(2)),
+                            "image" to imageData,
                         )
                     )
                 }

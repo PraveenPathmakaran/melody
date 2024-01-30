@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio/audio_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
+import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../home_screen/screen_home.dart';
@@ -43,6 +44,7 @@ class _ScreenSplashState extends State<ScreenSplash>
 
   @override
   Widget build(BuildContext context) {
+    AppMediaQueryManager.initializeSize(context);
     return MultiBlocListener(
       listeners: [
         BlocListener<PermissionHandlerBloc, PermissionHandlerState>(

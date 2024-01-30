@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_failure.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
 import 'package:rxdart/rxdart.dart';
@@ -41,8 +43,8 @@ class AudioControllerBloc
               final Duration duration =
                   (data[2] as Either<AudioFailure, Duration>)
                       .getOrElse(() => Duration.zero);
-              final String title =
-                  (data[3] as Either<AudioFailure, String>).getOrElse(() => "");
+              final Audio audio = (data[3] as Either<AudioFailure, Audio>)
+                  .getOrElse(() => Audio.emptyAudio());
 
               if (state.buffered != buffer) {
                 return state.copyWith(buffered: buffer);
@@ -53,16 +55,17 @@ class AudioControllerBloc
               if (state.total != duration) {
                 return state.copyWith(total: duration);
               }
-              if (state.title != title) {
-                return state.copyWith(title: title);
+              if (state.audio != audio) {
+                return state.copyWith(audio: audio);
               }
 
               return state;
             },
           );
         },
+        closeStream: (value) {},
       );
-    });
+    }, transformer: restartable());
   }
   void onSeek(Duration duration) {
     _audioRepository.seekAudio(duration: duration);

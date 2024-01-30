@@ -19,5 +19,5 @@ abstract class IAudioRepository {
   Stream<Either<AudioFailure, Duration>> bufferedPositionStream();
   Stream<Either<AudioFailure, Duration>> durationStream();
   Stream<Either<AudioFailure, Duration>> positionStream();
-  Stream<Either<AudioFailure, String>> sequenceStateStream();
+  Stream<Either<AudioFailure, Audio>> sequenceStateStream();
 }

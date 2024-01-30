@@ -7,13 +7,13 @@ class AudioControllerState with _$AudioControllerState {
     required Duration current,
     required Duration buffered,
     required Duration total,
-    required String title,
+    required Audio audio,
   }) = _AudioControllerState;
 
-  factory AudioControllerState.initial() => const AudioControllerState(
+  factory AudioControllerState.initial() => AudioControllerState(
       isPlaying: false,
       buffered: Duration.zero,
       current: Duration.zero,
-      title: "",
+      audio: Audio.emptyAudio(),
       total: Duration.zero);
 }

@@ -21,10 +21,10 @@ abstract class Audio implements _$Audio {
 
   factory Audio.emptyAudio() => Audio(
       uid: Id(""),
-      name: Name(""),
-      artist: Artist(""),
+      name: Name("Name not found"),
+      artist: Artist("Artist not found"),
       path: AudioPath(""),
-      image: Uint8List(10));
+      image: null);
 
   Option<ValueFailure<dynamic>> get failureOption {
     return name.failureOrUnit

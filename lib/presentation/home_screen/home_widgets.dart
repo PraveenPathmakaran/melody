@@ -1,8 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/presentation/core/resourse_manager/assets_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/color_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/play_screen/screen_play.dart';
@@ -10,6 +7,7 @@ import 'package:melody/presentation/play_screen/screen_play.dart';
 import '../../application/audio/audio_bloc.dart';
 import '../../domain/songs/audio_value_objects.dart';
 import '../core/error_widget.dart';
+import '../core/widgets.dart';
 import '../widgets.dart';
 
 class ScreenHome extends StatelessWidget {
@@ -32,6 +30,7 @@ class ScreenHome extends StatelessWidget {
                     .read<AudioBloc>()
                     .fetchAudioData(id: Id(value.audioId[index]));
                 return Card(
+                  clipBehavior: Clip.antiAlias,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
@@ -46,7 +45,12 @@ class ScreenHome extends StatelessWidget {
                       leading: CircleAvatar(
                         backgroundColor: ColorManager.primary,
                         radius: 28,
-                        child: ClipOval(child: imageWidget(audioData.image)),
+                        child: ClipOval(
+                            child: CustomImageWidget(
+                          image: audioData.image,
+                          height: 52,
+                          width: 52,
+                        )),
                       ),
                       title: Text(
                         audioData.name.getOrCrash(),
@@ -73,24 +77,5 @@ class ScreenHome extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-Widget imageWidget(Uint8List? image) {
-  try {
-    if (image != null) {
-      return Image.memory(
-        image,
-        fit: BoxFit.cover,
-        height: 52,
-        width: 52,
-        errorBuilder: (context, error, stackTrace) =>
-            Image.asset(ImageAssets.musicImage),
-      );
-    } else {
-      return Image.asset(ImageAssets.musicImage);
-    }
-  } catch (e) {
-    return Image.asset(ImageAssets.musicImage);
   }
 }
