@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
-import '../core/colors.dart';
-import '../widgets.dart';
 import 'home_widgets.dart';
 
 class ScreenHomeMain extends StatelessWidget {
@@ -12,81 +11,42 @@ class ScreenHomeMain extends StatelessWidget {
     int tabIndex = 0;
     return PopScope(
       canPop: true,
-      // canPop: () => _onBackButtonPressed(context),
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-              backgroundColor: kAppbarColor,
-              onPressed: () async {
-                // if (tabIndex == 1) {
-                //   showModalBottomSheet(
-                //       backgroundColor: Colors.black,
-                //       context: context,
-                //       shape: const RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.vertical(
-                //           top: Radius.circular(30),
-                //         ),
-                //       ),
-                //       builder: (BuildContext ctx) {
-                //         return const ScreenAddToFavourits();
-                //       });
-                // } else if (tabIndex == 2) {
-                //   playlistCreateDialogue(context);
-                // }
-              },
-              child: functionIcon(Icons.add, 20, Colors.white)),
-          backgroundColor: Colors.black,
           extendBodyBehindAppBar: true,
-          // drawer: Drawer(
-          //   width: 250,
-          //   backgroundColor: kAppbarColor,
-          //   child: DrawerContent(),
-          // ),
           appBar: AppBar(
             title: const Text(
-              'Music Player',
-              style: TextStyle(color: Colors.white),
+              StringManger.musicPlayer,
             ),
             centerTitle: true,
-            backgroundColor: kAppbarColor,
             bottom: TabBar(
               onTap: (int value) {
                 tabIndex = value;
               },
-              tabs: <Widget>[
+              tabs: const <Widget>[
                 Tab(
-                  text: 'Home',
-                  icon: functionIcon(Icons.home, 25, kWhiteColor),
+                  text: StringManger.home,
+                  icon: Icon(Icons.home),
                 ),
                 Tab(
-                  text: 'Favourites',
-                  icon: functionIcon(Icons.favorite, 25, kWhiteColor),
+                  text: StringManger.favourites,
+                  icon: Icon(Icons.favorite),
                 ),
                 Tab(
-                  text: 'Playlist',
-                  icon: functionIcon(Icons.playlist_play, 25, kWhiteColor),
+                  text: StringManger.playlist,
+                  icon: Icon(Icons.playlist_play),
                 ),
               ],
             ),
             elevation: 0,
             actions: <Widget>[
-              IconButton(
-                  onPressed: () {
-                    // showSearch(
-                    //   context: context,
-                    //   delegate: MusicSearch(),
-                    // );
-                  },
-                  icon: const Icon(Icons.search))
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search))
             ],
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(
-                    onPressed: () {
-                      //  Scaffold.of(context).openDrawer();
-                    },
-                    icon: const Icon(Icons.settings));
+                    onPressed: () {}, icon: const Icon(Icons.settings));
               },
             ),
           ),
@@ -108,34 +68,8 @@ class ScreenHomeMain extends StatelessWidget {
               // ScreenPlaylist(),
             ],
           ),
-          //bottomNavigationBar: MiniPlayer()
         ),
       ),
     );
   }
 }
-
-// Future<bool> _onBackButtonPressed(BuildContext context) async {
-//   final bool? exitApp = await showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return AlertDialog(
-//         title: const Text('Really'),
-//         content: const Text('Do you want to close the app?'),
-//         actions: <Widget>[
-//           TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop();
-//               },
-//               child: const Text('No')),
-//           TextButton(
-//               onPressed: () {
-//                 SystemNavigator.pop();
-//               },
-//               child: const Text('Yes'))
-//         ],
-//       );
-//     },
-//   );
-//   return exitApp!;
-// }

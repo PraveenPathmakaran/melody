@@ -1,5 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/presentation/core/resourse_manager/assets_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/color_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/play_screen/screen_play.dart';
 
 import '../../application/audio/audio_bloc.dart';
@@ -14,7 +19,6 @@ class ScreenHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      color: Colors.black,
       child: BlocBuilder<AudioBloc, AudioState>(
         builder: (context, state) {
           return state.map(initial: (value) {
@@ -32,7 +36,6 @@ class ScreenHome extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   margin: const EdgeInsets.all(3),
-                  color: const Color(0xFF14202E),
                   child: ListTile(
                       onTap: () async {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -40,26 +43,21 @@ class ScreenHome extends StatelessWidget {
                               index: index, isNavigateFromHome: true),
                         ));
                       },
-                      leading: const CircleAvatar(
+                      leading: CircleAvatar(
+                        backgroundColor: ColorManager.primary,
                         radius: 28,
-                        backgroundColor: Colors.transparent,
-                        backgroundImage:
-                            AssetImage('assets/images/musicIcon1.png'),
+                        child: ClipOval(child: imageWidget(audioData.image)),
                       ),
                       title: Text(
                         audioData.name.getOrCrash(),
                         maxLines: 1,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 15),
                       ),
                       subtitle: Text(
                         audioData.artist.getOrCrash(),
                         maxLines: 1,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
                       ),
                       trailing: IconButton(
-                        icon: functionIcon(Icons.more_vert, 20, Colors.white),
+                        icon: const Icon(Icons.more_vert),
                         onPressed: () {},
                       )),
                 );
@@ -69,18 +67,30 @@ class ScreenHome extends StatelessWidget {
             );
           }, loadFailure: (value) {
             return const AppErrorWidget(
-              errorMessage: "Something went wrong",
+              errorMessage: StringManger.somethingWentWrogn,
             );
           });
         },
       ),
     );
   }
-  //  Container(
-  //     color: Colors.black,
-  //     child: Center(
-  //       child: functionText(
-  //           'No Songs Found', Colors.white, FontWeight.bold, 20),
-  //     ),
-  //   )
+}
+
+Widget imageWidget(Uint8List? image) {
+  try {
+    if (image != null) {
+      return Image.memory(
+        image,
+        fit: BoxFit.cover,
+        height: 52,
+        width: 52,
+        errorBuilder: (context, error, stackTrace) =>
+            Image.asset(ImageAssets.musicImage),
+      );
+    } else {
+      return Image.asset(ImageAssets.musicImage);
+    }
+  } catch (e) {
+    return Image.asset(ImageAssets.musicImage);
+  }
 }

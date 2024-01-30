@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
-
-import '../../widgets.dart';
+import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 
 class AudioControllerWidget extends StatelessWidget {
   const AudioControllerWidget({
@@ -17,12 +16,11 @@ class AudioControllerWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: () {
-                context.read<AudioControllerBloc>().previousAudio();
-              },
-              child: functionIcon(Icons.skip_previous, 55, Colors.white),
-            ),
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  context.read<AudioControllerBloc>().previousAudio();
+                },
+                child: const Icon(IconManager.skipPrevious)),
             BlocBuilder<AudioControllerBloc, AudioControllerState>(
               buildWhen: (p, c) => p.isPlaying != c.isPlaying,
               builder: (context, state) {
@@ -32,9 +30,8 @@ class AudioControllerWidget extends StatelessWidget {
                       context.read<AudioControllerBloc>().playOrPauseAudio();
                     },
                     child: state.isPlaying
-                        ? functionIcon(Icons.pause_rounded, 55, Colors.white)
-                        : functionIcon(
-                            Icons.play_arrow_rounded, 55, Colors.white));
+                        ? const Icon(IconManager.pauseRounded)
+                        : const Icon(IconManager.playArrowRounded));
               },
             ),
             GestureDetector(
@@ -42,7 +39,7 @@ class AudioControllerWidget extends StatelessWidget {
               onTap: () {
                 context.read<AudioControllerBloc>().nextAudio();
               },
-              child: functionIcon(Icons.skip_next, 55, Colors.white),
+              child: const Icon(IconManager.skipNext),
             ),
           ],
         );

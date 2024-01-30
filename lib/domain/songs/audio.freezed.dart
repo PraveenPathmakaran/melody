@@ -20,6 +20,7 @@ mixin _$Audio {
   Name get name => throw _privateConstructorUsedError;
   Artist get artist => throw _privateConstructorUsedError;
   AudioPath get path => throw _privateConstructorUsedError;
+  Uint8List? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioCopyWith<Audio> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +31,8 @@ abstract class $AudioCopyWith<$Res> {
   factory $AudioCopyWith(Audio value, $Res Function(Audio) then) =
       _$AudioCopyWithImpl<$Res, Audio>;
   @useResult
-  $Res call({Id uid, Name name, Artist artist, AudioPath path});
+  $Res call(
+      {Id uid, Name name, Artist artist, AudioPath path, Uint8List? image});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$AudioCopyWithImpl<$Res, $Val extends Audio>
     Object? name = null,
     Object? artist = null,
     Object? path = null,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -68,6 +71,10 @@ class _$AudioCopyWithImpl<$Res, $Val extends Audio>
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as AudioPath,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
     ) as $Val);
   }
 }
@@ -79,7 +86,8 @@ abstract class _$$AudioImplCopyWith<$Res> implements $AudioCopyWith<$Res> {
       __$$AudioImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Id uid, Name name, Artist artist, AudioPath path});
+  $Res call(
+      {Id uid, Name name, Artist artist, AudioPath path, Uint8List? image});
 }
 
 /// @nodoc
@@ -97,6 +105,7 @@ class __$$AudioImplCopyWithImpl<$Res>
     Object? name = null,
     Object? artist = null,
     Object? path = null,
+    Object? image = freezed,
   }) {
     return _then(_$AudioImpl(
       uid: null == uid
@@ -115,6 +124,10 @@ class __$$AudioImplCopyWithImpl<$Res>
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as AudioPath,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
     ));
   }
 }
@@ -126,7 +139,8 @@ class _$AudioImpl extends _Audio {
       {required this.uid,
       required this.name,
       required this.artist,
-      required this.path})
+      required this.path,
+      required this.image})
       : super._();
 
   @override
@@ -137,10 +151,12 @@ class _$AudioImpl extends _Audio {
   final Artist artist;
   @override
   final AudioPath path;
+  @override
+  final Uint8List? image;
 
   @override
   String toString() {
-    return 'Audio(uid: $uid, name: $name, artist: $artist, path: $path)';
+    return 'Audio(uid: $uid, name: $name, artist: $artist, path: $path, image: $image)';
   }
 
   @override
@@ -151,11 +167,13 @@ class _$AudioImpl extends _Audio {
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.artist, artist) || other.artist == artist) &&
-            (identical(other.path, path) || other.path == path));
+            (identical(other.path, path) || other.path == path) &&
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uid, name, artist, path);
+  int get hashCode => Object.hash(runtimeType, uid, name, artist, path,
+      const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +187,8 @@ abstract class _Audio extends Audio {
       {required final Id uid,
       required final Name name,
       required final Artist artist,
-      required final AudioPath path}) = _$AudioImpl;
+      required final AudioPath path,
+      required final Uint8List? image}) = _$AudioImpl;
   const _Audio._() : super._();
 
   @override
@@ -180,6 +199,8 @@ abstract class _Audio extends Audio {
   Artist get artist;
   @override
   AudioPath get path;
+  @override
+  Uint8List? get image;
   @override
   @JsonKey(ignore: true)
   _$$AudioImplCopyWith<_$AudioImpl> get copyWith =>

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/resourse_manager/string_manage.dart';
+
 class PermissionDeniedWidget extends StatelessWidget {
   final String text;
   final Function() voidCallBack;
@@ -17,12 +19,11 @@ class PermissionDeniedWidget extends StatelessWidget {
       children: [
         Text(
           text,
-          style: const TextStyle(fontSize: 24),
         ),
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: voidCallBack,
-          child: const Text('Request Permisson'),
+          child: const Text(StringManger.requestPermisson),
         ),
       ],
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:melody/presentation/core/resourse_manager/color_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
-import '../../core/colors.dart';
-import '../../core/constant.dart';
+import '../../core/resourse_manager/styles_manager.dart';
+import '../../core/resourse_manager/value_manager.dart';
 import '../../widgets.dart';
 
 class PermissionGrantedWidget extends StatelessWidget {
@@ -14,24 +16,17 @@ class PermissionGrantedWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        functionText(
-          appName,
-          kWhiteColor,
-          FontWeight.bold,
-          48,
+        Text(
+          StringManger.appName,
+          style: getLargeStyle(color: ColorManager.white),
         ),
-        functionText(
-          'Music Player',
-          kWhiteColor,
-          FontWeight.bold,
-          24,
+        const SizedBox(height: AppSize.s12),
+        Text(
+          StringManger.musicPlayer,
+          style: getMediumStyle(color: ColorManager.white),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.05,
-        ),
-        const CircularProgressIndicator(
-          color: kWhiteColor,
-        )
+        const SizedBox(height: AppSize.s18),
+        cicularPindicator
       ],
     );
   }

@@ -24,6 +24,8 @@ mixin _$AudioDto {
   String? get name => throw _privateConstructorUsedError;
   String? get artist => throw _privateConstructorUsedError;
   String? get path => throw _privateConstructorUsedError;
+  @Uint8ListConverter()
+  Uint8List? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,12 @@ abstract class $AudioDtoCopyWith<$Res> {
   factory $AudioDtoCopyWith(AudioDto value, $Res Function(AudioDto) then) =
       _$AudioDtoCopyWithImpl<$Res, AudioDto>;
   @useResult
-  $Res call({String? uid, String? name, String? artist, String? path});
+  $Res call(
+      {String? uid,
+      String? name,
+      String? artist,
+      String? path,
+      @Uint8ListConverter() Uint8List? image});
 }
 
 /// @nodoc
@@ -56,6 +63,7 @@ class _$AudioDtoCopyWithImpl<$Res, $Val extends AudioDto>
     Object? name = freezed,
     Object? artist = freezed,
     Object? path = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       uid: freezed == uid
@@ -74,6 +82,10 @@ class _$AudioDtoCopyWithImpl<$Res, $Val extends AudioDto>
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
     ) as $Val);
   }
 }
@@ -86,7 +98,12 @@ abstract class _$$AudioDtoImplCopyWith<$Res>
       __$$AudioDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? uid, String? name, String? artist, String? path});
+  $Res call(
+      {String? uid,
+      String? name,
+      String? artist,
+      String? path,
+      @Uint8ListConverter() Uint8List? image});
 }
 
 /// @nodoc
@@ -104,6 +121,7 @@ class __$$AudioDtoImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? artist = freezed,
     Object? path = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$AudioDtoImpl(
       uid: freezed == uid
@@ -122,6 +140,10 @@ class __$$AudioDtoImplCopyWithImpl<$Res>
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
     ));
   }
 }
@@ -133,7 +155,8 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
       {required this.uid,
       required this.name,
       required this.artist,
-      required this.path})
+      required this.path,
+      @Uint8ListConverter() required this.image})
       : super._();
 
   factory _$AudioDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -147,10 +170,13 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
   final String? artist;
   @override
   final String? path;
+  @override
+  @Uint8ListConverter()
+  final Uint8List? image;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AudioDto(uid: $uid, name: $name, artist: $artist, path: $path)';
+    return 'AudioDto(uid: $uid, name: $name, artist: $artist, path: $path, image: $image)';
   }
 
   @override
@@ -161,7 +187,8 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('artist', artist))
-      ..add(DiagnosticsProperty('path', path));
+      ..add(DiagnosticsProperty('path', path))
+      ..add(DiagnosticsProperty('image', image));
   }
 
   @override
@@ -172,12 +199,14 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.artist, artist) || other.artist == artist) &&
-            (identical(other.path, path) || other.path == path));
+            (identical(other.path, path) || other.path == path) &&
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, name, artist, path);
+  int get hashCode => Object.hash(runtimeType, uid, name, artist, path,
+      const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -198,7 +227,8 @@ abstract class _AudioDto extends AudioDto {
       {required final String? uid,
       required final String? name,
       required final String? artist,
-      required final String? path}) = _$AudioDtoImpl;
+      required final String? path,
+      @Uint8ListConverter() required final Uint8List? image}) = _$AudioDtoImpl;
   const _AudioDto._() : super._();
 
   factory _AudioDto.fromJson(Map<String, dynamic> json) =
@@ -212,6 +242,9 @@ abstract class _AudioDto extends AudioDto {
   String? get artist;
   @override
   String? get path;
+  @override
+  @Uint8ListConverter()
+  Uint8List? get image;
   @override
   @JsonKey(ignore: true)
   _$$AudioDtoImplCopyWith<_$AudioDtoImpl> get copyWith =>

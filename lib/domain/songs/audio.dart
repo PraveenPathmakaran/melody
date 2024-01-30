@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:melody/domain/core/value_failures.dart';
@@ -14,14 +16,15 @@ abstract class Audio implements _$Audio {
     required Name name,
     required Artist artist,
     required AudioPath path,
+    required Uint8List? image,
   }) = _Audio;
 
   factory Audio.emptyAudio() => Audio(
-        uid: Id(""),
-        name: Name(""),
-        artist: Artist(""),
-        path: AudioPath(""),
-      );
+      uid: Id(""),
+      name: Name(""),
+      artist: Artist(""),
+      path: AudioPath(""),
+      image: Uint8List(10));
 
   Option<ValueFailure<dynamic>> get failureOption {
     return name.failureOrUnit

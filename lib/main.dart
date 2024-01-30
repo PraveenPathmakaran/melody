@@ -7,6 +7,7 @@ import 'package:melody/presentation/splash_screen/screen_splash.dart';
 
 import 'application/audio/audio_bloc.dart';
 import 'application/core/bloc_observer.dart';
+import 'presentation/core/resourse_manager/theme_manager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,10 +32,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<AudioControllerBloc>(
             create: (_) => getIt<AudioControllerBloc>()),
       ],
-      child: const MaterialApp(
-        title: 'Flutter Demo',
-        //theme: getApplicationTheme(),
-        home: ScreenSplash(),
+      child: MaterialApp(
+        theme: getApplicationTheme(),
+        home: const ScreenSplash(),
         debugShowCheckedModeBanner: false,
       ),
     );

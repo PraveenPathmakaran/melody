@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 
-import '../core/colors.dart';
-import '../widgets.dart';
 import 'widgets/play_controller_widget.dart';
 
 class ScreenPlay extends StatelessWidget {
@@ -28,13 +26,10 @@ class ScreenPlay extends StatelessWidget {
       }
     });
     return Scaffold(
-        backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Colors.black,
           elevation: 0,
           title: const Text(
             'Now Playing',
-            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
         ),
@@ -68,7 +63,6 @@ class PlayContainer extends StatelessWidget {
             builder: (context, state) {
               return Text(
                 state.title,
-                style: const TextStyle(color: Colors.white),
               );
             },
           ),
@@ -118,16 +112,15 @@ class PlayTopControllerWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        IconButton(
-            onPressed: () {},
-            icon: functionIcon(Icons.favorite, 30, Colors.white)),
+        IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
         IconButton(
           onPressed: () {},
-          icon: functionIcon(Icons.repeat_one, 35, kWhiteColor),
+          icon: const Icon(Icons.repeat_one),
         ),
         IconButton(
-            onPressed: () {},
-            icon: functionIcon(Icons.playlist_play, 35, kWhiteColor))
+          onPressed: () {},
+          icon: const Icon(Icons.playlist_play),
+        )
       ],
     );
   }

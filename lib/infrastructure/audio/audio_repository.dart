@@ -26,6 +26,7 @@ class AudioRepository implements IAudioRepository {
   Future<Either<AudioFailure, Unit>> getAllAudio() async {
     try {
       final data = await platform.invokeMethod<List<dynamic>>(functionName);
+
       if (data != null) {
         final result = data.map(
             (e) => AudioDto.fromJson(Map<String, dynamic>.from(e)).toDomain());
@@ -33,7 +34,6 @@ class AudioRepository implements IAudioRepository {
         allAudios = {
           for (var element in result) element.uid.getOrCrash(): element
         };
-
         return right(unit);
       }
 

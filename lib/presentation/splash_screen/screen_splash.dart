@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio/audio_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../home_screen/screen_home.dart';
 import 'widgets/permission_denied_widget.dart';
@@ -72,7 +73,6 @@ class _ScreenSplashState extends State<ScreenSplash>
         )
       ],
       child: Scaffold(
-        backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
             child: BlocBuilder<PermissionHandlerBloc, PermissionHandlerState>(
@@ -87,7 +87,7 @@ class _ScreenSplashState extends State<ScreenSplash>
                   },
                   denied: (value) {
                     return PermissionDeniedWidget(
-                      text: 'Permission Denied',
+                      text: StringManger.permissionDenied,
                       voidCallBack: () => context
                           .read<PermissionHandlerBloc>()
                           .add(const PermissionHandlerEvent.checkPermission()),
@@ -96,7 +96,7 @@ class _ScreenSplashState extends State<ScreenSplash>
                   permanentlyDenied: (value) {
                     return PermissionDeniedWidget(
                       text:
-                          'Permission permanently Denied Please open app settings and allow permission',
+                          '${StringManger.permissionPermanentlyDenied} ${StringManger.pleaseOpenAppSettingsAndAllowPermission}',
                       voidCallBack: () => context
                           .read<PermissionHandlerBloc>()
                           .add(const PermissionHandlerEvent.openAppSettings()),
