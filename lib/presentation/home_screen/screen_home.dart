@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import 'home_widgets.dart';
@@ -27,15 +28,15 @@ class ScreenHomeMain extends StatelessWidget {
               tabs: const <Widget>[
                 Tab(
                   text: StringManger.home,
-                  icon: Icon(Icons.home),
+                  icon: Icon(IconManager.home),
                 ),
                 Tab(
                   text: StringManger.favourites,
-                  icon: Icon(Icons.favorite),
+                  icon: Icon(IconManager.favourites),
                 ),
                 Tab(
                   text: StringManger.playlist,
-                  icon: Icon(Icons.playlist_play),
+                  icon: Icon(IconManager.playlist),
                 ),
               ],
             ),

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
+
+import 'icon_widgets.dart';
 
 class AudioControllerWidget extends StatelessWidget {
   const AudioControllerWidget({
@@ -20,7 +23,10 @@ class AudioControllerWidget extends StatelessWidget {
                 onTap: () {
                   context.read<AudioControllerBloc>().previousAudio();
                 },
-                child: const Icon(IconManager.skipPrevious)),
+                child: const PlayIconWidget(
+                  icon: IconManager.skipPrevious,
+                  size: AppSize.s50,
+                )),
             BlocBuilder<AudioControllerBloc, AudioControllerState>(
               buildWhen: (p, c) => p.isPlaying != c.isPlaying,
               builder: (context, state) {
@@ -30,8 +36,14 @@ class AudioControllerWidget extends StatelessWidget {
                       context.read<AudioControllerBloc>().playOrPauseAudio();
                     },
                     child: state.isPlaying
-                        ? const Icon(IconManager.pauseRounded)
-                        : const Icon(IconManager.playArrowRounded));
+                        ? const PlayIconWidget(
+                            icon: IconManager.pauseRounded,
+                            size: AppSize.s50,
+                          )
+                        : const PlayIconWidget(
+                            icon: IconManager.playArrowRounded,
+                            size: AppSize.s50,
+                          ));
               },
             ),
             GestureDetector(
@@ -39,7 +51,10 @@ class AudioControllerWidget extends StatelessWidget {
               onTap: () {
                 context.read<AudioControllerBloc>().nextAudio();
               },
-              child: const Icon(IconManager.skipNext),
+              child: const PlayIconWidget(
+                icon: IconManager.skipNext,
+                size: AppSize.s50,
+              ),
             ),
           ],
         );

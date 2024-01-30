@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/presentation/core/app_size_manage.dart';
+import 'package:melody/presentation/core/resourse_manager/color_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/font_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
+import 'package:melody/presentation/core/resourse_manager/styles_manager.dart';
+import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 
 import '../core/widgets.dart';
+import 'widgets/icon_widgets.dart';
 import 'widgets/play_controller_widget.dart';
 
 class ScreenPlay extends StatelessWidget {
@@ -34,9 +41,13 @@ class ScreenPlay extends StatelessWidget {
           .add(const AudioControllerEvent.closeStream()),
       child: Scaffold(
           appBar: AppBar(
-            elevation: 0,
-            title: const Text(
-              'Now Playing',
+            elevation: AppSize.s0,
+            title: Text(
+              StringManger.nowPlaying,
+              style: getSemiBoldStyle(
+                fontSize: AppSize.s18,
+                color: ColorManager.white,
+              ),
             ),
             centerTitle: true,
           ),
@@ -57,7 +68,7 @@ class PlayContainer extends StatelessWidget {
         return Container(
           height: size.height,
           width: size.width,
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(AppPadding.p30),
           child: Column(
             children: <Widget>[
               //image
@@ -69,8 +80,10 @@ class PlayContainer extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(30)),
                       child: CustomImageWidget(
                         image: state.audio.image,
-                        height: AppMediaQueryManager.getWidthPercentage(90),
-                        width: AppMediaQueryManager.getWidthPercentage(90),
+                        height: AppMediaQueryManager.getWidthPercentage(
+                            AppSize.s90),
+                        width: AppMediaQueryManager.getWidthPercentage(
+                            AppSize.s90),
                       ),
                     ),
                   ],
@@ -78,18 +91,30 @@ class PlayContainer extends StatelessWidget {
               ),
               //controller and details
               SizedBox(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      state.audio.name.getOrCrash(),
-                    ),
-                    Text(
-                      state.audio.artist.getOrCrash(),
-                    ),
-                    const PlayTopControllerWidget(),
-                    const PlayProgressSlideWidget(),
-                    const AudioControllerWidget()
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        state.audio.name.getOrCrash(),
+                        style: getRegularStyle(
+                            fontSize: FontSize.s17, color: ColorManager.white),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(
+                        height: 1,
+                      ),
+                      Text(
+                        state.audio.artist.getOrCrash(),
+                        style: getMediumStyle(color: ColorManager.white),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const PlayTopControllerWidget(),
+                      const PlayProgressSlideWidget(),
+                      const AudioControllerWidget()
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -114,6 +139,10 @@ class PlayProgressSlideWidget extends StatelessWidget {
           buffered: state.buffered,
           total: state.total,
           onSeek: context.read<AudioControllerBloc>().onSeek,
+          thumbColor: ColorManager.secondary,
+          progressBarColor: ColorManager.secondary,
+          bufferedBarColor: ColorManager.lightGrey,
+          baseBarColor: ColorManager.white,
         );
       },
     );
@@ -130,14 +159,16 @@ class PlayTopControllerWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+        IconButton(
+            onPressed: () {},
+            icon: const PlayIconWidget(icon: IconManager.favourites)),
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.repeat_one),
+          icon: const PlayIconWidget(icon: IconManager.repeat),
         ),
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.playlist_play),
+          icon: const PlayIconWidget(icon: IconManager.playlist),
         )
       ],
     );

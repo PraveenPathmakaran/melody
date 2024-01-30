@@ -13,7 +13,7 @@ ThemeData getApplicationTheme() {
       primaryColorDark: ColorManager.darkPrimary,
       disabledColor: ColorManager.white,
       // ripple color
-      splashColor: ColorManager.primaryOpacity70,
+      splashColor: ColorManager.lightGrey,
       // card view theme
       cardTheme: CardTheme(
         color: ColorManager.primary,
@@ -70,8 +70,11 @@ ThemeData getApplicationTheme() {
         tileColor: ColorManager.primary,
       ),
       tabBarTheme: TabBarTheme(
-          labelColor: ColorManager.white,
-          unselectedLabelColor: ColorManager.grey),
+        labelColor: ColorManager.secondary,
+        unselectedLabelColor: ColorManager.white,
+        dividerColor: ColorManager.grey,
+        indicatorColor: ColorManager.secondary,
+      ),
       // input decoration theme (text form field)
 
       inputDecorationTheme: InputDecorationTheme(

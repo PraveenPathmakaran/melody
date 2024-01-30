@@ -11,4 +11,5 @@ class StringManger {
   static const String home = 'Home';
   static const String favourites = 'Favourites';
   static const String playlist = 'Playlist';
+  static const String nowPlaying = 'Now Playing';
 }
