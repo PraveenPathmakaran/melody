@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_failure.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart' as obj;
+
+import 'audio_value_objects.dart';
 
 abstract class IAudioRepository {
-  Future<Either<AudioFailure, Unit>> getAllAudio();
-  Either<AudioFailure, Audio> getAudioData({required obj.Id uid});
-  Future<Either<AudioFailure, List<String>>> concatenatingAudios();
+  Either<AudioFailure, Audio> getAudioData({required Id uid});
+  Future<Either<AudioFailure, List<Id>>> concatenatingAudios();
 
   //controle music
   Future<Either<AudioFailure, Unit>> playAudio({required int index});
@@ -16,8 +16,8 @@ abstract class IAudioRepository {
   Future<Either<AudioFailure, Unit>> seekAudio({required Duration duration});
 
   //streams
-  Stream<Either<AudioFailure, Duration>> bufferedPositionStream();
-  Stream<Either<AudioFailure, Duration>> durationStream();
-  Stream<Either<AudioFailure, Duration>> positionStream();
+  Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream();
+  Stream<Either<AudioFailure, AudioDuration>> durationStream();
+  Stream<Either<AudioFailure, AudioDuration>> positionStream();
   Stream<Either<AudioFailure, Audio>> sequenceStateStream();
 }

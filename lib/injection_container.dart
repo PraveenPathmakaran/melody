@@ -3,6 +3,10 @@ import 'package:just_audio/just_audio.dart';
 import 'package:melody/application/audio/audio_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
+import 'package:melody/infrastructure/audio/audio_player_repository/audio_player_repository.dart';
+import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
+import 'package:melody/infrastructure/audio/platform_repository/i_platform_repository.dart';
+import 'package:melody/infrastructure/audio/platform_repository/platform_repository.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'application/permission_bloc/permission_handler_bloc.dart';
@@ -12,15 +16,17 @@ import 'infrastructure/permission/permission_handler.dart';
 
 final getIt = GetIt.instance;
 
-void initGetIt() {
+Future<void> initGetIt() async {
+  //assigning byte image
+  //await AppUtils.loadImage();
   //infrastructure
-  getIt.registerLazySingleton<AudioRepository>(
-      () => AudioRepository(audioPlayer: getIt()));
-  getIt.registerLazySingleton<IPermissionHandler>(
-      () => PermissionsHandler(permission: getIt()));
 
 //domain
-  getIt.registerLazySingleton<IAudioRepository>(() => getIt<AudioRepository>());
+  getIt.registerLazySingleton<IPermissionHandler>(
+      () => PermissionsHandler(permission: getIt()));
+  getIt.registerLazySingleton<IAudioRepository>(() => AudioRepository(getIt()));
+  getIt.registerLazySingleton<IPlatformRepository>(() => PlatformRepository());
+  getIt.registerLazySingleton<IAudioPlayerRepository>(() => AudioPlayerRepository(getIt(),getIt()));
   //bloc
   getIt.registerFactory<PermissionHandlerBloc>(
       () => PermissionHandlerBloc(getIt()));

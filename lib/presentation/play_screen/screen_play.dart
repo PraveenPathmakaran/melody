@@ -9,6 +9,7 @@ import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/styles_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
+import 'package:melody/presentation/widgets.dart';
 
 import '../core/widgets.dart';
 import 'widgets/icon_widgets.dart';
@@ -65,61 +66,69 @@ class PlayContainer extends StatelessWidget {
     return BlocBuilder<AudioControllerBloc, AudioControllerState>(
       buildWhen: (p, c) => p.audio != c.audio,
       builder: (context, state) {
-        return Container(
-          height: size.height,
-          width: size.width,
-          padding: const EdgeInsets.all(AppPadding.p30),
-          child: Column(
-            children: <Widget>[
-              //image
-              SizedBox(
-                height: AppMediaQueryManager.height / 2,
-                child: Column(
-                  children: <Widget>[
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      child: CustomImageWidget(
-                        image: state.audio.image,
-                        height: AppMediaQueryManager.getWidthPercentage(
-                            AppSize.s90),
-                        width: AppMediaQueryManager.getWidthPercentage(
-                            AppSize.s90),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              //controller and details
-              SizedBox(
-                child: SingleChildScrollView(
+        if (state.audio.failureOption.isNone()) {
+          return Container(
+            height: size.height,
+            width: size.width,
+            padding: const EdgeInsets.all(AppPadding.p30),
+            child: Column(
+              children: <Widget>[
+                //image
+                SizedBox(
+                  height: AppMediaQueryManager.height / 2,
                   child: Column(
                     children: <Widget>[
-                      Text(
-                        state.audio.name.getOrCrash(),
-                        style: getRegularStyle(
-                            fontSize: FontSize.s17, color: ColorManager.white),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30)),
+                        child: CustomImageWidget(
+                          image: state.audio.image.value.isLeft()
+                              ? null
+                              : state.audio.image.getOrCrash(),
+                          height: AppMediaQueryManager.getWidthPercentage(
+                              AppSize.s90),
+                          width: AppMediaQueryManager.getWidthPercentage(
+                              AppSize.s90),
+                        ),
                       ),
-                      const SizedBox(
-                        height: 1,
-                      ),
-                      Text(
-                        state.audio.artist.getOrCrash(),
-                        style: getMediumStyle(color: ColorManager.white),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const PlayTopControllerWidget(),
-                      const PlayProgressSlideWidget(),
-                      const AudioControllerWidget()
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
+                //controller and details
+                SizedBox(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          state.audio.name.getOrCrash(),
+                          style: getRegularStyle(
+                              fontSize: FontSize.s17,
+                              color: ColorManager.white),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(
+                          height: 1,
+                        ),
+                        Text(
+                          state.audio.artist.getOrCrash(),
+                          style: getMediumStyle(color: ColorManager.white),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const PlayTopControllerWidget(),
+                        const PlayProgressSlideWidget(),
+                        const AudioControllerWidget()
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return cicularPindicator;
+        }
       },
     );
   }
@@ -135,9 +144,9 @@ class PlayProgressSlideWidget extends StatelessWidget {
     return BlocBuilder<AudioControllerBloc, AudioControllerState>(
       builder: (context, state) {
         return ProgressBar(
-          progress: state.current,
-          buffered: state.buffered,
-          total: state.total,
+          progress: state.current.getOrCrash(),
+          buffered: state.buffered.getOrCrash(),
+          total: state.total.getOrCrash(),
           onSeek: context.read<AudioControllerBloc>().onSeek,
           thumbColor: ColorManager.secondary,
           progressBarColor: ColorManager.secondary,

@@ -8,10 +8,10 @@ import 'package:melody/presentation/splash_screen/screen_splash.dart';
 import 'application/audio/audio_bloc.dart';
 import 'presentation/core/resourse_manager/theme_manager.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //Bloc.observer = const AppBlocObserver();
-  initGetIt();
+  await initGetIt();
 
   runApp(const MyApp());
 }

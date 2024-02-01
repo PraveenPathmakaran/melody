@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dartz/dartz.dart';
 import 'package:melody/domain/core/value_failures.dart';
 import 'package:melody/domain/core/value_objects.dart';
@@ -36,15 +38,15 @@ class AudioPath extends ValueObjects<String> {
   AudioPath._(this.value);
 }
 
-class Duration extends ValueObjects<String> {
+class AudioDuration extends ValueObjects<Duration> {
   @override
-  Either<ValueFailure<String>, String> value;
+  Either<ValueFailure<Duration>, Duration> value;
 
-  factory Duration(String input) {
-    return Duration._(validateStringNotEmpty(input));
+  factory AudioDuration(int input) {
+    return AudioDuration._(validateDuration(input));
   }
 
-  Duration._(this.value);
+  AudioDuration._(this.value);
 }
 
 class Id extends ValueObjects<String> {
@@ -56,4 +58,15 @@ class Id extends ValueObjects<String> {
   }
 
   Id._(this.value);
+}
+
+class ImageByte extends ValueObjects<Uint8List> {
+  @override
+  Either<ValueFailure<Uint8List>, Uint8List> value;
+
+  factory ImageByte(Uint8List input) {
+    return ImageByte._(validateImage(input));
+  }
+
+  ImageByte._(this.value);
 }

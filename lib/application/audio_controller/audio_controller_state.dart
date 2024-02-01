@@ -4,16 +4,16 @@ part of 'audio_controller_bloc.dart';
 class AudioControllerState with _$AudioControllerState {
   const factory AudioControllerState({
     required bool isPlaying,
-    required Duration current,
-    required Duration buffered,
-    required Duration total,
+    required AudioDuration current,
+    required AudioDuration buffered,
+    required AudioDuration total,
     required Audio audio,
   }) = _AudioControllerState;
 
   factory AudioControllerState.initial() => AudioControllerState(
       isPlaying: false,
-      buffered: Duration.zero,
-      current: Duration.zero,
+      buffered: AudioDuration(0),
+      current: AudioDuration(0),
       audio: Audio.emptyAudio(),
-      total: Duration.zero);
+      total: AudioDuration(0));
 }

@@ -20,7 +20,7 @@ mixin _$Audio {
   Name get name => throw _privateConstructorUsedError;
   Artist get artist => throw _privateConstructorUsedError;
   AudioPath get path => throw _privateConstructorUsedError;
-  Uint8List? get image => throw _privateConstructorUsedError;
+  ImageByte get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioCopyWith<Audio> get copyWith => throw _privateConstructorUsedError;
@@ -32,7 +32,7 @@ abstract class $AudioCopyWith<$Res> {
       _$AudioCopyWithImpl<$Res, Audio>;
   @useResult
   $Res call(
-      {Id uid, Name name, Artist artist, AudioPath path, Uint8List? image});
+      {Id uid, Name name, Artist artist, AudioPath path, ImageByte image});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$AudioCopyWithImpl<$Res, $Val extends Audio>
     Object? name = null,
     Object? artist = null,
     Object? path = null,
-    Object? image = freezed,
+    Object? image = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -71,10 +71,10 @@ class _$AudioCopyWithImpl<$Res, $Val extends Audio>
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as AudioPath,
-      image: freezed == image
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
+              as ImageByte,
     ) as $Val);
   }
 }
@@ -87,7 +87,7 @@ abstract class _$$AudioImplCopyWith<$Res> implements $AudioCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {Id uid, Name name, Artist artist, AudioPath path, Uint8List? image});
+      {Id uid, Name name, Artist artist, AudioPath path, ImageByte image});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class __$$AudioImplCopyWithImpl<$Res>
     Object? name = null,
     Object? artist = null,
     Object? path = null,
-    Object? image = freezed,
+    Object? image = null,
   }) {
     return _then(_$AudioImpl(
       uid: null == uid
@@ -124,10 +124,10 @@ class __$$AudioImplCopyWithImpl<$Res>
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as AudioPath,
-      image: freezed == image
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as Uint8List?,
+              as ImageByte,
     ));
   }
 }
@@ -152,7 +152,7 @@ class _$AudioImpl extends _Audio {
   @override
   final AudioPath path;
   @override
-  final Uint8List? image;
+  final ImageByte image;
 
   @override
   String toString() {
@@ -168,12 +168,11 @@ class _$AudioImpl extends _Audio {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.artist, artist) || other.artist == artist) &&
             (identical(other.path, path) || other.path == path) &&
-            const DeepCollectionEquality().equals(other.image, image));
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uid, name, artist, path,
-      const DeepCollectionEquality().hash(image));
+  int get hashCode => Object.hash(runtimeType, uid, name, artist, path, image);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +187,7 @@ abstract class _Audio extends Audio {
       required final Name name,
       required final Artist artist,
       required final AudioPath path,
-      required final Uint8List? image}) = _$AudioImpl;
+      required final ImageByte image}) = _$AudioImpl;
   const _Audio._() : super._();
 
   @override
@@ -200,7 +199,7 @@ abstract class _Audio extends Audio {
   @override
   AudioPath get path;
   @override
-  Uint8List? get image;
+  ImageByte get image;
   @override
   @JsonKey(ignore: true)
   _$$AudioImplCopyWith<_$AudioImpl> get copyWith =>

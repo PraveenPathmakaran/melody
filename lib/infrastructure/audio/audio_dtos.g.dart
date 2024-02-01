@@ -14,7 +14,7 @@ Map<String, dynamic> _$Uint8ListConverterToJson(Uint8ListConverter instance) =>
 
 _$AudioDtoImpl _$$AudioDtoImplFromJson(Map<String, dynamic> json) =>
     _$AudioDtoImpl(
-      uid: json['uid'] as String?,
+      id: json['id'] as String?,
       name: json['name'] as String?,
       artist: json['artist'] as String?,
       path: json['path'] as String?,
@@ -23,7 +23,7 @@ _$AudioDtoImpl _$$AudioDtoImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$AudioDtoImplToJson(_$AudioDtoImpl instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'id': instance.id,
       'name': instance.name,
       'artist': instance.artist,
       'path': instance.path,

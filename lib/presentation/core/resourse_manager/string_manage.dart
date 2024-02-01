@@ -12,4 +12,5 @@ class StringManger {
   static const String favourites = 'Favourites';
   static const String playlist = 'Playlist';
   static const String nowPlaying = 'Now Playing';
+  static const String invalidImage = 'Invalid Image';
 }

@@ -10,7 +10,7 @@ part 'audio_dtos.g.dart';
 abstract class AudioDto implements _$AudioDto {
   const AudioDto._();
   const factory AudioDto({
-    required String? uid,
+    required String? id,
     required String? name,
     required String? artist,
     required String? path,
@@ -19,11 +19,11 @@ abstract class AudioDto implements _$AudioDto {
 
   Audio toDomain() {
     return Audio(
-        uid: Id(uid ?? ""),
-        name: Name(name ?? ""),
-        artist: Artist(artist ?? ""),
+        uid: Id(id ?? ""),
+        name: Name(name ?? "No title found"),
+        artist: Artist(artist ?? "No artist found"),
         path: AudioPath(path ?? ""),
-        image: image );
+        image: ImageByte(image ?? Uint8List(0)));
   }
 
   factory AudioDto.fromJson(Map<String, dynamic> json) =>
@@ -36,7 +36,7 @@ class Uint8ListConverter implements JsonConverter<Uint8List?, List<int>?> {
 
   @override
   Uint8List? fromJson(List<int>? json) {
-    return json == null ? null : Uint8List.fromList(json);
+    return json == null ? Uint8List(0) : Uint8List.fromList(json);
   }
 
   @override

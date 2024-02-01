@@ -16,22 +16,12 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
     on<AudioEvent>((event, emit) async {
       await event.map(
         concatenatingAudios: (value) async {
-          final failureOrSuccess = await _audioRepository.getAllAudio();
-          await failureOrSuccess
-              .fold((failure) async => emit(AudioState.loadFailure(failure)),
-                  (success) async {
-            final failureOrSucess =
-                await _audioRepository.concatenatingAudios();
-
-            failureOrSucess.fold((f) => emit(AudioState.loadFailure(f)),
-                (audios) => emit(AudioState.loadSuccess(audios)));
-          });
+          final failureOrSucess = await _audioRepository.concatenatingAudios();
+          failureOrSucess.fold((f) => emit(AudioState.loadFailure(f)),
+              (audios) => emit(AudioState.loadSuccess(audios)));
         },
       );
     });
   }
-  Audio fetchAudioData({required Id id}) {
-    final audio = _audioRepository.getAudioData(uid: id);
-    return audio.getOrElse(() => Audio.emptyAudio());
-  }
+
 }

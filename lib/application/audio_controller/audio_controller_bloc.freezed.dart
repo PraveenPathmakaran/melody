@@ -282,9 +282,9 @@ abstract class _CloseStream implements AudioControllerEvent {
 /// @nodoc
 mixin _$AudioControllerState {
   bool get isPlaying => throw _privateConstructorUsedError;
-  Duration get current => throw _privateConstructorUsedError;
-  Duration get buffered => throw _privateConstructorUsedError;
-  Duration get total => throw _privateConstructorUsedError;
+  AudioDuration get current => throw _privateConstructorUsedError;
+  AudioDuration get buffered => throw _privateConstructorUsedError;
+  AudioDuration get total => throw _privateConstructorUsedError;
   Audio get audio => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -300,9 +300,9 @@ abstract class $AudioControllerStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isPlaying,
-      Duration current,
-      Duration buffered,
-      Duration total,
+      AudioDuration current,
+      AudioDuration buffered,
+      AudioDuration total,
       Audio audio});
 
   $AudioCopyWith<$Res> get audio;
@@ -336,15 +336,15 @@ class _$AudioControllerStateCopyWithImpl<$Res,
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
-              as Duration,
+              as AudioDuration,
       buffered: null == buffered
           ? _value.buffered
           : buffered // ignore: cast_nullable_to_non_nullable
-              as Duration,
+              as AudioDuration,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as Duration,
+              as AudioDuration,
       audio: null == audio
           ? _value.audio
           : audio // ignore: cast_nullable_to_non_nullable
@@ -371,9 +371,9 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isPlaying,
-      Duration current,
-      Duration buffered,
-      Duration total,
+      AudioDuration current,
+      AudioDuration buffered,
+      AudioDuration total,
       Audio audio});
 
   @override
@@ -405,15 +405,15 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
-              as Duration,
+              as AudioDuration,
       buffered: null == buffered
           ? _value.buffered
           : buffered // ignore: cast_nullable_to_non_nullable
-              as Duration,
+              as AudioDuration,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as Duration,
+              as AudioDuration,
       audio: null == audio
           ? _value.audio
           : audio // ignore: cast_nullable_to_non_nullable
@@ -435,11 +435,11 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   @override
   final bool isPlaying;
   @override
-  final Duration current;
+  final AudioDuration current;
   @override
-  final Duration buffered;
+  final AudioDuration buffered;
   @override
-  final Duration total;
+  final AudioDuration total;
   @override
   final Audio audio;
 
@@ -478,19 +478,19 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
 abstract class _AudioControllerState implements AudioControllerState {
   const factory _AudioControllerState(
       {required final bool isPlaying,
-      required final Duration current,
-      required final Duration buffered,
-      required final Duration total,
+      required final AudioDuration current,
+      required final AudioDuration buffered,
+      required final AudioDuration total,
       required final Audio audio}) = _$AudioControllerStateImpl;
 
   @override
   bool get isPlaying;
   @override
-  Duration get current;
+  AudioDuration get current;
   @override
-  Duration get buffered;
+  AudioDuration get buffered;
   @override
-  Duration get total;
+  AudioDuration get total;
   @override
   Audio get audio;
   @override

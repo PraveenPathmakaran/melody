@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/presentation/core/resourse_manager/color_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/play_screen/screen_play.dart';
@@ -27,8 +28,8 @@ class ScreenHome extends StatelessWidget {
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 final audioData = context
-                    .read<AudioBloc>()
-                    .fetchAudioData(id: Id(value.audioId[index]));
+                    .read<AudioControllerBloc>()
+                    .fetchAudioData(id: Id(value.audioId[index].getOrCrash()));
                 return Card(
                   clipBehavior: Clip.antiAlias,
                   shape: RoundedRectangleBorder(
@@ -47,7 +48,9 @@ class ScreenHome extends StatelessWidget {
                         radius: 28,
                         child: ClipOval(
                             child: CustomImageWidget(
-                          image: audioData.image,
+                          image: audioData.image.value.isLeft()
+                              ? null
+                              : audioData.image.getOrCrash(),
                           height: 52,
                           width: 52,
                         )),

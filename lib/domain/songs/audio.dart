@@ -16,15 +16,15 @@ abstract class Audio implements _$Audio {
     required Name name,
     required Artist artist,
     required AudioPath path,
-    required Uint8List? image,
+    required ImageByte image,
   }) = _Audio;
 
   factory Audio.emptyAudio() => Audio(
       uid: Id(""),
-      name: Name("Name not found"),
-      artist: Artist("Artist not found"),
+      name: Name(""),
+      artist: Artist(""),
       path: AudioPath(""),
-      image: null);
+      image: ImageByte(Uint8List(0)));
 
   Option<ValueFailure<dynamic>> get failureOption {
     return name.failureOrUnit

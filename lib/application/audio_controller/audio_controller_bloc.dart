@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_failure.dart';
+import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -34,15 +35,15 @@ class AudioControllerBloc
           await emit.forEach(
             combinedStreams,
             onData: (data) {
-              final Duration buffer =
-                  (data[0] as Either<AudioFailure, Duration>)
-                      .getOrElse(() => Duration.zero);
-              final Duration position =
-                  (data[1] as Either<AudioFailure, Duration>)
-                      .getOrElse(() => Duration.zero);
-              final Duration duration =
-                  (data[2] as Either<AudioFailure, Duration>)
-                      .getOrElse(() => Duration.zero);
+              final AudioDuration buffer =
+                  (data[0] as Either<AudioFailure, AudioDuration>)
+                      .getOrElse(() => AudioDuration(0));
+              final AudioDuration position =
+                  (data[1] as Either<AudioFailure, AudioDuration>)
+                      .getOrElse(() => AudioDuration(0));
+              final AudioDuration duration =
+                  (data[2] as Either<AudioFailure, AudioDuration>)
+                      .getOrElse(() => AudioDuration(0));
               final Audio audio = (data[3] as Either<AudioFailure, Audio>)
                   .getOrElse(() => Audio.emptyAudio());
 
@@ -85,5 +86,10 @@ class AudioControllerBloc
 
   void previousAudio() {
     _audioRepository.previousAudio();
+  }
+
+  Audio fetchAudioData({required Id id}) {
+    final audio = _audioRepository.getAudioData(uid: id);
+    return audio.getOrElse(() => Audio.emptyAudio());
   }
 }

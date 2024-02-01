@@ -8,6 +8,7 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
+
 class MainActivity : FlutterActivity() {
     private val AUDIO_CHANNEL = "audio"
     private lateinit var channel: MethodChannel
@@ -19,23 +20,26 @@ class MainActivity : FlutterActivity() {
         channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, AUDIO_CHANNEL)
         channel.setMethodCallHandler { call, result ->
             if (call.method == "getAudios") {
-                val allAudios = getAudios()
+                val pageNumber = call.argument<Int>("pageNumber") ?: 0
+                val allAudios = getAudios(pageNumber)
                 result.success(allAudios)
             }
         }
     }
 
 
-    private fun getAudios(): List<Map<String, Any?>> {
-        val allAudios = mutableListOf<Map<String, Any?>>()
+
+    private val PAGE_SIZE = 50
+
+    private fun getAudios(pageNumber: Int): ArrayList<Map<String, Any?>>? {
+        val allAudios = ArrayList<Map<String, Any?>>()
         val selection = MediaStore.Audio.Media.IS_MUSIC + " != 0"
         val projection = arrayOf(
             MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.ARTIST,
-            MediaStore.Audio.Media.DURATION,
-
+            MediaStore.Audio.Media.DURATION // Added duration to projection
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -44,55 +48,71 @@ class MainActivity : FlutterActivity() {
                 projection,
                 selection,
                 null,
-                null
+                "${MediaStore.Audio.Media.TITLE} ASC"
             )?.use { cursor ->
-                while (cursor.moveToNext()) {
+                // Calculate the starting and ending positions for the current page
+                val start = pageNumber * PAGE_SIZE
+                val end = start + PAGE_SIZE
 
-                    //imageData is Audio image metadata
-                    var imageData: ByteArray? = null
-                    val durationString = cursor.getString(4)
-                    //this checking for prevent unwanted call of getAlbumArt method
-                    if (durationString != null && durationString.toIntOrNull() != null) {
-                        val durationInMillis = durationString.toInt()
+                // Move to the starting position
+                if (cursor.moveToPosition(start)) {
+                    do {
+                        // Check if there is a duration and it's greater than 60000 milliseconds
+                        val durationString = cursor.getString(4)
+                        if (durationString != null && durationString.toIntOrNull() != null) {
+                            val durationInMillis = durationString.toInt()
+                            if (durationInMillis > 60000) {
+                                // Retrieve audio information and add to the map
+                                val audioInfo = mapOf(
+                                    "id" to cursor.getString(0),
+                                    "name" to cursor.getString(1),
+                                    "path" to cursor.getString(2),
+                                    "artist" to cursor.getString(3),
+                                    "image" to getAlbumArt(cursor.getString(2))
+                                )
 
-                        if (durationInMillis > 60000) {
-                            imageData = getAlbumArt(cursor.getString(2))
+                                // Use the UID as the key in the outer map
+                                allAudios.add(audioInfo)
+                            }
                         }
-                    }
-                    allAudios.add(
-                        mapOf(
-                            "uid" to cursor.getString(0),
-                            "name" to cursor.getString(1),
-                            "path" to cursor.getString(2),
-                            "artist" to cursor.getString(3),
-                            "image" to imageData,
-                        )
-                    )
+
+                        // Move to the next position
+                    } while (cursor.moveToNext() && cursor.position < end)
                 }
             }
         }
 
-        return allAudios
+        return allAudios.takeIf { it.isNotEmpty() } // Return null if the map is empty
     }
 
 
-   private fun getAlbumArt(filePath: String): ByteArray? {
-       val retriever = MediaMetadataRetriever()
 
 
-        try {
+
+    private fun getAlbumArt(filePath: String): ByteArray? {
+        val retriever = MediaMetadataRetriever()
+
+        return try {
             // Set the data source to the MP3 file path
             retriever.setDataSource(filePath)
-
             // Get the embedded album art as a byte array
-            return retriever.embeddedPicture
+            // Check if there is embedded album art
+            retriever.embeddedPicture
         } catch (e: Exception) {
-            // Handle exceptions, e.g., invalid file path, no embedded picture, etc.
+            // Log the error instead of throwing an exception
             e.printStackTrace()
+            null
         } finally {
-            retriever.release()
+            try {
+                retriever.release()
+            } catch (e: Exception) {
+                // Log any additional errors when releasing the retriever
+                e.printStackTrace()
+            }
         }
-
-        return null
     }
+
 }
+
+
+
