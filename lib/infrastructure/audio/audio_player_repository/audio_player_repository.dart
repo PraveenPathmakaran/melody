@@ -79,8 +79,7 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
 
   @override
   Stream<int> bufferedPositionStream() async* {
-    yield* _audioPlayer.bufferedPositionStream
-        .map((event) => event.inSeconds);
+    yield* _audioPlayer.bufferedPositionStream.map((event) => event.inSeconds);
   }
 
   @override
@@ -96,8 +95,7 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
 
   @override
   Stream<int> durationStream() async* {
-    yield* _audioPlayer.durationStream
-        .map((event) => event?.inSeconds ?? 0);
+    yield* _audioPlayer.durationStream.map((event) => event?.inSeconds ?? 0);
   }
 
   @override
@@ -113,5 +111,21 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
       return audioSongs[position];
     }
     throw const AudioFailure.audioNotFound();
+  }
+
+  @override
+  Stream<ButtonState> buttonState() async* {
+    yield* _audioPlayer.playerStateStream.map((event) {
+      final isPlaying = event.playing;
+      final processingState = event.processingState;
+      if (processingState == ProcessingState.loading) {
+        return ButtonState.paused;
+      } else if (!isPlaying) {
+        return ButtonState.paused;
+      } else {
+        return ButtonState.playing;
+      }
+    });
+    throw UnimplementedError();
   }
 }

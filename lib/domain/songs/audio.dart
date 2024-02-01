@@ -8,6 +8,8 @@ import 'audio_value_objects.dart';
 
 part 'audio.freezed.dart';
 
+enum ButtonState { paused, playing }
+
 @freezed
 abstract class Audio implements _$Audio {
   const Audio._();

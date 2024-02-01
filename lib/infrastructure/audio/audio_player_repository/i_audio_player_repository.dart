@@ -18,4 +18,5 @@ abstract class IAudioPlayerRepository {
   Stream<int> durationStream();
   Stream<int> positionStream();
   Stream<String> sequenceStateStream();
+   Stream<ButtonState> buttonState();
 }

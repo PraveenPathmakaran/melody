@@ -138,4 +138,14 @@ class AudioRepository implements IAudioRepository {
     }).onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
   }
+
+  @override
+  Stream<Either<AudioFailure, ButtonState>> buttonStateStream() async* {
+    yield* _audioPlayerRepository
+        .buttonState()
+        .map<Either<AudioFailure, ButtonState>>(
+            (buttonState) => right(buttonState))
+        .onErrorReturnWith((error, stackTrace) =>
+            left(const AudioFailure.audioPlayerFailure()));
+  }
 }

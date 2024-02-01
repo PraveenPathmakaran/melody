@@ -281,11 +281,11 @@ abstract class _CloseStream implements AudioControllerEvent {
 
 /// @nodoc
 mixin _$AudioControllerState {
-  bool get isPlaying => throw _privateConstructorUsedError;
   AudioDuration get current => throw _privateConstructorUsedError;
   AudioDuration get buffered => throw _privateConstructorUsedError;
   AudioDuration get total => throw _privateConstructorUsedError;
   Audio get audio => throw _privateConstructorUsedError;
+  ButtonState get buttonState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioControllerStateCopyWith<AudioControllerState> get copyWith =>
@@ -299,11 +299,11 @@ abstract class $AudioControllerStateCopyWith<$Res> {
       _$AudioControllerStateCopyWithImpl<$Res, AudioControllerState>;
   @useResult
   $Res call(
-      {bool isPlaying,
-      AudioDuration current,
+      {AudioDuration current,
       AudioDuration buffered,
       AudioDuration total,
-      Audio audio});
+      Audio audio,
+      ButtonState buttonState});
 
   $AudioCopyWith<$Res> get audio;
 }
@@ -322,17 +322,13 @@ class _$AudioControllerStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isPlaying = null,
     Object? current = null,
     Object? buffered = null,
     Object? total = null,
     Object? audio = null,
+    Object? buttonState = null,
   }) {
     return _then(_value.copyWith(
-      isPlaying: null == isPlaying
-          ? _value.isPlaying
-          : isPlaying // ignore: cast_nullable_to_non_nullable
-              as bool,
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
@@ -349,6 +345,10 @@ class _$AudioControllerStateCopyWithImpl<$Res,
           ? _value.audio
           : audio // ignore: cast_nullable_to_non_nullable
               as Audio,
+      buttonState: null == buttonState
+          ? _value.buttonState
+          : buttonState // ignore: cast_nullable_to_non_nullable
+              as ButtonState,
     ) as $Val);
   }
 
@@ -370,11 +370,11 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isPlaying,
-      AudioDuration current,
+      {AudioDuration current,
       AudioDuration buffered,
       AudioDuration total,
-      Audio audio});
+      Audio audio,
+      ButtonState buttonState});
 
   @override
   $AudioCopyWith<$Res> get audio;
@@ -391,17 +391,13 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isPlaying = null,
     Object? current = null,
     Object? buffered = null,
     Object? total = null,
     Object? audio = null,
+    Object? buttonState = null,
   }) {
     return _then(_$AudioControllerStateImpl(
-      isPlaying: null == isPlaying
-          ? _value.isPlaying
-          : isPlaying // ignore: cast_nullable_to_non_nullable
-              as bool,
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
@@ -418,6 +414,10 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
           ? _value.audio
           : audio // ignore: cast_nullable_to_non_nullable
               as Audio,
+      buttonState: null == buttonState
+          ? _value.buttonState
+          : buttonState // ignore: cast_nullable_to_non_nullable
+              as ButtonState,
     ));
   }
 }
@@ -426,14 +426,12 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
 
 class _$AudioControllerStateImpl implements _AudioControllerState {
   const _$AudioControllerStateImpl(
-      {required this.isPlaying,
-      required this.current,
+      {required this.current,
       required this.buffered,
       required this.total,
-      required this.audio});
+      required this.audio,
+      required this.buttonState});
 
-  @override
-  final bool isPlaying;
   @override
   final AudioDuration current;
   @override
@@ -442,10 +440,12 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   final AudioDuration total;
   @override
   final Audio audio;
+  @override
+  final ButtonState buttonState;
 
   @override
   String toString() {
-    return 'AudioControllerState(isPlaying: $isPlaying, current: $current, buffered: $buffered, total: $total, audio: $audio)';
+    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audio: $audio, buttonState: $buttonState)';
   }
 
   @override
@@ -453,18 +453,18 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AudioControllerStateImpl &&
-            (identical(other.isPlaying, isPlaying) ||
-                other.isPlaying == isPlaying) &&
             (identical(other.current, current) || other.current == current) &&
             (identical(other.buffered, buffered) ||
                 other.buffered == buffered) &&
             (identical(other.total, total) || other.total == total) &&
-            (identical(other.audio, audio) || other.audio == audio));
+            (identical(other.audio, audio) || other.audio == audio) &&
+            (identical(other.buttonState, buttonState) ||
+                other.buttonState == buttonState));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, isPlaying, current, buffered, total, audio);
+      Object.hash(runtimeType, current, buffered, total, audio, buttonState);
 
   @JsonKey(ignore: true)
   @override
@@ -477,14 +477,12 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
 
 abstract class _AudioControllerState implements AudioControllerState {
   const factory _AudioControllerState(
-      {required final bool isPlaying,
-      required final AudioDuration current,
+      {required final AudioDuration current,
       required final AudioDuration buffered,
       required final AudioDuration total,
-      required final Audio audio}) = _$AudioControllerStateImpl;
+      required final Audio audio,
+      required final ButtonState buttonState}) = _$AudioControllerStateImpl;
 
-  @override
-  bool get isPlaying;
   @override
   AudioDuration get current;
   @override
@@ -493,6 +491,8 @@ abstract class _AudioControllerState implements AudioControllerState {
   AudioDuration get total;
   @override
   Audio get audio;
+  @override
+  ButtonState get buttonState;
   @override
   @JsonKey(ignore: true)
   _$$AudioControllerStateImplCopyWith<_$AudioControllerStateImpl>

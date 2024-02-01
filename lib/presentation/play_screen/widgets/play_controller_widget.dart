@@ -4,6 +4,7 @@ import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 
+import 'button_state_widget.dart';
 import 'icon_widgets.dart';
 
 class AudioControllerWidget extends StatelessWidget {
@@ -28,22 +29,14 @@ class AudioControllerWidget extends StatelessWidget {
                   size: AppSize.s50,
                 )),
             BlocBuilder<AudioControllerBloc, AudioControllerState>(
-              buildWhen: (p, c) => p.isPlaying != c.isPlaying,
+              buildWhen: (p, c) => p.buttonState != c.buttonState,
               builder: (context, state) {
                 return GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
                       context.read<AudioControllerBloc>().playOrPauseAudio();
                     },
-                    child: state.isPlaying
-                        ? const PlayIconWidget(
-                            icon: IconManager.pauseRounded,
-                            size: AppSize.s50,
-                          )
-                        : const PlayIconWidget(
-                            icon: IconManager.playArrowRounded,
-                            size: AppSize.s50,
-                          ));
+                    child: PlayButtonWidget(buttonState: state.buttonState));
               },
             ),
             GestureDetector(

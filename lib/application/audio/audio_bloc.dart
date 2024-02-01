@@ -4,8 +4,6 @@ import 'package:melody/domain/songs/audio_failure.dart';
 import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
 
-import '../../domain/songs/audio.dart';
-
 part 'audio_bloc.freezed.dart';
 part 'audio_event.dart';
 part 'audio_state.dart';
@@ -23,5 +21,4 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
       );
     });
   }
-
 }

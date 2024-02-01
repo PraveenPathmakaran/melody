@@ -24,12 +24,13 @@ class AudioControllerBloc
     on<AudioControllerEvent>((event, emit) async {
       await event.map(
         listenAllStreams: (value) async {
-          final combinedStreams = Rx.combineLatest4(
+          final combinedStreams = Rx.combineLatest5(
               _audioRepository.bufferedPositionStream(),
               _audioRepository.positionStream(),
               _audioRepository.durationStream(),
-              _audioRepository.sequenceStateStream(), (a, b, c, d) {
-            return [a, b, c, d];
+              _audioRepository.sequenceStateStream(),
+              _audioRepository.buttonStateStream(), (a, b, c, d, e) {
+            return [a, b, c, d, e];
           });
 
           await emit.forEach(
@@ -46,6 +47,9 @@ class AudioControllerBloc
                       .getOrElse(() => AudioDuration(0));
               final Audio audio = (data[3] as Either<AudioFailure, Audio>)
                   .getOrElse(() => Audio.emptyAudio());
+              final ButtonState buttonState =
+                  (data[4] as Either<AudioFailure, ButtonState>)
+                      .getOrElse(() => ButtonState.paused);
 
               if (state.buffered != buffer) {
                 return state.copyWith(buffered: buffer);
@@ -58,6 +62,9 @@ class AudioControllerBloc
               }
               if (state.audio != audio) {
                 return state.copyWith(audio: audio);
+              }
+              if (state.buttonState != buttonState) {
+                return state.copyWith(buttonState: buttonState);
               }
 
               return state;

@@ -20,4 +20,5 @@ abstract class IAudioRepository {
   Stream<Either<AudioFailure, AudioDuration>> durationStream();
   Stream<Either<AudioFailure, AudioDuration>> positionStream();
   Stream<Either<AudioFailure, Audio>> sequenceStateStream();
+  Stream<Either<AudioFailure, ButtonState>> buttonStateStream();
 }
