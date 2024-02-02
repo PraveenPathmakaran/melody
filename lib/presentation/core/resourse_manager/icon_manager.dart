@@ -9,4 +9,5 @@ class IconManager {
   static const IconData playlist = Icons.playlist_play;
   static const IconData favourites = Icons.favorite;
   static const IconData home = Icons.home;
+    static const IconData shuffle = Icons.shuffle;
 }

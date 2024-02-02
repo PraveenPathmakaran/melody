@@ -8,6 +8,7 @@ class AudioControllerState with _$AudioControllerState {
     required AudioDuration total,
     required Audio audio,
     required ButtonState buttonState,
+    required bool isShuffleMode,
   }) = _AudioControllerState;
 
   factory AudioControllerState.initial() => AudioControllerState(
@@ -15,5 +16,6 @@ class AudioControllerState with _$AudioControllerState {
       current: AudioDuration(0),
       audio: Audio.emptyAudio(),
       buttonState: ButtonState.paused,
+      isShuffleMode: false,
       total: AudioDuration(0));
 }

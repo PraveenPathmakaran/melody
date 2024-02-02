@@ -175,10 +175,28 @@ class PlayTopControllerWidget extends StatelessWidget {
           onPressed: () {},
           icon: const PlayIconWidget(icon: IconManager.repeat),
         ),
+        BlocBuilder<AudioControllerBloc, AudioControllerState>(
+          buildWhen: (p, c) => p.isShuffleMode != c.isShuffleMode,
+          builder: (context, state) {
+            return IconButton(
+              onPressed: () {
+                context.read<AudioControllerBloc>().shuffleAudio();
+              },
+              icon: state.isShuffleMode
+                  ? PlayIconWidget(
+                      icon: IconManager.shuffle,
+                      color: ColorManager.secondary,
+                    )
+                  : const PlayIconWidget(
+                      icon: IconManager.shuffle,
+                    ),
+            );
+          },
+        ),
         IconButton(
           onPressed: () {},
           icon: const PlayIconWidget(icon: IconManager.playlist),
-        )
+        ),
       ],
     );
   }

@@ -24,13 +24,14 @@ class AudioControllerBloc
     on<AudioControllerEvent>((event, emit) async {
       await event.map(
         listenAllStreams: (value) async {
-          final combinedStreams = Rx.combineLatest5(
+          final combinedStreams = Rx.combineLatest6(
               _audioRepository.bufferedPositionStream(),
               _audioRepository.positionStream(),
               _audioRepository.durationStream(),
               _audioRepository.sequenceStateStream(),
-              _audioRepository.buttonStateStream(), (a, b, c, d, e) {
-            return [a, b, c, d, e];
+              _audioRepository.buttonStateStream(),
+              _audioRepository.shuffleModeStream(), (a, b, c, d, e, f) {
+            return [a, b, c, d, e, f];
           });
 
           await emit.forEach(
@@ -50,6 +51,8 @@ class AudioControllerBloc
               final ButtonState buttonState =
                   (data[4] as Either<AudioFailure, ButtonState>)
                       .getOrElse(() => ButtonState.paused);
+              final bool shuffleMode = (data[5] as Either<AudioFailure, bool>)
+                  .getOrElse(() => false);
 
               if (state.buffered != buffer) {
                 return state.copyWith(buffered: buffer);
@@ -65,6 +68,9 @@ class AudioControllerBloc
               }
               if (state.buttonState != buttonState) {
                 return state.copyWith(buttonState: buttonState);
+              }
+              if (state.isShuffleMode != shuffleMode) {
+                return state.copyWith(isShuffleMode: shuffleMode);
               }
 
               return state;
@@ -93,6 +99,10 @@ class AudioControllerBloc
 
   void previousAudio() {
     _audioRepository.previousAudio();
+  }
+
+  void shuffleAudio() {
+    _audioRepository.changeShuffleMode();
   }
 
   Audio fetchAudioData({required Id id}) {

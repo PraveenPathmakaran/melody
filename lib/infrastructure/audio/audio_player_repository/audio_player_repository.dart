@@ -104,6 +104,11 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
+  Stream<bool> shuffleModeStream() async*{
+  yield* _audioPlayer.shuffleModeEnabledStream;
+  }
+
+  @override
   Audio getAudioData({required String uid}) {
     // help of this map get value constant time
     final position = audioPosition[uid];
@@ -127,5 +132,15 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
       }
     });
     throw UnimplementedError();
+  }
+
+  @override
+  void changeShuffleMode() {
+    if (!_audioPlayer.shuffleModeEnabled) {
+      _audioPlayer.shuffle();
+      _audioPlayer.setShuffleModeEnabled(true);
+    } else {
+      _audioPlayer.setShuffleModeEnabled(false);
+    }
   }
 }

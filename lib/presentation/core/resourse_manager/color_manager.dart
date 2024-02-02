@@ -9,7 +9,7 @@ class ColorManager {
 
   // new colors
   static Color darkPrimary = HexColor.fromHex("#d17d11");
-  static Color white = HexColor.fromHex("#FFFFFF");
+  static  Color white = HexColor.fromHex("#FFFFFF");
   static Color error = HexColor.fromHex("#e61f34");
   static Color black = HexColor.fromHex("#000000"); // red color
 }

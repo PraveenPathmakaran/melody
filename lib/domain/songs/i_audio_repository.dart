@@ -13,6 +13,7 @@ abstract class IAudioRepository {
   Future<Either<AudioFailure, Unit>> playOrPause();
   Future<Either<AudioFailure, Unit>> nextAudio();
   Future<Either<AudioFailure, Unit>> previousAudio();
+  Future<Either<AudioFailure, Unit>> changeShuffleMode();
   Future<Either<AudioFailure, Unit>> seekAudio({required Duration duration});
 
   //streams
@@ -21,4 +22,5 @@ abstract class IAudioRepository {
   Stream<Either<AudioFailure, AudioDuration>> positionStream();
   Stream<Either<AudioFailure, Audio>> sequenceStateStream();
   Stream<Either<AudioFailure, ButtonState>> buttonStateStream();
+  Stream<Either<AudioFailure, bool>> shuffleModeStream();
 }

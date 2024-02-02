@@ -286,6 +286,7 @@ mixin _$AudioControllerState {
   AudioDuration get total => throw _privateConstructorUsedError;
   Audio get audio => throw _privateConstructorUsedError;
   ButtonState get buttonState => throw _privateConstructorUsedError;
+  bool get isShuffleMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioControllerStateCopyWith<AudioControllerState> get copyWith =>
@@ -303,7 +304,8 @@ abstract class $AudioControllerStateCopyWith<$Res> {
       AudioDuration buffered,
       AudioDuration total,
       Audio audio,
-      ButtonState buttonState});
+      ButtonState buttonState,
+      bool isShuffleMode});
 
   $AudioCopyWith<$Res> get audio;
 }
@@ -327,6 +329,7 @@ class _$AudioControllerStateCopyWithImpl<$Res,
     Object? total = null,
     Object? audio = null,
     Object? buttonState = null,
+    Object? isShuffleMode = null,
   }) {
     return _then(_value.copyWith(
       current: null == current
@@ -349,6 +352,10 @@ class _$AudioControllerStateCopyWithImpl<$Res,
           ? _value.buttonState
           : buttonState // ignore: cast_nullable_to_non_nullable
               as ButtonState,
+      isShuffleMode: null == isShuffleMode
+          ? _value.isShuffleMode
+          : isShuffleMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -374,7 +381,8 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
       AudioDuration buffered,
       AudioDuration total,
       Audio audio,
-      ButtonState buttonState});
+      ButtonState buttonState,
+      bool isShuffleMode});
 
   @override
   $AudioCopyWith<$Res> get audio;
@@ -396,6 +404,7 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
     Object? total = null,
     Object? audio = null,
     Object? buttonState = null,
+    Object? isShuffleMode = null,
   }) {
     return _then(_$AudioControllerStateImpl(
       current: null == current
@@ -418,6 +427,10 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
           ? _value.buttonState
           : buttonState // ignore: cast_nullable_to_non_nullable
               as ButtonState,
+      isShuffleMode: null == isShuffleMode
+          ? _value.isShuffleMode
+          : isShuffleMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -430,7 +443,8 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
       required this.buffered,
       required this.total,
       required this.audio,
-      required this.buttonState});
+      required this.buttonState,
+      required this.isShuffleMode});
 
   @override
   final AudioDuration current;
@@ -442,10 +456,12 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   final Audio audio;
   @override
   final ButtonState buttonState;
+  @override
+  final bool isShuffleMode;
 
   @override
   String toString() {
-    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audio: $audio, buttonState: $buttonState)';
+    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audio: $audio, buttonState: $buttonState, isShuffleMode: $isShuffleMode)';
   }
 
   @override
@@ -459,12 +475,14 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
             (identical(other.total, total) || other.total == total) &&
             (identical(other.audio, audio) || other.audio == audio) &&
             (identical(other.buttonState, buttonState) ||
-                other.buttonState == buttonState));
+                other.buttonState == buttonState) &&
+            (identical(other.isShuffleMode, isShuffleMode) ||
+                other.isShuffleMode == isShuffleMode));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, current, buffered, total, audio, buttonState);
+  int get hashCode => Object.hash(
+      runtimeType, current, buffered, total, audio, buttonState, isShuffleMode);
 
   @JsonKey(ignore: true)
   @override
@@ -481,7 +499,8 @@ abstract class _AudioControllerState implements AudioControllerState {
       required final AudioDuration buffered,
       required final AudioDuration total,
       required final Audio audio,
-      required final ButtonState buttonState}) = _$AudioControllerStateImpl;
+      required final ButtonState buttonState,
+      required final bool isShuffleMode}) = _$AudioControllerStateImpl;
 
   @override
   AudioDuration get current;
@@ -493,6 +512,8 @@ abstract class _AudioControllerState implements AudioControllerState {
   Audio get audio;
   @override
   ButtonState get buttonState;
+  @override
+  bool get isShuffleMode;
   @override
   @JsonKey(ignore: true)
   _$$AudioControllerStateImplCopyWith<_$AudioControllerStateImpl>

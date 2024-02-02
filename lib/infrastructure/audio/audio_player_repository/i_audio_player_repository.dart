@@ -11,6 +11,7 @@ abstract class IAudioPlayerRepository {
   void playOrPause();
   void nextAudio();
   void previousAudio();
+  void changeShuffleMode();
   void seekAudio({required Duration duration});
 
   //streams
@@ -18,5 +19,6 @@ abstract class IAudioPlayerRepository {
   Stream<int> durationStream();
   Stream<int> positionStream();
   Stream<String> sequenceStateStream();
-   Stream<ButtonState> buttonState();
+  Stream<ButtonState> buttonState();
+  Stream<bool> shuffleModeStream();
 }

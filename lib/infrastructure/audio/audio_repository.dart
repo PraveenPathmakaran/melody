@@ -95,6 +95,16 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
+  Future<Either<AudioFailure, Unit>> changeShuffleMode() async {
+    try {
+      _audioPlayerRepository.changeShuffleMode();
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.audioPlayerFailure());
+    }
+  }
+
+  @override
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream() async* {
     yield* _audioPlayerRepository
         .bufferedPositionStream()
@@ -145,6 +155,16 @@ class AudioRepository implements IAudioRepository {
         .buttonState()
         .map<Either<AudioFailure, ButtonState>>(
             (buttonState) => right(buttonState))
+        .onErrorReturnWith((error, stackTrace) =>
+            left(const AudioFailure.audioPlayerFailure()));
+  }
+  
+  @override
+  Stream<Either<AudioFailure, bool>> shuffleModeStream() async*{
+    yield* _audioPlayerRepository
+        .shuffleModeStream()
+        .map<Either<AudioFailure, bool>>(
+            (isShuffle) => right(isShuffle))
         .onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
   }
