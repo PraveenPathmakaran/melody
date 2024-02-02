@@ -2,6 +2,7 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
+import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/color_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/font_manager.dart';
@@ -171,9 +172,20 @@ class PlayTopControllerWidget extends StatelessWidget {
         IconButton(
             onPressed: () {},
             icon: const PlayIconWidget(icon: IconManager.favourites)),
-        IconButton(
-          onPressed: () {},
-          icon: const PlayIconWidget(icon: IconManager.repeat),
+        BlocBuilder<AudioControllerBloc, AudioControllerState>(
+          buildWhen: (p, c) => p.audioLoopMode != c.audioLoopMode,
+          builder: (context, state) {
+            return IconButton(
+              onPressed: () {
+                final index =
+                    (AudioLoopMode.values.indexOf(state.audioLoopMode) + 1) % 3;
+                context
+                    .read<AudioControllerBloc>()
+                    .setAudioLoopMode(loopMode: AudioLoopMode.values[index]);
+              },
+              icon: LoopModeWidget(audioLoopMode: state.audioLoopMode),
+            );
+          },
         ),
         BlocBuilder<AudioControllerBloc, AudioControllerState>(
           buildWhen: (p, c) => p.isShuffleMode != c.isShuffleMode,
@@ -199,5 +211,44 @@ class PlayTopControllerWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class LoopModeWidget extends StatelessWidget {
+  final AudioLoopMode audioLoopMode;
+  const LoopModeWidget({
+    super.key,
+    required this.audioLoopMode,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    switch (audioLoopMode) {
+      case AudioLoopMode.off:
+        return const PlayIconWidget(icon: IconManager.repeatOff);
+      case AudioLoopMode.one:
+        return PlayIconWidget(
+          icon: IconManager.repeatOne,
+          color: ColorManager.secondary,
+        );
+      case AudioLoopMode.all:
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'All',
+                  style: TextStyle(fontSize: 8, color: ColorManager.secondary),
+                )),
+            PlayIconWidget(
+              icon: IconManager.repeatOff,
+              color: ColorManager.secondary,
+            ),
+          ],
+        );
+      default:
+        return const PlayIconWidget(icon: IconManager.repeatOff);
+    }
   }
 }

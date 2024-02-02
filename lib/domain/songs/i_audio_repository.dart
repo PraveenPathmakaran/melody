@@ -15,6 +15,8 @@ abstract class IAudioRepository {
   Future<Either<AudioFailure, Unit>> previousAudio();
   Future<Either<AudioFailure, Unit>> changeShuffleMode();
   Future<Either<AudioFailure, Unit>> seekAudio({required Duration duration});
+  Future<Either<AudioFailure, Unit>> setAudioLoopMode(
+      {required AudioLoopMode audioLoopMode});
 
   //streams
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream();
@@ -23,4 +25,5 @@ abstract class IAudioRepository {
   Stream<Either<AudioFailure, Audio>> sequenceStateStream();
   Stream<Either<AudioFailure, ButtonState>> buttonStateStream();
   Stream<Either<AudioFailure, bool>> shuffleModeStream();
+  Stream<Either<AudioFailure, AudioLoopMode>> audioLoopStream();
 }

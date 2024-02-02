@@ -105,6 +105,17 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
+  Future<Either<AudioFailure, Unit>> setAudioLoopMode(
+      {required AudioLoopMode audioLoopMode}) async {
+    try {
+      _audioPlayerRepository.setAudioLoopMode(audioLoopMode: audioLoopMode);
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.audioPlayerFailure());
+    }
+  }
+
+  @override
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream() async* {
     yield* _audioPlayerRepository
         .bufferedPositionStream()
@@ -158,13 +169,21 @@ class AudioRepository implements IAudioRepository {
         .onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
   }
-  
+
   @override
-  Stream<Either<AudioFailure, bool>> shuffleModeStream() async*{
+  Stream<Either<AudioFailure, bool>> shuffleModeStream() async* {
     yield* _audioPlayerRepository
         .shuffleModeStream()
-        .map<Either<AudioFailure, bool>>(
-            (isShuffle) => right(isShuffle))
+        .map<Either<AudioFailure, bool>>((isShuffle) => right(isShuffle))
+        .onErrorReturnWith((error, stackTrace) =>
+            left(const AudioFailure.audioPlayerFailure()));
+  }
+
+  @override
+  Stream<Either<AudioFailure, AudioLoopMode>> audioLoopStream() async* {
+    yield* _audioPlayerRepository
+        .loopAudioStream()
+        .map<Either<AudioFailure, AudioLoopMode>>((loopMode) => right(loopMode))
         .onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
   }

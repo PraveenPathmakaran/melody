@@ -78,6 +78,32 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
+  void changeShuffleMode() {
+    if (!_audioPlayer.shuffleModeEnabled) {
+      _audioPlayer.shuffle();
+      _audioPlayer.setShuffleModeEnabled(true);
+    } else {
+      _audioPlayer.setShuffleModeEnabled(false);
+    }
+  }
+
+  @override
+  void setAudioLoopMode({required AudioLoopMode audioLoopMode}) {
+    LoopMode loopMode = LoopMode.off;
+    if (audioLoopMode == AudioLoopMode.off) {
+      loopMode = LoopMode.off;
+    }
+    if (audioLoopMode == AudioLoopMode.one) {
+      loopMode = LoopMode.one;
+    }
+    if (audioLoopMode == AudioLoopMode.all) {
+      loopMode = LoopMode.all;
+    }
+
+    _audioPlayer.setLoopMode(loopMode);
+  }
+
+  @override
   Stream<int> bufferedPositionStream() async* {
     yield* _audioPlayer.bufferedPositionStream.map((event) => event.inSeconds);
   }
@@ -104,8 +130,8 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
-  Stream<bool> shuffleModeStream() async*{
-  yield* _audioPlayer.shuffleModeEnabledStream;
+  Stream<bool> shuffleModeStream() async* {
+    yield* _audioPlayer.shuffleModeEnabledStream;
   }
 
   @override
@@ -135,12 +161,18 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
-  void changeShuffleMode() {
-    if (!_audioPlayer.shuffleModeEnabled) {
-      _audioPlayer.shuffle();
-      _audioPlayer.setShuffleModeEnabled(true);
-    } else {
-      _audioPlayer.setShuffleModeEnabled(false);
-    }
+  Stream<AudioLoopMode> loopAudioStream() async* {
+    yield* _audioPlayer.loopModeStream.map((event) {
+      switch (event) {
+        case LoopMode.off:
+          return AudioLoopMode.off;
+        case LoopMode.one:
+          return AudioLoopMode.one;
+        case LoopMode.all:
+          return AudioLoopMode.all;
+        default:
+          return AudioLoopMode.off;
+      }
+    });
   }
 }

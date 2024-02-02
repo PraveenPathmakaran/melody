@@ -12,6 +12,7 @@ abstract class IAudioPlayerRepository {
   void nextAudio();
   void previousAudio();
   void changeShuffleMode();
+  void setAudioLoopMode({required AudioLoopMode audioLoopMode});
   void seekAudio({required Duration duration});
 
   //streams
@@ -21,4 +22,5 @@ abstract class IAudioPlayerRepository {
   Stream<String> sequenceStateStream();
   Stream<ButtonState> buttonState();
   Stream<bool> shuffleModeStream();
+  Stream<AudioLoopMode> loopAudioStream();
 }

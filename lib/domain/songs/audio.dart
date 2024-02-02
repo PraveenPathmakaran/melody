@@ -10,6 +10,8 @@ part 'audio.freezed.dart';
 
 enum ButtonState { paused, playing }
 
+enum AudioLoopMode { off, one, all }
+
 @freezed
 abstract class Audio implements _$Audio {
   const Audio._();

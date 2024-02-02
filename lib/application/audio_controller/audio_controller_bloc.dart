@@ -24,14 +24,15 @@ class AudioControllerBloc
     on<AudioControllerEvent>((event, emit) async {
       await event.map(
         listenAllStreams: (value) async {
-          final combinedStreams = Rx.combineLatest6(
+          final combinedStreams = Rx.combineLatest7(
               _audioRepository.bufferedPositionStream(),
               _audioRepository.positionStream(),
               _audioRepository.durationStream(),
               _audioRepository.sequenceStateStream(),
               _audioRepository.buttonStateStream(),
-              _audioRepository.shuffleModeStream(), (a, b, c, d, e, f) {
-            return [a, b, c, d, e, f];
+              _audioRepository.shuffleModeStream(),
+              _audioRepository.audioLoopStream(), (a, b, c, d, e, f, g) {
+            return [a, b, c, d, e, f, g];
           });
 
           await emit.forEach(
@@ -53,6 +54,9 @@ class AudioControllerBloc
                       .getOrElse(() => ButtonState.paused);
               final bool shuffleMode = (data[5] as Either<AudioFailure, bool>)
                   .getOrElse(() => false);
+              final AudioLoopMode audioLoopMode =
+                  (data[6] as Either<AudioFailure, AudioLoopMode>)
+                      .getOrElse(() => AudioLoopMode.off);
 
               if (state.buffered != buffer) {
                 return state.copyWith(buffered: buffer);
@@ -71,6 +75,9 @@ class AudioControllerBloc
               }
               if (state.isShuffleMode != shuffleMode) {
                 return state.copyWith(isShuffleMode: shuffleMode);
+              }
+              if (state.audioLoopMode != audioLoopMode) {
+                return state.copyWith(audioLoopMode: audioLoopMode);
               }
 
               return state;
@@ -103,6 +110,10 @@ class AudioControllerBloc
 
   void shuffleAudio() {
     _audioRepository.changeShuffleMode();
+  }
+
+  void setAudioLoopMode({required AudioLoopMode loopMode}) {
+    _audioRepository.setAudioLoopMode(audioLoopMode: loopMode);
   }
 
   Audio fetchAudioData({required Id id}) {
