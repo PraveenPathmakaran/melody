@@ -2,7 +2,7 @@ import 'package:melody/domain/songs/audio_value_objects.dart';
 
 import '../../../domain/songs/audio.dart';
 
-abstract class IAudioPlayerRepository {
+abstract interface class IAudioPlayerRepository {
   Future<List<Id>> concatenatingAudios();
   Audio getAudioData({required String uid});
 

@@ -4,7 +4,7 @@ import 'package:melody/domain/songs/audio_failure.dart';
 
 import 'audio_value_objects.dart';
 
-abstract class IAudioRepository {
+abstract interface class IAudioRepository {
   Either<AudioFailure, Audio> getAudioData({required Id uid});
   Future<Either<AudioFailure, List<Id>>> concatenatingAudios();
 

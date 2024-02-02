@@ -22,7 +22,7 @@ class PlayButtonWidget extends StatelessWidget {
           size: AppSize.s50,
         );
       default:
-        return cicularPindicator;
+        return circularPindicator;
     }
   }
 }

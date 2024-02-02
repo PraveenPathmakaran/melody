@@ -6,11 +6,12 @@ import 'package:melody/infrastructure/audio/platform_repository/i_platform_repos
 
 import '../../../domain/songs/audio.dart';
 
-///[audioPosition] is created for store audio position dont need to itereate
-///[audioSongs]
 class AudioPlayerRepository implements IAudioPlayerRepository {
   final AudioPlayer _audioPlayer;
   final IPlatformRepository _platformRepository;
+
+  ///[audioPosition] is created for store audio position dont need to itereate
+  ///[audioSongs]
   Map<String, int> audioPosition = <String, int>{};
   List<Audio> audioSongs = [];
 
@@ -19,6 +20,12 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   @override
   Future<List<Id>> concatenatingAudios() async {
     final songsData = await _platformRepository.getAllAudio();
+
+    ///all audio fetched then return empty list inform state to song fetch complete
+    ///pagination
+    if (songsData.isEmpty) {
+      return [];
+    }
     audioSongs.addAll(songsData);
 
     final concatenatedList = <UriAudioSource>[];

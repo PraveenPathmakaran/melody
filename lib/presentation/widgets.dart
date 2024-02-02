@@ -9,6 +9,6 @@ void snackBar(String content, Color color, BuildContext context) {
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
 
-const Widget cicularPindicator = Center(
+const Widget circularPindicator = Center(
   child: CircularProgressIndicator(),
 );

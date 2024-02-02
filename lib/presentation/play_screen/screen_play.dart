@@ -128,7 +128,7 @@ class PlayContainer extends StatelessWidget {
             ),
           );
         } else {
-          return cicularPindicator;
+          return circularPindicator;
         }
       },
     );

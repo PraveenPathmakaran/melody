@@ -3,13 +3,12 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:melody/domain/songs/audio.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart' as value_object;
+import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/songs/audio_failure.dart';
-import '../../domain/songs/audio_value_objects.dart';
 
 class AudioRepository implements IAudioRepository {
   final IAudioPlayerRepository _audioPlayerRepository;
@@ -19,8 +18,7 @@ class AudioRepository implements IAudioRepository {
   AudioRepository(this._audioPlayerRepository);
 
   @override
-  Future<Either<AudioFailure, List<value_object.Id>>>
-      concatenatingAudios() async {
+  Future<Either<AudioFailure, List<Id>>> concatenatingAudios() async {
     try {
       final audioIds = await _audioPlayerRepository.concatenatingAudios();
       return right(audioIds);
@@ -73,7 +71,7 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Either<AudioFailure, Audio> getAudioData({required value_object.Id uid}) {
+  Either<AudioFailure, Audio> getAudioData({required Id uid}) {
     try {
       final audio = _audioPlayerRepository.getAudioData(uid: uid.getOrCrash());
 

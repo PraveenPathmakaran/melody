@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:melody/domain/permission/i_permission_handler.dart';
 import 'package:melody/domain/permission/permission_failure.dart';
@@ -24,6 +26,7 @@ class PermissionsHandler implements IPermissionHandler {
         return right(unit);
       }
     } catch (e) {
+      log(e.toString(), name: 'permissionhandler-checkAudioPermission');
       return left(const PermissionFailures.platFormFailure());
     }
   }
@@ -36,6 +39,7 @@ class PermissionsHandler implements IPermissionHandler {
 
       return left(const PermissionFailures.deniedByUser());
     } catch (e) {
+      log(e.toString(), name: 'permissionhandler-requestAudioPermission');
       return left(const PermissionFailures.platFormFailure());
     }
   }
@@ -50,6 +54,7 @@ class PermissionsHandler implements IPermissionHandler {
         return left(const PermissionFailures.platFormFailure());
       }
     } catch (e) {
+      log(e.toString(), name: 'permissionhandler-requestOpenAppSettings');
       return left(const PermissionFailures.platFormFailure());
     }
   }

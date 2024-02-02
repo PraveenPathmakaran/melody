@@ -26,7 +26,7 @@ class PermissionGrantedWidget extends StatelessWidget {
           style: getMediumStyle(color: ColorManager.white),
         ),
         const SizedBox(height: AppSize.s18),
-        cicularPindicator
+        circularPindicator
       ],
     );
   }

@@ -1,5 +1,5 @@
 import '../../../domain/songs/audio.dart';
 
-abstract class IPlatformRepository {
+abstract interface class IPlatformRepository {
   Future<List<Audio>> getAllAudio();
 }
