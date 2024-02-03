@@ -1,10 +1,10 @@
-import 'package:melody/domain/songs/audio_value_objects.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../domain/songs/audio.dart';
 
 abstract interface class IAudioPlayerRepository {
-  Future<List<Id>> concatenatingAudios();
-  Audio getAudioData({required String uid});
+  Future<Unit> concatenatingAudios({required List<Audio> audioSongs});
+  Future<Unit> setAudioSource();
 
   //controle music
   void playAudio({required int index});

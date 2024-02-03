@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
@@ -11,6 +12,8 @@ import 'presentation/core/resourse_manager/theme_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //Bloc.observer = const AppBlocObserver();
+
+  
   await initGetIt();
 
   runApp(const MyApp());

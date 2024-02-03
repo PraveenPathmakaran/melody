@@ -6,7 +6,8 @@ import 'audio_value_objects.dart';
 
 abstract interface class IAudioRepository {
   Either<AudioFailure, Audio> getAudioData({required Id uid});
-  Future<Either<AudioFailure, List<Id>>> concatenatingAudios();
+  Future<Either<AudioFailure, List<Audio>>> getAllAudioFromDevice();
+  Future<Either<AudioFailure, Unit>> concatenatingAudios({required List<Audio> audios});
 
   //controle music
   Future<Either<AudioFailure, Unit>> playAudio({required int index});

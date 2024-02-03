@@ -9,19 +9,33 @@ import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_play
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/songs/audio_failure.dart';
+import 'platform_repository/i_platform_repository.dart';
 
 class AudioRepository implements IAudioRepository {
   final IAudioPlayerRepository _audioPlayerRepository;
+  final IPlatformRepository _platformRepository;
   // Define the playlist
   late ConcatenatingAudioSource playlist;
 
-  AudioRepository(this._audioPlayerRepository);
+  AudioRepository(this._audioPlayerRepository, this._platformRepository);
 
   @override
-  Future<Either<AudioFailure, List<Id>>> concatenatingAudios() async {
+  Future<Either<AudioFailure, List<Audio>>> getAllAudioFromDevice() async {
     try {
-      final audioIds = await _audioPlayerRepository.concatenatingAudios();
-      return right(audioIds);
+      final songsData = await _platformRepository.getAllAudio();
+
+      return right(songsData);
+    } catch (e) {
+      return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> concatenatingAudios(
+      {required List<Audio> audios}) async {
+    try {
+      await _audioPlayerRepository.concatenatingAudios(audioSongs: audios);
+      return right(unit);
     } on AudioFailure {
       return left(const AudioFailure.audioLimitExceeded());
     } catch (e) {
@@ -67,17 +81,6 @@ class AudioRepository implements IAudioRepository {
       return right(unit);
     } catch (e) {
       return left(const AudioFailure.audioPlayerFailure());
-    }
-  }
-
-  @override
-  Either<AudioFailure, Audio> getAudioData({required Id uid}) {
-    try {
-      final audio = _audioPlayerRepository.getAudioData(uid: uid.getOrCrash());
-
-      return right(audio);
-    } catch (e) {
-      return left(const AudioFailure.audioNotFound());
     }
   }
 
@@ -151,8 +154,7 @@ class AudioRepository implements IAudioRepository {
       if (sequenceState.isEmpty) {
         return left(const AudioFailure.audioPlayerFailure());
       }
-
-      final audio = _audioPlayerRepository.getAudioData(uid: sequenceState);
+      final audio = Audio.emptyAudio(); //todo:proper way to get audio Data
       return right(audio);
     }).onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
@@ -184,5 +186,10 @@ class AudioRepository implements IAudioRepository {
         .map<Either<AudioFailure, AudioLoopMode>>((loopMode) => right(loopMode))
         .onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
+  }
+
+  @override
+  Either<AudioFailure, Audio> getAudioData({required Id uid}) {
+    return right(Audio.emptyAudio());
   }
 }

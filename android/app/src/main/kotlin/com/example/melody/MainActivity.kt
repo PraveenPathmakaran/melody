@@ -29,7 +29,7 @@ class MainActivity : FlutterActivity() {
 
 
 
-    private val PAGE_SIZE = 50
+    private val PAGE_SIZE = 150
 
     private fun getAudios(pageNumber: Int): ArrayList<Map<String, Any?>>? {
         val allAudios = ArrayList<Map<String, Any?>>()

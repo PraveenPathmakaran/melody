@@ -1,57 +1,38 @@
+import 'package:dartz/dartz.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:melody/domain/songs/audio_failure.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
-import 'package:melody/infrastructure/audio/platform_repository/i_platform_repository.dart';
 
 import '../../../domain/songs/audio.dart';
 
 class AudioPlayerRepository implements IAudioPlayerRepository {
   final AudioPlayer _audioPlayer;
-  final IPlatformRepository _platformRepository;
+  final ConcatenatingAudioSource playlist = ConcatenatingAudioSource(
+    // Start loading next item just before reaching it
+    useLazyPreparation: true,
+    // Customise the shuffle algorithm
+    shuffleOrder: DefaultShuffleOrder(),
+    // Specify the playlist items
+    children: [],
+  );
 
-  ///[audioPosition] is created for store audio position dont need to itereate
-  ///[audioSongs]
-  Map<String, int> audioPosition = <String, int>{};
-  List<Audio> audioSongs = [];
-
-  AudioPlayerRepository(this._audioPlayer, this._platformRepository);
+  AudioPlayerRepository(
+    this._audioPlayer,
+  );
 
   @override
-  Future<List<Id>> concatenatingAudios() async {
-    final songsData = await _platformRepository.getAllAudio();
+  Future<Unit> concatenatingAudios({required List<Audio> audioSongs}) async {
+    final List<UriAudioSource> concatenatedList =
+        audioSongs.map((e) => AudioSource.file(e.path.getOrCrash())).toList();
 
-    ///all audio fetched then return empty list inform state to song fetch complete
-    ///pagination
-    if (songsData.isEmpty) {
-      return [];
-    }
-    audioSongs.addAll(songsData);
+    playlist.addAll(concatenatedList);
+    return unit;
+  }
 
-    final concatenatedList = <UriAudioSource>[];
-
-    for (int i = 0; i < audioSongs.length; i++) {
-      if (audioSongs[i].path.value.isRight() &&
-          audioSongs[i].uid.value.isRight()) {
-        concatenatedList.add(AudioSource.file(audioSongs[i].path.getOrCrash(),
-            tag: audioSongs[i].uid.getOrCrash()));
-        audioPosition[audioSongs[i].uid.getOrCrash()] = i;
-      }
-    }
-
-    final playlist = ConcatenatingAudioSource(
-      // Start loading next item just before reaching it
-      useLazyPreparation: true,
-      // Customise the shuffle algorithm
-      shuffleOrder: DefaultShuffleOrder(),
-      // Specify the playlist items
-      children: concatenatedList,
-    );
-
+  @override
+  Future<Unit> setAudioSource() async {
     _audioPlayer.setAudioSource(playlist,
         initialIndex: 0, initialPosition: Duration.zero);
-
-    return playlist.sequence.map((e) => Id(e.tag)).toList();
+    return unit;
   }
 
   @override
@@ -139,16 +120,6 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   @override
   Stream<bool> shuffleModeStream() async* {
     yield* _audioPlayer.shuffleModeEnabledStream;
-  }
-
-  @override
-  Audio getAudioData({required String uid}) {
-    // help of this map get value constant time
-    final position = audioPosition[uid];
-    if (position != null) {
-      return audioSongs[position];
-    }
-    throw const AudioFailure.audioNotFound();
   }
 
   @override

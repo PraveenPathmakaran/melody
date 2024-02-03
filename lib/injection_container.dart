@@ -24,9 +24,11 @@ Future<void> initGetIt() async {
 //domain
   getIt.registerLazySingleton<IPermissionHandler>(
       () => PermissionsHandler(permission: getIt()));
-  getIt.registerLazySingleton<IAudioRepository>(() => AudioRepository(getIt()));
+  getIt.registerLazySingleton<IAudioRepository>(
+      () => AudioRepository(getIt(), getIt()));
   getIt.registerLazySingleton<IPlatformRepository>(() => PlatformRepository());
-  getIt.registerLazySingleton<IAudioPlayerRepository>(() => AudioPlayerRepository(getIt(),getIt()));
+  getIt.registerLazySingleton<IAudioPlayerRepository>(
+      () => AudioPlayerRepository(getIt()));
   //bloc
   getIt.registerFactory<PermissionHandlerBloc>(
       () => PermissionHandlerBloc(getIt()));

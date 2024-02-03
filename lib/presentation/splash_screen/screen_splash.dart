@@ -56,7 +56,7 @@ class _ScreenSplashState extends State<ScreenSplash>
                 granted: (value) async {
                   context
                       .read<AudioBloc>()
-                      .add(const AudioEvent.concatenatingAudios());
+                      .add(const AudioEvent.getAllAudiosFromDevice());
                 });
           },
         ),
