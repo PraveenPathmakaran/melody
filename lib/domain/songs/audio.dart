@@ -16,25 +16,17 @@ enum AudioLoopMode { off, one, all }
 abstract class Audio implements _$Audio {
   const Audio._();
   const factory Audio({
-    required Id uid,
-    required Name name,
+    required Title title,
     required Artist artist,
-    required AudioPath path,
     required ImageByte image,
   }) = _Audio;
 
   factory Audio.emptyAudio() => Audio(
-      uid: Id(""),
-      name: Name(""),
-      artist: Artist(""),
-      path: AudioPath(""),
-      image: ImageByte(Uint8List(0)));
+      title: Title(""), artist: Artist(""), image: ImageByte(Uint8List(0)));
 
   Option<ValueFailure<dynamic>> get failureOption {
-    return name.failureOrUnit
-        .andThen(uid.failureOrUnit)
+    return title.failureOrUnit
         .andThen(artist.failureOrUnit)
-        .andThen(path.failureOrUnit)
         .fold((l) => some(l), (r) => none());
   }
 }

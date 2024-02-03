@@ -1,50 +1,55 @@
 import 'dart:developer';
-import 'dart:isolate';
 
 import 'package:flutter/services.dart';
+import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_failure.dart';
+import 'package:melody/domain/songs/path.dart';
+import 'package:melody/infrastructure/audio/path_dtos.dart';
 import 'package:melody/infrastructure/audio/platform_repository/i_platform_repository.dart';
-
-import '../../../domain/songs/audio.dart';
-import '../audio_dtos.dart';
 
 class PlatformRepository implements IPlatformRepository {
   static const String channelName = "audio";
-  static const String functionName = "getAudios";
-  static int pageNumber = 0;
+  static const String getAllAudioName = "getAudios";
+  static const String getAlbumMetaData = "getAlbumMetaData";
   static const platform = MethodChannel(channelName);
   @override
-  Future<List<Audio>> getAllAudio() async {
+  Future<List<PathData>> getAllAudio() async {
     try {
-      final ReceivePort receivePort = ReceivePort();
-      RootIsolateToken rootToken = RootIsolateToken.instance!;
-      await Isolate.spawn(
-          invokeMethod, [receivePort.sendPort, pageNumber, rootToken]);
+      final audioList = await platform.invokeMethod<List<dynamic>?>(
+        getAllAudioName,
+      );
+      if (audioList != null) {
+        final audioDtos =
+            audioList.map((e) => PathDatDto.fromStorage(e).toDomain()).toList();
+        final data =
+            await getAudioMetaData(path: audioDtos[1].audioPath.getOrCrash());
+        log(data.toString());
 
-      final value = await receivePort.first;
-      value as List<dynamic>?;
-
-      if (value != null) {
-        pageNumber++;
-        final audioDtos = value
-            .map((e) =>
-                AudioDto.fromJson(Map<String, dynamic>.from(e)).toDomain())
-            .toList();
         return audioDtos;
-      } else {
-        return [];
       }
+      return [];
     } catch (e) {
-      log(e.toString());
+      log(e.toString(), name: "$PlatformRepository-$getAllAudio");
       throw const AudioFailure.platFormFailure();
     }
   }
 
-  Future<List<dynamic>?> invokeMethod(List<dynamic> args) async {
-    BackgroundIsolateBinaryMessenger.ensureInitialized(args[2]);
-    SendPort resultPort = args[0];
-    final data = await platform
-        .invokeMethod<List<dynamic>?>(functionName, {"pageNumber": args[1]});
-    Isolate.exit(resultPort, data);
+  @override
+  Future<Audio> getAudioMetaData({required String path}) async {
+    try {
+      final audio =
+          await platform.invokeMethod(getAlbumMetaData, {"path": path});
+
+      log(audio.runtimeType.toString());
+      return Audio.emptyAudio();
+      // if (audio != null) {
+      //   return AudioDto.fromJson(Map.from(audio)).toDomain();
+      // } else {
+      //   throw const AudioFailure.platFormFailure();
+      // }
+    } catch (e) {
+      log(e.toString(), name: "$PlatformRepository-$getAllAudio");
+      throw const AudioFailure.platFormFailure();
+    }
   }
 }

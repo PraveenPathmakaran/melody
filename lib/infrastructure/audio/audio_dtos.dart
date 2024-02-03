@@ -10,20 +10,18 @@ part 'audio_dtos.g.dart';
 abstract class AudioDto implements _$AudioDto {
   const AudioDto._();
   const factory AudioDto({
-    required String? id,
-    required String? name,
+    required String? title,
     required String? artist,
-    required String? path,
     @Uint8ListConverter() required Uint8List? image,
   }) = _AudioDto;
 
   Audio toDomain() {
     return Audio(
-        uid: Id(id ?? ""),
-        name: Name(name ?? "No title found"),
-        artist: Artist(artist ?? "No artist found"),
-        path: AudioPath(path ?? ""),
-        image: ImageByte(image ?? Uint8List(0)));
+      title: Title(title ?? "No title found"),
+      artist: Artist(artist ?? "No artist found"),
+      image: ImageByte(image ?? Uint8List(0)),
+      
+    );
   }
 
   factory AudioDto.fromJson(Map<String, dynamic> json) =>

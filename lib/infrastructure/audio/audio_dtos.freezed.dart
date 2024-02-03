@@ -20,10 +20,8 @@ AudioDto _$AudioDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AudioDto {
-  String? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   String? get artist => throw _privateConstructorUsedError;
-  String? get path => throw _privateConstructorUsedError;
   @Uint8ListConverter()
   Uint8List? get image => throw _privateConstructorUsedError;
 
@@ -39,11 +37,7 @@ abstract class $AudioDtoCopyWith<$Res> {
       _$AudioDtoCopyWithImpl<$Res, AudioDto>;
   @useResult
   $Res call(
-      {String? id,
-      String? name,
-      String? artist,
-      String? path,
-      @Uint8ListConverter() Uint8List? image});
+      {String? title, String? artist, @Uint8ListConverter() Uint8List? image});
 }
 
 /// @nodoc
@@ -59,28 +53,18 @@ class _$AudioDtoCopyWithImpl<$Res, $Val extends AudioDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? title = freezed,
     Object? artist = freezed,
-    Object? path = freezed,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       artist: freezed == artist
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
-              as String?,
-      path: freezed == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
               as String?,
       image: freezed == image
           ? _value.image
@@ -99,11 +83,7 @@ abstract class _$$AudioDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id,
-      String? name,
-      String? artist,
-      String? path,
-      @Uint8ListConverter() Uint8List? image});
+      {String? title, String? artist, @Uint8ListConverter() Uint8List? image});
 }
 
 /// @nodoc
@@ -117,28 +97,18 @@ class __$$AudioDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? title = freezed,
     Object? artist = freezed,
-    Object? path = freezed,
     Object? image = freezed,
   }) {
     return _then(_$AudioDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       artist: freezed == artist
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
-              as String?,
-      path: freezed == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
               as String?,
       image: freezed == image
           ? _value.image
@@ -152,10 +122,8 @@ class __$$AudioDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
   const _$AudioDtoImpl(
-      {required this.id,
-      required this.name,
+      {required this.title,
       required this.artist,
-      required this.path,
       @Uint8ListConverter() required this.image})
       : super._();
 
@@ -163,20 +131,16 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
       _$$AudioDtoImplFromJson(json);
 
   @override
-  final String? id;
-  @override
-  final String? name;
+  final String? title;
   @override
   final String? artist;
-  @override
-  final String? path;
   @override
   @Uint8ListConverter()
   final Uint8List? image;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AudioDto(id: $id, name: $name, artist: $artist, path: $path, image: $image)';
+    return 'AudioDto(title: $title, artist: $artist, image: $image)';
   }
 
   @override
@@ -184,10 +148,8 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AudioDto'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('artist', artist))
-      ..add(DiagnosticsProperty('path', path))
       ..add(DiagnosticsProperty('image', image));
   }
 
@@ -196,17 +158,15 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AudioDtoImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.artist, artist) || other.artist == artist) &&
-            (identical(other.path, path) || other.path == path) &&
             const DeepCollectionEquality().equals(other.image, image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, artist, path,
-      const DeepCollectionEquality().hash(image));
+  int get hashCode => Object.hash(
+      runtimeType, title, artist, const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -224,10 +184,8 @@ class _$AudioDtoImpl extends _AudioDto with DiagnosticableTreeMixin {
 
 abstract class _AudioDto extends AudioDto {
   const factory _AudioDto(
-      {required final String? id,
-      required final String? name,
+      {required final String? title,
       required final String? artist,
-      required final String? path,
       @Uint8ListConverter() required final Uint8List? image}) = _$AudioDtoImpl;
   const _AudioDto._() : super._();
 
@@ -235,13 +193,9 @@ abstract class _AudioDto extends AudioDto {
       _$AudioDtoImpl.fromJson;
 
   @override
-  String? get id;
-  @override
-  String? get name;
+  String? get title;
   @override
   String? get artist;
-  @override
-  String? get path;
   @override
   @Uint8ListConverter()
   Uint8List? get image;

@@ -9,6 +9,7 @@ import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_play
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/songs/audio_failure.dart';
+import '../../domain/songs/path.dart';
 import 'platform_repository/i_platform_repository.dart';
 
 class AudioRepository implements IAudioRepository {
@@ -20,7 +21,7 @@ class AudioRepository implements IAudioRepository {
   AudioRepository(this._audioPlayerRepository, this._platformRepository);
 
   @override
-  Future<Either<AudioFailure, List<Audio>>> getAllAudioFromDevice() async {
+  Future<Either<AudioFailure, List<PathData>>> getAllAudioFromDevice() async {
     try {
       final songsData = await _platformRepository.getAllAudio();
 
@@ -32,9 +33,9 @@ class AudioRepository implements IAudioRepository {
 
   @override
   Future<Either<AudioFailure, Unit>> concatenatingAudios(
-      {required List<Audio> audios}) async {
+      {required List<PathData> pathData}) async {
     try {
-      await _audioPlayerRepository.concatenatingAudios(audioSongs: audios);
+      await _audioPlayerRepository.concatenatingAudios(audioSongs: pathData);
       return right(unit);
     } on AudioFailure {
       return left(const AudioFailure.audioLimitExceeded());

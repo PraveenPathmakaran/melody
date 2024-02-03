@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio/audio_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
 import 'package:melody/presentation/core/app_size_manage.dart';
-import 'package:melody/presentation/core/constant.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../home_screen/screen_home.dart';
@@ -63,11 +62,14 @@ class _ScreenSplashState extends State<ScreenSplash>
         BlocListener<AudioBloc, AudioState>(
           listenWhen: (p, c) => p != c,
           listener: (context, state) {
-            if (state.loadingState == LoadingState.loaded) {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const ScreenHomeMain(),
-              ));
-            }
+            state.maybeMap(
+              orElse: () {},
+              loaded: (value) {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ScreenHomeMain(),
+                ));
+              },
+            );
           },
           child: Container(),
         )

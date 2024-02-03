@@ -51,15 +51,15 @@ class ScreenHomeMain extends StatelessWidget {
               },
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: <Widget>[
               ScreenHome(),
-              const Scaffold(
+              Scaffold(
                 body: Center(
                   child: Text('1'),
                 ),
               ),
-              const Scaffold(
+              Scaffold(
                 body: Center(
                   child: Text('2'),
                 ),

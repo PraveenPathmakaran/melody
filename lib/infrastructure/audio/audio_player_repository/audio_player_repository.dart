@@ -3,6 +3,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
 
 import '../../../domain/songs/audio.dart';
+import '../../../domain/songs/path.dart';
 
 class AudioPlayerRepository implements IAudioPlayerRepository {
   final AudioPlayer _audioPlayer;
@@ -20,9 +21,10 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   );
 
   @override
-  Future<Unit> concatenatingAudios({required List<Audio> audioSongs}) async {
-    final List<UriAudioSource> concatenatedList =
-        audioSongs.map((e) => AudioSource.file(e.path.getOrCrash())).toList();
+  Future<Unit> concatenatingAudios({required List<PathData> audioSongs}) async {
+    final List<UriAudioSource> concatenatedList = audioSongs
+        .map((e) => AudioSource.file(e.audioPath.getOrCrash()))
+        .toList();
 
     playlist.addAll(concatenatedList);
     return unit;

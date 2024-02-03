@@ -14,18 +14,14 @@ Map<String, dynamic> _$Uint8ListConverterToJson(Uint8ListConverter instance) =>
 
 _$AudioDtoImpl _$$AudioDtoImplFromJson(Map<String, dynamic> json) =>
     _$AudioDtoImpl(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
+      title: json['title'] as String?,
       artist: json['artist'] as String?,
-      path: json['path'] as String?,
       image: const Uint8ListConverter().fromJson(json['image'] as List<int>?),
     );
 
 Map<String, dynamic> _$$AudioDtoImplToJson(_$AudioDtoImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
+      'title': instance.title,
       'artist': instance.artist,
-      'path': instance.path,
       'image': const Uint8ListConverter().toJson(instance.image),
     };

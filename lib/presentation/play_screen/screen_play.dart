@@ -101,7 +101,7 @@ class PlayContainer extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          state.audio.name.getOrCrash(),
+                          state.audio.title.getOrCrash(),
                           style: getRegularStyle(
                               fontSize: FontSize.s17,
                               color: ColorManager.white),

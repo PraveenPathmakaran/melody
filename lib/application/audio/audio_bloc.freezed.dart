@@ -182,7 +182,7 @@ mixin _$AudioState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AudioPath> pathList) loaded,
+    required TResult Function(List<PathData> pathList) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -190,7 +190,7 @@ mixin _$AudioState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<AudioPath> pathList)? loaded,
+    TResult? Function(List<PathData> pathList)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -198,7 +198,7 @@ mixin _$AudioState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AudioPath> pathList)? loaded,
+    TResult Function(List<PathData> pathList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -294,7 +294,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AudioPath> pathList) loaded,
+    required TResult Function(List<PathData> pathList) loaded,
     required TResult Function() error,
   }) {
     return initial();
@@ -305,7 +305,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<AudioPath> pathList)? loaded,
+    TResult? Function(List<PathData> pathList)? loaded,
     TResult? Function()? error,
   }) {
     return initial?.call();
@@ -316,7 +316,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AudioPath> pathList)? loaded,
+    TResult Function(List<PathData> pathList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -414,7 +414,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AudioPath> pathList) loaded,
+    required TResult Function(List<PathData> pathList) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -425,7 +425,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<AudioPath> pathList)? loaded,
+    TResult? Function(List<PathData> pathList)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -436,7 +436,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AudioPath> pathList)? loaded,
+    TResult Function(List<PathData> pathList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -494,7 +494,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<AudioPath> pathList});
+  $Res call({List<PathData> pathList});
 }
 
 /// @nodoc
@@ -514,7 +514,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       pathList: null == pathList
           ? _value._pathList
           : pathList // ignore: cast_nullable_to_non_nullable
-              as List<AudioPath>,
+              as List<PathData>,
     ));
   }
 }
@@ -522,12 +522,12 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
-  const _$LoadedImpl({required final List<AudioPath> pathList})
+  const _$LoadedImpl({required final List<PathData> pathList})
       : _pathList = pathList;
 
-  final List<AudioPath> _pathList;
+  final List<PathData> _pathList;
   @override
-  List<AudioPath> get pathList {
+  List<PathData> get pathList {
     if (_pathList is EqualUnmodifiableListView) return _pathList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pathList);
@@ -569,7 +569,7 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AudioPath> pathList) loaded,
+    required TResult Function(List<PathData> pathList) loaded,
     required TResult Function() error,
   }) {
     return loaded(pathList);
@@ -580,7 +580,7 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<AudioPath> pathList)? loaded,
+    TResult? Function(List<PathData> pathList)? loaded,
     TResult? Function()? error,
   }) {
     return loaded?.call(pathList);
@@ -591,7 +591,7 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AudioPath> pathList)? loaded,
+    TResult Function(List<PathData> pathList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -640,10 +640,10 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
 }
 
 abstract class _Loaded implements AudioState {
-  const factory _Loaded({required final List<AudioPath> pathList}) =
+  const factory _Loaded({required final List<PathData> pathList}) =
       _$LoadedImpl;
 
-  List<AudioPath> get pathList;
+  List<PathData> get pathList;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -695,7 +695,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AudioPath> pathList) loaded,
+    required TResult Function(List<PathData> pathList) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -706,7 +706,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<AudioPath> pathList)? loaded,
+    TResult? Function(List<PathData> pathList)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -717,7 +717,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AudioPath> pathList)? loaded,
+    TResult Function(List<PathData> pathList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
