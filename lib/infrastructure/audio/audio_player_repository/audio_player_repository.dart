@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
@@ -21,11 +22,14 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
 
   @override
   Future<Unit> concatenatingAudios({required List<Audio> audioSongs}) async {
-    final List<UriAudioSource> concatenatedList = audioSongs
-        .map((e) => AudioSource.file(e.audioPath.getOrCrash()))
+    final List<UriAudioSource> newplaylist = audioSongs
+        .mapIndexed((index, e) =>
+            AudioSource.file(e.audioPath.getOrCrash(), tag: index))
         .toList();
 
-    playlist.addAll(concatenatedList);
+    playlist.clear();
+    playlist.addAll(newplaylist);
+    await setAudioSource();
     return unit;
   }
 
@@ -98,13 +102,13 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
-  Stream<String> sequenceStateStream() async* {
-    yield* _audioPlayer.sequenceStateStream.map<String>((event) {
+  Stream<int> sequenceStateStream() async* {
+    yield* _audioPlayer.sequenceStateStream.map<int>((event) {
       if (event != null) {
         final currentItem = event.currentSource;
-        return currentItem?.tag ?? "";
+        return currentItem?.tag ?? 0;
       }
-      return "";
+      return 0;
     });
   }
 

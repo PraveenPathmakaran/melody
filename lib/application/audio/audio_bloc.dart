@@ -23,9 +23,15 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
             final failureOrSuccess =
                 await _audioRepository.getAllAudioFromDevice();
 
-            failureOrSuccess.fold(
-              (f) => emit(const AudioState.error()),
-              (path) => emit(AudioState.loaded(audioList: path)),
+            await failureOrSuccess.fold(
+              (f) async => emit(const AudioState.error()),
+              (path) async {
+                final failureSuccess =
+                    await _audioRepository.concatenatingAudios(audioData: path);
+
+                failureSuccess.fold((failure) => emit(const AudioState.error()),
+                    (unit) => emit(AudioState.loaded(audioList: path)));
+              },
             );
           },
         );

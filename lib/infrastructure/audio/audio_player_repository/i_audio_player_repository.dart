@@ -19,7 +19,7 @@ abstract interface class IAudioPlayerRepository {
   Stream<int> bufferedPositionStream();
   Stream<int> durationStream();
   Stream<int> positionStream();
-  Stream<String> sequenceStateStream();
+  Stream<int> sequenceStateStream();
   Stream<ButtonState> buttonState();
   Stream<bool> shuffleModeStream();
   Stream<AudioLoopMode> loopAudioStream();

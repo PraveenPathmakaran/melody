@@ -47,8 +47,9 @@ class AudioControllerBloc
               final AudioDuration duration =
                   (data[2] as Either<AudioFailure, AudioDuration>)
                       .getOrElse(() => AudioDuration(0));
-              final Audio audio = (data[3] as Either<AudioFailure, Audio>)
-                  .getOrElse(() => Audio.emptyAudio());
+              final int audioIndex =
+                  (data[3] as Either<AudioFailure, int>).getOrElse(() => 0);
+
               final ButtonState buttonState =
                   (data[4] as Either<AudioFailure, ButtonState>)
                       .getOrElse(() => ButtonState.paused);
@@ -67,8 +68,8 @@ class AudioControllerBloc
               if (state.total != duration) {
                 return state.copyWith(total: duration);
               }
-              if (state.audio != audio) {
-                return state.copyWith(audio: audio);
+              if (state.audioIndex != audioIndex) {
+                return state.copyWith(audioIndex: audioIndex);
               }
               if (state.buttonState != buttonState) {
                 return state.copyWith(buttonState: buttonState);
@@ -115,6 +116,4 @@ class AudioControllerBloc
   void setAudioLoopMode({required AudioLoopMode loopMode}) {
     _audioRepository.setAudioLoopMode(audioLoopMode: loopMode);
   }
-
-
 }

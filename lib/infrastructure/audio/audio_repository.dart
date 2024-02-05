@@ -32,9 +32,9 @@ class AudioRepository implements IAudioRepository {
 
   @override
   Future<Either<AudioFailure, Unit>> concatenatingAudios(
-      {required List<Audio> pathData}) async {
+      {required List<Audio> audioData}) async {
     try {
-      await _audioPlayerRepository.concatenatingAudios(audioSongs: pathData);
+      await _audioPlayerRepository.concatenatingAudios(audioSongs: audioData);
       return right(unit);
     } on AudioFailure {
       return left(const AudioFailure.audioLimitExceeded());
@@ -147,15 +147,14 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Stream<Either<AudioFailure, Audio>> sequenceStateStream() async* {
+  Stream<Either<AudioFailure, int>> sequenceStateStream() async* {
     yield* _audioPlayerRepository
         .sequenceStateStream()
-        .map<Either<AudioFailure, Audio>>((sequenceState) {
-      if (sequenceState.isEmpty) {
+        .map<Either<AudioFailure, int>>((sequenceState) {
+      if (sequenceState == -1) {
         return left(const AudioFailure.audioPlayerFailure());
       }
-      final audio = Audio.emptyAudio(); //todo:proper way to get audio Data
-      return right(audio);
+      return right(sequenceState);
     }).onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
   }

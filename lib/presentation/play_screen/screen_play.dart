@@ -12,6 +12,8 @@ import 'package:melody/presentation/core/resourse_manager/styles_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 import 'package:melody/presentation/widgets.dart';
 
+import '../../application/audio/audio_bloc.dart';
+import '../core/widgets.dart';
 import 'widgets/icon_widgets.dart';
 import 'widgets/play_controller_widget.dart';
 
@@ -64,9 +66,14 @@ class PlayContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return BlocBuilder<AudioControllerBloc, AudioControllerState>(
-      buildWhen: (p, c) => p.audio != c.audio,
+      buildWhen: (p, c) => p.audioIndex != c.audioIndex,
       builder: (context, state) {
-        if (state.audio.failureOption.isNone()) {
+        final audio = context.read<AudioBloc>().state.maybeMap(
+              orElse: () => Audio.emptyAudio(),
+              loaded: (value) => value.audioList[state.audioIndex],
+            );
+
+        if (audio.failureOption.isNone()) {
           return Container(
             height: size.height,
             width: size.width,
@@ -76,21 +83,25 @@ class PlayContainer extends StatelessWidget {
                 //image
                 SizedBox(
                   height: AppMediaQueryManager.height / 2,
-                  child: const Column(
+                  child: Column(
                     children: <Widget>[
-                      // ClipRRect(
-                      //   borderRadius:
-                      //       const BorderRadius.all(Radius.circular(30)),
-                      //   child: CustomImageWidget(
-                      //     image: state.audio.image.value.isLeft()
-                      //         ? null
-                      //         : state.audio.image.getOrCrash(),
-                      //     height: AppMediaQueryManager.getWidthPercentage(
-                      //         AppSize.s90),
-                      //     width: AppMediaQueryManager.getWidthPercentage(
-                      //         AppSize.s90),
-                      //   ),
-                      // ),
+                      ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30)),
+                        child: FutureBuilder(
+                            future: context
+                                .read<AudioBloc>()
+                                .fetchAudioData(audioPath: audio.audioPath),
+                            builder: (context, snapshot) {
+                              return CustomImageWidget(
+                                image: snapshot.data,
+                                height: AppMediaQueryManager.getWidthPercentage(
+                                    AppSize.s90),
+                                width: AppMediaQueryManager.getWidthPercentage(
+                                    AppSize.s90),
+                              );
+                            }),
+                      ),
                     ],
                   ),
                 ),
@@ -100,7 +111,7 @@ class PlayContainer extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          state.audio.title.getOrCrash(),
+                          audio.title.getOrCrash(),
                           style: getRegularStyle(
                               fontSize: FontSize.s17,
                               color: ColorManager.white),
@@ -111,7 +122,7 @@ class PlayContainer extends StatelessWidget {
                           height: 1,
                         ),
                         Text(
-                          state.audio.artist.getOrCrash(),
+                          audio.artist.getOrCrash(),
                           style: getMediumStyle(color: ColorManager.white),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

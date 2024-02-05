@@ -9,7 +9,7 @@ abstract interface class IAudioRepository {
       {required AudioPath audioPath});
   Future<Either<AudioFailure, List<Audio>>> getAllAudioFromDevice();
   Future<Either<AudioFailure, Unit>> concatenatingAudios(
-      {required List<Audio> pathData});
+      {required List<Audio> audioData});
 
   //controle music
   Future<Either<AudioFailure, Unit>> playAudio({required int index});
@@ -25,7 +25,7 @@ abstract interface class IAudioRepository {
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream();
   Stream<Either<AudioFailure, AudioDuration>> durationStream();
   Stream<Either<AudioFailure, AudioDuration>> positionStream();
-  Stream<Either<AudioFailure, Audio>> sequenceStateStream();
+  Stream<Either<AudioFailure, int>> sequenceStateStream();
   Stream<Either<AudioFailure, ButtonState>> buttonStateStream();
   Stream<Either<AudioFailure, bool>> shuffleModeStream();
   Stream<Either<AudioFailure, AudioLoopMode>> audioLoopStream();

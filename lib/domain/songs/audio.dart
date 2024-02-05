@@ -18,13 +18,10 @@ abstract class Audio implements _$Audio {
     required Title title,
     required Artist artist,
     required AudioPath audioPath,
-    //required ImageByte image,
   }) = _Audio;
 
   factory Audio.emptyAudio() =>
-      Audio(title: Title(""), artist: Artist(""), audioPath: AudioPath("")
-          // image: ImageByte(Uint8List(0)),
-          );
+      Audio(title: Title(""), artist: Artist(""), audioPath: AudioPath(""));
 
   Option<ValueFailure<dynamic>> get failureOption {
     return title.failureOrUnit

@@ -110,7 +110,7 @@ class __$$AudioImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AudioImpl extends _Audio {
+class _$AudioImpl extends _Audio with DiagnosticableTreeMixin {
   const _$AudioImpl(
       {required this.title, required this.artist, required this.audioPath})
       : super._();
@@ -123,8 +123,18 @@ class _$AudioImpl extends _Audio {
   final AudioPath audioPath;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Audio(title: $title, artist: $artist, audioPath: $audioPath)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Audio'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('artist', artist))
+      ..add(DiagnosticsProperty('audioPath', audioPath));
   }
 
   @override
@@ -244,15 +254,23 @@ class __$$ByteImageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ByteImageImpl extends _ByteImage {
+class _$ByteImageImpl extends _ByteImage with DiagnosticableTreeMixin {
   const _$ByteImageImpl({required this.byteImage}) : super._();
 
   @override
   final ImageByte byteImage;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AudioImage(byteImage: $byteImage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AudioImage'))
+      ..add(DiagnosticsProperty('byteImage', byteImage));
   }
 
   @override
