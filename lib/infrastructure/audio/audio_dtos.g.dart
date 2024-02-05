@@ -7,7 +7,7 @@ part of 'audio_dtos.dart';
 // **************************************************************************
 
 Uint8ListConverter _$Uint8ListConverterFromJson(Map<String, dynamic> json) =>
-    Uint8ListConverter();
+    const Uint8ListConverter();
 
 Map<String, dynamic> _$Uint8ListConverterToJson(Uint8ListConverter instance) =>
     <String, dynamic>{};
@@ -16,12 +16,23 @@ _$AudioDtoImpl _$$AudioDtoImplFromJson(Map<String, dynamic> json) =>
     _$AudioDtoImpl(
       title: json['title'] as String?,
       artist: json['artist'] as String?,
-      image: const Uint8ListConverter().fromJson(json['image'] as List<int>?),
+      path: json['path'] as String?,
     );
 
 Map<String, dynamic> _$$AudioDtoImplToJson(_$AudioDtoImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'artist': instance.artist,
-      'image': const Uint8ListConverter().toJson(instance.image),
+      'path': instance.path,
+    };
+
+_$ImageDtoImpl _$$ImageDtoImplFromJson(Map<String, dynamic> json) =>
+    _$ImageDtoImpl(
+      byteImage:
+          const Uint8ListConverter().fromJson(json['byteImage'] as List<int>?),
+    );
+
+Map<String, dynamic> _$$ImageDtoImplToJson(_$ImageDtoImpl instance) =>
+    <String, dynamic>{
+      'byteImage': const Uint8ListConverter().toJson(instance.byteImage),
     };

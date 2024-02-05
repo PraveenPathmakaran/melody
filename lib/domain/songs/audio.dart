@@ -1,6 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:melody/domain/core/value_failures.dart';
 
@@ -18,15 +17,35 @@ abstract class Audio implements _$Audio {
   const factory Audio({
     required Title title,
     required Artist artist,
-    required ImageByte image,
+    required AudioPath audioPath,
+    //required ImageByte image,
   }) = _Audio;
 
-  factory Audio.emptyAudio() => Audio(
-      title: Title(""), artist: Artist(""), image: ImageByte(Uint8List(0)));
+  factory Audio.emptyAudio() =>
+      Audio(title: Title(""), artist: Artist(""), audioPath: AudioPath("")
+          // image: ImageByte(Uint8List(0)),
+          );
 
   Option<ValueFailure<dynamic>> get failureOption {
     return title.failureOrUnit
         .andThen(artist.failureOrUnit)
+        .andThen(audioPath.failureOrUnit)
         .fold((l) => some(l), (r) => none());
+  }
+}
+
+@freezed
+abstract class AudioImage implements _$AudioImage {
+  const AudioImage._();
+  const factory AudioImage({
+    required ImageByte byteImage,
+  }) = _ByteImage;
+
+  factory AudioImage.empty() => AudioImage(
+        byteImage: ImageByte(Uint8List(0)),
+      );
+
+  Option<ValueFailure<dynamic>> get failureOption {
+    return byteImage.failureOrUnit.fold((l) => some(l), (r) => none());
   }
 }

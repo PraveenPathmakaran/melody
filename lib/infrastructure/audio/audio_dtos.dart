@@ -12,20 +12,40 @@ abstract class AudioDto implements _$AudioDto {
   const factory AudioDto({
     required String? title,
     required String? artist,
-    @Uint8ListConverter() required Uint8List? image,
+    required String? path,
+    //@Uint8ListConverter() required Uint8List? image,
   }) = _AudioDto;
 
   Audio toDomain() {
     return Audio(
-      title: Title(title ?? "No title found"),
-      artist: Artist(artist ?? "No artist found"),
-      image: ImageByte(image ?? Uint8List(0)),
-      
-    );
+        title: Title(title ?? "No title found"),
+        artist: Artist(artist ?? "No artist found"),
+        audioPath: AudioPath(path ?? "")
+
+        // image: ImageByte(image ?? Uint8List(0)),
+
+        );
   }
 
   factory AudioDto.fromJson(Map<String, dynamic> json) =>
       _$AudioDtoFromJson(json);
+}
+
+@freezed
+abstract class ImageDto implements _$ImageDto {
+  const ImageDto._();
+  const factory ImageDto({
+    @Uint8ListConverter() required Uint8List? byteImage,
+  }) = _ImageDto;
+
+  AudioImage toDomain() {
+    return AudioImage(
+      byteImage: ImageByte(byteImage ?? Uint8List(0)),
+    );
+  }
+
+  factory ImageDto.fromJson(Map<String, dynamic> json) =>
+      _$ImageDtoFromJson(json);
 }
 
 @JsonSerializable()

@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Audio {
   Title get title => throw _privateConstructorUsedError;
   Artist get artist => throw _privateConstructorUsedError;
-  ImageByte get image => throw _privateConstructorUsedError;
+  AudioPath get audioPath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioCopyWith<Audio> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +29,7 @@ abstract class $AudioCopyWith<$Res> {
   factory $AudioCopyWith(Audio value, $Res Function(Audio) then) =
       _$AudioCopyWithImpl<$Res, Audio>;
   @useResult
-  $Res call({Title title, Artist artist, ImageByte image});
+  $Res call({Title title, Artist artist, AudioPath audioPath});
 }
 
 /// @nodoc
@@ -47,7 +47,7 @@ class _$AudioCopyWithImpl<$Res, $Val extends Audio>
   $Res call({
     Object? title = null,
     Object? artist = null,
-    Object? image = null,
+    Object? audioPath = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -58,10 +58,10 @@ class _$AudioCopyWithImpl<$Res, $Val extends Audio>
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
               as Artist,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as ImageByte,
+      audioPath: null == audioPath
+          ? _value.audioPath
+          : audioPath // ignore: cast_nullable_to_non_nullable
+              as AudioPath,
     ) as $Val);
   }
 }
@@ -73,7 +73,7 @@ abstract class _$$AudioImplCopyWith<$Res> implements $AudioCopyWith<$Res> {
       __$$AudioImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Title title, Artist artist, ImageByte image});
+  $Res call({Title title, Artist artist, AudioPath audioPath});
 }
 
 /// @nodoc
@@ -89,7 +89,7 @@ class __$$AudioImplCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? artist = null,
-    Object? image = null,
+    Object? audioPath = null,
   }) {
     return _then(_$AudioImpl(
       title: null == title
@@ -100,10 +100,10 @@ class __$$AudioImplCopyWithImpl<$Res>
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
               as Artist,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as ImageByte,
+      audioPath: null == audioPath
+          ? _value.audioPath
+          : audioPath // ignore: cast_nullable_to_non_nullable
+              as AudioPath,
     ));
   }
 }
@@ -112,7 +112,7 @@ class __$$AudioImplCopyWithImpl<$Res>
 
 class _$AudioImpl extends _Audio {
   const _$AudioImpl(
-      {required this.title, required this.artist, required this.image})
+      {required this.title, required this.artist, required this.audioPath})
       : super._();
 
   @override
@@ -120,11 +120,11 @@ class _$AudioImpl extends _Audio {
   @override
   final Artist artist;
   @override
-  final ImageByte image;
+  final AudioPath audioPath;
 
   @override
   String toString() {
-    return 'Audio(title: $title, artist: $artist, image: $image)';
+    return 'Audio(title: $title, artist: $artist, audioPath: $audioPath)';
   }
 
   @override
@@ -134,11 +134,12 @@ class _$AudioImpl extends _Audio {
             other is _$AudioImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.artist, artist) || other.artist == artist) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.audioPath, audioPath) ||
+                other.audioPath == audioPath));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, artist, image);
+  int get hashCode => Object.hash(runtimeType, title, artist, audioPath);
 
   @JsonKey(ignore: true)
   @override
@@ -151,7 +152,7 @@ abstract class _Audio extends Audio {
   const factory _Audio(
       {required final Title title,
       required final Artist artist,
-      required final ImageByte image}) = _$AudioImpl;
+      required final AudioPath audioPath}) = _$AudioImpl;
   const _Audio._() : super._();
 
   @override
@@ -159,9 +160,129 @@ abstract class _Audio extends Audio {
   @override
   Artist get artist;
   @override
-  ImageByte get image;
+  AudioPath get audioPath;
   @override
   @JsonKey(ignore: true)
   _$$AudioImplCopyWith<_$AudioImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$AudioImage {
+  ImageByte get byteImage => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AudioImageCopyWith<AudioImage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AudioImageCopyWith<$Res> {
+  factory $AudioImageCopyWith(
+          AudioImage value, $Res Function(AudioImage) then) =
+      _$AudioImageCopyWithImpl<$Res, AudioImage>;
+  @useResult
+  $Res call({ImageByte byteImage});
+}
+
+/// @nodoc
+class _$AudioImageCopyWithImpl<$Res, $Val extends AudioImage>
+    implements $AudioImageCopyWith<$Res> {
+  _$AudioImageCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? byteImage = null,
+  }) {
+    return _then(_value.copyWith(
+      byteImage: null == byteImage
+          ? _value.byteImage
+          : byteImage // ignore: cast_nullable_to_non_nullable
+              as ImageByte,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ByteImageImplCopyWith<$Res>
+    implements $AudioImageCopyWith<$Res> {
+  factory _$$ByteImageImplCopyWith(
+          _$ByteImageImpl value, $Res Function(_$ByteImageImpl) then) =
+      __$$ByteImageImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ImageByte byteImage});
+}
+
+/// @nodoc
+class __$$ByteImageImplCopyWithImpl<$Res>
+    extends _$AudioImageCopyWithImpl<$Res, _$ByteImageImpl>
+    implements _$$ByteImageImplCopyWith<$Res> {
+  __$$ByteImageImplCopyWithImpl(
+      _$ByteImageImpl _value, $Res Function(_$ByteImageImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? byteImage = null,
+  }) {
+    return _then(_$ByteImageImpl(
+      byteImage: null == byteImage
+          ? _value.byteImage
+          : byteImage // ignore: cast_nullable_to_non_nullable
+              as ImageByte,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ByteImageImpl extends _ByteImage {
+  const _$ByteImageImpl({required this.byteImage}) : super._();
+
+  @override
+  final ImageByte byteImage;
+
+  @override
+  String toString() {
+    return 'AudioImage(byteImage: $byteImage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ByteImageImpl &&
+            (identical(other.byteImage, byteImage) ||
+                other.byteImage == byteImage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, byteImage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ByteImageImplCopyWith<_$ByteImageImpl> get copyWith =>
+      __$$ByteImageImplCopyWithImpl<_$ByteImageImpl>(this, _$identity);
+}
+
+abstract class _ByteImage extends AudioImage {
+  const factory _ByteImage({required final ImageByte byteImage}) =
+      _$ByteImageImpl;
+  const _ByteImage._() : super._();
+
+  @override
+  ImageByte get byteImage;
+  @override
+  @JsonKey(ignore: true)
+  _$$ByteImageImplCopyWith<_$ByteImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

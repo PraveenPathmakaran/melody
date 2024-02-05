@@ -9,7 +9,6 @@ import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_play
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/songs/audio_failure.dart';
-import '../../domain/songs/path.dart';
 import 'platform_repository/i_platform_repository.dart';
 
 class AudioRepository implements IAudioRepository {
@@ -21,7 +20,7 @@ class AudioRepository implements IAudioRepository {
   AudioRepository(this._audioPlayerRepository, this._platformRepository);
 
   @override
-  Future<Either<AudioFailure, List<PathData>>> getAllAudioFromDevice() async {
+  Future<Either<AudioFailure, List<Audio>>> getAllAudioFromDevice() async {
     try {
       final songsData = await _platformRepository.getAllAudio();
 
@@ -33,7 +32,7 @@ class AudioRepository implements IAudioRepository {
 
   @override
   Future<Either<AudioFailure, Unit>> concatenatingAudios(
-      {required List<PathData> pathData}) async {
+      {required List<Audio> pathData}) async {
     try {
       await _audioPlayerRepository.concatenatingAudios(audioSongs: pathData);
       return right(unit);
@@ -190,7 +189,15 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Either<AudioFailure, Audio> getAudioData({required Id uid}) {
-    return right(Audio.emptyAudio());
+  Future<Either<AudioFailure, AudioImage>> getAudioImageMetadata(
+      {required AudioPath audioPath}) async {
+    try {
+      final image = await _platformRepository.getAudioMetaData(
+          path: audioPath.getOrCrash());
+
+      return right(image);
+    } catch (e) {
+      return left(const AudioFailure.platFormFailure());
+    }
   }
 }

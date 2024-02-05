@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/audio/audio_bloc.dart';
 import '../core/error_widget.dart';
+import '../core/resourse_manager/color_manager.dart';
+import '../core/widgets.dart';
 import '../play_screen/screen_play.dart';
 import '../widgets.dart';
 
@@ -19,7 +22,7 @@ class ScreenHome extends StatelessWidget {
             return circularPindicator;
           }, loading: (value) {
             return circularPindicator;
-          }, loaded: (value) {
+          }, loaded: (state) {
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return Card(
@@ -35,33 +38,30 @@ class ScreenHome extends StatelessWidget {
                               index: index, isNavigateFromHome: true),
                         ));
                       },
-                      // leading: CircleAvatar(
-                      //   backgroundColor: ColorManager.primary,
-                      //   radius: 28,
-                      //   child: ClipOval(
-                      //       child: CustomImageWidget(
-                      //     image: context
-                      //             .read<AudioBloc>()
-                      //             .audios[index]
-                      //             .image
-                      //             .value
-                      //             .isLeft()
-                      //         ? null
-                      //         : context
-                      //             .read<AudioBloc>()
-                      //             .audios[index]
-                      //             .image
-                      //             .getOrCrash(),
-                      //     height: 52,
-                      //     width: 52,
-                      //   )),
-                      // ),
+                      leading: CircleAvatar(
+                        backgroundColor: ColorManager.primary,
+                        radius: 28,
+                        child: ClipOval(
+                            child: FutureBuilder<Uint8List?>(
+                                future: context
+                                    .read<AudioBloc>()
+                                    .fetchAudioData(
+                                        audioPath:
+                                            state.audioList[index].audioPath),
+                                builder: (context, snapshot) {
+                                  return CustomImageWidget(
+                                    image: snapshot.data,
+                                    height: 52,
+                                    width: 52,
+                                  );
+                                })),
+                      ),
                       title: Text(
-                        value.pathList[index].audioPath.getOrCrash(),
+                        state.audioList[index].title.getOrCrash(),
                         maxLines: 1,
                       ),
                       subtitle: Text(
-                        value.pathList[index].audioPath.getOrCrash(),
+                        state.audioList[index].artist.getOrCrash(),
                         maxLines: 1,
                       ),
                       trailing: IconButton(
@@ -70,11 +70,11 @@ class ScreenHome extends StatelessWidget {
                       )),
                 );
               },
-              itemCount: value.pathList.length,
+              itemCount: state.audioList.length,
               shrinkWrap: true,
             );
           }, error: (value) {
-            return const AppErrorWidget(errorMessage: "Somethind went wrong");
+            return const AppErrorWidget(errorMessage: "Something went wrong");
           });
         },
       ),

@@ -1,8 +1,11 @@
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
-import 'package:melody/domain/songs/path.dart';
+
+import '../../domain/songs/audio.dart';
+import '../../domain/songs/audio_value_objects.dart';
 
 part 'audio_bloc.freezed.dart';
 part 'audio_event.dart';
@@ -22,11 +25,20 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
 
             failureOrSuccess.fold(
               (f) => emit(const AudioState.error()),
-              (path) => emit(AudioState.loaded(pathList: path)),
+              (path) => emit(AudioState.loaded(audioList: path)),
             );
           },
         );
       },
+    );
+  }
+  Future<Uint8List?> fetchAudioData({required AudioPath audioPath}) async {
+    final imageByte =
+        await _audioRepository.getAudioImageMetadata(audioPath: audioPath);
+
+    return imageByte.fold(
+      (l) => null,
+      (imageByte) => imageByte.byteImage.getOrCrash(),
     );
   }
 }

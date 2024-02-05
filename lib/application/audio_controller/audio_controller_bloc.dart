@@ -116,8 +116,5 @@ class AudioControllerBloc
     _audioRepository.setAudioLoopMode(audioLoopMode: loopMode);
   }
 
-  Audio fetchAudioData({required Id id}) {
-    final audio = _audioRepository.getAudioData(uid: id);
-    return audio.getOrElse(() => Audio.emptyAudio());
-  }
+
 }

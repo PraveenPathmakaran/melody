@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_failure.dart';
-import 'package:melody/domain/songs/path.dart';
 
 import 'audio_value_objects.dart';
 
 abstract interface class IAudioRepository {
-  Either<AudioFailure, Audio> getAudioData({required Id uid});
-  Future<Either<AudioFailure, List<PathData>>> getAllAudioFromDevice();
+  Future<Either<AudioFailure, AudioImage>> getAudioImageMetadata(
+      {required AudioPath audioPath});
+  Future<Either<AudioFailure, List<Audio>>> getAllAudioFromDevice();
   Future<Either<AudioFailure, Unit>> concatenatingAudios(
-      {required List<PathData> pathData});
+      {required List<Audio> pathData});
 
   //controle music
   Future<Either<AudioFailure, Unit>> playAudio({required int index});

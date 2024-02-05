@@ -87,21 +87,12 @@ class __$$ConcatenatingAudiosImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ConcatenatingAudiosImpl
-    with DiagnosticableTreeMixin
-    implements _ConcatenatingAudios {
+class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   const _$ConcatenatingAudiosImpl();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'AudioEvent.getAllAudiosFromDevice()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'AudioEvent.getAllAudiosFromDevice'));
   }
 
   @override
@@ -182,7 +173,7 @@ mixin _$AudioState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PathData> pathList) loaded,
+    required TResult Function(List<Audio> audioList) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -190,7 +181,7 @@ mixin _$AudioState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PathData> pathList)? loaded,
+    TResult? Function(List<Audio> audioList)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -198,7 +189,7 @@ mixin _$AudioState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PathData> pathList)? loaded,
+    TResult Function(List<Audio> audioList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -266,18 +257,12 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
+class _$InitialImpl implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'AudioState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'AudioState.initial'));
   }
 
   @override
@@ -294,7 +279,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PathData> pathList) loaded,
+    required TResult Function(List<Audio> audioList) loaded,
     required TResult Function() error,
   }) {
     return initial();
@@ -305,7 +290,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PathData> pathList)? loaded,
+    TResult? Function(List<Audio> audioList)? loaded,
     TResult? Function()? error,
   }) {
     return initial?.call();
@@ -316,7 +301,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PathData> pathList)? loaded,
+    TResult Function(List<Audio> audioList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -386,18 +371,12 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
+class _$LoadingImpl implements _Loading {
   const _$LoadingImpl();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'AudioState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'AudioState.loading'));
   }
 
   @override
@@ -414,7 +393,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PathData> pathList) loaded,
+    required TResult Function(List<Audio> audioList) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -425,7 +404,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PathData> pathList)? loaded,
+    TResult? Function(List<Audio> audioList)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -436,7 +415,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PathData> pathList)? loaded,
+    TResult Function(List<Audio> audioList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -494,7 +473,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PathData> pathList});
+  $Res call({List<Audio> audioList});
 }
 
 /// @nodoc
@@ -508,42 +487,34 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pathList = null,
+    Object? audioList = null,
   }) {
     return _then(_$LoadedImpl(
-      pathList: null == pathList
-          ? _value._pathList
-          : pathList // ignore: cast_nullable_to_non_nullable
-              as List<PathData>,
+      audioList: null == audioList
+          ? _value._audioList
+          : audioList // ignore: cast_nullable_to_non_nullable
+              as List<Audio>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
-  const _$LoadedImpl({required final List<PathData> pathList})
-      : _pathList = pathList;
+class _$LoadedImpl implements _Loaded {
+  const _$LoadedImpl({required final List<Audio> audioList})
+      : _audioList = audioList;
 
-  final List<PathData> _pathList;
+  final List<Audio> _audioList;
   @override
-  List<PathData> get pathList {
-    if (_pathList is EqualUnmodifiableListView) return _pathList;
+  List<Audio> get audioList {
+    if (_audioList is EqualUnmodifiableListView) return _audioList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pathList);
+    return EqualUnmodifiableListView(_audioList);
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AudioState.loaded(pathList: $pathList)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'AudioState.loaded'))
-      ..add(DiagnosticsProperty('pathList', pathList));
+  String toString() {
+    return 'AudioState.loaded(audioList: $audioList)';
   }
 
   @override
@@ -551,12 +522,13 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._pathList, _pathList));
+            const DeepCollectionEquality()
+                .equals(other._audioList, _audioList));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_pathList));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_audioList));
 
   @JsonKey(ignore: true)
   @override
@@ -569,10 +541,10 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PathData> pathList) loaded,
+    required TResult Function(List<Audio> audioList) loaded,
     required TResult Function() error,
   }) {
-    return loaded(pathList);
+    return loaded(audioList);
   }
 
   @override
@@ -580,10 +552,10 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PathData> pathList)? loaded,
+    TResult? Function(List<Audio> audioList)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(pathList);
+    return loaded?.call(audioList);
   }
 
   @override
@@ -591,12 +563,12 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PathData> pathList)? loaded,
+    TResult Function(List<Audio> audioList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(pathList);
+      return loaded(audioList);
     }
     return orElse();
   }
@@ -640,10 +612,9 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
 }
 
 abstract class _Loaded implements AudioState {
-  const factory _Loaded({required final List<PathData> pathList}) =
-      _$LoadedImpl;
+  const factory _Loaded({required final List<Audio> audioList}) = _$LoadedImpl;
 
-  List<PathData> get pathList;
+  List<Audio> get audioList;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -667,18 +638,12 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
+class _$ErrorImpl implements _Error {
   const _$ErrorImpl();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'AudioState.error()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'AudioState.error'));
   }
 
   @override
@@ -695,7 +660,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<PathData> pathList) loaded,
+    required TResult Function(List<Audio> audioList) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -706,7 +671,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<PathData> pathList)? loaded,
+    TResult? Function(List<Audio> audioList)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -717,7 +682,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<PathData> pathList)? loaded,
+    TResult Function(List<Audio> audioList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
