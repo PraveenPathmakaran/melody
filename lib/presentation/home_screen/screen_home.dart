@@ -9,7 +9,6 @@ class ScreenHomeMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int tabIndex = 0;
     return PopScope(
       canPop: true,
       child: DefaultTabController(
@@ -22,9 +21,7 @@ class ScreenHomeMain extends StatelessWidget {
             ),
             centerTitle: true,
             bottom: TabBar(
-              onTap: (int value) {
-                tabIndex = value;
-              },
+              onTap: (int value) {},
               tabs: const <Widget>[
                 Tab(
                   text: StringManger.home,
@@ -64,9 +61,6 @@ class ScreenHomeMain extends StatelessWidget {
                   child: Text('2'),
                 ),
               ),
-
-              // ScreenFavourite(),
-              // ScreenPlaylist(),
             ],
           ),
         ),

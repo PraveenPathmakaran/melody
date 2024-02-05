@@ -24,14 +24,25 @@ class CustomImageWidget extends StatelessWidget {
           fit: BoxFit.cover,
           height: height,
           width: width,
-          errorBuilder: (context, error, stackTrace) =>
-              Image.asset(ImageAssets.musicImage),
+          errorBuilder: (context, error, stackTrace) => Image.asset(
+            ImageAssets.musicImage,
+            height: height,
+            width: width,
+          ),
         );
       } else {
-        return Image.asset(ImageAssets.musicImage);
+        return Image.asset(
+          ImageAssets.musicImage,
+          height: height,
+          width: width,
+        );
       }
     } catch (e) {
-      return Image.asset(ImageAssets.musicImage);
+      return Image.asset(
+        ImageAssets.musicImage,
+        height: height,
+        width: width,
+      );
     }
   }
 }

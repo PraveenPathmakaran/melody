@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/resourse_manager/string_manage.dart';
+import '../../core/resourse_manager/value_manager.dart';
 
 class PermissionDeniedWidget extends StatelessWidget {
   final String text;
@@ -17,10 +18,8 @@ class PermissionDeniedWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          text,
-        ),
-        const SizedBox(height: 20),
+        Text(text),
+        const SizedBox(height: AppSize.s20),
         ElevatedButton(
           onPressed: voidCallBack,
           child: const Text(StringManger.requestPermisson),

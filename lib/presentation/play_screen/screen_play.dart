@@ -1,21 +1,12 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
-import 'package:melody/domain/songs/audio.dart';
-import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/color_manager.dart';
-import 'package:melody/presentation/core/resourse_manager/font_manager.dart';
-import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/styles_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
-import 'package:melody/presentation/widgets.dart';
 
-import '../../application/audio/audio_bloc.dart';
-import '../core/widgets.dart';
-import 'widgets/icon_widgets.dart';
-import 'widgets/play_controller_widget.dart';
+import 'widgets/play_container.dart';
 
 class ScreenPlay extends StatelessWidget {
   const ScreenPlay({
@@ -43,222 +34,19 @@ class ScreenPlay extends StatelessWidget {
           .read<AudioControllerBloc>()
           .add(const AudioControllerEvent.closeStream()),
       child: Scaffold(
-          appBar: AppBar(
-            elevation: AppSize.s0,
-            title: Text(
-              StringManger.nowPlaying,
-              style: getSemiBoldStyle(
-                fontSize: AppSize.s18,
-                color: ColorManager.white,
-              ),
+        appBar: AppBar(
+          elevation: AppSize.s0,
+          title: Text(
+            StringManger.nowPlaying,
+            style: getSemiBoldStyle(
+              fontSize: AppSize.s18,
+              color: ColorManager.white,
             ),
-            centerTitle: true,
           ),
-          body: const PlayContainer()),
-    );
-  }
-}
-
-class PlayContainer extends StatelessWidget {
-  const PlayContainer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-    return BlocBuilder<AudioControllerBloc, AudioControllerState>(
-      buildWhen: (p, c) => p.audioIndex != c.audioIndex,
-      builder: (context, state) {
-        final audio = context.read<AudioBloc>().state.maybeMap(
-              orElse: () => Audio.emptyAudio(),
-              loaded: (value) => value.audioList[state.audioIndex],
-            );
-
-        if (audio.failureOption.isNone()) {
-          return Container(
-            height: size.height,
-            width: size.width,
-            padding: const EdgeInsets.all(AppPadding.p30),
-            child: Column(
-              children: <Widget>[
-                //image
-                SizedBox(
-                  height: AppMediaQueryManager.height / 2,
-                  child: Column(
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
-                        child: FutureBuilder(
-                            future: context
-                                .read<AudioBloc>()
-                                .fetchAudioData(audioPath: audio.audioPath),
-                            builder: (context, snapshot) {
-                              return CustomImageWidget(
-                                image: snapshot.data,
-                                height: AppMediaQueryManager.getWidthPercentage(
-                                    AppSize.s90),
-                                width: AppMediaQueryManager.getWidthPercentage(
-                                    AppSize.s90),
-                              );
-                            }),
-                      ),
-                    ],
-                  ),
-                ),
-                //controller and details
-                SizedBox(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          audio.title.getOrCrash(),
-                          style: getRegularStyle(
-                              fontSize: FontSize.s17,
-                              color: ColorManager.white),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(
-                          height: 1,
-                        ),
-                        Text(
-                          audio.artist.getOrCrash(),
-                          style: getMediumStyle(color: ColorManager.white),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const PlayTopControllerWidget(),
-                        const PlayProgressSlideWidget(),
-                        const AudioControllerWidget()
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          return circularPindicator;
-        }
-      },
-    );
-  }
-}
-
-class PlayProgressSlideWidget extends StatelessWidget {
-  const PlayProgressSlideWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AudioControllerBloc, AudioControllerState>(
-      builder: (context, state) {
-        return ProgressBar(
-          progress: state.current.getOrCrash(),
-          buffered: state.buffered.getOrCrash(),
-          total: state.total.getOrCrash(),
-          onSeek: context.read<AudioControllerBloc>().onSeek,
-          thumbColor: ColorManager.secondary,
-          progressBarColor: ColorManager.secondary,
-          bufferedBarColor: ColorManager.lightGrey,
-          baseBarColor: ColorManager.white,
-        );
-      },
-    );
-  }
-}
-
-class PlayTopControllerWidget extends StatelessWidget {
-  const PlayTopControllerWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        IconButton(
-            onPressed: () {},
-            icon: const PlayIconWidget(icon: IconManager.favourites)),
-        BlocBuilder<AudioControllerBloc, AudioControllerState>(
-          buildWhen: (p, c) => p.audioLoopMode != c.audioLoopMode,
-          builder: (context, state) {
-            return IconButton(
-              onPressed: () {
-                final index =
-                    (AudioLoopMode.values.indexOf(state.audioLoopMode) + 1) % 3;
-                context
-                    .read<AudioControllerBloc>()
-                    .setAudioLoopMode(loopMode: AudioLoopMode.values[index]);
-              },
-              icon: LoopModeWidget(audioLoopMode: state.audioLoopMode),
-            );
-          },
+          centerTitle: true,
         ),
-        BlocBuilder<AudioControllerBloc, AudioControllerState>(
-          buildWhen: (p, c) => p.isShuffleMode != c.isShuffleMode,
-          builder: (context, state) {
-            return IconButton(
-              onPressed: () {
-                context.read<AudioControllerBloc>().shuffleAudio();
-              },
-              icon: state.isShuffleMode
-                  ? PlayIconWidget(
-                      icon: IconManager.shuffle,
-                      color: ColorManager.secondary,
-                    )
-                  : const PlayIconWidget(
-                      icon: IconManager.shuffle,
-                    ),
-            );
-          },
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const PlayIconWidget(icon: IconManager.playlist),
-        ),
-      ],
+        body: const PlayContainer(),
+      ),
     );
-  }
-}
-
-class LoopModeWidget extends StatelessWidget {
-  final AudioLoopMode audioLoopMode;
-  const LoopModeWidget({
-    super.key,
-    required this.audioLoopMode,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    switch (audioLoopMode) {
-      case AudioLoopMode.off:
-        return const PlayIconWidget(icon: IconManager.repeatOff);
-      case AudioLoopMode.one:
-        return PlayIconWidget(
-          icon: IconManager.repeatOne,
-          color: ColorManager.secondary,
-        );
-      case AudioLoopMode.all:
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  'All',
-                  style: TextStyle(fontSize: 8, color: ColorManager.secondary),
-                )),
-            PlayIconWidget(
-              icon: IconManager.repeatOff,
-              color: ColorManager.secondary,
-            ),
-          ],
-        );
-      default:
-        return const PlayIconWidget(icon: IconManager.repeatOff);
-    }
   }
 }

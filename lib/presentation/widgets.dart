@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-void snackBar(String content, Color color, BuildContext context) {
+import 'core/resourse_manager/value_manager.dart';
+
+void snackBar(
+    {required BuildContext context,
+    String content = "",
+    Color color = Colors.red}) {
   final SnackBar snackBar = SnackBar(
     content: Text(content),
-    duration: const Duration(seconds: 1),
+    duration: const Duration(seconds: DurationConstant.one),
     backgroundColor: color,
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);

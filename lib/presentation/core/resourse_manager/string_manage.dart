@@ -6,7 +6,7 @@ class StringManger {
       'Permission permanently Denied';
   static const String pleaseOpenAppSettingsAndAllowPermission =
       'Please open app settings and allow permission';
-  static const String somethingWentWrogn = 'Something went wrong';
+  static const String somethingWentWrong = 'Something went wrong';
   static const String musicPlayer = 'Music Player';
   static const String home = 'Home';
   static const String favourites = 'Favourites';

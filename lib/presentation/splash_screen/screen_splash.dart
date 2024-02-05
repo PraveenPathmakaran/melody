@@ -6,6 +6,7 @@ import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../home_screen/screen_home.dart';
+import '../widgets.dart';
 import 'widgets/permission_denied_widget.dart';
 import 'widgets/permission_granted_widget.dart';
 
@@ -51,6 +52,11 @@ class _ScreenSplashState extends State<ScreenSplash>
           listener: (context, state) {
             state.maybeMap(
                 orElse: () {},
+                denied: (value) => snackBar(
+                    context: context, content: StringManger.permissionDenied),
+                permanentlyDenied: (value) => snackBar(
+                    context: context,
+                    content: StringManger.permissionPermanentlyDenied),
                 //permission state is granted then it navigate to ScreenHomeMain
                 granted: (value) async {
                   context
@@ -64,6 +70,8 @@ class _ScreenSplashState extends State<ScreenSplash>
           listener: (context, state) {
             state.maybeMap(
               orElse: () {},
+              error: (value) => snackBar(
+                  context: context, content: StringManger.somethingWentWrong),
               loaded: (value) {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const ScreenHomeMain(),
@@ -71,7 +79,6 @@ class _ScreenSplashState extends State<ScreenSplash>
               },
             );
           },
-          child: Container(),
         )
       ],
       child: Scaffold(
