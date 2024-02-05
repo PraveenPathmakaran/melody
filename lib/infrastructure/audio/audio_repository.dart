@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:melody/domain/songs/audio.dart';
@@ -36,10 +34,7 @@ class AudioRepository implements IAudioRepository {
     try {
       await _audioPlayerRepository.concatenatingAudios(audioSongs: audioData);
       return right(unit);
-    } on AudioFailure {
-      return left(const AudioFailure.audioLimitExceeded());
     } catch (e) {
-      log("ConcatenatingAudioSource Failure => $e");
       return left(const AudioFailure.audioPlayerFailure());
     }
   }
@@ -117,6 +112,19 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
+  Future<Either<AudioFailure, AudioImage>> getAudioImageMetadata(
+      {required AudioPath audioPath}) async {
+    try {
+      final image = await _platformRepository.getAudioMetaData(
+          path: audioPath.getOrCrash());
+
+      return right(image);
+    } catch (e) {
+      return left(const AudioFailure.platFormFailure());
+    }
+  }
+
+  @override
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream() async* {
     yield* _audioPlayerRepository
         .bufferedPositionStream()
@@ -185,18 +193,5 @@ class AudioRepository implements IAudioRepository {
         .map<Either<AudioFailure, AudioLoopMode>>((loopMode) => right(loopMode))
         .onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
-  }
-
-  @override
-  Future<Either<AudioFailure, AudioImage>> getAudioImageMetadata(
-      {required AudioPath audioPath}) async {
-    try {
-      final image = await _platformRepository.getAudioMetaData(
-          path: audioPath.getOrCrash());
-
-      return right(image);
-    } catch (e) {
-      return left(const AudioFailure.platFormFailure());
-    }
   }
 }

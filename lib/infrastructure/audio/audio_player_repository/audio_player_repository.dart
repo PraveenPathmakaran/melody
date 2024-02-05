@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:melody/domain/songs/audio_failure.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../../domain/songs/audio.dart';
 
@@ -16,89 +20,142 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
     children: [],
   );
 
+  static const name = "AudioPlayerRepository";
   AudioPlayerRepository(
     this._audioPlayer,
   );
 
   @override
   Future<Unit> concatenatingAudios({required List<Audio> audioSongs}) async {
-    final List<UriAudioSource> newplaylist = audioSongs
-        .mapIndexed((index, e) =>
-            AudioSource.file(e.audioPath.getOrCrash(), tag: index))
-        .toList();
+    try {
+      final List<UriAudioSource> newplaylist = audioSongs
+          .mapIndexed((index, e) =>
+              AudioSource.file(e.audioPath.getOrCrash(), tag: index))
+          .toList();
 
-    playlist.clear();
-    playlist.addAll(newplaylist);
-    await setAudioSource();
-    return unit;
+      playlist.clear();
+      playlist.addAll(newplaylist);
+      await setAudioSource();
+      return unit;
+    } catch (e) {
+      log(e.toString(), name: "$name-concatenatingAudios");
+      throw const AudioFailure.audioPlayerFailure();
+    }
   }
 
   @override
   Future<Unit> setAudioSource() async {
-    _audioPlayer.setAudioSource(playlist,
-        initialIndex: 0, initialPosition: Duration.zero);
-    return unit;
+    try {
+      _audioPlayer.setAudioSource(playlist,
+          initialIndex: 0, initialPosition: Duration.zero);
+      return unit;
+    } catch (e) {
+      log(e.toString(), name: "$name-setAudioSource");
+      throw const AudioFailure.audioPlayerFailure();
+    }
   }
 
   @override
   void playAudio({required int index}) {
-    _audioPlayer.seek(Duration.zero, index: index);
-    _audioPlayer.play();
+    try {
+      _audioPlayer.seek(Duration.zero, index: index);
+      _audioPlayer.play();
+    } catch (e) {
+      log(e.toString(), name: "$name-playAudio");
+      throw const AudioFailure.audioPlayerFailure();
+    }
   }
 
   @override
   void playOrPause() {
-    if (_audioPlayer.playing) {
-      _audioPlayer.pause();
-    } else {
-      _audioPlayer.play();
+    try {
+      if (_audioPlayer.playing) {
+        _audioPlayer.pause();
+      } else {
+        _audioPlayer.play();
+      }
+    } catch (e) {
+      log(e.toString(), name: "$name-playOrPause");
+      throw const AudioFailure.audioPlayerFailure();
     }
   }
 
   @override
   void nextAudio() {
-    _audioPlayer.seekToNext();
+    try {
+      _audioPlayer.seekToNext();
+    } catch (e) {
+      log(e.toString(), name: "$name-nextAudio");
+      throw const AudioFailure.audioPlayerFailure();
+    }
   }
 
   @override
   void previousAudio() {
-    _audioPlayer.seekToPrevious();
+    try {
+      _audioPlayer.seekToPrevious();
+    } catch (e) {
+      log(e.toString(), name: "$name-previousAudio");
+      throw const AudioFailure.audioPlayerFailure();
+    }
   }
 
   @override
   void seekAudio({required Duration duration}) {
-    _audioPlayer.seek(duration);
+    try {
+      _audioPlayer.seek(duration);
+    } catch (e) {
+      log(e.toString(), name: "$name-seekAudio");
+      throw const AudioFailure.audioPlayerFailure();
+    }
   }
 
   @override
   void changeShuffleMode() {
-    if (!_audioPlayer.shuffleModeEnabled) {
-      _audioPlayer.shuffle();
-      _audioPlayer.setShuffleModeEnabled(true);
-    } else {
-      _audioPlayer.setShuffleModeEnabled(false);
+    try {
+      if (!_audioPlayer.shuffleModeEnabled) {
+        _audioPlayer.shuffle();
+        _audioPlayer.setShuffleModeEnabled(true);
+      } else {
+        _audioPlayer.setShuffleModeEnabled(false);
+      }
+    } catch (e) {
+      log(e.toString(), name: "$name-changeShuffleMode");
+      throw const AudioFailure.audioPlayerFailure();
     }
   }
 
   @override
   void setAudioLoopMode({required AudioLoopMode audioLoopMode}) {
-    LoopMode loopMode = LoopMode.off;
-    if (audioLoopMode == AudioLoopMode.off) {
-      loopMode = LoopMode.off;
-    }
-    if (audioLoopMode == AudioLoopMode.one) {
-      loopMode = LoopMode.one;
-    }
-    if (audioLoopMode == AudioLoopMode.all) {
-      loopMode = LoopMode.all;
-    }
+    try {
+      LoopMode loopMode = LoopMode.off;
 
-    _audioPlayer.setLoopMode(loopMode);
+      switch (audioLoopMode) {
+        case AudioLoopMode.one:
+          loopMode = LoopMode.one;
+          break;
+        case AudioLoopMode.all:
+          loopMode = LoopMode.all;
+          break;
+        default:
+          loopMode = LoopMode.off;
+          break;
+      }
+      _audioPlayer.setLoopMode(loopMode);
+    } catch (e) {
+      log(e.toString(), name: "$name-setAudioLoopMode");
+      throw const AudioFailure.audioPlayerFailure();
+    }
   }
 
   @override
   Stream<int> bufferedPositionStream() async* {
-    yield* _audioPlayer.bufferedPositionStream.map((event) => event.inSeconds);
+    yield* _audioPlayer.bufferedPositionStream
+        .map((event) => event.inSeconds)
+        .onErrorReturnWith((error, stacTrace) {
+      log(error.toString(), name: "$name-bufferedPositionStream");
+      throw const AudioFailure.audioPlayerFailure();
+    });
   }
 
   @override
@@ -108,23 +165,40 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
         final currentItem = event.currentSource;
         return currentItem?.tag ?? 0;
       }
-      return 0;
+      throw const AudioFailure.audioPlayerFailure();
+    }).onErrorReturnWith((error, stackTrace) {
+      log(error.toString(), name: "$name-sequenceStateStream");
+      throw const AudioFailure.audioPlayerFailure();
     });
   }
 
   @override
   Stream<int> durationStream() async* {
-    yield* _audioPlayer.durationStream.map((event) => event?.inSeconds ?? 0);
+    yield* _audioPlayer.durationStream
+        .map((event) => event?.inSeconds ?? 0)
+        .onErrorReturnWith((error, stackTrace) {
+      log(error.toString(), name: "$name-durationStream");
+      throw const AudioFailure.audioPlayerFailure();
+    });
   }
 
   @override
   Stream<int> positionStream() async* {
-    yield* _audioPlayer.positionStream.map((event) => event.inSeconds);
+    yield* _audioPlayer.positionStream
+        .map((event) => event.inSeconds)
+        .onErrorReturnWith((error, stackTrace) {
+      log(error.toString(), name: "$name-positionStream");
+      throw const AudioFailure.audioPlayerFailure();
+    });
   }
 
   @override
   Stream<bool> shuffleModeStream() async* {
-    yield* _audioPlayer.shuffleModeEnabledStream;
+    yield* _audioPlayer.shuffleModeEnabledStream
+        .onErrorReturnWith((error, stackTrace) {
+      log(error.toString(), name: "$name-shuffleModeStream");
+      throw const AudioFailure.audioPlayerFailure();
+    });
   }
 
   @override
@@ -139,8 +213,10 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
       } else {
         return ButtonState.playing;
       }
+    }).onErrorReturnWith((error, stackTrace) {
+      log(error.toString(), name: "$name-buttonState");
+      throw const AudioFailure.audioPlayerFailure();
     });
-    throw UnimplementedError();
   }
 
   @override
@@ -156,6 +232,9 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
         default:
           return AudioLoopMode.off;
       }
+    }).onErrorReturnWith((error, stackTrace) {
+      log(error.toString(), name: "$name-loopAudioStream");
+      throw const AudioFailure.audioPlayerFailure();
     });
   }
 }
