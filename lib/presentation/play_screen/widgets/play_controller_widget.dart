@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
+import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 
@@ -28,17 +29,20 @@ class AudioControllerWidget extends StatelessWidget {
                   icon: IconManager.skipPrevious,
                   size: AppSize.s50,
                 )),
-            BlocBuilder<AudioControllerBloc, AudioControllerState>(
-              buildWhen: (p, c) => p.buttonState != c.buttonState,
-              builder: (context, state) {
-                return GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      context.read<AudioControllerBloc>().playOrPauseAudio();
-                    },
-                    child: PlayButtonWidget(buttonState: state.buttonState));
-              },
-            ),
+            if (state.buttonState.isSome())
+              BlocBuilder<AudioControllerBloc, AudioControllerState>(
+                buildWhen: (p, c) => p.buttonState != c.buttonState,
+                builder: (context, state) {
+                  return GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        context.read<AudioControllerBloc>().playOrPauseAudio();
+                      },
+                      child: PlayButtonWidget(
+                          buttonState: state.buttonState
+                              .getOrElse(() => ButtonState.playing)));
+                },
+              ),
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {

@@ -41,7 +41,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
-        darkTheme: ThemeData.dark(),
         theme: getApplicationTheme(),
         home: const ScreenSplash(),
         debugShowCheckedModeBanner: false,

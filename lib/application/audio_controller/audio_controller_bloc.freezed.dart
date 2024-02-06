@@ -167,14 +167,14 @@ abstract class _ListenAllStreams implements AudioControllerEvent {
 
 /// @nodoc
 mixin _$AudioControllerState {
-  AudioDuration get current => throw _privateConstructorUsedError;
-  AudioDuration get buffered => throw _privateConstructorUsedError;
-  AudioDuration get total => throw _privateConstructorUsedError;
-  int get audioIndex => throw _privateConstructorUsedError;
-  ButtonState get buttonState => throw _privateConstructorUsedError;
-  bool get isShuffleMode => throw _privateConstructorUsedError;
-  bool get miniPlayerVisibility => throw _privateConstructorUsedError;
-  AudioLoopMode get audioLoopMode => throw _privateConstructorUsedError;
+  Option<AudioDuration> get current => throw _privateConstructorUsedError;
+  Option<AudioDuration> get buffered => throw _privateConstructorUsedError;
+  Option<AudioDuration> get total => throw _privateConstructorUsedError;
+  Option<int> get audioIndex => throw _privateConstructorUsedError;
+  Option<ButtonState> get buttonState => throw _privateConstructorUsedError;
+  Option<bool> get isShuffleMode => throw _privateConstructorUsedError;
+  Option<bool> get miniPlayerVisibility => throw _privateConstructorUsedError;
+  Option<AudioLoopMode> get audioLoopMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioControllerStateCopyWith<AudioControllerState> get copyWith =>
@@ -188,14 +188,14 @@ abstract class $AudioControllerStateCopyWith<$Res> {
       _$AudioControllerStateCopyWithImpl<$Res, AudioControllerState>;
   @useResult
   $Res call(
-      {AudioDuration current,
-      AudioDuration buffered,
-      AudioDuration total,
-      int audioIndex,
-      ButtonState buttonState,
-      bool isShuffleMode,
-      bool miniPlayerVisibility,
-      AudioLoopMode audioLoopMode});
+      {Option<AudioDuration> current,
+      Option<AudioDuration> buffered,
+      Option<AudioDuration> total,
+      Option<int> audioIndex,
+      Option<ButtonState> buttonState,
+      Option<bool> isShuffleMode,
+      Option<bool> miniPlayerVisibility,
+      Option<AudioLoopMode> audioLoopMode});
 }
 
 /// @nodoc
@@ -225,35 +225,35 @@ class _$AudioControllerStateCopyWithImpl<$Res,
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
-              as AudioDuration,
+              as Option<AudioDuration>,
       buffered: null == buffered
           ? _value.buffered
           : buffered // ignore: cast_nullable_to_non_nullable
-              as AudioDuration,
+              as Option<AudioDuration>,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as AudioDuration,
+              as Option<AudioDuration>,
       audioIndex: null == audioIndex
           ? _value.audioIndex
           : audioIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
       buttonState: null == buttonState
           ? _value.buttonState
           : buttonState // ignore: cast_nullable_to_non_nullable
-              as ButtonState,
+              as Option<ButtonState>,
       isShuffleMode: null == isShuffleMode
           ? _value.isShuffleMode
           : isShuffleMode // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Option<bool>,
       miniPlayerVisibility: null == miniPlayerVisibility
           ? _value.miniPlayerVisibility
           : miniPlayerVisibility // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Option<bool>,
       audioLoopMode: null == audioLoopMode
           ? _value.audioLoopMode
           : audioLoopMode // ignore: cast_nullable_to_non_nullable
-              as AudioLoopMode,
+              as Option<AudioLoopMode>,
     ) as $Val);
   }
 }
@@ -267,14 +267,14 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AudioDuration current,
-      AudioDuration buffered,
-      AudioDuration total,
-      int audioIndex,
-      ButtonState buttonState,
-      bool isShuffleMode,
-      bool miniPlayerVisibility,
-      AudioLoopMode audioLoopMode});
+      {Option<AudioDuration> current,
+      Option<AudioDuration> buffered,
+      Option<AudioDuration> total,
+      Option<int> audioIndex,
+      Option<ButtonState> buttonState,
+      Option<bool> isShuffleMode,
+      Option<bool> miniPlayerVisibility,
+      Option<AudioLoopMode> audioLoopMode});
 }
 
 /// @nodoc
@@ -301,35 +301,35 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
-              as AudioDuration,
+              as Option<AudioDuration>,
       buffered: null == buffered
           ? _value.buffered
           : buffered // ignore: cast_nullable_to_non_nullable
-              as AudioDuration,
+              as Option<AudioDuration>,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as AudioDuration,
+              as Option<AudioDuration>,
       audioIndex: null == audioIndex
           ? _value.audioIndex
           : audioIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Option<int>,
       buttonState: null == buttonState
           ? _value.buttonState
           : buttonState // ignore: cast_nullable_to_non_nullable
-              as ButtonState,
+              as Option<ButtonState>,
       isShuffleMode: null == isShuffleMode
           ? _value.isShuffleMode
           : isShuffleMode // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Option<bool>,
       miniPlayerVisibility: null == miniPlayerVisibility
           ? _value.miniPlayerVisibility
           : miniPlayerVisibility // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Option<bool>,
       audioLoopMode: null == audioLoopMode
           ? _value.audioLoopMode
           : audioLoopMode // ignore: cast_nullable_to_non_nullable
-              as AudioLoopMode,
+              as Option<AudioLoopMode>,
     ));
   }
 }
@@ -348,21 +348,21 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
       required this.audioLoopMode});
 
   @override
-  final AudioDuration current;
+  final Option<AudioDuration> current;
   @override
-  final AudioDuration buffered;
+  final Option<AudioDuration> buffered;
   @override
-  final AudioDuration total;
+  final Option<AudioDuration> total;
   @override
-  final int audioIndex;
+  final Option<int> audioIndex;
   @override
-  final ButtonState buttonState;
+  final Option<ButtonState> buttonState;
   @override
-  final bool isShuffleMode;
+  final Option<bool> isShuffleMode;
   @override
-  final bool miniPlayerVisibility;
+  final Option<bool> miniPlayerVisibility;
   @override
-  final AudioLoopMode audioLoopMode;
+  final Option<AudioLoopMode> audioLoopMode;
 
   @override
   String toString() {
@@ -413,31 +413,32 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
 
 abstract class _AudioControllerState implements AudioControllerState {
   const factory _AudioControllerState(
-      {required final AudioDuration current,
-      required final AudioDuration buffered,
-      required final AudioDuration total,
-      required final int audioIndex,
-      required final ButtonState buttonState,
-      required final bool isShuffleMode,
-      required final bool miniPlayerVisibility,
-      required final AudioLoopMode audioLoopMode}) = _$AudioControllerStateImpl;
+          {required final Option<AudioDuration> current,
+          required final Option<AudioDuration> buffered,
+          required final Option<AudioDuration> total,
+          required final Option<int> audioIndex,
+          required final Option<ButtonState> buttonState,
+          required final Option<bool> isShuffleMode,
+          required final Option<bool> miniPlayerVisibility,
+          required final Option<AudioLoopMode> audioLoopMode}) =
+      _$AudioControllerStateImpl;
 
   @override
-  AudioDuration get current;
+  Option<AudioDuration> get current;
   @override
-  AudioDuration get buffered;
+  Option<AudioDuration> get buffered;
   @override
-  AudioDuration get total;
+  Option<AudioDuration> get total;
   @override
-  int get audioIndex;
+  Option<int> get audioIndex;
   @override
-  ButtonState get buttonState;
+  Option<ButtonState> get buttonState;
   @override
-  bool get isShuffleMode;
+  Option<bool> get isShuffleMode;
   @override
-  bool get miniPlayerVisibility;
+  Option<bool> get miniPlayerVisibility;
   @override
-  AudioLoopMode get audioLoopMode;
+  Option<AudioLoopMode> get audioLoopMode;
   @override
   @JsonKey(ignore: true)
   _$$AudioControllerStateImplCopyWith<_$AudioControllerStateImpl>

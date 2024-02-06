@@ -38,26 +38,29 @@ class AudioControllerBloc
             await emit.forEach(
               combinedStreams,
               onData: (data) {
-                final AudioDuration buffer =
+                final Option<AudioDuration> buffer = optionOf(
                     (data[0] as Either<AudioFailure, AudioDuration>)
-                        .getOrElse(() => AudioDuration(0));
-                final AudioDuration position =
+                        .fold((f) => null, (value) => value));
+                final Option<AudioDuration> position = optionOf(
                     (data[1] as Either<AudioFailure, AudioDuration>)
-                        .getOrElse(() => AudioDuration(0));
-                final AudioDuration duration =
+                        .fold((f) => null, (value) => value));
+                final Option<AudioDuration> duration = optionOf(
                     (data[2] as Either<AudioFailure, AudioDuration>)
-                        .getOrElse(() => AudioDuration(0));
-                final int audioIndex =
-                    (data[3] as Either<AudioFailure, int>).getOrElse(() => 0);
+                        .fold((f) => null, (value) => value));
+                final Option<int> audioIndex = optionOf(
+                    (data[3] as Either<AudioFailure, int>)
+                        .fold((f) => null, (value) => value));
 
-                final ButtonState buttonState =
+                final Option<ButtonState> buttonState = optionOf(
                     (data[4] as Either<AudioFailure, ButtonState>)
-                        .getOrElse(() => ButtonState.paused);
-                final bool shuffleMode = (data[5] as Either<AudioFailure, bool>)
-                    .getOrElse(() => false);
-                final AudioLoopMode audioLoopMode =
+                        .fold((f) => null, (value) => value));
+
+                final Option<bool> shuffleMode = optionOf(
+                    (data[5] as Either<AudioFailure, bool>)
+                        .fold((f) => null, (value) => value));
+                final Option<AudioLoopMode> audioLoopMode = optionOf(
                     (data[6] as Either<AudioFailure, AudioLoopMode>)
-                        .getOrElse(() => AudioLoopMode.off);
+                        .fold((f) => null, (value) => value));
 
                 if (state.buffered != buffer) {
                   return state.copyWith(buffered: buffer);
@@ -71,7 +74,7 @@ class AudioControllerBloc
                 if (state.audioIndex != audioIndex) {
                   return state.copyWith(
                     audioIndex: audioIndex,
-                    miniPlayerVisibility: true,
+                    miniPlayerVisibility: some(true),
                   );
                 }
                 if (state.buttonState != buttonState) {

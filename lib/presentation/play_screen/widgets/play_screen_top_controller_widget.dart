@@ -24,34 +24,47 @@ class PlayTopControllerWidget extends StatelessWidget {
         BlocBuilder<AudioControllerBloc, AudioControllerState>(
           buildWhen: (p, c) => p.audioLoopMode != c.audioLoopMode,
           builder: (context, state) {
-            return IconButton(
-              onPressed: () {
-                final index =
-                    (AudioLoopMode.values.indexOf(state.audioLoopMode) + 1) % 3;
-                context
-                    .read<AudioControllerBloc>()
-                    .setAudioLoopMode(loopMode: AudioLoopMode.values[index]);
-              },
-              icon: LoopModeWidget(audioLoopMode: state.audioLoopMode),
-            );
+            if (state.audioLoopMode.isSome()) {
+              return IconButton(
+                onPressed: () {
+                  final index = (AudioLoopMode.values.indexOf(state
+                              .audioLoopMode
+                              .getOrElse(() => AudioLoopMode.off)) +
+                          1) %
+                      3;
+                  context
+                      .read<AudioControllerBloc>()
+                      .setAudioLoopMode(loopMode: AudioLoopMode.values[index]);
+                },
+                icon: LoopModeWidget(
+                    audioLoopMode:
+                        state.audioLoopMode.getOrElse(() => AudioLoopMode.off)),
+              );
+            } else {
+              return const SizedBox();
+            }
           },
         ),
         BlocBuilder<AudioControllerBloc, AudioControllerState>(
           buildWhen: (p, c) => p.isShuffleMode != c.isShuffleMode,
           builder: (context, state) {
-            return IconButton(
-              onPressed: () {
-                context.read<AudioControllerBloc>().shuffleAudio();
-              },
-              icon: state.isShuffleMode
-                  ? PlayIconWidget(
-                      icon: IconManager.shuffle,
-                      color: ColorManager.secondary,
-                    )
-                  : const PlayIconWidget(
-                      icon: IconManager.shuffle,
-                    ),
-            );
+            if (state.isShuffleMode.isSome()) {
+              return IconButton(
+                onPressed: () {
+                  context.read<AudioControllerBloc>().shuffleAudio();
+                },
+                icon: state.isShuffleMode.getOrElse(() => false)
+                    ? PlayIconWidget(
+                        icon: IconManager.shuffle,
+                        color: ColorManager.secondary,
+                      )
+                    : const PlayIconWidget(
+                        icon: IconManager.shuffle,
+                      ),
+              );
+            } else {
+              return const SizedBox();
+            }
           },
         ),
         IconButton(

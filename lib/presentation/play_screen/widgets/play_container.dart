@@ -21,45 +21,49 @@ class PlayContainer extends StatelessWidget {
     return BlocBuilder<AudioControllerBloc, AudioControllerState>(
       buildWhen: (p, c) => p.audioIndex != c.audioIndex,
       builder: (context, state) {
-        final audio = context.read<AudioBloc>().state.maybeMap(
-              orElse: () => Audio.emptyAudio(),
-              loaded: (value) => value.audioList[state.audioIndex],
-            );
+        if (state.audioIndex.isSome()) {
+          final audio = context.read<AudioBloc>().state.maybeMap(
+                orElse: () => Audio.emptyAudio(),
+                loaded: (value) =>
+                    value.audioList[state.audioIndex.getOrElse(() => 0)],
+              );
 
-        if (audio.failureOption.isNone()) {
-          return Container(
-            height: size.height,
-            width: size.width,
-            padding: const EdgeInsets.all(AppPadding.p30),
-            child: Column(
-              children: <Widget>[
-                //image
-                PlayScreenImageWidget(audio: audio),
-                const SizedBox(
-                  height: AppSize.s50,
-                ),
-                PlayScreenTextWidgets(audio: audio),
-                const SizedBox(
-                  height: AppSize.s50,
-                ),
-                //controller and details
-                const SizedBox(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        PlayTopControllerWidget(),
-                        PlayProgressSlideWidget(),
-                        AudioControllerWidget()
-                      ],
+          if (audio.failureOption.isNone()) {
+            return Container(
+              height: size.height,
+              width: size.width,
+              padding: const EdgeInsets.all(AppPadding.p30),
+              child: Column(
+                children: <Widget>[
+                  //image
+                  PlayScreenImageWidget(audio: audio),
+                  const SizedBox(
+                    height: AppSize.s50,
+                  ),
+                  PlayScreenTextWidgets(audio: audio),
+                  const SizedBox(
+                    height: AppSize.s50,
+                  ),
+                  //controller and details
+                  const SizedBox(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          PlayTopControllerWidget(),
+                          PlayProgressSlideWidget(),
+                          AudioControllerWidget()
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          return circularPindicator;
+                ],
+              ),
+            );
+          } else {
+            return circularPindicator;
+          }
         }
+        return const SizedBox();
       },
     );
   }
