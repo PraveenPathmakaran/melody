@@ -19,16 +19,19 @@ mixin _$AudioEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllAudiosFromDevice,
+    required TResult Function(String key) changePlayList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllAudiosFromDevice,
+    TResult? Function(String key)? changePlayList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllAudiosFromDevice,
+    TResult Function(String key)? changePlayList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -36,16 +39,19 @@ mixin _$AudioEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ConcatenatingAudios value)
         getAllAudiosFromDevice,
+    required TResult Function(_ChangePlayList value) changePlayList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ConcatenatingAudios value)? getAllAudiosFromDevice,
+    TResult? Function(_ChangePlayList value)? changePlayList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ConcatenatingAudios value)? getAllAudiosFromDevice,
+    TResult Function(_ChangePlayList value)? changePlayList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -109,6 +115,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getAllAudiosFromDevice,
+    required TResult Function(String key) changePlayList,
   }) {
     return getAllAudiosFromDevice();
   }
@@ -117,6 +124,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getAllAudiosFromDevice,
+    TResult? Function(String key)? changePlayList,
   }) {
     return getAllAudiosFromDevice?.call();
   }
@@ -125,6 +133,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getAllAudiosFromDevice,
+    TResult Function(String key)? changePlayList,
     required TResult orElse(),
   }) {
     if (getAllAudiosFromDevice != null) {
@@ -138,6 +147,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   TResult map<TResult extends Object?>({
     required TResult Function(_ConcatenatingAudios value)
         getAllAudiosFromDevice,
+    required TResult Function(_ChangePlayList value) changePlayList,
   }) {
     return getAllAudiosFromDevice(this);
   }
@@ -146,6 +156,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ConcatenatingAudios value)? getAllAudiosFromDevice,
+    TResult? Function(_ChangePlayList value)? changePlayList,
   }) {
     return getAllAudiosFromDevice?.call(this);
   }
@@ -154,6 +165,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ConcatenatingAudios value)? getAllAudiosFromDevice,
+    TResult Function(_ChangePlayList value)? changePlayList,
     required TResult orElse(),
   }) {
     if (getAllAudiosFromDevice != null) {
@@ -165,6 +177,142 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
 
 abstract class _ConcatenatingAudios implements AudioEvent {
   const factory _ConcatenatingAudios() = _$ConcatenatingAudiosImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangePlayListImplCopyWith<$Res> {
+  factory _$$ChangePlayListImplCopyWith(_$ChangePlayListImpl value,
+          $Res Function(_$ChangePlayListImpl) then) =
+      __$$ChangePlayListImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String key});
+}
+
+/// @nodoc
+class __$$ChangePlayListImplCopyWithImpl<$Res>
+    extends _$AudioEventCopyWithImpl<$Res, _$ChangePlayListImpl>
+    implements _$$ChangePlayListImplCopyWith<$Res> {
+  __$$ChangePlayListImplCopyWithImpl(
+      _$ChangePlayListImpl _value, $Res Function(_$ChangePlayListImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$ChangePlayListImpl(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangePlayListImpl implements _ChangePlayList {
+  const _$ChangePlayListImpl({required this.key});
+
+  @override
+  final String key;
+
+  @override
+  String toString() {
+    return 'AudioEvent.changePlayList(key: $key)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangePlayListImpl &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangePlayListImplCopyWith<_$ChangePlayListImpl> get copyWith =>
+      __$$ChangePlayListImplCopyWithImpl<_$ChangePlayListImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getAllAudiosFromDevice,
+    required TResult Function(String key) changePlayList,
+  }) {
+    return changePlayList(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAllAudiosFromDevice,
+    TResult? Function(String key)? changePlayList,
+  }) {
+    return changePlayList?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAllAudiosFromDevice,
+    TResult Function(String key)? changePlayList,
+    required TResult orElse(),
+  }) {
+    if (changePlayList != null) {
+      return changePlayList(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ConcatenatingAudios value)
+        getAllAudiosFromDevice,
+    required TResult Function(_ChangePlayList value) changePlayList,
+  }) {
+    return changePlayList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ConcatenatingAudios value)? getAllAudiosFromDevice,
+    TResult? Function(_ChangePlayList value)? changePlayList,
+  }) {
+    return changePlayList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ConcatenatingAudios value)? getAllAudiosFromDevice,
+    TResult Function(_ChangePlayList value)? changePlayList,
+    required TResult orElse(),
+  }) {
+    if (changePlayList != null) {
+      return changePlayList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangePlayList implements AudioEvent {
+  const factory _ChangePlayList({required final String key}) =
+      _$ChangePlayListImpl;
+
+  String get key;
+  @JsonKey(ignore: true)
+  _$$ChangePlayListImplCopyWith<_$ChangePlayListImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -22,6 +22,7 @@ mixin _$AudioFailure {
     required TResult Function() audioPlayerFailure,
     required TResult Function() audioNotFound,
     required TResult Function() audioLimitExceeded,
+    required TResult Function() dataBaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$AudioFailure {
     TResult? Function()? audioPlayerFailure,
     TResult? Function()? audioNotFound,
     TResult? Function()? audioLimitExceeded,
+    TResult? Function()? dataBaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$AudioFailure {
     TResult Function()? audioPlayerFailure,
     TResult Function()? audioNotFound,
     TResult Function()? audioLimitExceeded,
+    TResult Function()? dataBaseFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$AudioFailure {
     required TResult Function(_AudioPlayerFailure value) audioPlayerFailure,
     required TResult Function(_AudioNotFound value) audioNotFound,
     required TResult Function(_AudioLimitExceeded value) audioLimitExceeded,
+    required TResult Function(_DataBaseFailure value) dataBaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$AudioFailure {
     TResult? Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult? Function(_AudioNotFound value)? audioNotFound,
     TResult? Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult? Function(_DataBaseFailure value)? dataBaseFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$AudioFailure {
     TResult Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult Function(_AudioNotFound value)? audioNotFound,
     TResult Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult Function(_DataBaseFailure value)? dataBaseFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +134,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
     required TResult Function() audioPlayerFailure,
     required TResult Function() audioNotFound,
     required TResult Function() audioLimitExceeded,
+    required TResult Function() dataBaseFailure,
   }) {
     return platFormFailure();
   }
@@ -139,6 +146,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
     TResult? Function()? audioPlayerFailure,
     TResult? Function()? audioNotFound,
     TResult? Function()? audioLimitExceeded,
+    TResult? Function()? dataBaseFailure,
   }) {
     return platFormFailure?.call();
   }
@@ -150,6 +158,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
     TResult Function()? audioPlayerFailure,
     TResult Function()? audioNotFound,
     TResult Function()? audioLimitExceeded,
+    TResult Function()? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (platFormFailure != null) {
@@ -165,6 +174,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
     required TResult Function(_AudioPlayerFailure value) audioPlayerFailure,
     required TResult Function(_AudioNotFound value) audioNotFound,
     required TResult Function(_AudioLimitExceeded value) audioLimitExceeded,
+    required TResult Function(_DataBaseFailure value) dataBaseFailure,
   }) {
     return platFormFailure(this);
   }
@@ -176,6 +186,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
     TResult? Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult? Function(_AudioNotFound value)? audioNotFound,
     TResult? Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult? Function(_DataBaseFailure value)? dataBaseFailure,
   }) {
     return platFormFailure?.call(this);
   }
@@ -187,6 +198,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
     TResult Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult Function(_AudioNotFound value)? audioNotFound,
     TResult Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult Function(_DataBaseFailure value)? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (platFormFailure != null) {
@@ -242,6 +254,7 @@ class _$AudioPlayerFailureImpl implements _AudioPlayerFailure {
     required TResult Function() audioPlayerFailure,
     required TResult Function() audioNotFound,
     required TResult Function() audioLimitExceeded,
+    required TResult Function() dataBaseFailure,
   }) {
     return audioPlayerFailure();
   }
@@ -253,6 +266,7 @@ class _$AudioPlayerFailureImpl implements _AudioPlayerFailure {
     TResult? Function()? audioPlayerFailure,
     TResult? Function()? audioNotFound,
     TResult? Function()? audioLimitExceeded,
+    TResult? Function()? dataBaseFailure,
   }) {
     return audioPlayerFailure?.call();
   }
@@ -264,6 +278,7 @@ class _$AudioPlayerFailureImpl implements _AudioPlayerFailure {
     TResult Function()? audioPlayerFailure,
     TResult Function()? audioNotFound,
     TResult Function()? audioLimitExceeded,
+    TResult Function()? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (audioPlayerFailure != null) {
@@ -279,6 +294,7 @@ class _$AudioPlayerFailureImpl implements _AudioPlayerFailure {
     required TResult Function(_AudioPlayerFailure value) audioPlayerFailure,
     required TResult Function(_AudioNotFound value) audioNotFound,
     required TResult Function(_AudioLimitExceeded value) audioLimitExceeded,
+    required TResult Function(_DataBaseFailure value) dataBaseFailure,
   }) {
     return audioPlayerFailure(this);
   }
@@ -290,6 +306,7 @@ class _$AudioPlayerFailureImpl implements _AudioPlayerFailure {
     TResult? Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult? Function(_AudioNotFound value)? audioNotFound,
     TResult? Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult? Function(_DataBaseFailure value)? dataBaseFailure,
   }) {
     return audioPlayerFailure?.call(this);
   }
@@ -301,6 +318,7 @@ class _$AudioPlayerFailureImpl implements _AudioPlayerFailure {
     TResult Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult Function(_AudioNotFound value)? audioNotFound,
     TResult Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult Function(_DataBaseFailure value)? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (audioPlayerFailure != null) {
@@ -356,6 +374,7 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
     required TResult Function() audioPlayerFailure,
     required TResult Function() audioNotFound,
     required TResult Function() audioLimitExceeded,
+    required TResult Function() dataBaseFailure,
   }) {
     return audioNotFound();
   }
@@ -367,6 +386,7 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
     TResult? Function()? audioPlayerFailure,
     TResult? Function()? audioNotFound,
     TResult? Function()? audioLimitExceeded,
+    TResult? Function()? dataBaseFailure,
   }) {
     return audioNotFound?.call();
   }
@@ -378,6 +398,7 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
     TResult Function()? audioPlayerFailure,
     TResult Function()? audioNotFound,
     TResult Function()? audioLimitExceeded,
+    TResult Function()? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (audioNotFound != null) {
@@ -393,6 +414,7 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
     required TResult Function(_AudioPlayerFailure value) audioPlayerFailure,
     required TResult Function(_AudioNotFound value) audioNotFound,
     required TResult Function(_AudioLimitExceeded value) audioLimitExceeded,
+    required TResult Function(_DataBaseFailure value) dataBaseFailure,
   }) {
     return audioNotFound(this);
   }
@@ -404,6 +426,7 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
     TResult? Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult? Function(_AudioNotFound value)? audioNotFound,
     TResult? Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult? Function(_DataBaseFailure value)? dataBaseFailure,
   }) {
     return audioNotFound?.call(this);
   }
@@ -415,6 +438,7 @@ class _$AudioNotFoundImpl implements _AudioNotFound {
     TResult Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult Function(_AudioNotFound value)? audioNotFound,
     TResult Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult Function(_DataBaseFailure value)? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (audioNotFound != null) {
@@ -470,6 +494,7 @@ class _$AudioLimitExceededImpl implements _AudioLimitExceeded {
     required TResult Function() audioPlayerFailure,
     required TResult Function() audioNotFound,
     required TResult Function() audioLimitExceeded,
+    required TResult Function() dataBaseFailure,
   }) {
     return audioLimitExceeded();
   }
@@ -481,6 +506,7 @@ class _$AudioLimitExceededImpl implements _AudioLimitExceeded {
     TResult? Function()? audioPlayerFailure,
     TResult? Function()? audioNotFound,
     TResult? Function()? audioLimitExceeded,
+    TResult? Function()? dataBaseFailure,
   }) {
     return audioLimitExceeded?.call();
   }
@@ -492,6 +518,7 @@ class _$AudioLimitExceededImpl implements _AudioLimitExceeded {
     TResult Function()? audioPlayerFailure,
     TResult Function()? audioNotFound,
     TResult Function()? audioLimitExceeded,
+    TResult Function()? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (audioLimitExceeded != null) {
@@ -507,6 +534,7 @@ class _$AudioLimitExceededImpl implements _AudioLimitExceeded {
     required TResult Function(_AudioPlayerFailure value) audioPlayerFailure,
     required TResult Function(_AudioNotFound value) audioNotFound,
     required TResult Function(_AudioLimitExceeded value) audioLimitExceeded,
+    required TResult Function(_DataBaseFailure value) dataBaseFailure,
   }) {
     return audioLimitExceeded(this);
   }
@@ -518,6 +546,7 @@ class _$AudioLimitExceededImpl implements _AudioLimitExceeded {
     TResult? Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult? Function(_AudioNotFound value)? audioNotFound,
     TResult? Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult? Function(_DataBaseFailure value)? dataBaseFailure,
   }) {
     return audioLimitExceeded?.call(this);
   }
@@ -529,6 +558,7 @@ class _$AudioLimitExceededImpl implements _AudioLimitExceeded {
     TResult Function(_AudioPlayerFailure value)? audioPlayerFailure,
     TResult Function(_AudioNotFound value)? audioNotFound,
     TResult Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult Function(_DataBaseFailure value)? dataBaseFailure,
     required TResult orElse(),
   }) {
     if (audioLimitExceeded != null) {
@@ -540,4 +570,124 @@ class _$AudioLimitExceededImpl implements _AudioLimitExceeded {
 
 abstract class _AudioLimitExceeded implements AudioFailure {
   const factory _AudioLimitExceeded() = _$AudioLimitExceededImpl;
+}
+
+/// @nodoc
+abstract class _$$DataBaseFailureImplCopyWith<$Res> {
+  factory _$$DataBaseFailureImplCopyWith(_$DataBaseFailureImpl value,
+          $Res Function(_$DataBaseFailureImpl) then) =
+      __$$DataBaseFailureImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DataBaseFailureImplCopyWithImpl<$Res>
+    extends _$AudioFailureCopyWithImpl<$Res, _$DataBaseFailureImpl>
+    implements _$$DataBaseFailureImplCopyWith<$Res> {
+  __$$DataBaseFailureImplCopyWithImpl(
+      _$DataBaseFailureImpl _value, $Res Function(_$DataBaseFailureImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DataBaseFailureImpl implements _DataBaseFailure {
+  const _$DataBaseFailureImpl();
+
+  @override
+  String toString() {
+    return 'AudioFailure.dataBaseFailure()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DataBaseFailureImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() platFormFailure,
+    required TResult Function() audioPlayerFailure,
+    required TResult Function() audioNotFound,
+    required TResult Function() audioLimitExceeded,
+    required TResult Function() dataBaseFailure,
+  }) {
+    return dataBaseFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? platFormFailure,
+    TResult? Function()? audioPlayerFailure,
+    TResult? Function()? audioNotFound,
+    TResult? Function()? audioLimitExceeded,
+    TResult? Function()? dataBaseFailure,
+  }) {
+    return dataBaseFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? platFormFailure,
+    TResult Function()? audioPlayerFailure,
+    TResult Function()? audioNotFound,
+    TResult Function()? audioLimitExceeded,
+    TResult Function()? dataBaseFailure,
+    required TResult orElse(),
+  }) {
+    if (dataBaseFailure != null) {
+      return dataBaseFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PlatFormFailure value) platFormFailure,
+    required TResult Function(_AudioPlayerFailure value) audioPlayerFailure,
+    required TResult Function(_AudioNotFound value) audioNotFound,
+    required TResult Function(_AudioLimitExceeded value) audioLimitExceeded,
+    required TResult Function(_DataBaseFailure value) dataBaseFailure,
+  }) {
+    return dataBaseFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PlatFormFailure value)? platFormFailure,
+    TResult? Function(_AudioPlayerFailure value)? audioPlayerFailure,
+    TResult? Function(_AudioNotFound value)? audioNotFound,
+    TResult? Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult? Function(_DataBaseFailure value)? dataBaseFailure,
+  }) {
+    return dataBaseFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PlatFormFailure value)? platFormFailure,
+    TResult Function(_AudioPlayerFailure value)? audioPlayerFailure,
+    TResult Function(_AudioNotFound value)? audioNotFound,
+    TResult Function(_AudioLimitExceeded value)? audioLimitExceeded,
+    TResult Function(_DataBaseFailure value)? dataBaseFailure,
+    required TResult orElse(),
+  }) {
+    if (dataBaseFailure != null) {
+      return dataBaseFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataBaseFailure implements AudioFailure {
+  const factory _DataBaseFailure() = _$DataBaseFailureImpl;
 }

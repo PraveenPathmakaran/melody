@@ -70,3 +70,14 @@ class ImageByte extends ValueObjects<Uint8List> {
 
   ImageByte._(this.value);
 }
+
+class PlayListName extends ValueObjects<String> {
+  @override
+  Either<ValueFailure<String>, String> value;
+
+  factory PlayListName(String input) {
+    return PlayListName._(validateStringNotEmpty(input));
+  }
+
+  PlayListName._(this.value);
+}

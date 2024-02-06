@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
+import '../play_list_screen/play_list_screen.dart';
 import 'home_widgets.dart';
 import 'widgets/miniplayer.dart';
 
@@ -52,11 +53,7 @@ class ScreenHomeMain extends StatelessWidget {
           body: const TabBarView(
             children: <Widget>[
               ScreenHome(),
-              Scaffold(
-                body: Center(
-                  child: Text('1'),
-                ),
-              ),
+              ScreenPlayList(),
               Scaffold(
                 body: Center(
                   child: Text('2'),

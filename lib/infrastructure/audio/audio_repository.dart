@@ -4,6 +4,7 @@ import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
+import 'package:melody/infrastructure/audio/database_repository/i_database_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../domain/songs/audio_failure.dart';
@@ -12,10 +13,15 @@ import 'platform_repository/i_platform_repository.dart';
 class AudioRepository implements IAudioRepository {
   final IAudioPlayerRepository _audioPlayerRepository;
   final IPlatformRepository _platformRepository;
+  final IDataBaseRepository _dataBaseRepository;
   // Define the playlist
   late ConcatenatingAudioSource playlist;
 
-  AudioRepository(this._audioPlayerRepository, this._platformRepository);
+  AudioRepository(
+    this._audioPlayerRepository,
+    this._platformRepository,
+    this._dataBaseRepository,
+  );
 
   @override
   Future<Either<AudioFailure, List<Audio>>> getAllAudioFromDevice() async {
@@ -193,5 +199,64 @@ class AudioRepository implements IAudioRepository {
         .map<Either<AudioFailure, AudioLoopMode>>((loopMode) => right(loopMode))
         .onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
+  }
+
+  @override
+  Future<Either<AudioFailure, List<AudioPath>>> getPlayList(
+      {required PlayListName playListName}) async {
+    try {
+      final name = playListName.getOrCrash();
+      final playListData =
+          await _dataBaseRepository.getPlayList(playListName: name);
+      final audioPathList = playListData.map((e) => AudioPath(e)).toList();
+
+      return right(audioPathList);
+    } catch (e) {
+      return left(const AudioFailure.dataBaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> setPlayList({
+    required PlayListName playListName,
+    required List<AudioPath> audioPath,
+  }) async {
+    try {
+      final name = playListName.getOrCrash();
+      final List<String> audioPathName =
+          audioPath.map((e) => e.getOrCrash()).toList();
+      await _dataBaseRepository.setPlayList(
+          audioPath: audioPathName, playListName: name);
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.dataBaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> deletePlayList(
+      {required PlayListName playListName}) async {
+    try {
+      await _dataBaseRepository.deletePlayList(
+          playListName: playListName.getOrCrash());
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.dataBaseFailure());
+    }
+  }
+
+  @override
+  Future<bool> iscontainAudio({
+    required PlayListName playListName,
+    required AudioPath audioPath,
+  }) async {
+    try {
+      final isContain = await _dataBaseRepository.isContainAudio(
+          playList: playListName.getOrCrash(),
+          audioPath: audioPath.getOrCrash());
+      return isContain;
+    } catch (e) {
+      return false;
+    }
   }
 }
