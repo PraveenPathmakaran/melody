@@ -3,6 +3,7 @@ import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import 'home_widgets.dart';
+import 'widgets/miniplayer.dart';
 
 class ScreenHomeMain extends StatelessWidget {
   const ScreenHomeMain({super.key});
@@ -63,6 +64,7 @@ class ScreenHomeMain extends StatelessWidget {
               ),
             ],
           ),
+          bottomNavigationBar: const MiniPlayer(),
         ),
       ),
     );

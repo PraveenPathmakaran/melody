@@ -40,6 +40,7 @@ class ScreenHome extends StatelessWidget {
             }, loading: (value) {
               return circularPindicator;
             }, loaded: (state) {
+              final audioListData = context.read<AudioBloc>().audiosList;
               return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
@@ -64,7 +65,7 @@ class ScreenHome extends StatelessWidget {
                                       .read<AudioBloc>()
                                       .fetchAudioData(
                                           audioPath:
-                                              state.audioList[index].audioPath),
+                                              audioListData[index].audioPath),
                                   builder: (context, snapshot) {
                                     return CustomImageWidget(
                                       image: snapshot.data,
@@ -74,11 +75,11 @@ class ScreenHome extends StatelessWidget {
                                   })),
                         ),
                         title: Text(
-                          state.audioList[index].title.getOrCrash(),
+                          audioListData[index].title.getOrCrash(),
                           maxLines: ConstantValues.one,
                         ),
                         subtitle: Text(
-                          state.audioList[index].artist.getOrCrash(),
+                          audioListData[index].artist.getOrCrash(),
                           maxLines: ConstantValues.one,
                         ),
                         trailing: IconButton(
@@ -87,7 +88,7 @@ class ScreenHome extends StatelessWidget {
                         )),
                   );
                 },
-                itemCount: state.audioList.length,
+                itemCount: audioListData.length,
                 shrinkWrap: true,
               );
             }, error: (value) {

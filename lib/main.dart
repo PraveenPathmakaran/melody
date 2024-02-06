@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
@@ -6,13 +8,19 @@ import 'package:melody/injection_container.dart';
 import 'package:melody/presentation/splash_screen/screen_splash.dart';
 
 import 'application/audio/audio_bloc.dart';
+import 'application/core/bloc_observer.dart';
 import 'presentation/core/resourse_manager/theme_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //Bloc.observer = const AppBlocObserver();
+  Bloc.observer = const AppBlocObserver();
   await initGetIt();
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const MyApp(), // Wrap your app
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,6 +39,9 @@ class MyApp extends StatelessWidget {
             create: (_) => getIt<AudioControllerBloc>()),
       ],
       child: MaterialApp(
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        darkTheme: ThemeData.dark(),
         theme: getApplicationTheme(),
         home: const ScreenSplash(),
         debugShowCheckedModeBanner: false,

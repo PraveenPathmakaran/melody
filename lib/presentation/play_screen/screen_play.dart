@@ -11,11 +11,11 @@ import 'widgets/play_container.dart';
 class ScreenPlay extends StatelessWidget {
   const ScreenPlay({
     super.key,
-    required this.index,
+    this.index,
     required this.isNavigateFromHome,
   });
 
-  final int index;
+  final int? index;
   final bool isNavigateFromHome;
 
   @override
@@ -23,30 +23,25 @@ class ScreenPlay extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       //open this page from mini player dont need to play new song
       if (isNavigateFromHome) {
-        context.read<AudioControllerBloc>().addToPlay(index);
+        context.read<AudioControllerBloc>().addToPlay(index!);
       }
       context
           .read<AudioControllerBloc>()
           .add(const AudioControllerEvent.listenAllStreams());
     });
-    return PopScope(
-      onPopInvoked: (didPop) => context
-          .read<AudioControllerBloc>()
-          .add(const AudioControllerEvent.closeStream()),
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: AppSize.s0,
-          title: Text(
-            StringManger.nowPlaying,
-            style: getSemiBoldStyle(
-              fontSize: AppSize.s18,
-              color: ColorManager.white,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: AppSize.s0,
+        title: Text(
+          StringManger.nowPlaying,
+          style: getSemiBoldStyle(
+            fontSize: AppSize.s18,
+            color: ColorManager.white,
           ),
-          centerTitle: true,
         ),
-        body: const PlayContainer(),
+        centerTitle: true,
       ),
+      body: const PlayContainer(),
     );
   }
 }

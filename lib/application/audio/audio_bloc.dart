@@ -14,6 +14,8 @@ part 'audio_state.dart';
 class AudioBloc extends Bloc<AudioEvent, AudioState> {
   final IAudioRepository _audioRepository;
 
+  List<Audio> audiosList = [];
+
   AudioBloc(this._audioRepository) : super(const AudioState.initial()) {
     on<AudioEvent>(
       (event, emit) async {
@@ -25,12 +27,13 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
 
             await failureOrSuccess.fold(
               (f) async => emit(const AudioState.error()),
-              (path) async {
-                final failureSuccess =
-                    await _audioRepository.concatenatingAudios(audioData: path);
+              (audios) async {
+                final failureSuccess = await _audioRepository
+                    .concatenatingAudios(audioData: audios);
+                audiosList = audios;
 
                 failureSuccess.fold((failure) => emit(const AudioState.error()),
-                    (unit) => emit(AudioState.loaded(audioList: path)));
+                    (unit) => emit(AudioState.loaded(audioList: audios)));
               },
             );
           },

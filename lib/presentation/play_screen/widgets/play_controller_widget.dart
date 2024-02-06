@@ -15,7 +15,7 @@ class AudioControllerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AudioControllerBloc, AudioControllerState>(
-      builder: (_, state) {
+      builder: (context, state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[

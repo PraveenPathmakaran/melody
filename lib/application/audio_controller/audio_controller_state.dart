@@ -9,6 +9,7 @@ class AudioControllerState with _$AudioControllerState {
     required int audioIndex,
     required ButtonState buttonState,
     required bool isShuffleMode,
+    required bool miniPlayerVisibility,
     required AudioLoopMode audioLoopMode,
   }) = _AudioControllerState;
 
@@ -19,5 +20,6 @@ class AudioControllerState with _$AudioControllerState {
       buttonState: ButtonState.paused,
       isShuffleMode: false,
       audioLoopMode: AudioLoopMode.off,
+      miniPlayerVisibility: false,
       total: AudioDuration(0));
 }

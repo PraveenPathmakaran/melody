@@ -19,38 +19,32 @@ mixin _$AudioControllerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenAllStreams,
-    required TResult Function() closeStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenAllStreams,
-    TResult? Function()? closeStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenAllStreams,
-    TResult Function()? closeStream,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenAllStreams value) listenAllStreams,
-    required TResult Function(_CloseStream value) closeStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenAllStreams value)? listenAllStreams,
-    TResult? Function(_CloseStream value)? closeStream,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenAllStreams value)? listenAllStreams,
-    TResult Function(_CloseStream value)? closeStream,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +108,6 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenAllStreams,
-    required TResult Function() closeStream,
   }) {
     return listenAllStreams();
   }
@@ -123,7 +116,6 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenAllStreams,
-    TResult? Function()? closeStream,
   }) {
     return listenAllStreams?.call();
   }
@@ -132,7 +124,6 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenAllStreams,
-    TResult Function()? closeStream,
     required TResult orElse(),
   }) {
     if (listenAllStreams != null) {
@@ -145,7 +136,6 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenAllStreams value) listenAllStreams,
-    required TResult Function(_CloseStream value) closeStream,
   }) {
     return listenAllStreams(this);
   }
@@ -154,7 +144,6 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenAllStreams value)? listenAllStreams,
-    TResult? Function(_CloseStream value)? closeStream,
   }) {
     return listenAllStreams?.call(this);
   }
@@ -163,7 +152,6 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenAllStreams value)? listenAllStreams,
-    TResult Function(_CloseStream value)? closeStream,
     required TResult orElse(),
   }) {
     if (listenAllStreams != null) {
@@ -178,108 +166,6 @@ abstract class _ListenAllStreams implements AudioControllerEvent {
 }
 
 /// @nodoc
-abstract class _$$CloseStreamImplCopyWith<$Res> {
-  factory _$$CloseStreamImplCopyWith(
-          _$CloseStreamImpl value, $Res Function(_$CloseStreamImpl) then) =
-      __$$CloseStreamImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CloseStreamImplCopyWithImpl<$Res>
-    extends _$AudioControllerEventCopyWithImpl<$Res, _$CloseStreamImpl>
-    implements _$$CloseStreamImplCopyWith<$Res> {
-  __$$CloseStreamImplCopyWithImpl(
-      _$CloseStreamImpl _value, $Res Function(_$CloseStreamImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$CloseStreamImpl implements _CloseStream {
-  const _$CloseStreamImpl();
-
-  @override
-  String toString() {
-    return 'AudioControllerEvent.closeStream()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CloseStreamImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() listenAllStreams,
-    required TResult Function() closeStream,
-  }) {
-    return closeStream();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? listenAllStreams,
-    TResult? Function()? closeStream,
-  }) {
-    return closeStream?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? listenAllStreams,
-    TResult Function()? closeStream,
-    required TResult orElse(),
-  }) {
-    if (closeStream != null) {
-      return closeStream();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ListenAllStreams value) listenAllStreams,
-    required TResult Function(_CloseStream value) closeStream,
-  }) {
-    return closeStream(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ListenAllStreams value)? listenAllStreams,
-    TResult? Function(_CloseStream value)? closeStream,
-  }) {
-    return closeStream?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ListenAllStreams value)? listenAllStreams,
-    TResult Function(_CloseStream value)? closeStream,
-    required TResult orElse(),
-  }) {
-    if (closeStream != null) {
-      return closeStream(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CloseStream implements AudioControllerEvent {
-  const factory _CloseStream() = _$CloseStreamImpl;
-}
-
-/// @nodoc
 mixin _$AudioControllerState {
   AudioDuration get current => throw _privateConstructorUsedError;
   AudioDuration get buffered => throw _privateConstructorUsedError;
@@ -287,6 +173,7 @@ mixin _$AudioControllerState {
   int get audioIndex => throw _privateConstructorUsedError;
   ButtonState get buttonState => throw _privateConstructorUsedError;
   bool get isShuffleMode => throw _privateConstructorUsedError;
+  bool get miniPlayerVisibility => throw _privateConstructorUsedError;
   AudioLoopMode get audioLoopMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -307,6 +194,7 @@ abstract class $AudioControllerStateCopyWith<$Res> {
       int audioIndex,
       ButtonState buttonState,
       bool isShuffleMode,
+      bool miniPlayerVisibility,
       AudioLoopMode audioLoopMode});
 }
 
@@ -330,6 +218,7 @@ class _$AudioControllerStateCopyWithImpl<$Res,
     Object? audioIndex = null,
     Object? buttonState = null,
     Object? isShuffleMode = null,
+    Object? miniPlayerVisibility = null,
     Object? audioLoopMode = null,
   }) {
     return _then(_value.copyWith(
@@ -357,6 +246,10 @@ class _$AudioControllerStateCopyWithImpl<$Res,
           ? _value.isShuffleMode
           : isShuffleMode // ignore: cast_nullable_to_non_nullable
               as bool,
+      miniPlayerVisibility: null == miniPlayerVisibility
+          ? _value.miniPlayerVisibility
+          : miniPlayerVisibility // ignore: cast_nullable_to_non_nullable
+              as bool,
       audioLoopMode: null == audioLoopMode
           ? _value.audioLoopMode
           : audioLoopMode // ignore: cast_nullable_to_non_nullable
@@ -380,6 +273,7 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
       int audioIndex,
       ButtonState buttonState,
       bool isShuffleMode,
+      bool miniPlayerVisibility,
       AudioLoopMode audioLoopMode});
 }
 
@@ -400,6 +294,7 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
     Object? audioIndex = null,
     Object? buttonState = null,
     Object? isShuffleMode = null,
+    Object? miniPlayerVisibility = null,
     Object? audioLoopMode = null,
   }) {
     return _then(_$AudioControllerStateImpl(
@@ -427,6 +322,10 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
           ? _value.isShuffleMode
           : isShuffleMode // ignore: cast_nullable_to_non_nullable
               as bool,
+      miniPlayerVisibility: null == miniPlayerVisibility
+          ? _value.miniPlayerVisibility
+          : miniPlayerVisibility // ignore: cast_nullable_to_non_nullable
+              as bool,
       audioLoopMode: null == audioLoopMode
           ? _value.audioLoopMode
           : audioLoopMode // ignore: cast_nullable_to_non_nullable
@@ -445,6 +344,7 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
       required this.audioIndex,
       required this.buttonState,
       required this.isShuffleMode,
+      required this.miniPlayerVisibility,
       required this.audioLoopMode});
 
   @override
@@ -460,11 +360,13 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   @override
   final bool isShuffleMode;
   @override
+  final bool miniPlayerVisibility;
+  @override
   final AudioLoopMode audioLoopMode;
 
   @override
   String toString() {
-    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audioIndex: $audioIndex, buttonState: $buttonState, isShuffleMode: $isShuffleMode, audioLoopMode: $audioLoopMode)';
+    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audioIndex: $audioIndex, buttonState: $buttonState, isShuffleMode: $isShuffleMode, miniPlayerVisibility: $miniPlayerVisibility, audioLoopMode: $audioLoopMode)';
   }
 
   @override
@@ -482,13 +384,23 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
                 other.buttonState == buttonState) &&
             (identical(other.isShuffleMode, isShuffleMode) ||
                 other.isShuffleMode == isShuffleMode) &&
+            (identical(other.miniPlayerVisibility, miniPlayerVisibility) ||
+                other.miniPlayerVisibility == miniPlayerVisibility) &&
             (identical(other.audioLoopMode, audioLoopMode) ||
                 other.audioLoopMode == audioLoopMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, current, buffered, total,
-      audioIndex, buttonState, isShuffleMode, audioLoopMode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      current,
+      buffered,
+      total,
+      audioIndex,
+      buttonState,
+      isShuffleMode,
+      miniPlayerVisibility,
+      audioLoopMode);
 
   @JsonKey(ignore: true)
   @override
@@ -507,6 +419,7 @@ abstract class _AudioControllerState implements AudioControllerState {
       required final int audioIndex,
       required final ButtonState buttonState,
       required final bool isShuffleMode,
+      required final bool miniPlayerVisibility,
       required final AudioLoopMode audioLoopMode}) = _$AudioControllerStateImpl;
 
   @override
@@ -521,6 +434,8 @@ abstract class _AudioControllerState implements AudioControllerState {
   ButtonState get buttonState;
   @override
   bool get isShuffleMode;
+  @override
+  bool get miniPlayerVisibility;
   @override
   AudioLoopMode get audioLoopMode;
   @override
