@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:melody/domain/songs/audio_value_objects.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../domain/songs/audio.dart';
 import '../../domain/songs/i_audio_repository.dart';
@@ -15,10 +17,19 @@ class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
       await event.map(
         concatenatingAudios: (value) async {
           emit(const FavouriteState.loading());
-          final failureSuccess = await _audioRepository.concatenatingAudios(
-              audioData: value.audios);
-          failureSuccess.fold((failure) => emit(const FavouriteState.error()),
-              (unit) => emit(FavouriteState.loaded(audioList: value.audios)));
+          final failureOrSuceesSongs = await _audioRepository.getPlayList(
+              playListName: PlayListName(StringManger.favourites));
+          await failureOrSuceesSongs
+              .fold((failure) async => emit(const FavouriteState.error()),
+                  (audioPath) async {
+            List<Audio> newList = value.audios
+                .where((element) => audioPath.contains(element.audioPath))
+                .toList();
+            final failureSuccess =
+                await _audioRepository.concatenatingAudios(audioData: newList);
+            failureSuccess.fold((failure) => emit(const FavouriteState.error()),
+                (unit) => emit(FavouriteState.loaded(audioList: newList)));
+          });
         },
       );
     });
