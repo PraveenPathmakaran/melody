@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
-import '../play_list_screen/play_list_screen.dart';
+import '../favourite/favourite_screen.dart';
 import 'home_widgets.dart';
-import 'widgets/miniplayer.dart';
 
 class ScreenHomeMain extends StatelessWidget {
   const ScreenHomeMain({super.key});
@@ -61,7 +60,7 @@ class ScreenHomeMain extends StatelessWidget {
               ),
             ],
           ),
-          bottomNavigationBar: const MiniPlayer(),
+          // bottomNavigationBar: const MiniPlayer(),
         ),
       ),
     );

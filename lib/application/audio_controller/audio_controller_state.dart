@@ -6,7 +6,7 @@ class AudioControllerState with _$AudioControllerState {
     required Option<AudioDuration> current,
     required Option<AudioDuration> buffered,
     required Option<AudioDuration> total,
-    required Option<int> audioIndex,
+    required Option<AudioPath> audioPath,
     required Option<ButtonState> buttonState,
     required Option<bool> isShuffleMode,
     required Option<bool> miniPlayerVisibility,
@@ -16,7 +16,7 @@ class AudioControllerState with _$AudioControllerState {
   factory AudioControllerState.initial() => AudioControllerState(
       buffered: none(),
       current: none(),
-      audioIndex: none(),
+      audioPath: none(),
       buttonState: none(),
       isShuffleMode: none(),
       audioLoopMode: none(),

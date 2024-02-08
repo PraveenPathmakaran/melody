@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:melody/domain/songs/audio_failure.dart';
@@ -29,8 +28,8 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   Future<Unit> concatenatingAudios({required List<Audio> audioSongs}) async {
     try {
       final List<UriAudioSource> newplaylist = audioSongs
-          .mapIndexed((index, e) =>
-              AudioSource.file(e.audioPath.getOrCrash(), tag: index))
+          .map((e) => AudioSource.file(e.audioPath.getOrCrash(),
+              tag: e.audioPath.getOrCrash()))
           .toList();
 
       playlist.clear();
@@ -159,11 +158,11 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
-  Stream<int> sequenceStateStream() async* {
-    yield* _audioPlayer.sequenceStateStream.map<int>((event) {
+  Stream<String> sequenceStateStream() async* {
+    yield* _audioPlayer.sequenceStateStream.map<String>((event) {
       if (event != null) {
         final currentItem = event.currentSource;
-        return currentItem?.tag ?? 0;
+        return currentItem?.tag ?? "";
       }
       throw const AudioFailure.audioPlayerFailure();
     }).onErrorReturnWith((error, stackTrace) {

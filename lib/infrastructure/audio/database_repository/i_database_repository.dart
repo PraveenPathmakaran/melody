@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 abstract interface class IDataBaseRepository {
-  Future<Unit> setPlayList({
-    required List<String> audioPath,
+  Future<Unit> addAudioToPlayList({
+    required String audioPath,
     required String playListName,
   });
   Future<List<String>> getPlayList({

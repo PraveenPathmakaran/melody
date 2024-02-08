@@ -25,17 +25,18 @@ abstract interface class IAudioRepository {
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream();
   Stream<Either<AudioFailure, AudioDuration>> durationStream();
   Stream<Either<AudioFailure, AudioDuration>> positionStream();
-  Stream<Either<AudioFailure, int>> sequenceStateStream();
+  Stream<Either<AudioFailure, AudioPath>> sequenceStateStream();
   Stream<Either<AudioFailure, ButtonState>> buttonStateStream();
   Stream<Either<AudioFailure, bool>> shuffleModeStream();
   Stream<Either<AudioFailure, AudioLoopMode>> audioLoopStream();
 
   //database
-  Future<Either<AudioFailure, Unit>> setPlayList(
-      {required PlayListName playListName, required List<AudioPath> audioPath});
+  Future<Either<AudioFailure, Unit>> addAudioToPlayList(
+      {required PlayListName playListName, required AudioPath audioPath});
   Future<Either<AudioFailure, List<AudioPath>>> getPlayList(
       {required PlayListName playListName});
   Future<Either<AudioFailure, Unit>> deletePlayList(
       {required PlayListName playListName});
-  Future<bool> iscontainAudio({required PlayListName playListName,required AudioPath audioPath});
+  Future<bool> iscontainAudio(
+      {required PlayListName playListName, required AudioPath audioPath});
 }

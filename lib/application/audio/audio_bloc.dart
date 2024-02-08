@@ -14,37 +14,39 @@ part 'audio_state.dart';
 class AudioBloc extends Bloc<AudioEvent, AudioState> {
   final IAudioRepository _audioRepository;
 
-  List<Audio> audiosList = [];
-  Map<String, Audio> audioMap = {};
-  Map<String, Audio> playlist = {};
   AudioBloc(this._audioRepository) : super(const AudioState.initial()) {
     on<AudioEvent>(
       (event, emit) async {
-        await event.map(
-          getAllAudiosFromDevice: (value) async {
-            emit(const AudioState.loading());
-            final failureOrSuccess =
-                await _audioRepository.getAllAudioFromDevice();
-
-            await failureOrSuccess.fold(
-              (f) async => emit(const AudioState.error()),
-              (audios) async {
-                audiosList = audios;
-                final failureSuccess = await _audioRepository
-                    .concatenatingAudios(audioData: audiosList);
-                for (var element in audiosList) {
-                  audioMap[element.audioPath.getOrCrash()] = element;
-                }
-                failureSuccess.fold((failure) => emit(const AudioState.error()),
-                    (unit) => emit(AudioState.loaded(audioList: audios)));
-              },
-            );
-          },
-          changePlayList: (value) {},
-        );
+        // await event.map(
+        //     concatenatingAudios: (value) async {},
+        //     changePlayList: (value) async {
+        //       emit(const AudioState.loading());
+        //       if (value.playListName.getOrCrash() == StringManger.home) {
+        //         // playlist.addAll(audioMap);
+        //         add(const AudioEvent.concatenatingAudios());
+        //         emit(const AudioState.loaded());
+        //       } else {
+        //         final failureOrSuccess = await _audioRepository.getPlayList(
+        //             playListName: value.playListName);
+        //         await failureOrSuccess
+        //             .fold((l) async => emit(const AudioState.error()),
+        //                 (audioPath) async {
+        //           for (var element in audioPath) {
+        //             // if (audioMap[element.getOrCrash()] == null) {
+        //             // } else {
+        //             //   playlist[element.getOrCrash()] =
+        //             //       audioMap[element.getOrCrash()]!;
+        //             // }
+        //           }
+        //           add(AudioEvent.concatenatingAudios(isNavigate: none()));
+        //           emit(const AudioState.loaded());
+        //         });
+        //       }
+        //     });
       },
     );
   }
+
   Future<Uint8List?> fetchAudioData({required AudioPath audioPath}) async {
     final imageByte =
         await _audioRepository.getAudioImageMetadata(audioPath: audioPath);
@@ -55,41 +57,21 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
     );
   }
 
-  void addRemoveToPlayList({required Audio audio}) {
-    final key = audio.audioPath.getOrCrash();
-    if (playlist.containsKey(key)) {
-      playlist.remove(key);
-    } else {
-      playlist[key] = audio;
-    }
-  }
-
-  Future<void> setPlayList({required PlayListName playListName}) async {
-    final audioPath = playlist.keys.map((e) => AudioPath(e)).toList();
-    final failureOrSucess = await _audioRepository.setPlayList(
-        playListName: playListName, audioPath: audioPath);
+  Future<void> addRmoveFromDb({
+    required PlayListName playListName,
+    required Audio audio,
+  }) async {
+    final failureOrSucess = await _audioRepository.addAudioToPlayList(
+      playListName: playListName,
+      audioPath: audio.audioPath,
+    );
     failureOrSucess.fold((l) => null, (r) => null);
   }
 
-  Future<void> getPlayList({required PlayListName playListName}) async {
-    final failureOrSucess =
-        await _audioRepository.getPlayList(playListName: playListName);
-
-    failureOrSucess.fold((l) => null, (audioPath) async {
-      playlist.clear();
-      for (var element in audioPath) {
-        if (audioMap[element.getOrCrash()] == null) {
-          await _audioRepository.deletePlayList(playListName: playListName);
-        } else {
-          playlist[element.getOrCrash()] = audioMap[element.getOrCrash()]!;
-        }
-      }
-    });
-  }
-
-  Future<bool> isContainAudio(
-      {required PlayListName playListName,
-      required AudioPath audioPath}) async {
+  Future<bool> isContainAudio({
+    required PlayListName playListName,
+    required AudioPath audioPath,
+  }) async {
     final isContain = await _audioRepository.iscontainAudio(
         playListName: playListName, audioPath: audioPath);
     return isContain;

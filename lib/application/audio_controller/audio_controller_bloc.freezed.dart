@@ -170,7 +170,7 @@ mixin _$AudioControllerState {
   Option<AudioDuration> get current => throw _privateConstructorUsedError;
   Option<AudioDuration> get buffered => throw _privateConstructorUsedError;
   Option<AudioDuration> get total => throw _privateConstructorUsedError;
-  Option<int> get audioIndex => throw _privateConstructorUsedError;
+  Option<AudioPath> get audioPath => throw _privateConstructorUsedError;
   Option<ButtonState> get buttonState => throw _privateConstructorUsedError;
   Option<bool> get isShuffleMode => throw _privateConstructorUsedError;
   Option<bool> get miniPlayerVisibility => throw _privateConstructorUsedError;
@@ -191,7 +191,7 @@ abstract class $AudioControllerStateCopyWith<$Res> {
       {Option<AudioDuration> current,
       Option<AudioDuration> buffered,
       Option<AudioDuration> total,
-      Option<int> audioIndex,
+      Option<AudioPath> audioPath,
       Option<ButtonState> buttonState,
       Option<bool> isShuffleMode,
       Option<bool> miniPlayerVisibility,
@@ -215,7 +215,7 @@ class _$AudioControllerStateCopyWithImpl<$Res,
     Object? current = null,
     Object? buffered = null,
     Object? total = null,
-    Object? audioIndex = null,
+    Object? audioPath = null,
     Object? buttonState = null,
     Object? isShuffleMode = null,
     Object? miniPlayerVisibility = null,
@@ -234,10 +234,10 @@ class _$AudioControllerStateCopyWithImpl<$Res,
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as Option<AudioDuration>,
-      audioIndex: null == audioIndex
-          ? _value.audioIndex
-          : audioIndex // ignore: cast_nullable_to_non_nullable
-              as Option<int>,
+      audioPath: null == audioPath
+          ? _value.audioPath
+          : audioPath // ignore: cast_nullable_to_non_nullable
+              as Option<AudioPath>,
       buttonState: null == buttonState
           ? _value.buttonState
           : buttonState // ignore: cast_nullable_to_non_nullable
@@ -270,7 +270,7 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
       {Option<AudioDuration> current,
       Option<AudioDuration> buffered,
       Option<AudioDuration> total,
-      Option<int> audioIndex,
+      Option<AudioPath> audioPath,
       Option<ButtonState> buttonState,
       Option<bool> isShuffleMode,
       Option<bool> miniPlayerVisibility,
@@ -291,7 +291,7 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
     Object? current = null,
     Object? buffered = null,
     Object? total = null,
-    Object? audioIndex = null,
+    Object? audioPath = null,
     Object? buttonState = null,
     Object? isShuffleMode = null,
     Object? miniPlayerVisibility = null,
@@ -310,10 +310,10 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as Option<AudioDuration>,
-      audioIndex: null == audioIndex
-          ? _value.audioIndex
-          : audioIndex // ignore: cast_nullable_to_non_nullable
-              as Option<int>,
+      audioPath: null == audioPath
+          ? _value.audioPath
+          : audioPath // ignore: cast_nullable_to_non_nullable
+              as Option<AudioPath>,
       buttonState: null == buttonState
           ? _value.buttonState
           : buttonState // ignore: cast_nullable_to_non_nullable
@@ -341,7 +341,7 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
       {required this.current,
       required this.buffered,
       required this.total,
-      required this.audioIndex,
+      required this.audioPath,
       required this.buttonState,
       required this.isShuffleMode,
       required this.miniPlayerVisibility,
@@ -354,7 +354,7 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   @override
   final Option<AudioDuration> total;
   @override
-  final Option<int> audioIndex;
+  final Option<AudioPath> audioPath;
   @override
   final Option<ButtonState> buttonState;
   @override
@@ -366,7 +366,7 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
 
   @override
   String toString() {
-    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audioIndex: $audioIndex, buttonState: $buttonState, isShuffleMode: $isShuffleMode, miniPlayerVisibility: $miniPlayerVisibility, audioLoopMode: $audioLoopMode)';
+    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audioPath: $audioPath, buttonState: $buttonState, isShuffleMode: $isShuffleMode, miniPlayerVisibility: $miniPlayerVisibility, audioLoopMode: $audioLoopMode)';
   }
 
   @override
@@ -378,8 +378,8 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
             (identical(other.buffered, buffered) ||
                 other.buffered == buffered) &&
             (identical(other.total, total) || other.total == total) &&
-            (identical(other.audioIndex, audioIndex) ||
-                other.audioIndex == audioIndex) &&
+            (identical(other.audioPath, audioPath) ||
+                other.audioPath == audioPath) &&
             (identical(other.buttonState, buttonState) ||
                 other.buttonState == buttonState) &&
             (identical(other.isShuffleMode, isShuffleMode) ||
@@ -396,7 +396,7 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
       current,
       buffered,
       total,
-      audioIndex,
+      audioPath,
       buttonState,
       isShuffleMode,
       miniPlayerVisibility,
@@ -416,7 +416,7 @@ abstract class _AudioControllerState implements AudioControllerState {
           {required final Option<AudioDuration> current,
           required final Option<AudioDuration> buffered,
           required final Option<AudioDuration> total,
-          required final Option<int> audioIndex,
+          required final Option<AudioPath> audioPath,
           required final Option<ButtonState> buttonState,
           required final Option<bool> isShuffleMode,
           required final Option<bool> miniPlayerVisibility,
@@ -430,7 +430,7 @@ abstract class _AudioControllerState implements AudioControllerState {
   @override
   Option<AudioDuration> get total;
   @override
-  Option<int> get audioIndex;
+  Option<AudioPath> get audioPath;
   @override
   Option<ButtonState> get buttonState;
   @override

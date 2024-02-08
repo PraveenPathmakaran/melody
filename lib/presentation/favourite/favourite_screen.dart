@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/domain/songs/audio.dart';
+import 'package:melody/application/favourite/favourite_bloc.dart';
+import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 
@@ -17,10 +18,13 @@ class ScreenPlayList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<AudioBloc>().add(AudioEvent.changePlayList(
+        playListName: PlayListName(StringManger.favourites)));
     return BlocListener<AudioBloc, AudioState>(
       listener: (context, state) {
         state.maybeMap(
           orElse: () {},
+          loaded: (value) {},
           error: (value) => snackBar(
             context: context,
             content: StringManger.somethingWentWrong,
@@ -34,19 +38,14 @@ class ScreenPlayList extends StatelessWidget {
           AppPadding.p10,
           0,
         ),
-        child: BlocBuilder<AudioBloc, AudioState>(
+        child: BlocBuilder<FavouriteBloc, FavouriteState>(
           builder: (context, state) {
-            return state.map(initial: (value) {
-              return circularPindicator;
-            }, loading: (value) {
+            return state.map(loading: (value) {
               return circularPindicator;
             }, loaded: (state) {
-              final audioListData = context.read<AudioBloc>().playlist;
-
               return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  String key = audioListData.keys.elementAt(index);
-                  Audio audioData = audioListData[key]!;
+                  final audio = state.audioList[index];
                   return Card(
                     clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
@@ -68,7 +67,7 @@ class ScreenPlayList extends StatelessWidget {
                                   future: context
                                       .read<AudioBloc>()
                                       .fetchAudioData(
-                                          audioPath: audioData.audioPath),
+                                          audioPath: audio.audioPath),
                                   builder: (context, snapshot) {
                                     return CustomImageWidget(
                                       image: snapshot.data,
@@ -78,11 +77,11 @@ class ScreenPlayList extends StatelessWidget {
                                   })),
                         ),
                         title: Text(
-                          audioData.title.getOrCrash(),
+                          audio.title.getOrCrash(),
                           maxLines: ConstantValues.one,
                         ),
                         subtitle: Text(
-                          audioData.artist.getOrCrash(),
+                          audio.artist.getOrCrash(),
                           maxLines: ConstantValues.one,
                         ),
                         trailing: IconButton(
@@ -91,7 +90,7 @@ class ScreenPlayList extends StatelessWidget {
                         )),
                   );
                 },
-                itemCount: audioListData.length,
+                itemCount: state.audioList.length,
                 shrinkWrap: true,
               );
             }, error: (value) {

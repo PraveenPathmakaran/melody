@@ -18,9 +18,29 @@ class PlayTopControllerWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        IconButton(
-            onPressed: () {},
-            icon: const PlayIconWidget(icon: IconManager.favourites)),
+        BlocBuilder<AudioControllerBloc, AudioControllerState>(
+          builder: (context, state) {
+            return IconButton(
+                onPressed: () async {
+                  // await audioBloc.addRmoveFromDb(
+                  //   playListName: PlayListName(StringManger.favourites),
+                  //   audio: audio,
+                  // );
+                  // await audioBloc.isContainAudio(
+                  //   playListName: PlayListName(StringManger.favourites),
+                  //   audioPath: audio.audioPath,
+                  // );
+                },
+                icon: PlayIconWidget(
+                  icon: IconManager.favourites,
+                  color:
+                      //  snapshot.data ?? false
+                      //     ? ColorManager.secondary
+                      //     :
+                      ColorManager.white,
+                ));
+          },
+        ),
         BlocBuilder<AudioControllerBloc, AudioControllerState>(
           buildWhen: (p, c) => p.audioLoopMode != c.audioLoopMode,
           builder: (context, state) {

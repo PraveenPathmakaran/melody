@@ -161,14 +161,14 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Stream<Either<AudioFailure, int>> sequenceStateStream() async* {
+  Stream<Either<AudioFailure, AudioPath>> sequenceStateStream() async* {
     yield* _audioPlayerRepository
         .sequenceStateStream()
-        .map<Either<AudioFailure, int>>((sequenceState) {
-      if (sequenceState == -1) {
+        .map<Either<AudioFailure, AudioPath>>((sequenceState) {
+      if (sequenceState.isEmpty) {
         return left(const AudioFailure.audioPlayerFailure());
       }
-      return right(sequenceState);
+      return right(AudioPath(sequenceState));
     }).onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
   }
@@ -217,23 +217,6 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Future<Either<AudioFailure, Unit>> setPlayList({
-    required PlayListName playListName,
-    required List<AudioPath> audioPath,
-  }) async {
-    try {
-      final name = playListName.getOrCrash();
-      final List<String> audioPathName =
-          audioPath.map((e) => e.getOrCrash()).toList();
-      await _dataBaseRepository.setPlayList(
-          audioPath: audioPathName, playListName: name);
-      return right(unit);
-    } catch (e) {
-      return left(const AudioFailure.dataBaseFailure());
-    }
-  }
-
-  @override
   Future<Either<AudioFailure, Unit>> deletePlayList(
       {required PlayListName playListName}) async {
     try {
@@ -257,6 +240,21 @@ class AudioRepository implements IAudioRepository {
       return isContain;
     } catch (e) {
       return false;
+    }
+  }
+
+  @override
+  Future<Either<AudioFailure, Unit>> addAudioToPlayList(
+      {required PlayListName playListName,
+      required AudioPath audioPath}) async {
+    try {
+      final name = playListName.getOrCrash();
+      final path = audioPath.getOrCrash();
+      await _dataBaseRepository.addAudioToPlayList(
+          audioPath: path, playListName: name);
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.dataBaseFailure());
     }
   }
 }

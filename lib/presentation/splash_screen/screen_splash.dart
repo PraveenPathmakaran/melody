@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/application/audio/audio_bloc.dart';
+import 'package:melody/application/favourite/favourite_bloc.dart';
+import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
 import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
+import '../../application/splash/splash_bloc.dart';
 import '../home_screen/screen_home.dart';
 import '../widgets.dart';
 import 'widgets/permission_denied_widget.dart';
@@ -60,12 +62,12 @@ class _ScreenSplashState extends State<ScreenSplash>
                 //permission state is granted then it navigate to ScreenHomeMain
                 granted: (value) async {
                   context
-                      .read<AudioBloc>()
-                      .add(const AudioEvent.getAllAudiosFromDevice());
+                      .read<SplashBloc>()
+                      .add(const SplashEvent.getAllAudiosFromDevice());
                 });
           },
         ),
-        BlocListener<AudioBloc, AudioState>(
+        BlocListener<SplashBloc, SplashState>(
           listenWhen: (p, c) => p != c,
           listener: (context, state) {
             state.maybeMap(
@@ -73,6 +75,23 @@ class _ScreenSplashState extends State<ScreenSplash>
               error: (value) => snackBar(
                   context: context, content: StringManger.somethingWentWrong),
               loaded: (value) {
+                context.read<HomeBloc>().add(
+                    HomeEvent.concatenatingAudios(audios: value.audioList));
+              },
+            );
+          },
+        ),
+        BlocListener<HomeBloc, HomeState>(
+          listenWhen: (p, c) => p != c,
+          listener: (context, state) {
+            state.maybeMap(
+              orElse: () {},
+              error: (value) => snackBar(
+                  context: context, content: StringManger.somethingWentWrong),
+              loaded: (value) {
+                context.read<FavouriteBloc>().add(
+                    FavouriteEvent.concatenatingAudios(
+                        audios: value.audioList));
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const ScreenHomeMain(),
                 ));

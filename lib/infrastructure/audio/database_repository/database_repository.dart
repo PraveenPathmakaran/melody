@@ -8,12 +8,20 @@ import 'package:melody/infrastructure/audio/database_repository/i_database_repos
 class DataBaseRepository implements IDataBaseRepository {
   static const String boxName = "playlist";
   @override
-  Future<Unit> setPlayList(
-      {required List<String> audioPath, required String playListName}) async {
+  Future<Unit> addAudioToPlayList({
+    required String audioPath,
+    required String playListName,
+  }) async {
     try {
       Box box = await Hive.openBox(boxName);
-      final List<String> pathData = audioPath.map((e) => e).toList();
-      box.put(playListName, pathData).then((value) => box.close());
+      List<String>? pathList = box.get(playListName);
+      pathList ??= [];
+      if (pathList.contains(audioPath)) {
+        pathList.remove(audioPath);
+      } else {
+        pathList.add(audioPath);
+      }
+      await box.put(playListName, pathList).then((value) => box.close());
       return unit;
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-setPlayList");
@@ -25,11 +33,14 @@ class DataBaseRepository implements IDataBaseRepository {
   Future<List<String>> getPlayList({required String playListName}) async {
     try {
       Box box = await Hive.openBox(boxName);
-      final List<String> data = box.get(playListName);
-      box.close();
+      final List<String>? data = box.get(playListName);
+      await box.close();
+      if (data == null) {
+        return [];
+      }
       return data.map((e) => e).toList();
     } catch (e) {
-      log(e.toString(), name: "DataBaseRepository-getAudioMetaData");
+      log(e.toString(), name: "DataBaseRepository-getPlayList");
       return throw const AudioFailure.dataBaseFailure();
     }
   }
@@ -38,10 +49,11 @@ class DataBaseRepository implements IDataBaseRepository {
   Future<Unit> deletePlayList({required String playListName}) async {
     try {
       Box box = await Hive.openBox(boxName);
-      box.delete(playListName);
+      await box.delete(playListName);
+      await box.close();
       return unit;
     } catch (e) {
-      log(e.toString(), name: "DataBaseRepository-getAudioMetaData");
+      log(e.toString(), name: "DataBaseRepository-deletePlayList");
       return throw const AudioFailure.dataBaseFailure();
     }
   }
@@ -51,7 +63,11 @@ class DataBaseRepository implements IDataBaseRepository {
       {required String playList, required String audioPath}) async {
     try {
       Box box = await Hive.openBox(boxName);
-      final List<String> audiosPath = box.get(playList);
+      final List<String>? audiosPath = box.get(playList);
+      await box.close();
+      if (audiosPath == null) {
+        return false;
+      }
       if (audiosPath.contains(audioPath)) {
         return true;
       } else {
@@ -59,6 +75,19 @@ class DataBaseRepository implements IDataBaseRepository {
       }
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-isContainAudio");
+      return throw const AudioFailure.dataBaseFailure();
+    }
+  }
+
+  @override
+  Future<Unit> clearPlayList() async {
+    try {
+      Box box = await Hive.openBox(boxName);
+      await box.clear();
+      await box.close();
+      return unit;
+    } catch (e) {
+      log(e.toString(), name: "DataBaseRepository-setPlayList");
       return throw const AudioFailure.dataBaseFailure();
     }
   }

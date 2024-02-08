@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
+import 'package:melody/application/favourite/favourite_bloc.dart';
+import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
+import 'package:melody/application/splash/splash_bloc.dart';
 import 'package:melody/injection_container.dart';
 import 'package:melody/presentation/splash_screen/screen_splash.dart';
 
@@ -30,6 +33,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //DataBaseRepository().clearPlayList();
     return MultiBlocProvider(
       providers: [
         BlocProvider<PermissionHandlerBloc>(
@@ -39,6 +43,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<AudioBloc>(create: (_) => getIt<AudioBloc>()),
         BlocProvider<AudioControllerBloc>(
             create: (_) => getIt<AudioControllerBloc>()),
+        BlocProvider<SplashBloc>(create: (_) => getIt<SplashBloc>()),
+        BlocProvider<HomeBloc>(create: (_) => getIt<HomeBloc>()),
+        BlocProvider<FavouriteBloc>(create: (_) => getIt<FavouriteBloc>()),
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),
