@@ -25,7 +25,7 @@ abstract interface class IAudioRepository {
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream();
   Stream<Either<AudioFailure, AudioDuration>> durationStream();
   Stream<Either<AudioFailure, AudioDuration>> positionStream();
-  Stream<Either<AudioFailure, AudioPath>> sequenceStateStream();
+  Stream<Either<AudioFailure, Audio>> sequenceStateStream();
   Stream<Either<AudioFailure, ButtonState>> buttonStateStream();
   Stream<Either<AudioFailure, bool>> shuffleModeStream();
   Stream<Either<AudioFailure, AudioLoopMode>> audioLoopStream();

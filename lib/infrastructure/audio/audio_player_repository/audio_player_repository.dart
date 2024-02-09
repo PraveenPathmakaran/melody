@@ -28,8 +28,7 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   Future<Unit> concatenatingAudios({required List<Audio> audioSongs}) async {
     try {
       final List<UriAudioSource> newplaylist = audioSongs
-          .map((e) => AudioSource.file(e.audioPath.getOrCrash(),
-              tag: e.audioPath.getOrCrash()))
+          .map((e) => AudioSource.file(e.audioPath.getOrCrash(), tag: e))
           .toList();
 
       playlist.clear();
@@ -158,11 +157,11 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
-  Stream<String> sequenceStateStream() async* {
-    yield* _audioPlayer.sequenceStateStream.map<String>((event) {
+  Stream<Audio> sequenceStateStream() async* {
+    yield* _audioPlayer.sequenceStateStream.map<Audio>((event) {
       if (event != null) {
         final currentItem = event.currentSource;
-        return currentItem?.tag ?? "";
+        return currentItem?.tag;
       }
       throw const AudioFailure.audioPlayerFailure();
     }).onErrorReturnWith((error, stackTrace) {

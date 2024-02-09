@@ -10,7 +10,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState.loading()) {
     on<HomeEvent>((event, emit) async {
-      await event.map(
+      event.map(
         loadAudios: (value) {
           emit(HomeState.loaded(audioList: value.audios));
         },

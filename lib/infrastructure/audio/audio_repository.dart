@@ -161,14 +161,11 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Stream<Either<AudioFailure, AudioPath>> sequenceStateStream() async* {
+  Stream<Either<AudioFailure, Audio>> sequenceStateStream() async* {
     yield* _audioPlayerRepository
         .sequenceStateStream()
-        .map<Either<AudioFailure, AudioPath>>((sequenceState) {
-      if (sequenceState.isEmpty) {
-        return left(const AudioFailure.audioPlayerFailure());
-      }
-      return right(AudioPath(sequenceState));
+        .map<Either<AudioFailure, Audio>>((sequenceState) {
+      return right(sequenceState);
     }).onErrorReturnWith((error, stackTrace) =>
             left(const AudioFailure.audioPlayerFailure()));
   }

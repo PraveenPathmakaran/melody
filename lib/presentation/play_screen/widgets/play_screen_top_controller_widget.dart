@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/application/favourite/favourite_actor/favourite_actor_bloc.dart';
+import 'package:melody/application/favourite/favourite_bloc.dart';
+import 'package:melody/application/splash/splash_bloc.dart';
+import 'package:melody/domain/songs/audio_value_objects.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../../application/audio_controller/audio_controller_bloc.dart';
 import '../../../domain/songs/audio.dart';
@@ -20,25 +25,40 @@ class PlayTopControllerWidget extends StatelessWidget {
       children: <Widget>[
         BlocBuilder<AudioControllerBloc, AudioControllerState>(
           builder: (context, state) {
-            return IconButton(
-                onPressed: () async {
-                  // await audioBloc.addRmoveFromDb(
-                  //   playListName: PlayListName(StringManger.favourites),
-                  //   audio: audio,
-                  // );
-                  // await audioBloc.isContainAudio(
-                  //   playListName: PlayListName(StringManger.favourites),
-                  //   audioPath: audio.audioPath,
-                  // );
-                },
-                icon: PlayIconWidget(
-                  icon: IconManager.favourites,
-                  color:
-                      //  snapshot.data ?? false
-                      //     ? ColorManager.secondary
-                      //     :
-                      ColorManager.white,
-                ));
+            final favouritesBloc = context.read<FavouriteBloc>();
+            final audioBloc = context.read<AudioControllerBloc>();
+            final splashBloc = context.read<SplashBloc>();
+            final Audio? audio =
+                audioBloc.state.audio.fold(() => null, (a) => a);
+
+            final audioList = favouritesBloc.state.mapOrNull(
+              loaded: (value) => value.audioList,
+            );
+            final audioListFromSplash = splashBloc.state.mapOrNull(
+              loaded: (value) => value.audioList,
+            );
+            if (audio != null) {
+              final isContain =
+                  audioList?.any((element) => element == audio) ?? false;
+              return IconButton(
+                  onPressed: () async {
+                    context.read<FavouriteActorBloc>().add(
+                        FavouriteActorEvent.favouriteButtonClicked(
+                            audio: audio,
+                            playListName:
+                                PlayListName(StringManger.favourites)));
+                    context.read<FavouriteBloc>().add(
+                        FavouriteEvent.concatenatingAudios(
+                            audios: audioListFromSplash!));
+                  },
+                  icon: PlayIconWidget(
+                    icon: IconManager.favourites,
+                    color:
+                        isContain ? ColorManager.secondary : ColorManager.white,
+                  ));
+            } else {
+              return const SizedBox();
+            }
           },
         ),
         BlocBuilder<AudioControllerBloc, AudioControllerState>(
@@ -95,3 +115,14 @@ class PlayTopControllerWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+
+//  final favouriteBloc = context.read<FavouriteBloc>();
+//           final splashBloc = context.read<SplashBloc>();
+//           favouriteBloc.add(FavouriteEvent.concatenatingAudios(
+//               audios: splashBloc.state.mapOrNull(
+//                     loaded: (value) => value.audioList,
+//                   ) ??
+//                   []));

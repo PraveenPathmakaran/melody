@@ -25,31 +25,8 @@ class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
             List<Audio> newList = value.audios
                 .where((element) => audioPath.contains(element.audioPath))
                 .toList();
-            final failureSuccess =
-                await _audioRepository.concatenatingAudios(audioData: newList);
-            failureSuccess.fold((failure) => emit(const FavouriteState.error()),
-                (unit) => emit(FavouriteState.loaded(audioList: newList)));
+            emit(FavouriteState.loaded(audioList: newList));
           });
-        },
-        favouriteButtonClicked: (audio) async {
-          return await state.maybeMap(
-            orElse: () async {},
-            loaded: (value) async {
-              emit(const FavouriteState.loading());
-              final failureOrSucess = await _audioRepository.addAudioToPlayList(
-                  playListName: PlayListName(StringManger.favourites),
-                  audioPath: audio.audio.audioPath);
-              failureOrSucess.fold((_) => emit(const FavouriteState.error()),
-                  (_) {
-                if (value.audioList.contains(audio.audio)) {
-                  value.audioList.remove(audio.audio);
-                } else {
-                  value.audioList.add(audio.audio);
-                }
-                emit(FavouriteState.loaded(audioList: value.audioList));
-              });
-            },
-          );
         },
       );
     });

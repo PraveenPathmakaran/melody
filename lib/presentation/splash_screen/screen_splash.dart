@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/application/favourite/favourite_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
 import 'package:melody/presentation/core/app_size_manage.dart';
@@ -77,6 +78,9 @@ class _ScreenSplashState extends State<ScreenSplash>
                 context
                     .read<HomeBloc>()
                     .add(HomeEvent.loadAudios(audios: value.audioList));
+                context.read<FavouriteBloc>().add(
+                    FavouriteEvent.concatenatingAudios(
+                        audios: value.audioList));
               },
             );
           },

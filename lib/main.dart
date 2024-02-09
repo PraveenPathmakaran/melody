@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
+import 'package:melody/application/favourite/favourite_actor/favourite_actor_bloc.dart';
 import 'package:melody/application/favourite/favourite_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<SplashBloc>(create: (_) => getIt<SplashBloc>()),
         BlocProvider<HomeBloc>(create: (_) => getIt<HomeBloc>()),
         BlocProvider<FavouriteBloc>(create: (_) => getIt<FavouriteBloc>()),
+        BlocProvider<FavouriteActorBloc>(create: (_) => getIt<FavouriteActorBloc>()),
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),

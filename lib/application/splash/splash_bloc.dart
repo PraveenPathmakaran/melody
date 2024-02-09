@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/songs/audio.dart';
 import '../../../domain/songs/i_audio_repository.dart';
-import '../../domain/songs/audio_value_objects.dart';
 
 part 'splash_bloc.freezed.dart';
 part 'splash_event.dart';
@@ -22,12 +21,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
           await failureOrSuccess.fold(
             (f) async => emit(const SplashState.error()),
             (audios) async {
-              Map<AudioPath, Audio> audioMap = {};
-              for (var i = 0; i < audios.length; i++) {
-                var element = audios[i];
-                audioMap[element.audioPath] = element;
-              }
-              emit(SplashState.loaded(audioList: audios, audioMap: audioMap));
+              emit(SplashState.loaded(audioList: audios));
             },
           );
         },

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/application/splash/splash_bloc.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/presentation/core/constant.dart';
 import 'package:melody/presentation/widgets.dart';
 
@@ -20,15 +18,10 @@ class PlayContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return BlocBuilder<AudioControllerBloc, AudioControllerState>(
-      buildWhen: (p, c) => p.audioPath != c.audioPath,
+      buildWhen: (p, c) => p.audio != c.audio,
       builder: (context, state) {
         if (state.loadingState == LoadingState.loaded) {
-          final audioList = context
-              .read<SplashBloc>()
-              .state
-              .mapOrNull(loaded: (value) => value.audioMap);
-          final audio =
-              audioList![state.audioPath.getOrElse(() => AudioPath(""))];
+          final audio = state.audio.fold(() => null, (a) => a);
 
           if (audio != null) {
             return Container(

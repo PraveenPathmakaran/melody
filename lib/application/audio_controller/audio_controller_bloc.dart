@@ -48,8 +48,8 @@ class AudioControllerBloc
               final Option<AudioDuration> duration = optionOf(
                   (data[2] as Either<AudioFailure, AudioDuration>)
                       .fold((f) => null, (value) => value));
-              final Option<AudioPath> path = optionOf(
-                  (data[3] as Either<AudioFailure, AudioPath>)
+              final Option<Audio> path = optionOf(
+                  (data[3] as Either<AudioFailure, Audio>)
                       .fold((f) => null, (value) => value));
 
               final Option<ButtonState> buttonState = optionOf(
@@ -72,9 +72,9 @@ class AudioControllerBloc
               if (state.total != duration) {
                 return state.copyWith(total: duration);
               }
-              if (state.audioPath != path) {
+              if (state.audio != path) {
                 return state.copyWith(
-                  audioPath: path,
+                  audio: path,
                   miniPlayerVisibility: some(true),
                 );
               }
