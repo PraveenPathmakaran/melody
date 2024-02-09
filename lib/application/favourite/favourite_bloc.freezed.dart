@@ -16,42 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FavouriteEvent {
-  List<Audio> get audios => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Audio> audios) concatenatingAudios,
+    required TResult Function(Audio audio) favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Audio> audios)? concatenatingAudios,
+    TResult? Function(Audio audio)? favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Audio> audios)? concatenatingAudios,
+    TResult Function(Audio audio)? favouriteButtonClicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
+    required TResult Function(_FavouriteButtonClicked value)
+        favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult? Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $FavouriteEventCopyWith<FavouriteEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +62,6 @@ abstract class $FavouriteEventCopyWith<$Res> {
   factory $FavouriteEventCopyWith(
           FavouriteEvent value, $Res Function(FavouriteEvent) then) =
       _$FavouriteEventCopyWithImpl<$Res, FavouriteEvent>;
-  @useResult
-  $Res call({List<Audio> audios});
 }
 
 /// @nodoc
@@ -73,28 +73,13 @@ class _$FavouriteEventCopyWithImpl<$Res, $Val extends FavouriteEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? audios = null,
-  }) {
-    return _then(_value.copyWith(
-      audios: null == audios
-          ? _value.audios
-          : audios // ignore: cast_nullable_to_non_nullable
-              as List<Audio>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ConcatenatingAudiosImplCopyWith<$Res>
-    implements $FavouriteEventCopyWith<$Res> {
+abstract class _$$ConcatenatingAudiosImplCopyWith<$Res> {
   factory _$$ConcatenatingAudiosImplCopyWith(_$ConcatenatingAudiosImpl value,
           $Res Function(_$ConcatenatingAudiosImpl) then) =
       __$$ConcatenatingAudiosImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({List<Audio> audios});
 }
@@ -163,6 +148,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Audio> audios) concatenatingAudios,
+    required TResult Function(Audio audio) favouriteButtonClicked,
   }) {
     return concatenatingAudios(audios);
   }
@@ -171,6 +157,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Audio> audios)? concatenatingAudios,
+    TResult? Function(Audio audio)? favouriteButtonClicked,
   }) {
     return concatenatingAudios?.call(audios);
   }
@@ -179,6 +166,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Audio> audios)? concatenatingAudios,
+    TResult Function(Audio audio)? favouriteButtonClicked,
     required TResult orElse(),
   }) {
     if (concatenatingAudios != null) {
@@ -191,6 +179,8 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
+    required TResult Function(_FavouriteButtonClicked value)
+        favouriteButtonClicked,
   }) {
     return concatenatingAudios(this);
   }
@@ -199,6 +189,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult? Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
   }) {
     return concatenatingAudios?.call(this);
   }
@@ -207,6 +198,7 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
     required TResult orElse(),
   }) {
     if (concatenatingAudios != null) {
@@ -220,12 +212,158 @@ abstract class _ConcatenatingAudios implements FavouriteEvent {
   const factory _ConcatenatingAudios({required final List<Audio> audios}) =
       _$ConcatenatingAudiosImpl;
 
-  @override
   List<Audio> get audios;
-  @override
   @JsonKey(ignore: true)
   _$$ConcatenatingAudiosImplCopyWith<_$ConcatenatingAudiosImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FavouriteButtonClickedImplCopyWith<$Res> {
+  factory _$$FavouriteButtonClickedImplCopyWith(
+          _$FavouriteButtonClickedImpl value,
+          $Res Function(_$FavouriteButtonClickedImpl) then) =
+      __$$FavouriteButtonClickedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Audio audio});
+
+  $AudioCopyWith<$Res> get audio;
+}
+
+/// @nodoc
+class __$$FavouriteButtonClickedImplCopyWithImpl<$Res>
+    extends _$FavouriteEventCopyWithImpl<$Res, _$FavouriteButtonClickedImpl>
+    implements _$$FavouriteButtonClickedImplCopyWith<$Res> {
+  __$$FavouriteButtonClickedImplCopyWithImpl(
+      _$FavouriteButtonClickedImpl _value,
+      $Res Function(_$FavouriteButtonClickedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? audio = null,
+  }) {
+    return _then(_$FavouriteButtonClickedImpl(
+      audio: null == audio
+          ? _value.audio
+          : audio // ignore: cast_nullable_to_non_nullable
+              as Audio,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AudioCopyWith<$Res> get audio {
+    return $AudioCopyWith<$Res>(_value.audio, (value) {
+      return _then(_value.copyWith(audio: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$FavouriteButtonClickedImpl implements _FavouriteButtonClicked {
+  const _$FavouriteButtonClickedImpl({required this.audio});
+
+  @override
+  final Audio audio;
+
+  @override
+  String toString() {
+    return 'FavouriteEvent.favouriteButtonClicked(audio: $audio)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FavouriteButtonClickedImpl &&
+            (identical(other.audio, audio) || other.audio == audio));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, audio);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FavouriteButtonClickedImplCopyWith<_$FavouriteButtonClickedImpl>
+      get copyWith => __$$FavouriteButtonClickedImplCopyWithImpl<
+          _$FavouriteButtonClickedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Audio> audios) concatenatingAudios,
+    required TResult Function(Audio audio) favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked(audio);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<Audio> audios)? concatenatingAudios,
+    TResult? Function(Audio audio)? favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked?.call(audio);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Audio> audios)? concatenatingAudios,
+    TResult Function(Audio audio)? favouriteButtonClicked,
+    required TResult orElse(),
+  }) {
+    if (favouriteButtonClicked != null) {
+      return favouriteButtonClicked(audio);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
+    required TResult Function(_FavouriteButtonClicked value)
+        favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult? Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
+    required TResult orElse(),
+  }) {
+    if (favouriteButtonClicked != null) {
+      return favouriteButtonClicked(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FavouriteButtonClicked implements FavouriteEvent {
+  const factory _FavouriteButtonClicked({required final Audio audio}) =
+      _$FavouriteButtonClickedImpl;
+
+  Audio get audio;
+  @JsonKey(ignore: true)
+  _$$FavouriteButtonClickedImplCopyWith<_$FavouriteButtonClickedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

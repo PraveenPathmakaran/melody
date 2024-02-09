@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/application/favourite/favourite_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
 import 'package:melody/presentation/core/app_size_manage.dart';
@@ -75,8 +74,9 @@ class _ScreenSplashState extends State<ScreenSplash>
               error: (value) => snackBar(
                   context: context, content: StringManger.somethingWentWrong),
               loaded: (value) {
-                context.read<HomeBloc>().add(
-                    HomeEvent.concatenatingAudios(audios: value.audioList));
+                context
+                    .read<HomeBloc>()
+                    .add(HomeEvent.loadAudios(audios: value.audioList));
               },
             );
           },
@@ -89,9 +89,6 @@ class _ScreenSplashState extends State<ScreenSplash>
               error: (value) => snackBar(
                   context: context, content: StringManger.somethingWentWrong),
               loaded: (value) {
-                context.read<FavouriteBloc>().add(
-                    FavouriteEvent.concatenatingAudios(
-                        audios: value.audioList));
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const ScreenHomeMain(),
                 ));

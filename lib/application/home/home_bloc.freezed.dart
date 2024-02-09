@@ -19,33 +19,33 @@ mixin _$HomeEvent {
   List<Audio> get audios => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Audio> audios) concatenatingAudios,
+    required TResult Function(List<Audio> audios) loadAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Audio> audios)? concatenatingAudios,
+    TResult? Function(List<Audio> audios)? loadAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Audio> audios)? concatenatingAudios,
+    TResult Function(List<Audio> audios)? loadAudios,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
+    required TResult Function(_LoadAudios value) loadAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult? Function(_LoadAudios value)? loadAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult Function(_LoadAudios value)? loadAudios,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -88,22 +88,22 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 }
 
 /// @nodoc
-abstract class _$$ConcatenatingAudiosImplCopyWith<$Res>
+abstract class _$$LoadAudiosImplCopyWith<$Res>
     implements $HomeEventCopyWith<$Res> {
-  factory _$$ConcatenatingAudiosImplCopyWith(_$ConcatenatingAudiosImpl value,
-          $Res Function(_$ConcatenatingAudiosImpl) then) =
-      __$$ConcatenatingAudiosImplCopyWithImpl<$Res>;
+  factory _$$LoadAudiosImplCopyWith(
+          _$LoadAudiosImpl value, $Res Function(_$LoadAudiosImpl) then) =
+      __$$LoadAudiosImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Audio> audios});
 }
 
 /// @nodoc
-class __$$ConcatenatingAudiosImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$ConcatenatingAudiosImpl>
-    implements _$$ConcatenatingAudiosImplCopyWith<$Res> {
-  __$$ConcatenatingAudiosImplCopyWithImpl(_$ConcatenatingAudiosImpl _value,
-      $Res Function(_$ConcatenatingAudiosImpl) _then)
+class __$$LoadAudiosImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$LoadAudiosImpl>
+    implements _$$LoadAudiosImplCopyWith<$Res> {
+  __$$LoadAudiosImplCopyWithImpl(
+      _$LoadAudiosImpl _value, $Res Function(_$LoadAudiosImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -111,7 +111,7 @@ class __$$ConcatenatingAudiosImplCopyWithImpl<$Res>
   $Res call({
     Object? audios = null,
   }) {
-    return _then(_$ConcatenatingAudiosImpl(
+    return _then(_$LoadAudiosImpl(
       audios: null == audios
           ? _value._audios
           : audios // ignore: cast_nullable_to_non_nullable
@@ -122,8 +122,8 @@ class __$$ConcatenatingAudiosImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
-  const _$ConcatenatingAudiosImpl({required final List<Audio> audios})
+class _$LoadAudiosImpl implements _LoadAudios {
+  const _$LoadAudiosImpl({required final List<Audio> audios})
       : _audios = audios;
 
   final List<Audio> _audios;
@@ -136,14 +136,14 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
 
   @override
   String toString() {
-    return 'HomeEvent.concatenatingAudios(audios: $audios)';
+    return 'HomeEvent.loadAudios(audios: $audios)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ConcatenatingAudiosImpl &&
+            other is _$LoadAudiosImpl &&
             const DeepCollectionEquality().equals(other._audios, _audios));
   }
 
@@ -154,34 +154,33 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ConcatenatingAudiosImplCopyWith<_$ConcatenatingAudiosImpl> get copyWith =>
-      __$$ConcatenatingAudiosImplCopyWithImpl<_$ConcatenatingAudiosImpl>(
-          this, _$identity);
+  _$$LoadAudiosImplCopyWith<_$LoadAudiosImpl> get copyWith =>
+      __$$LoadAudiosImplCopyWithImpl<_$LoadAudiosImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Audio> audios) concatenatingAudios,
+    required TResult Function(List<Audio> audios) loadAudios,
   }) {
-    return concatenatingAudios(audios);
+    return loadAudios(audios);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Audio> audios)? concatenatingAudios,
+    TResult? Function(List<Audio> audios)? loadAudios,
   }) {
-    return concatenatingAudios?.call(audios);
+    return loadAudios?.call(audios);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Audio> audios)? concatenatingAudios,
+    TResult Function(List<Audio> audios)? loadAudios,
     required TResult orElse(),
   }) {
-    if (concatenatingAudios != null) {
-      return concatenatingAudios(audios);
+    if (loadAudios != null) {
+      return loadAudios(audios);
     }
     return orElse();
   }
@@ -189,41 +188,41 @@ class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
+    required TResult Function(_LoadAudios value) loadAudios,
   }) {
-    return concatenatingAudios(this);
+    return loadAudios(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult? Function(_LoadAudios value)? loadAudios,
   }) {
-    return concatenatingAudios?.call(this);
+    return loadAudios?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
+    TResult Function(_LoadAudios value)? loadAudios,
     required TResult orElse(),
   }) {
-    if (concatenatingAudios != null) {
-      return concatenatingAudios(this);
+    if (loadAudios != null) {
+      return loadAudios(this);
     }
     return orElse();
   }
 }
 
-abstract class _ConcatenatingAudios implements HomeEvent {
-  const factory _ConcatenatingAudios({required final List<Audio> audios}) =
-      _$ConcatenatingAudiosImpl;
+abstract class _LoadAudios implements HomeEvent {
+  const factory _LoadAudios({required final List<Audio> audios}) =
+      _$LoadAudiosImpl;
 
   @override
   List<Audio> get audios;
   @override
   @JsonKey(ignore: true)
-  _$$ConcatenatingAudiosImplCopyWith<_$ConcatenatingAudiosImpl> get copyWith =>
+  _$$LoadAudiosImplCopyWith<_$LoadAudiosImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

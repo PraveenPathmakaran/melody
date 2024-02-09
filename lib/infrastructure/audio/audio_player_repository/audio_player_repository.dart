@@ -45,7 +45,7 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   @override
   Future<Unit> setAudioSource() async {
     try {
-      _audioPlayer.setAudioSource(playlist,
+      await _audioPlayer.setAudioSource(playlist,
           initialIndex: 0, initialPosition: Duration.zero);
       return unit;
     } catch (e) {
@@ -55,9 +55,9 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
-  void playAudio({required int index}) {
+  Future<void> playAudio({required int index}) async {
     try {
-      _audioPlayer.seek(Duration.zero, index: index);
+      await _audioPlayer.seek(Duration.zero, index: index);
       _audioPlayer.play();
     } catch (e) {
       log(e.toString(), name: "$name-playAudio");

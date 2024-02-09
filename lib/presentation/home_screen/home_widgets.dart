@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
@@ -39,9 +40,15 @@ class ScreenHome extends StatelessWidget {
                   margin: const EdgeInsets.all(AppMargin.m3),
                   child: ListTile(
                       onTap: () async {
+                        context
+                            .read<AudioControllerBloc>()
+                            .add(AudioControllerEvent.concatenatingAudios(
+                              audios: state.audioList,
+                              index: index,
+                              currentScreen: StringManger.home,
+                            ));
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ScreenPlay(
-                              index: index, isNavigateFromHome: true),
+                          builder: (context) => const ScreenPlay(),
                         ));
                       },
                       leading: CircleAvatar(
@@ -55,6 +62,10 @@ class ScreenHome extends StatelessWidget {
                                         audioPath:
                                             state.audioList[index].audioPath),
                                 builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return circularPindicator;
+                                  }
                                   return CustomImageWidget(
                                     image: snapshot.data,
                                     height: AppSize.s50,

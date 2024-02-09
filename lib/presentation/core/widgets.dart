@@ -20,6 +20,7 @@ class CustomImageWidget extends StatelessWidget {
     try {
       if (image != null) {
         return Image.memory(
+          
           image!,
           fit: BoxFit.cover,
           height: height,
@@ -29,6 +30,7 @@ class CustomImageWidget extends StatelessWidget {
             height: height,
             width: width,
           ),
+
         );
       } else {
         return Image.asset(

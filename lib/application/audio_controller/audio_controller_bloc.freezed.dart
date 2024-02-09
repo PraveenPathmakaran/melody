@@ -19,32 +19,42 @@ mixin _$AudioControllerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenAllStreams,
+    required TResult Function(
+            List<Audio> audios, int index, String currentScreen)
+        concatenatingAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenAllStreams,
+    TResult? Function(List<Audio> audios, int index, String currentScreen)?
+        concatenatingAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenAllStreams,
+    TResult Function(List<Audio> audios, int index, String currentScreen)?
+        concatenatingAudios,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenAllStreams value) listenAllStreams,
+    required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenAllStreams value)? listenAllStreams,
+    TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenAllStreams value)? listenAllStreams,
+    TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +118,9 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() listenAllStreams,
+    required TResult Function(
+            List<Audio> audios, int index, String currentScreen)
+        concatenatingAudios,
   }) {
     return listenAllStreams();
   }
@@ -116,6 +129,8 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? listenAllStreams,
+    TResult? Function(List<Audio> audios, int index, String currentScreen)?
+        concatenatingAudios,
   }) {
     return listenAllStreams?.call();
   }
@@ -124,6 +139,8 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? listenAllStreams,
+    TResult Function(List<Audio> audios, int index, String currentScreen)?
+        concatenatingAudios,
     required TResult orElse(),
   }) {
     if (listenAllStreams != null) {
@@ -136,6 +153,7 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ListenAllStreams value) listenAllStreams,
+    required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
   }) {
     return listenAllStreams(this);
   }
@@ -144,6 +162,7 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ListenAllStreams value)? listenAllStreams,
+    TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
   }) {
     return listenAllStreams?.call(this);
   }
@@ -152,6 +171,7 @@ class _$ListenAllStreamsImpl implements _ListenAllStreams {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ListenAllStreams value)? listenAllStreams,
+    TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
     required TResult orElse(),
   }) {
     if (listenAllStreams != null) {
@@ -166,15 +186,188 @@ abstract class _ListenAllStreams implements AudioControllerEvent {
 }
 
 /// @nodoc
+abstract class _$$ConcatenatingAudiosImplCopyWith<$Res> {
+  factory _$$ConcatenatingAudiosImplCopyWith(_$ConcatenatingAudiosImpl value,
+          $Res Function(_$ConcatenatingAudiosImpl) then) =
+      __$$ConcatenatingAudiosImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Audio> audios, int index, String currentScreen});
+}
+
+/// @nodoc
+class __$$ConcatenatingAudiosImplCopyWithImpl<$Res>
+    extends _$AudioControllerEventCopyWithImpl<$Res, _$ConcatenatingAudiosImpl>
+    implements _$$ConcatenatingAudiosImplCopyWith<$Res> {
+  __$$ConcatenatingAudiosImplCopyWithImpl(_$ConcatenatingAudiosImpl _value,
+      $Res Function(_$ConcatenatingAudiosImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? audios = null,
+    Object? index = null,
+    Object? currentScreen = null,
+  }) {
+    return _then(_$ConcatenatingAudiosImpl(
+      audios: null == audios
+          ? _value._audios
+          : audios // ignore: cast_nullable_to_non_nullable
+              as List<Audio>,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentScreen: null == currentScreen
+          ? _value.currentScreen
+          : currentScreen // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ConcatenatingAudiosImpl implements _ConcatenatingAudios {
+  const _$ConcatenatingAudiosImpl(
+      {required final List<Audio> audios,
+      required this.index,
+      required this.currentScreen})
+      : _audios = audios;
+
+  final List<Audio> _audios;
+  @override
+  List<Audio> get audios {
+    if (_audios is EqualUnmodifiableListView) return _audios;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_audios);
+  }
+
+  @override
+  final int index;
+  @override
+  final String currentScreen;
+
+  @override
+  String toString() {
+    return 'AudioControllerEvent.concatenatingAudios(audios: $audios, index: $index, currentScreen: $currentScreen)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConcatenatingAudiosImpl &&
+            const DeepCollectionEquality().equals(other._audios, _audios) &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.currentScreen, currentScreen) ||
+                other.currentScreen == currentScreen));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_audios), index, currentScreen);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConcatenatingAudiosImplCopyWith<_$ConcatenatingAudiosImpl> get copyWith =>
+      __$$ConcatenatingAudiosImplCopyWithImpl<_$ConcatenatingAudiosImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() listenAllStreams,
+    required TResult Function(
+            List<Audio> audios, int index, String currentScreen)
+        concatenatingAudios,
+  }) {
+    return concatenatingAudios(audios, index, currentScreen);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? listenAllStreams,
+    TResult? Function(List<Audio> audios, int index, String currentScreen)?
+        concatenatingAudios,
+  }) {
+    return concatenatingAudios?.call(audios, index, currentScreen);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? listenAllStreams,
+    TResult Function(List<Audio> audios, int index, String currentScreen)?
+        concatenatingAudios,
+    required TResult orElse(),
+  }) {
+    if (concatenatingAudios != null) {
+      return concatenatingAudios(audios, index, currentScreen);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ListenAllStreams value) listenAllStreams,
+    required TResult Function(_ConcatenatingAudios value) concatenatingAudios,
+  }) {
+    return concatenatingAudios(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ListenAllStreams value)? listenAllStreams,
+    TResult? Function(_ConcatenatingAudios value)? concatenatingAudios,
+  }) {
+    return concatenatingAudios?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ListenAllStreams value)? listenAllStreams,
+    TResult Function(_ConcatenatingAudios value)? concatenatingAudios,
+    required TResult orElse(),
+  }) {
+    if (concatenatingAudios != null) {
+      return concatenatingAudios(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConcatenatingAudios implements AudioControllerEvent {
+  const factory _ConcatenatingAudios(
+      {required final List<Audio> audios,
+      required final int index,
+      required final String currentScreen}) = _$ConcatenatingAudiosImpl;
+
+  List<Audio> get audios;
+  int get index;
+  String get currentScreen;
+  @JsonKey(ignore: true)
+  _$$ConcatenatingAudiosImplCopyWith<_$ConcatenatingAudiosImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AudioControllerState {
   Option<AudioDuration> get current => throw _privateConstructorUsedError;
   Option<AudioDuration> get buffered => throw _privateConstructorUsedError;
+  LoadingState get loadingState => throw _privateConstructorUsedError;
   Option<AudioDuration> get total => throw _privateConstructorUsedError;
   Option<AudioPath> get audioPath => throw _privateConstructorUsedError;
   Option<ButtonState> get buttonState => throw _privateConstructorUsedError;
   Option<bool> get isShuffleMode => throw _privateConstructorUsedError;
   Option<bool> get miniPlayerVisibility => throw _privateConstructorUsedError;
   Option<AudioLoopMode> get audioLoopMode => throw _privateConstructorUsedError;
+  String get currentScreen => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AudioControllerStateCopyWith<AudioControllerState> get copyWith =>
@@ -190,12 +383,14 @@ abstract class $AudioControllerStateCopyWith<$Res> {
   $Res call(
       {Option<AudioDuration> current,
       Option<AudioDuration> buffered,
+      LoadingState loadingState,
       Option<AudioDuration> total,
       Option<AudioPath> audioPath,
       Option<ButtonState> buttonState,
       Option<bool> isShuffleMode,
       Option<bool> miniPlayerVisibility,
-      Option<AudioLoopMode> audioLoopMode});
+      Option<AudioLoopMode> audioLoopMode,
+      String currentScreen});
 }
 
 /// @nodoc
@@ -214,12 +409,14 @@ class _$AudioControllerStateCopyWithImpl<$Res,
   $Res call({
     Object? current = null,
     Object? buffered = null,
+    Object? loadingState = null,
     Object? total = null,
     Object? audioPath = null,
     Object? buttonState = null,
     Object? isShuffleMode = null,
     Object? miniPlayerVisibility = null,
     Object? audioLoopMode = null,
+    Object? currentScreen = null,
   }) {
     return _then(_value.copyWith(
       current: null == current
@@ -230,6 +427,10 @@ class _$AudioControllerStateCopyWithImpl<$Res,
           ? _value.buffered
           : buffered // ignore: cast_nullable_to_non_nullable
               as Option<AudioDuration>,
+      loadingState: null == loadingState
+          ? _value.loadingState
+          : loadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -254,6 +455,10 @@ class _$AudioControllerStateCopyWithImpl<$Res,
           ? _value.audioLoopMode
           : audioLoopMode // ignore: cast_nullable_to_non_nullable
               as Option<AudioLoopMode>,
+      currentScreen: null == currentScreen
+          ? _value.currentScreen
+          : currentScreen // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -269,12 +474,14 @@ abstract class _$$AudioControllerStateImplCopyWith<$Res>
   $Res call(
       {Option<AudioDuration> current,
       Option<AudioDuration> buffered,
+      LoadingState loadingState,
       Option<AudioDuration> total,
       Option<AudioPath> audioPath,
       Option<ButtonState> buttonState,
       Option<bool> isShuffleMode,
       Option<bool> miniPlayerVisibility,
-      Option<AudioLoopMode> audioLoopMode});
+      Option<AudioLoopMode> audioLoopMode,
+      String currentScreen});
 }
 
 /// @nodoc
@@ -290,12 +497,14 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
   $Res call({
     Object? current = null,
     Object? buffered = null,
+    Object? loadingState = null,
     Object? total = null,
     Object? audioPath = null,
     Object? buttonState = null,
     Object? isShuffleMode = null,
     Object? miniPlayerVisibility = null,
     Object? audioLoopMode = null,
+    Object? currentScreen = null,
   }) {
     return _then(_$AudioControllerStateImpl(
       current: null == current
@@ -306,6 +515,10 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
           ? _value.buffered
           : buffered // ignore: cast_nullable_to_non_nullable
               as Option<AudioDuration>,
+      loadingState: null == loadingState
+          ? _value.loadingState
+          : loadingState // ignore: cast_nullable_to_non_nullable
+              as LoadingState,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -330,6 +543,10 @@ class __$$AudioControllerStateImplCopyWithImpl<$Res>
           ? _value.audioLoopMode
           : audioLoopMode // ignore: cast_nullable_to_non_nullable
               as Option<AudioLoopMode>,
+      currentScreen: null == currentScreen
+          ? _value.currentScreen
+          : currentScreen // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -340,17 +557,21 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   const _$AudioControllerStateImpl(
       {required this.current,
       required this.buffered,
+      required this.loadingState,
       required this.total,
       required this.audioPath,
       required this.buttonState,
       required this.isShuffleMode,
       required this.miniPlayerVisibility,
-      required this.audioLoopMode});
+      required this.audioLoopMode,
+      required this.currentScreen});
 
   @override
   final Option<AudioDuration> current;
   @override
   final Option<AudioDuration> buffered;
+  @override
+  final LoadingState loadingState;
   @override
   final Option<AudioDuration> total;
   @override
@@ -363,10 +584,12 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
   final Option<bool> miniPlayerVisibility;
   @override
   final Option<AudioLoopMode> audioLoopMode;
+  @override
+  final String currentScreen;
 
   @override
   String toString() {
-    return 'AudioControllerState(current: $current, buffered: $buffered, total: $total, audioPath: $audioPath, buttonState: $buttonState, isShuffleMode: $isShuffleMode, miniPlayerVisibility: $miniPlayerVisibility, audioLoopMode: $audioLoopMode)';
+    return 'AudioControllerState(current: $current, buffered: $buffered, loadingState: $loadingState, total: $total, audioPath: $audioPath, buttonState: $buttonState, isShuffleMode: $isShuffleMode, miniPlayerVisibility: $miniPlayerVisibility, audioLoopMode: $audioLoopMode, currentScreen: $currentScreen)';
   }
 
   @override
@@ -377,6 +600,8 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
             (identical(other.current, current) || other.current == current) &&
             (identical(other.buffered, buffered) ||
                 other.buffered == buffered) &&
+            (identical(other.loadingState, loadingState) ||
+                other.loadingState == loadingState) &&
             (identical(other.total, total) || other.total == total) &&
             (identical(other.audioPath, audioPath) ||
                 other.audioPath == audioPath) &&
@@ -387,7 +612,9 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
             (identical(other.miniPlayerVisibility, miniPlayerVisibility) ||
                 other.miniPlayerVisibility == miniPlayerVisibility) &&
             (identical(other.audioLoopMode, audioLoopMode) ||
-                other.audioLoopMode == audioLoopMode));
+                other.audioLoopMode == audioLoopMode) &&
+            (identical(other.currentScreen, currentScreen) ||
+                other.currentScreen == currentScreen));
   }
 
   @override
@@ -395,12 +622,14 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
       runtimeType,
       current,
       buffered,
+      loadingState,
       total,
       audioPath,
       buttonState,
       isShuffleMode,
       miniPlayerVisibility,
-      audioLoopMode);
+      audioLoopMode,
+      currentScreen);
 
   @JsonKey(ignore: true)
   @override
@@ -413,20 +642,23 @@ class _$AudioControllerStateImpl implements _AudioControllerState {
 
 abstract class _AudioControllerState implements AudioControllerState {
   const factory _AudioControllerState(
-          {required final Option<AudioDuration> current,
-          required final Option<AudioDuration> buffered,
-          required final Option<AudioDuration> total,
-          required final Option<AudioPath> audioPath,
-          required final Option<ButtonState> buttonState,
-          required final Option<bool> isShuffleMode,
-          required final Option<bool> miniPlayerVisibility,
-          required final Option<AudioLoopMode> audioLoopMode}) =
-      _$AudioControllerStateImpl;
+      {required final Option<AudioDuration> current,
+      required final Option<AudioDuration> buffered,
+      required final LoadingState loadingState,
+      required final Option<AudioDuration> total,
+      required final Option<AudioPath> audioPath,
+      required final Option<ButtonState> buttonState,
+      required final Option<bool> isShuffleMode,
+      required final Option<bool> miniPlayerVisibility,
+      required final Option<AudioLoopMode> audioLoopMode,
+      required final String currentScreen}) = _$AudioControllerStateImpl;
 
   @override
   Option<AudioDuration> get current;
   @override
   Option<AudioDuration> get buffered;
+  @override
+  LoadingState get loadingState;
   @override
   Option<AudioDuration> get total;
   @override
@@ -439,6 +671,8 @@ abstract class _AudioControllerState implements AudioControllerState {
   Option<bool> get miniPlayerVisibility;
   @override
   Option<AudioLoopMode> get audioLoopMode;
+  @override
+  String get currentScreen;
   @override
   @JsonKey(ignore: true)
   _$$AudioControllerStateImplCopyWith<_$AudioControllerStateImpl>

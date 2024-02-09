@@ -7,7 +7,7 @@ abstract interface class IAudioPlayerRepository {
   Future<Unit> setAudioSource();
 
   //controle music
-  void playAudio({required int index});
+  Future<void> playAudio({required int index});
   void playOrPause();
   void nextAudio();
   void previousAudio();

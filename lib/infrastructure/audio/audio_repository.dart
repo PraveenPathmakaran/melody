@@ -58,7 +58,7 @@ class AudioRepository implements IAudioRepository {
   @override
   Future<Either<AudioFailure, Unit>> playAudio({required int index}) async {
     try {
-      _audioPlayerRepository.playAudio(index: index);
+      await _audioPlayerRepository.playAudio(index: index);
       return right(unit);
     } catch (e) {
       return left(const AudioFailure.audioPlayerFailure());

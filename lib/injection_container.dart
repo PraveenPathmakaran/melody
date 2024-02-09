@@ -42,7 +42,7 @@ Future<void> initGetIt() async {
   getIt
       .registerFactory<AudioControllerBloc>(() => AudioControllerBloc(getIt()));
   getIt.registerFactory<SplashBloc>(() => SplashBloc(getIt()));
-  getIt.registerFactory<HomeBloc>(() => HomeBloc(getIt()));
+  getIt.registerFactory<HomeBloc>(() => HomeBloc());
   getIt.registerFactory<FavouriteBloc>(() => FavouriteBloc(getIt()));
 
 //package
