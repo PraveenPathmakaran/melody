@@ -115,14 +115,3 @@ class PlayTopControllerWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
-//  final favouriteBloc = context.read<FavouriteBloc>();
-//           final splashBloc = context.read<SplashBloc>();
-//           favouriteBloc.add(FavouriteEvent.concatenatingAudios(
-//               audios: splashBloc.state.mapOrNull(
-//                     loaded: (value) => value.audioList,
-//                   ) ??
-//                   []));

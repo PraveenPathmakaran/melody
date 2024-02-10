@@ -18,7 +18,8 @@ class PlayContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return BlocBuilder<AudioControllerBloc, AudioControllerState>(
-      buildWhen: (p, c) => p.audio != c.audio,
+      buildWhen: (p, c) =>
+          (p.audio != c.audio) || (p.currentScreen != c.currentScreen),
       builder: (context, state) {
         if (state.loadingState == LoadingState.loaded) {
           final audio = state.audio.fold(() => null, (a) => a);
