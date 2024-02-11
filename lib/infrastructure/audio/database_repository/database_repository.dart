@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:melody/domain/songs/audio_failure.dart';
 import 'package:melody/domain/songs/playlist_failures.dart';
 import 'package:melody/infrastructure/audio/database_repository/i_database_repository.dart';
 
@@ -28,7 +27,7 @@ class DataBaseRepository implements IDataBaseRepository {
       return unit;
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-setPlayList");
-      return throw const AudioFailure.dataBaseFailure();
+      return throw const PlayListFailure.dataBaseFailure();
     }
   }
 
@@ -43,7 +42,7 @@ class DataBaseRepository implements IDataBaseRepository {
       return data.map((e) => e).toList();
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-getPlayList");
-      return throw const AudioFailure.dataBaseFailure();
+      return throw const PlayListFailure.dataBaseFailure();
     }
   }
 
@@ -55,7 +54,7 @@ class DataBaseRepository implements IDataBaseRepository {
       return unit;
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-deletePlayList");
-      return throw const AudioFailure.dataBaseFailure();
+      return throw const PlayListFailure.deleteFailure();
     }
   }
 
@@ -75,7 +74,7 @@ class DataBaseRepository implements IDataBaseRepository {
       }
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-isContainAudio");
-      return throw const AudioFailure.dataBaseFailure();
+      return throw const PlayListFailure.dataBaseFailure();
     }
   }
 
@@ -87,7 +86,7 @@ class DataBaseRepository implements IDataBaseRepository {
       return unit;
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-setPlayList");
-      return throw const AudioFailure.dataBaseFailure();
+      return throw const PlayListFailure.dataBaseFailure();
     }
   }
 
@@ -95,6 +94,10 @@ class DataBaseRepository implements IDataBaseRepository {
   Future<Unit> createPlaylist({required String playList}) async {
     try {
       Box box = await Hive.openBox(boxName);
+      
+      if (box.containsKey(playList)) {
+        return throw const PlayListFailure.nameAlreadyInUse();
+      }
       await box.put(playList, []);
       return unit;
     } catch (e) {
@@ -102,8 +105,6 @@ class DataBaseRepository implements IDataBaseRepository {
       return throw const PlayListFailure.dataBaseFailure();
     }
   }
-
-
 
   @override
   Future<List<String>> getAllPlaylist() async {

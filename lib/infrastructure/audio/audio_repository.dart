@@ -199,8 +199,9 @@ class AudioRepository implements IAudioRepository {
             left(const AudioFailure.audioPlayerFailure()));
   }
 
+//playList
   @override
-  Future<Either<AudioFailure, List<AudioPath>>> getPlayList(
+  Future<Either<PlayListFailure, List<AudioPath>>> getPlayList(
       {required PlayListName playListName}) async {
     try {
       final name = playListName.getOrCrash();
@@ -210,7 +211,7 @@ class AudioRepository implements IAudioRepository {
 
       return right(audioPathList);
     } catch (e) {
-      return left(const AudioFailure.dataBaseFailure());
+      return left(const PlayListFailure.dataBaseFailure());
     }
   }
 
@@ -230,7 +231,7 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
-  Future<Either<AudioFailure, Unit>> addAudioToPlayList(
+  Future<Either<PlayListFailure, Unit>> addAudioToPlayList(
       {required PlayListName playListName,
       required AudioPath audioPath}) async {
     try {
@@ -240,7 +241,7 @@ class AudioRepository implements IAudioRepository {
           audioPath: path, playListName: name);
       return right(unit);
     } catch (e) {
-      return left(const AudioFailure.dataBaseFailure());
+      return left(const PlayListFailure.dataBaseFailure());
     }
   }
 
@@ -251,6 +252,11 @@ class AudioRepository implements IAudioRepository {
       final name = playList.getOrCrash();
       await _dataBaseRepository.createPlaylist(playList: name);
       return right(unit);
+    } on PlayListFailure catch (e) {
+      return left(e.maybeMap(
+        orElse: () => const PlayListFailure.dataBaseFailure(),
+        nameAlreadyInUse: (value) => const PlayListFailure.nameAlreadyInUse(),
+      ));
     } catch (e) {
       return left(const PlayListFailure.dataBaseFailure());
     }

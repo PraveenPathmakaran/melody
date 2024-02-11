@@ -13,5 +13,12 @@ class StringManger {
   static const String playlist = 'Playlist';
   static const String nowPlaying = 'Now Playing';
   static const String invalidImage = 'Invalid Image';
-  static const String successfullycompleted = 'successfully completed';
+  static const String successfull = 'successfull';
+  static const String playListNameExist = 'PlayList Name Exist';
+  static const String create = 'Create';
+  static const String cancel = 'Cancel';
+  static const String delete = 'Delete';
+  static const String invalidName = 'Invalid Name';
+  static const String createPlayList = 'Create Playlist';
+  static const String confirmDelete = 'Confirm Delete';
 }

@@ -31,12 +31,12 @@ abstract interface class IAudioRepository {
   Stream<Either<AudioFailure, bool>> shuffleModeStream();
   Stream<Either<AudioFailure, AudioLoopMode>> audioLoopStream();
 
-  //database
-  Future<Either<AudioFailure, Unit>> addAudioToPlayList({
+  //database playList
+  Future<Either<PlayListFailure, Unit>> addAudioToPlayList({
     required PlayListName playListName,
     required AudioPath audioPath,
   });
-  Future<Either<AudioFailure, List<AudioPath>>> getPlayList({
+  Future<Either<PlayListFailure, List<AudioPath>>> getPlayList({
     required PlayListName playListName,
   });
 
@@ -44,6 +44,7 @@ abstract interface class IAudioRepository {
     required PlayListName playListName,
     required AudioPath audioPath,
   });
+
   Future<Either<PlayListFailure, Unit>> createPlaylist(
       {required PlayListName playList});
   Future<Either<PlayListFailure, List<PlayListName>>> getAllPlaylist();
