@@ -79,18 +79,6 @@ class DataBaseRepository implements IDataBaseRepository {
   }
 
   @override
-  Future<Unit> clearPlayList() async {
-    try {
-      Box box = await Hive.openBox(boxName);
-      await box.clear();
-      return unit;
-    } catch (e) {
-      log(e.toString(), name: "DataBaseRepository-setPlayList");
-      return throw const PlayListFailure.dataBaseFailure();
-    }
-  }
-
-  @override
   Future<Unit> createPlaylist({required String playList}) async {
     try {
       Box box = await Hive.openBox(boxName);

@@ -41,15 +41,15 @@ class ScreenHomeMain extends StatelessWidget {
               ],
             ),
             elevation: 0,
-            actions: <Widget>[
-              IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-            ],
-            leading: Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.settings));
-              },
-            ),
+            // actions: <Widget>[
+            //   IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+            // ],
+            // leading: Builder(
+            //   builder: (BuildContext context) {
+            //     return IconButton(
+            //         onPressed: () {}, icon: const Icon(Icons.settings));
+            //   },
+            // ),
           ),
           body: const TabBarView(
             children: <Widget>[
