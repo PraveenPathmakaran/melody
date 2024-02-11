@@ -13,4 +13,5 @@ class StringManger {
   static const String playlist = 'Playlist';
   static const String nowPlaying = 'Now Playing';
   static const String invalidImage = 'Invalid Image';
+  static const String successfullycompleted = 'successfully completed';
 }

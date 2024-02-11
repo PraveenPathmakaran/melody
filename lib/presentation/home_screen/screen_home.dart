@@ -3,6 +3,7 @@ import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../favourite/favourite_screen.dart';
+import '../play_list/play_list_home.dart';
 import 'home_widgets.dart';
 
 class ScreenHomeMain extends StatelessWidget {
@@ -53,11 +54,7 @@ class ScreenHomeMain extends StatelessWidget {
             children: <Widget>[
               ScreenHome(),
               ScreenPlayList(),
-              Scaffold(
-                body: Center(
-                  child: Text('2'),
-                ),
-              ),
+              PlayListHomePage(),
             ],
           ),
           // bottomNavigationBar: const MiniPlayer(),

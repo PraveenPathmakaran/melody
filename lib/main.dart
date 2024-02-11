@@ -8,6 +8,8 @@ import 'package:melody/application/favourite/favourite_actor/favourite_actor_blo
 import 'package:melody/application/favourite/favourite_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
+import 'package:melody/application/playlist/play_list_home/play_list_home_bloc.dart';
+import 'package:melody/application/playlist/play_list_home_action/play_list_home_action_bloc.dart';
 import 'package:melody/application/splash/splash_bloc.dart';
 import 'package:melody/injection_container.dart';
 import 'package:melody/presentation/splash_screen/screen_splash.dart';
@@ -47,7 +49,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<SplashBloc>(create: (_) => getIt<SplashBloc>()),
         BlocProvider<HomeBloc>(create: (_) => getIt<HomeBloc>()),
         BlocProvider<FavouriteBloc>(create: (_) => getIt<FavouriteBloc>()),
-        BlocProvider<FavouriteActorBloc>(create: (_) => getIt<FavouriteActorBloc>()),
+        BlocProvider<FavouriteActorBloc>(
+            create: (_) => getIt<FavouriteActorBloc>()),
+        BlocProvider<PlayListHomeBloc>(
+            create: (_) => getIt<PlayListHomeBloc>()),
+        BlocProvider<PlayListHomeActionBloc>(
+            create: (_) => getIt<PlayListHomeActionBloc>()),
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),

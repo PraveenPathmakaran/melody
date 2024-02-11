@@ -5,7 +5,7 @@ abstract interface class IDataBaseRepository {
     required String audioPath,
     required String playListName,
   });
-  Future<List<String>> getPlayList({
+  Future<List<String>> getPlayListAudios({
     required String playListName,
   });
   Future<Unit> deletePlayList({
@@ -14,4 +14,6 @@ abstract interface class IDataBaseRepository {
 
   Future<bool> isContainAudio(
       {required String playList, required String audioPath});
+  Future<Unit> createPlaylist({required String playList});
+  Future<List<String>> getAllPlaylist();
 }

@@ -5,6 +5,8 @@ import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
 import 'package:melody/application/favourite/favourite_actor/favourite_actor_bloc.dart';
 import 'package:melody/application/favourite/favourite_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
+import 'package:melody/application/playlist/play_list_home/play_list_home_bloc.dart';
+import 'package:melody/application/playlist/play_list_home_action/play_list_home_action_bloc.dart';
 import 'package:melody/application/splash/splash_bloc.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/audio_player_repository.dart';
@@ -46,6 +48,9 @@ Future<void> initGetIt() async {
   getIt.registerFactory<HomeBloc>(() => HomeBloc());
   getIt.registerFactory<FavouriteBloc>(() => FavouriteBloc(getIt()));
   getIt.registerFactory<FavouriteActorBloc>(() => FavouriteActorBloc(getIt()));
+  getIt.registerFactory<PlayListHomeBloc>(() => PlayListHomeBloc(getIt()));
+  getIt.registerFactory<PlayListHomeActionBloc>(
+      () => PlayListHomeActionBloc(getIt()));
 
 //package
   getIt.registerLazySingleton<AudioPlayer>(() => AudioPlayer());

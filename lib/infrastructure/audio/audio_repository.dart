@@ -3,6 +3,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/domain/songs/i_audio_repository.dart';
+import 'package:melody/domain/songs/playlist_failures.dart';
 import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
 import 'package:melody/infrastructure/audio/database_repository/i_database_repository.dart';
 import 'package:rxdart/rxdart.dart';
@@ -204,22 +205,10 @@ class AudioRepository implements IAudioRepository {
     try {
       final name = playListName.getOrCrash();
       final playListData =
-          await _dataBaseRepository.getPlayList(playListName: name);
+          await _dataBaseRepository.getPlayListAudios(playListName: name);
       final audioPathList = playListData.map((e) => AudioPath(e)).toList();
 
       return right(audioPathList);
-    } catch (e) {
-      return left(const AudioFailure.dataBaseFailure());
-    }
-  }
-
-  @override
-  Future<Either<AudioFailure, Unit>> deletePlayList(
-      {required PlayListName playListName}) async {
-    try {
-      await _dataBaseRepository.deletePlayList(
-          playListName: playListName.getOrCrash());
-      return right(unit);
     } catch (e) {
       return left(const AudioFailure.dataBaseFailure());
     }
@@ -252,6 +241,44 @@ class AudioRepository implements IAudioRepository {
       return right(unit);
     } catch (e) {
       return left(const AudioFailure.dataBaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<PlayListFailure, Unit>> createPlaylist(
+      {required PlayListName playList}) async {
+    try {
+      final name = playList.getOrCrash();
+      await _dataBaseRepository.createPlaylist(playList: name);
+      return right(unit);
+    } catch (e) {
+      return left(const PlayListFailure.dataBaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<PlayListFailure, List<PlayListName>>> getAllPlaylist() async {
+    try {
+      final playListData = await _dataBaseRepository.getAllPlaylist();
+
+      final playListName = playListData.map((e) => PlayListName(e)).toList();
+
+      return right(playListName);
+    } catch (e) {
+      return left(const PlayListFailure.dataBaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<PlayListFailure, Unit>> deletePlaylist(
+      {required PlayListName playList}) async {
+    try {
+      final playListData = await _dataBaseRepository.deletePlayList(
+        playListName: playList.getOrCrash(),
+      );
+      return right(playListData);
+    } catch (e) {
+      return left(const PlayListFailure.dataBaseFailure());
     }
   }
 }
