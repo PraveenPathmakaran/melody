@@ -5,6 +5,7 @@ import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import '../favourite/favourite_screen.dart';
 import '../play_list/play_list_home.dart';
 import 'home_widgets.dart';
+import 'widgets/miniplayer.dart';
 
 class ScreenHomeMain extends StatelessWidget {
   const ScreenHomeMain({super.key});
@@ -53,11 +54,11 @@ class ScreenHomeMain extends StatelessWidget {
           body: const TabBarView(
             children: <Widget>[
               ScreenHome(),
-              ScreenPlayList(),
+              ScreenFavourites(),
               PlayListHomePage(),
             ],
           ),
-          // bottomNavigationBar: const MiniPlayer(),
+          bottomNavigationBar: const MiniPlayer(),
         ),
       ),
     );

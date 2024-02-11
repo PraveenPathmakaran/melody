@@ -10,6 +10,7 @@ import '../../../application/audio_controller/audio_controller_bloc.dart';
 import '../../../domain/songs/audio.dart';
 import '../../core/resourse_manager/color_manager.dart';
 import '../../core/resourse_manager/icon_manager.dart';
+import '../../play_list/widgets/play_list_bottom_sheet.dart';
 import 'icon_widgets.dart';
 import 'play_screen_loop_widget.dart';
 
@@ -108,7 +109,19 @@ class PlayTopControllerWidget extends StatelessWidget {
           },
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return BottomSheet(
+                  onClosing: () {},
+                  builder: (context) {
+                    return const PlayListBottomSheet();
+                  },
+                );
+              },
+            );
+          },
           icon: const PlayIconWidget(icon: IconManager.playlist),
         ),
       ],

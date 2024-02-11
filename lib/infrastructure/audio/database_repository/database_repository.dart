@@ -14,8 +14,9 @@ class DataBaseRepository implements IDataBaseRepository {
   }) async {
     try {
       Box box = await Hive.openBox(boxName);
-      List<String>? pathList = box.get(playListName);
-      pathList ??= [];
+      final data = box.get(playListName, defaultValue: []) as List;
+      final pathList = data.map((e) => e.toString()).toList();
+
       if (pathList.contains(audioPath)) {
         pathList.remove(audioPath);
       } else {
@@ -26,7 +27,7 @@ class DataBaseRepository implements IDataBaseRepository {
           .then((value) async => await box.close());
       return unit;
     } catch (e) {
-      log(e.toString(), name: "DataBaseRepository-setPlayList");
+      log(e.toString(), name: "DataBaseRepository-addAudioToPlayList");
       return throw const PlayListFailure.dataBaseFailure();
     }
   }
@@ -35,11 +36,10 @@ class DataBaseRepository implements IDataBaseRepository {
   Future<List<String>> getPlayListAudios({required String playListName}) async {
     try {
       Box box = await Hive.openBox(boxName);
-      final List<String>? data = box.get(playListName);
-      if (data == null) {
-        return [];
-      }
-      return data.map((e) => e).toList();
+      final data = box.get(playListName, defaultValue: []) as List;
+      final pathList = data.map((e) => e.toString()).toList();
+
+      return pathList.map((e) => e).toList();
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-getPlayList");
       return throw const PlayListFailure.dataBaseFailure();
@@ -94,7 +94,7 @@ class DataBaseRepository implements IDataBaseRepository {
   Future<Unit> createPlaylist({required String playList}) async {
     try {
       Box box = await Hive.openBox(boxName);
-      
+
       if (box.containsKey(playList)) {
         return throw const PlayListFailure.nameAlreadyInUse();
       }

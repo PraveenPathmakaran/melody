@@ -13,8 +13,8 @@ import '../core/resourse_manager/color_manager.dart';
 import '../play_screen/screen_play.dart';
 import '../widgets.dart';
 
-class ScreenPlayList extends StatelessWidget {
-  const ScreenPlayList({super.key});
+class ScreenFavourites extends StatelessWidget {
+  const ScreenFavourites({super.key});
 
   @override
   Widget build(BuildContext context) {
