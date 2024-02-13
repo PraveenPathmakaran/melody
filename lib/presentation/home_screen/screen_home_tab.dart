@@ -7,13 +7,13 @@ import '../play_list/play_list_home.dart';
 import 'home_widgets.dart';
 import 'widgets/miniplayer.dart';
 
-class ScreenHomeMain extends StatelessWidget {
-  const ScreenHomeMain({super.key});
+class ScreenHomeTab extends StatelessWidget {
+  const ScreenHomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: true,
+      canPop: false,
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -22,6 +22,7 @@ class ScreenHomeMain extends StatelessWidget {
             title: const Text(
               StringManger.musicPlayer,
             ),
+            leading: const SizedBox(),
             centerTitle: true,
             bottom: TabBar(
               onTap: (int value) {},

@@ -6,12 +6,12 @@ import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 import 'package:melody/presentation/core/widgets.dart';
 
-import '../../application/audio/audio_bloc.dart';
 import '../../application/audio_controller/audio_controller_bloc.dart';
+import '../../application/splash/splash_bloc.dart';
 import '../core/error_widget.dart';
 import '../core/resourse_manager/color_manager.dart';
+import '../core/utils.dart';
 import '../play_screen/screen_play.dart';
-import '../widgets.dart';
 
 class ScreenFavourites extends StatelessWidget {
   const ScreenFavourites({super.key});
@@ -58,7 +58,7 @@ class ScreenFavourites extends StatelessWidget {
                         child: ClipOval(
                           child: FutureBuilder<Uint8List?>(
                               future: context
-                                  .read<AudioBloc>()
+                                  .read<SplashBloc>()
                                   .fetchAudioData(audioPath: audio.audioPath),
                               builder: (context, snapshot) {
                                 return CustomImageWidget(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/songs/audio.dart';
 import '../../core/resourse_manager/icon_manager.dart';
 import '../../core/resourse_manager/value_manager.dart';
-import '../../widgets.dart';
+import '../../core/utils.dart';
 import 'icon_widgets.dart';
 
 class PlayButtonWidget extends StatelessWidget {

@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/audio/audio_bloc.dart';
 import '../../../application/audio_controller/audio_controller_bloc.dart';
+import '../../../application/splash/splash_bloc.dart';
 import '../../core/resourse_manager/color_manager.dart';
 import '../../core/resourse_manager/value_manager.dart';
 import '../../core/widgets.dart';
@@ -43,7 +43,7 @@ class MiniPlayer extends StatelessWidget {
                     child: ClipOval(
                         child: FutureBuilder<Uint8List?>(
                             future: context
-                                .read<AudioBloc>()
+                                .read<SplashBloc>()
                                 .fetchAudioData(audioPath: audio!.audioPath),
                             builder: (context, snapshot) {
                               return CustomImageWidget(

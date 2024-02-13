@@ -8,8 +8,8 @@ import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../application/splash/splash_bloc.dart';
-import '../home_screen/screen_home.dart';
-import '../widgets.dart';
+import '../core/utils.dart';
+import '../home_screen/screen_home_tab.dart';
 import 'widgets/permission_denied_widget.dart';
 import 'widgets/permission_granted_widget.dart';
 
@@ -98,7 +98,7 @@ class _ScreenSplashState extends State<ScreenSplash>
                   context: context, content: StringManger.somethingWentWrong),
               loaded: (value) {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ScreenHomeMain(),
+                  builder: (context) => const ScreenHomeTab(),
                 ));
               },
             );

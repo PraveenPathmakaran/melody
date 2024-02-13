@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/presentation/core/constant.dart';
-import 'package:melody/presentation/widgets.dart';
+import 'package:melody/presentation/core/utils.dart';
 
 import '../../../application/audio_controller/audio_controller_bloc.dart';
 import '../../core/resourse_manager/value_manager.dart';

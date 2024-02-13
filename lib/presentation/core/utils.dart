@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core/resourse_manager/value_manager.dart';
+import 'resourse_manager/value_manager.dart';
 
 void snackBar(
     {required BuildContext context,

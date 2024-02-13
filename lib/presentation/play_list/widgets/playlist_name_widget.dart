@@ -5,7 +5,7 @@ import '../../../application/playlist/play_list_home/play_list_home_bloc.dart';
 import '../../../application/playlist/play_list_home_action/play_list_home_action_bloc.dart';
 import '../../core/resourse_manager/string_manage.dart';
 import '../../core/resourse_manager/value_manager.dart';
-import '../../widgets.dart';
+import '../../core/utils.dart';
 import '../play_list_screen/play_list_screen.dart';
 
 class PlayListNameWidget extends StatelessWidget {

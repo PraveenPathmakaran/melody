@@ -148,4 +148,6 @@ class AudioControllerBloc
   void setAudioLoopMode({required AudioLoopMode loopMode}) {
     _audioRepository.setAudioLoopMode(audioLoopMode: loopMode);
   }
+
+  
 }

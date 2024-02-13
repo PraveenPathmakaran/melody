@@ -15,7 +15,6 @@ import 'package:melody/application/splash/splash_bloc.dart';
 import 'package:melody/injection_container.dart';
 import 'package:melody/presentation/splash_screen/screen_splash.dart';
 
-import 'application/audio/audio_bloc.dart';
 import 'application/core/bloc_observer.dart';
 import 'presentation/core/resourse_manager/theme_manager.dart';
 
@@ -44,7 +43,6 @@ class MyApp extends StatelessWidget {
           create: (_) => getIt<PermissionHandlerBloc>()
             ..add(const PermissionHandlerEvent.checkPermission()),
         ),
-        BlocProvider<AudioBloc>(create: (_) => getIt<AudioBloc>()),
         BlocProvider<AudioControllerBloc>(
             create: (_) => getIt<AudioControllerBloc>()),
         BlocProvider<SplashBloc>(create: (_) => getIt<SplashBloc>()),
