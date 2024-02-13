@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:melody/domain/songs/audio_value_objects.dart';
-import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../domain/songs/audio.dart';
 import '../../domain/songs/i_audio_repository.dart';
@@ -15,10 +14,11 @@ class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
   FavouriteBloc(this._audioRepository) : super(const FavouriteState.loading()) {
     on<FavouriteEvent>((event, emit) async {
       await event.map(
-        concatenatingAudios: (value) async {
+        loadAudio: (value) async {
           emit(const FavouriteState.loading());
           final failureOrSuceesSongs = await _audioRepository.getPlayList(
-              playListName: PlayListName(StringManger.favourites));
+            playListName: value.playListName,
+          );
           await failureOrSuceesSongs
               .fold((failure) async => emit(const FavouriteState.error()),
                   (audioPath) async {

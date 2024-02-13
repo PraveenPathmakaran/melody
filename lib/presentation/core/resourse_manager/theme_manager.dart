@@ -44,6 +44,13 @@ ThemeData getApplicationTheme() {
               backgroundColor: ColorManager.primary,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppSize.s12)))),
+      textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+        textStyle: getRegularStyle(color: ColorManager.white),
+        elevation: 0,
+        foregroundColor: ColorManager.white,
+        backgroundColor: ColorManager.primary,
+      )),
 
       // Text theme
       textTheme: TextTheme(
@@ -113,5 +120,10 @@ ThemeData getApplicationTheme() {
       colorScheme:
           ColorScheme.fromSwatch().copyWith(background: ColorManager.primary),
       progressIndicatorTheme:
-          ProgressIndicatorThemeData(color: ColorManager.white));
+          ProgressIndicatorThemeData(color: ColorManager.white),
+      dialogTheme: DialogTheme(
+        elevation: 0,
+        backgroundColor: ColorManager.primary,
+        alignment: Alignment.center,
+      ));
 }

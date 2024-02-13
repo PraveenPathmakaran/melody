@@ -21,7 +21,9 @@ class PlayListHomeActionBloc
           final bool isPlayListValid = state.playListName.isValid();
           if (isPlayListValid) {
             emit(state.copyWith(
-                isSubmitting: true, failureOrSuccessOption: none()));
+              isSubmitting: true,
+              failureOrSuccessOption: none(),
+            ));
 
             final failureOrSuccess = await _audioRepository.createPlaylist(
                 playList: state.playListName);

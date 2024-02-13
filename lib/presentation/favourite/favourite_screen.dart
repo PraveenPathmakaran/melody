@@ -40,47 +40,48 @@ class ScreenFavourites extends StatelessWidget {
                   ),
                   margin: const EdgeInsets.all(AppMargin.m3),
                   child: ListTile(
-                      onTap: () async {
-                        context
-                            .read<AudioControllerBloc>()
-                            .add(AudioControllerEvent.concatenatingAudios(
-                              audios: state.audioList,
-                              index: index,
-                              currentScreen: StringManger.favourites,
-                            ));
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ScreenPlay(),
-                        ));
-                      },
-                      leading: CircleAvatar(
-                        backgroundColor: ColorManager.primary,
-                        radius: AppSize.s25,
-                        child: ClipOval(
-                          child: FutureBuilder<Uint8List?>(
-                              future: context
-                                  .read<SplashBloc>()
-                                  .fetchAudioData(audioPath: audio.audioPath),
-                              builder: (context, snapshot) {
-                                return CustomImageWidget(
-                                  image: snapshot.data,
-                                  height: AppSize.s50,
-                                  width: AppSize.s50,
-                                );
-                              }),
-                        ),
+                    onTap: () async {
+                      context
+                          .read<AudioControllerBloc>()
+                          .add(AudioControllerEvent.concatenatingAudios(
+                            audios: state.audioList,
+                            index: index,
+                            currentScreen: StringManger.favourites,
+                          ));
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ScreenPlay(),
+                      ));
+                    },
+                    leading: CircleAvatar(
+                      backgroundColor: ColorManager.primary,
+                      radius: AppSize.s25,
+                      child: ClipOval(
+                        child: FutureBuilder<Uint8List?>(
+                            future: context
+                                .read<SplashBloc>()
+                                .fetchAudioData(audioPath: audio.audioPath),
+                            builder: (context, snapshot) {
+                              return CustomImageWidget(
+                                image: snapshot.data,
+                                height: AppSize.s50,
+                                width: AppSize.s50,
+                              );
+                            }),
                       ),
-                      title: Text(
-                        audio.title.getOrCrash(),
-                        maxLines: ConstantValues.one,
-                      ),
-                      subtitle: Text(
-                        audio.artist.getOrCrash(),
-                        maxLines: ConstantValues.one,
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.more_vert),
-                        onPressed: () {},
-                      )),
+                    ),
+                    title: Text(
+                      audio.title.getOrCrash(),
+                      maxLines: ConstantValues.one,
+                    ),
+                    subtitle: Text(
+                      audio.artist.getOrCrash(),
+                      maxLines: ConstantValues.one,
+                    ),
+                    // trailing: IconButton(
+                    //   icon: const Icon(Icons.more_vert),
+                    //   onPressed: () {},
+                    // ),
+                  ),
                 );
               },
               itemCount: state.audioList.length,

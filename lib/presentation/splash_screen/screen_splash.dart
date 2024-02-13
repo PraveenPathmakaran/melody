@@ -8,6 +8,7 @@ import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../application/splash/splash_bloc.dart';
+import '../../domain/songs/audio_value_objects.dart';
 import '../core/utils.dart';
 import '../home_screen/screen_home_tab.dart';
 import 'widgets/permission_denied_widget.dart';
@@ -82,9 +83,9 @@ class _ScreenSplashState extends State<ScreenSplash>
                 context
                     .read<PlayListHomeBloc>()
                     .add(const PlayListHomeEvent.loadPlayList());
-                context.read<FavouriteBloc>().add(
-                    FavouriteEvent.concatenatingAudios(
-                        audios: value.audioList));
+                context.read<FavouriteBloc>().add(FavouriteEvent.loadAudio(
+                    audios: value.audioList,
+                    playListName: PlayListName(StringManger.favourites)));
               },
             );
           },

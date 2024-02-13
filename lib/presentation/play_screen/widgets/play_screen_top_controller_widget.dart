@@ -48,9 +48,9 @@ class PlayTopControllerWidget extends StatelessWidget {
                             audio: audio,
                             playListName:
                                 PlayListName(StringManger.favourites)));
-                    context.read<FavouriteBloc>().add(
-                        FavouriteEvent.concatenatingAudios(
-                            audios: audioListFromSplash!));
+                    context.read<FavouriteBloc>().add(FavouriteEvent.loadAudio(
+                        audios: audioListFromSplash!,
+                        playListName: PlayListName(StringManger.favourites)));
                   },
                   icon: PlayIconWidget(
                     icon: IconManager.favourites,

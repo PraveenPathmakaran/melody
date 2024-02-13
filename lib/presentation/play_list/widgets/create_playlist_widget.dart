@@ -57,7 +57,6 @@ class PlayLIstCreateWidget extends StatelessWidget {
                             ? AutovalidateMode.always
                             : AutovalidateMode.disabled,
                         child: AlertDialog(
-                          alignment: Alignment.center,
                           actionsAlignment: MainAxisAlignment.spaceBetween,
                           content: TextFormField(
                             onChanged: (value) => context
@@ -79,6 +78,7 @@ class PlayLIstCreateWidget extends StatelessWidget {
                           ),
                           actions: [
                             TextButton(
+                              
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
