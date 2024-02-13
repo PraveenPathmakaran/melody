@@ -14,6 +14,7 @@ abstract interface class IAudioPlayerRepository {
   void changeShuffleMode();
   void setAudioLoopMode({required AudioLoopMode audioLoopMode});
   void seekAudio({required Duration duration});
+  Future<void> removeFromPlayList({required int index});
 
   //streams
   Stream<int> bufferedPositionStream();

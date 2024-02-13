@@ -32,7 +32,7 @@ class ScreenFavourites extends StatelessWidget {
           }, loaded: (state) {
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                final audio = state.newList[index];
+                final audio = state.favouriteAudios[index];
                 return Card(
                   clipBehavior: Clip.antiAlias,
                   shape: RoundedRectangleBorder(
@@ -44,7 +44,7 @@ class ScreenFavourites extends StatelessWidget {
                       context
                           .read<AudioControllerBloc>()
                           .add(AudioControllerEvent.concatenatingAudios(
-                            audios: state.newList,
+                            audios: state.favouriteAudios,
                             index: index,
                             currentScreen: StringManger.favourites,
                           ));
@@ -84,7 +84,7 @@ class ScreenFavourites extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: state.newList.length,
+              itemCount: state.favouriteAudios.length,
               shrinkWrap: true,
             );
           }, error: (value) {

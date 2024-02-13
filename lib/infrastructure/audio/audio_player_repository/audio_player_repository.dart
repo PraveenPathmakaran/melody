@@ -235,4 +235,9 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
       throw const AudioFailure.audioPlayerFailure();
     });
   }
+
+  @override
+  Future<void> removeFromPlayList({required int index}) async{
+   await playlist.removeAt(index);
+  }
 }

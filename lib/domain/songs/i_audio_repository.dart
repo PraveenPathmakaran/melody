@@ -21,6 +21,7 @@ abstract interface class IAudioRepository {
   Future<Either<AudioFailure, Unit>> seekAudio({required Duration duration});
   Future<Either<AudioFailure, Unit>> setAudioLoopMode(
       {required AudioLoopMode audioLoopMode});
+  Future<Either<AudioFailure, Unit>> removeFromPlayList({required int index});
 
   //streams
   Stream<Either<AudioFailure, AudioDuration>> bufferedPositionStream();

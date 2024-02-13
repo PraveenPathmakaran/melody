@@ -302,4 +302,15 @@ class AudioRepository implements IAudioRepository {
       return left(const PlayListFailure.dataBaseFailure());
     }
   }
+
+  @override
+  Future<Either<AudioFailure, Unit>> removeFromPlayList(
+      {required int index}) async {
+    try {
+      await _audioPlayerRepository.removeFromPlayList(index: index);
+      return right(unit);
+    } catch (e) {
+      return left(const AudioFailure.dataBaseFailure());
+    }
+  }
 }

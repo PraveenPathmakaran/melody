@@ -31,7 +31,7 @@ class PlayTopControllerWidget extends StatelessWidget {
                     controllerState.audio.getOrElse(() => Audio.emptyAudio());
                 final bool isContain = state.maybeMap(
                   orElse: () => false,
-                  loaded: (value) => value.newList.contains(audio),
+                  loaded: (value) => value.favouriteAudios.contains(audio),
                 );
                 return IconButton(
                     onPressed: () async {
