@@ -36,6 +36,10 @@ abstract interface class IAudioRepository {
     required PlayListName playListName,
     required AudioPath audioPath,
   });
+  Future<Either<PlayListFailure, Unit>> removeAudioFromPlayList({
+    required AudioPath audioPath,
+    required PlayListName playListName,
+  });
   Future<Either<PlayListFailure, List<AudioPath>>> getPlayList({
     required PlayListName playListName,
   });

@@ -22,6 +22,8 @@ mixin _$PlayListHomeActionEvent {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
+    required TResult Function(PlayListName playListName, AudioPath audioPath)
+        removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,6 +33,8 @@ mixin _$PlayListHomeActionEvent {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +44,8 @@ mixin _$PlayListHomeActionEvent {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
   }) =>
@@ -50,6 +56,8 @@ mixin _$PlayListHomeActionEvent {
         playListCreateButtonClick,
     required TResult Function(_PlayListNameChanged value) playListNameChanged,
     required TResult Function(_AddToPlayList value) addToPlayList,
+    required TResult Function(_RemoveAudioFromPlayList value)
+        removeAudioFromPlayList,
     required TResult Function(_DeletePlaylist value) deletePlaylist,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +67,7 @@ mixin _$PlayListHomeActionEvent {
         playListCreateButtonClick,
     TResult? Function(_PlayListNameChanged value)? playListNameChanged,
     TResult? Function(_AddToPlayList value)? addToPlayList,
+    TResult? Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult? Function(_DeletePlaylist value)? deletePlaylist,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +77,7 @@ mixin _$PlayListHomeActionEvent {
         playListCreateButtonClick,
     TResult Function(_PlayListNameChanged value)? playListNameChanged,
     TResult Function(_AddToPlayList value)? addToPlayList,
+    TResult Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult Function(_DeletePlaylist value)? deletePlaylist,
     required TResult orElse(),
   }) =>
@@ -139,6 +149,8 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
+    required TResult Function(PlayListName playListName, AudioPath audioPath)
+        removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
     return playListCreateButtonClick();
@@ -151,6 +163,8 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
     return playListCreateButtonClick?.call();
@@ -163,6 +177,8 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
   }) {
@@ -179,6 +195,8 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
         playListCreateButtonClick,
     required TResult Function(_PlayListNameChanged value) playListNameChanged,
     required TResult Function(_AddToPlayList value) addToPlayList,
+    required TResult Function(_RemoveAudioFromPlayList value)
+        removeAudioFromPlayList,
     required TResult Function(_DeletePlaylist value) deletePlaylist,
   }) {
     return playListCreateButtonClick(this);
@@ -191,6 +209,7 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
         playListCreateButtonClick,
     TResult? Function(_PlayListNameChanged value)? playListNameChanged,
     TResult? Function(_AddToPlayList value)? addToPlayList,
+    TResult? Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult? Function(_DeletePlaylist value)? deletePlaylist,
   }) {
     return playListCreateButtonClick?.call(this);
@@ -203,6 +222,7 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
         playListCreateButtonClick,
     TResult Function(_PlayListNameChanged value)? playListNameChanged,
     TResult Function(_AddToPlayList value)? addToPlayList,
+    TResult Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult Function(_DeletePlaylist value)? deletePlaylist,
     required TResult orElse(),
   }) {
@@ -288,6 +308,8 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
+    required TResult Function(PlayListName playListName, AudioPath audioPath)
+        removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
     return playListNameChanged(playListName);
@@ -300,6 +322,8 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
     return playListNameChanged?.call(playListName);
@@ -312,6 +336,8 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
   }) {
@@ -328,6 +354,8 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
         playListCreateButtonClick,
     required TResult Function(_PlayListNameChanged value) playListNameChanged,
     required TResult Function(_AddToPlayList value) addToPlayList,
+    required TResult Function(_RemoveAudioFromPlayList value)
+        removeAudioFromPlayList,
     required TResult Function(_DeletePlaylist value) deletePlaylist,
   }) {
     return playListNameChanged(this);
@@ -340,6 +368,7 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
         playListCreateButtonClick,
     TResult? Function(_PlayListNameChanged value)? playListNameChanged,
     TResult? Function(_AddToPlayList value)? addToPlayList,
+    TResult? Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult? Function(_DeletePlaylist value)? deletePlaylist,
   }) {
     return playListNameChanged?.call(this);
@@ -352,6 +381,7 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
         playListCreateButtonClick,
     TResult Function(_PlayListNameChanged value)? playListNameChanged,
     TResult Function(_AddToPlayList value)? addToPlayList,
+    TResult Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult Function(_DeletePlaylist value)? deletePlaylist,
     required TResult orElse(),
   }) {
@@ -451,6 +481,8 @@ class _$AddToPlayListImpl implements _AddToPlayList {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
+    required TResult Function(PlayListName playListName, AudioPath audioPath)
+        removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
     return addToPlayList(playListName, audioPath);
@@ -463,6 +495,8 @@ class _$AddToPlayListImpl implements _AddToPlayList {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
     return addToPlayList?.call(playListName, audioPath);
@@ -475,6 +509,8 @@ class _$AddToPlayListImpl implements _AddToPlayList {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
   }) {
@@ -491,6 +527,8 @@ class _$AddToPlayListImpl implements _AddToPlayList {
         playListCreateButtonClick,
     required TResult Function(_PlayListNameChanged value) playListNameChanged,
     required TResult Function(_AddToPlayList value) addToPlayList,
+    required TResult Function(_RemoveAudioFromPlayList value)
+        removeAudioFromPlayList,
     required TResult Function(_DeletePlaylist value) deletePlaylist,
   }) {
     return addToPlayList(this);
@@ -503,6 +541,7 @@ class _$AddToPlayListImpl implements _AddToPlayList {
         playListCreateButtonClick,
     TResult? Function(_PlayListNameChanged value)? playListNameChanged,
     TResult? Function(_AddToPlayList value)? addToPlayList,
+    TResult? Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult? Function(_DeletePlaylist value)? deletePlaylist,
   }) {
     return addToPlayList?.call(this);
@@ -515,6 +554,7 @@ class _$AddToPlayListImpl implements _AddToPlayList {
         playListCreateButtonClick,
     TResult Function(_PlayListNameChanged value)? playListNameChanged,
     TResult Function(_AddToPlayList value)? addToPlayList,
+    TResult Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult Function(_DeletePlaylist value)? deletePlaylist,
     required TResult orElse(),
   }) {
@@ -535,6 +575,185 @@ abstract class _AddToPlayList implements PlayListHomeActionEvent {
   @JsonKey(ignore: true)
   _$$AddToPlayListImplCopyWith<_$AddToPlayListImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoveAudioFromPlayListImplCopyWith<$Res> {
+  factory _$$RemoveAudioFromPlayListImplCopyWith(
+          _$RemoveAudioFromPlayListImpl value,
+          $Res Function(_$RemoveAudioFromPlayListImpl) then) =
+      __$$RemoveAudioFromPlayListImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PlayListName playListName, AudioPath audioPath});
+}
+
+/// @nodoc
+class __$$RemoveAudioFromPlayListImplCopyWithImpl<$Res>
+    extends _$PlayListHomeActionEventCopyWithImpl<$Res,
+        _$RemoveAudioFromPlayListImpl>
+    implements _$$RemoveAudioFromPlayListImplCopyWith<$Res> {
+  __$$RemoveAudioFromPlayListImplCopyWithImpl(
+      _$RemoveAudioFromPlayListImpl _value,
+      $Res Function(_$RemoveAudioFromPlayListImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? playListName = null,
+    Object? audioPath = null,
+  }) {
+    return _then(_$RemoveAudioFromPlayListImpl(
+      playListName: null == playListName
+          ? _value.playListName
+          : playListName // ignore: cast_nullable_to_non_nullable
+              as PlayListName,
+      audioPath: null == audioPath
+          ? _value.audioPath
+          : audioPath // ignore: cast_nullable_to_non_nullable
+              as AudioPath,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveAudioFromPlayListImpl implements _RemoveAudioFromPlayList {
+  const _$RemoveAudioFromPlayListImpl(
+      {required this.playListName, required this.audioPath});
+
+  @override
+  final PlayListName playListName;
+  @override
+  final AudioPath audioPath;
+
+  @override
+  String toString() {
+    return 'PlayListHomeActionEvent.removeAudioFromPlayList(playListName: $playListName, audioPath: $audioPath)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveAudioFromPlayListImpl &&
+            (identical(other.playListName, playListName) ||
+                other.playListName == playListName) &&
+            (identical(other.audioPath, audioPath) ||
+                other.audioPath == audioPath));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, playListName, audioPath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveAudioFromPlayListImplCopyWith<_$RemoveAudioFromPlayListImpl>
+      get copyWith => __$$RemoveAudioFromPlayListImplCopyWithImpl<
+          _$RemoveAudioFromPlayListImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() playListCreateButtonClick,
+    required TResult Function(String playListName) playListNameChanged,
+    required TResult Function(PlayListName playListName, AudioPath audioPath)
+        addToPlayList,
+    required TResult Function(PlayListName playListName, AudioPath audioPath)
+        removeAudioFromPlayList,
+    required TResult Function(PlayListName playListName) deletePlaylist,
+  }) {
+    return removeAudioFromPlayList(playListName, audioPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? playListCreateButtonClick,
+    TResult? Function(String playListName)? playListNameChanged,
+    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+        addToPlayList,
+    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
+    TResult? Function(PlayListName playListName)? deletePlaylist,
+  }) {
+    return removeAudioFromPlayList?.call(playListName, audioPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? playListCreateButtonClick,
+    TResult Function(String playListName)? playListNameChanged,
+    TResult Function(PlayListName playListName, AudioPath audioPath)?
+        addToPlayList,
+    TResult Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
+    TResult Function(PlayListName playListName)? deletePlaylist,
+    required TResult orElse(),
+  }) {
+    if (removeAudioFromPlayList != null) {
+      return removeAudioFromPlayList(playListName, audioPath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PlayListCreateButtonClick value)
+        playListCreateButtonClick,
+    required TResult Function(_PlayListNameChanged value) playListNameChanged,
+    required TResult Function(_AddToPlayList value) addToPlayList,
+    required TResult Function(_RemoveAudioFromPlayList value)
+        removeAudioFromPlayList,
+    required TResult Function(_DeletePlaylist value) deletePlaylist,
+  }) {
+    return removeAudioFromPlayList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PlayListCreateButtonClick value)?
+        playListCreateButtonClick,
+    TResult? Function(_PlayListNameChanged value)? playListNameChanged,
+    TResult? Function(_AddToPlayList value)? addToPlayList,
+    TResult? Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
+    TResult? Function(_DeletePlaylist value)? deletePlaylist,
+  }) {
+    return removeAudioFromPlayList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PlayListCreateButtonClick value)?
+        playListCreateButtonClick,
+    TResult Function(_PlayListNameChanged value)? playListNameChanged,
+    TResult Function(_AddToPlayList value)? addToPlayList,
+    TResult Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
+    TResult Function(_DeletePlaylist value)? deletePlaylist,
+    required TResult orElse(),
+  }) {
+    if (removeAudioFromPlayList != null) {
+      return removeAudioFromPlayList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveAudioFromPlayList implements PlayListHomeActionEvent {
+  const factory _RemoveAudioFromPlayList(
+      {required final PlayListName playListName,
+      required final AudioPath audioPath}) = _$RemoveAudioFromPlayListImpl;
+
+  PlayListName get playListName;
+  AudioPath get audioPath;
+  @JsonKey(ignore: true)
+  _$$RemoveAudioFromPlayListImplCopyWith<_$RemoveAudioFromPlayListImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -607,6 +826,8 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
+    required TResult Function(PlayListName playListName, AudioPath audioPath)
+        removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
     return deletePlaylist(playListName);
@@ -619,6 +840,8 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
     return deletePlaylist?.call(playListName);
@@ -631,6 +854,8 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
+    TResult Function(PlayListName playListName, AudioPath audioPath)?
+        removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
   }) {
@@ -647,6 +872,8 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
         playListCreateButtonClick,
     required TResult Function(_PlayListNameChanged value) playListNameChanged,
     required TResult Function(_AddToPlayList value) addToPlayList,
+    required TResult Function(_RemoveAudioFromPlayList value)
+        removeAudioFromPlayList,
     required TResult Function(_DeletePlaylist value) deletePlaylist,
   }) {
     return deletePlaylist(this);
@@ -659,6 +886,7 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
         playListCreateButtonClick,
     TResult? Function(_PlayListNameChanged value)? playListNameChanged,
     TResult? Function(_AddToPlayList value)? addToPlayList,
+    TResult? Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult? Function(_DeletePlaylist value)? deletePlaylist,
   }) {
     return deletePlaylist?.call(this);
@@ -671,6 +899,7 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
         playListCreateButtonClick,
     TResult Function(_PlayListNameChanged value)? playListNameChanged,
     TResult Function(_AddToPlayList value)? addToPlayList,
+    TResult Function(_RemoveAudioFromPlayList value)? removeAudioFromPlayList,
     TResult Function(_DeletePlaylist value)? deletePlaylist,
     required TResult orElse(),
   }) {

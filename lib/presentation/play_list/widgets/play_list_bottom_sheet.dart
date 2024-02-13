@@ -43,13 +43,12 @@ class PlayLIstCreateWidgetSheet extends StatelessWidget {
                   snackBar(
                       context: context,
                       content: failure.map(
-                          nameAlreadyInUse: (_) =>
-                              StringManger.playListNameExist,
-                          emptyPlayListName: (_) => StringManger.invalidName,
-                          dataBaseFailure: (_) =>
-                              StringManger.somethingWentWrong,
-                          deleteFailure: (_) =>
-                              StringManger.somethingWentWrong));
+                        nameAlreadyInUse: (_) => StringManger.playListNameExist,
+                        emptyPlayListName: (_) => StringManger.invalidName,
+                        dataBaseFailure: (_) => StringManger.somethingWentWrong,
+                        deleteFailure: (_) => StringManger.somethingWentWrong,
+                        audioExist: (_) => StringManger.somethingWentWrong,
+                      ));
                 }, (r) {
                   snackBar(
                     context: context,

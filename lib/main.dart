@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
-import 'package:melody/application/favourite/favourite_actor/favourite_actor_bloc.dart';
 import 'package:melody/application/favourite/favourite_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
@@ -15,12 +14,11 @@ import 'package:melody/application/splash/splash_bloc.dart';
 import 'package:melody/injection_container.dart';
 import 'package:melody/presentation/splash_screen/screen_splash.dart';
 
-import 'application/core/bloc_observer.dart';
 import 'presentation/core/resourse_manager/theme_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = const AppBlocObserver();
+  // Bloc.observer = const AppBlocObserver();
   await initGetIt();
   await Hive.initFlutter();
   runApp(
@@ -48,8 +46,6 @@ class MyApp extends StatelessWidget {
         BlocProvider<SplashBloc>(create: (_) => getIt<SplashBloc>()),
         BlocProvider<HomeBloc>(create: (_) => getIt<HomeBloc>()),
         BlocProvider<FavouriteBloc>(create: (_) => getIt<FavouriteBloc>()),
-        BlocProvider<FavouriteActorBloc>(
-            create: (_) => getIt<FavouriteActorBloc>()),
         BlocProvider<PlayListHomeBloc>(
             create: (_) => getIt<PlayListHomeBloc>()),
         BlocProvider<PlayListHomeActionBloc>(

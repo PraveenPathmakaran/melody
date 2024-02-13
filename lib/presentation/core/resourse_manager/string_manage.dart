@@ -16,9 +16,11 @@ class StringManger {
   static const String successfull = 'successfull';
   static const String playListNameExist = 'PlayList Name Exist';
   static const String create = 'Create';
-  static const String cancel = 'Cancel';
   static const String delete = 'Delete';
+  static const String cancel = 'Cancel';
+  static const String areYouSure = 'Are You Sure?';
   static const String invalidName = 'Invalid Name';
   static const String createPlayList = 'Create Playlist';
   static const String confirmDelete = 'Confirm Delete';
+  static const String youWontAbleToRevertThis = 'You won\'t be able to revert this!';
 }

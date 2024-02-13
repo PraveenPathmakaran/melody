@@ -22,6 +22,7 @@ mixin _$PlayListFailure {
     required TResult Function() emptyPlayListName,
     required TResult Function() dataBaseFailure,
     required TResult Function() deleteFailure,
+    required TResult Function() audioExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$PlayListFailure {
     TResult? Function()? emptyPlayListName,
     TResult? Function()? dataBaseFailure,
     TResult? Function()? deleteFailure,
+    TResult? Function()? audioExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$PlayListFailure {
     TResult Function()? emptyPlayListName,
     TResult Function()? dataBaseFailure,
     TResult Function()? deleteFailure,
+    TResult Function()? audioExist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$PlayListFailure {
     required TResult Function(_EmptyPlayListName value) emptyPlayListName,
     required TResult Function(_DataBaseFailure value) dataBaseFailure,
     required TResult Function(_DeleteFailure value) deleteFailure,
+    required TResult Function(_AudioExist value) audioExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$PlayListFailure {
     TResult? Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult? Function(_DataBaseFailure value)? dataBaseFailure,
     TResult? Function(_DeleteFailure value)? deleteFailure,
+    TResult? Function(_AudioExist value)? audioExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$PlayListFailure {
     TResult Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult Function(_DataBaseFailure value)? dataBaseFailure,
     TResult Function(_DeleteFailure value)? deleteFailure,
+    TResult Function(_AudioExist value)? audioExist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +134,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
     required TResult Function() emptyPlayListName,
     required TResult Function() dataBaseFailure,
     required TResult Function() deleteFailure,
+    required TResult Function() audioExist,
   }) {
     return nameAlreadyInUse();
   }
@@ -139,6 +146,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
     TResult? Function()? emptyPlayListName,
     TResult? Function()? dataBaseFailure,
     TResult? Function()? deleteFailure,
+    TResult? Function()? audioExist,
   }) {
     return nameAlreadyInUse?.call();
   }
@@ -150,6 +158,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
     TResult Function()? emptyPlayListName,
     TResult Function()? dataBaseFailure,
     TResult Function()? deleteFailure,
+    TResult Function()? audioExist,
     required TResult orElse(),
   }) {
     if (nameAlreadyInUse != null) {
@@ -165,6 +174,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
     required TResult Function(_EmptyPlayListName value) emptyPlayListName,
     required TResult Function(_DataBaseFailure value) dataBaseFailure,
     required TResult Function(_DeleteFailure value) deleteFailure,
+    required TResult Function(_AudioExist value) audioExist,
   }) {
     return nameAlreadyInUse(this);
   }
@@ -176,6 +186,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
     TResult? Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult? Function(_DataBaseFailure value)? dataBaseFailure,
     TResult? Function(_DeleteFailure value)? deleteFailure,
+    TResult? Function(_AudioExist value)? audioExist,
   }) {
     return nameAlreadyInUse?.call(this);
   }
@@ -187,6 +198,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
     TResult Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult Function(_DataBaseFailure value)? dataBaseFailure,
     TResult Function(_DeleteFailure value)? deleteFailure,
+    TResult Function(_AudioExist value)? audioExist,
     required TResult orElse(),
   }) {
     if (nameAlreadyInUse != null) {
@@ -242,6 +254,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
     required TResult Function() emptyPlayListName,
     required TResult Function() dataBaseFailure,
     required TResult Function() deleteFailure,
+    required TResult Function() audioExist,
   }) {
     return emptyPlayListName();
   }
@@ -253,6 +266,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
     TResult? Function()? emptyPlayListName,
     TResult? Function()? dataBaseFailure,
     TResult? Function()? deleteFailure,
+    TResult? Function()? audioExist,
   }) {
     return emptyPlayListName?.call();
   }
@@ -264,6 +278,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
     TResult Function()? emptyPlayListName,
     TResult Function()? dataBaseFailure,
     TResult Function()? deleteFailure,
+    TResult Function()? audioExist,
     required TResult orElse(),
   }) {
     if (emptyPlayListName != null) {
@@ -279,6 +294,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
     required TResult Function(_EmptyPlayListName value) emptyPlayListName,
     required TResult Function(_DataBaseFailure value) dataBaseFailure,
     required TResult Function(_DeleteFailure value) deleteFailure,
+    required TResult Function(_AudioExist value) audioExist,
   }) {
     return emptyPlayListName(this);
   }
@@ -290,6 +306,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
     TResult? Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult? Function(_DataBaseFailure value)? dataBaseFailure,
     TResult? Function(_DeleteFailure value)? deleteFailure,
+    TResult? Function(_AudioExist value)? audioExist,
   }) {
     return emptyPlayListName?.call(this);
   }
@@ -301,6 +318,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
     TResult Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult Function(_DataBaseFailure value)? dataBaseFailure,
     TResult Function(_DeleteFailure value)? deleteFailure,
+    TResult Function(_AudioExist value)? audioExist,
     required TResult orElse(),
   }) {
     if (emptyPlayListName != null) {
@@ -356,6 +374,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
     required TResult Function() emptyPlayListName,
     required TResult Function() dataBaseFailure,
     required TResult Function() deleteFailure,
+    required TResult Function() audioExist,
   }) {
     return dataBaseFailure();
   }
@@ -367,6 +386,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
     TResult? Function()? emptyPlayListName,
     TResult? Function()? dataBaseFailure,
     TResult? Function()? deleteFailure,
+    TResult? Function()? audioExist,
   }) {
     return dataBaseFailure?.call();
   }
@@ -378,6 +398,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
     TResult Function()? emptyPlayListName,
     TResult Function()? dataBaseFailure,
     TResult Function()? deleteFailure,
+    TResult Function()? audioExist,
     required TResult orElse(),
   }) {
     if (dataBaseFailure != null) {
@@ -393,6 +414,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
     required TResult Function(_EmptyPlayListName value) emptyPlayListName,
     required TResult Function(_DataBaseFailure value) dataBaseFailure,
     required TResult Function(_DeleteFailure value) deleteFailure,
+    required TResult Function(_AudioExist value) audioExist,
   }) {
     return dataBaseFailure(this);
   }
@@ -404,6 +426,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
     TResult? Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult? Function(_DataBaseFailure value)? dataBaseFailure,
     TResult? Function(_DeleteFailure value)? deleteFailure,
+    TResult? Function(_AudioExist value)? audioExist,
   }) {
     return dataBaseFailure?.call(this);
   }
@@ -415,6 +438,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
     TResult Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult Function(_DataBaseFailure value)? dataBaseFailure,
     TResult Function(_DeleteFailure value)? deleteFailure,
+    TResult Function(_AudioExist value)? audioExist,
     required TResult orElse(),
   }) {
     if (dataBaseFailure != null) {
@@ -470,6 +494,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
     required TResult Function() emptyPlayListName,
     required TResult Function() dataBaseFailure,
     required TResult Function() deleteFailure,
+    required TResult Function() audioExist,
   }) {
     return deleteFailure();
   }
@@ -481,6 +506,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
     TResult? Function()? emptyPlayListName,
     TResult? Function()? dataBaseFailure,
     TResult? Function()? deleteFailure,
+    TResult? Function()? audioExist,
   }) {
     return deleteFailure?.call();
   }
@@ -492,6 +518,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
     TResult Function()? emptyPlayListName,
     TResult Function()? dataBaseFailure,
     TResult Function()? deleteFailure,
+    TResult Function()? audioExist,
     required TResult orElse(),
   }) {
     if (deleteFailure != null) {
@@ -507,6 +534,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
     required TResult Function(_EmptyPlayListName value) emptyPlayListName,
     required TResult Function(_DataBaseFailure value) dataBaseFailure,
     required TResult Function(_DeleteFailure value) deleteFailure,
+    required TResult Function(_AudioExist value) audioExist,
   }) {
     return deleteFailure(this);
   }
@@ -518,6 +546,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
     TResult? Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult? Function(_DataBaseFailure value)? dataBaseFailure,
     TResult? Function(_DeleteFailure value)? deleteFailure,
+    TResult? Function(_AudioExist value)? audioExist,
   }) {
     return deleteFailure?.call(this);
   }
@@ -529,6 +558,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
     TResult Function(_EmptyPlayListName value)? emptyPlayListName,
     TResult Function(_DataBaseFailure value)? dataBaseFailure,
     TResult Function(_DeleteFailure value)? deleteFailure,
+    TResult Function(_AudioExist value)? audioExist,
     required TResult orElse(),
   }) {
     if (deleteFailure != null) {
@@ -540,4 +570,124 @@ class _$DeleteFailureImpl implements _DeleteFailure {
 
 abstract class _DeleteFailure implements PlayListFailure {
   const factory _DeleteFailure() = _$DeleteFailureImpl;
+}
+
+/// @nodoc
+abstract class _$$AudioExistImplCopyWith<$Res> {
+  factory _$$AudioExistImplCopyWith(
+          _$AudioExistImpl value, $Res Function(_$AudioExistImpl) then) =
+      __$$AudioExistImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AudioExistImplCopyWithImpl<$Res>
+    extends _$PlayListFailureCopyWithImpl<$Res, _$AudioExistImpl>
+    implements _$$AudioExistImplCopyWith<$Res> {
+  __$$AudioExistImplCopyWithImpl(
+      _$AudioExistImpl _value, $Res Function(_$AudioExistImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AudioExistImpl implements _AudioExist {
+  const _$AudioExistImpl();
+
+  @override
+  String toString() {
+    return 'PlayListFailure.audioExist()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AudioExistImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() nameAlreadyInUse,
+    required TResult Function() emptyPlayListName,
+    required TResult Function() dataBaseFailure,
+    required TResult Function() deleteFailure,
+    required TResult Function() audioExist,
+  }) {
+    return audioExist();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? nameAlreadyInUse,
+    TResult? Function()? emptyPlayListName,
+    TResult? Function()? dataBaseFailure,
+    TResult? Function()? deleteFailure,
+    TResult? Function()? audioExist,
+  }) {
+    return audioExist?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? nameAlreadyInUse,
+    TResult Function()? emptyPlayListName,
+    TResult Function()? dataBaseFailure,
+    TResult Function()? deleteFailure,
+    TResult Function()? audioExist,
+    required TResult orElse(),
+  }) {
+    if (audioExist != null) {
+      return audioExist();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NameAlreadyInUse value) nameAlreadyInUse,
+    required TResult Function(_EmptyPlayListName value) emptyPlayListName,
+    required TResult Function(_DataBaseFailure value) dataBaseFailure,
+    required TResult Function(_DeleteFailure value) deleteFailure,
+    required TResult Function(_AudioExist value) audioExist,
+  }) {
+    return audioExist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NameAlreadyInUse value)? nameAlreadyInUse,
+    TResult? Function(_EmptyPlayListName value)? emptyPlayListName,
+    TResult? Function(_DataBaseFailure value)? dataBaseFailure,
+    TResult? Function(_DeleteFailure value)? deleteFailure,
+    TResult? Function(_AudioExist value)? audioExist,
+  }) {
+    return audioExist?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NameAlreadyInUse value)? nameAlreadyInUse,
+    TResult Function(_EmptyPlayListName value)? emptyPlayListName,
+    TResult Function(_DataBaseFailure value)? dataBaseFailure,
+    TResult Function(_DeleteFailure value)? deleteFailure,
+    TResult Function(_AudioExist value)? audioExist,
+    required TResult orElse(),
+  }) {
+    if (audioExist != null) {
+      return audioExist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AudioExist implements PlayListFailure {
+  const factory _AudioExist() = _$AudioExistImpl;
 }

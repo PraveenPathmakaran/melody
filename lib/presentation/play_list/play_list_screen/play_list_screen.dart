@@ -54,6 +54,14 @@ class ScreenPlayList extends StatelessWidget {
                 context
                     .read<PlayListHomeBloc>()
                     .add(const PlayListHomeEvent.loadPlayList());
+                context
+                    .read<PlayListAudioBloc>()
+                    .add(PlayListAudioEvent.concatenatingAudios(
+                      audios: context.read<SplashBloc>().state.mapOrNull(
+                            loaded: (value) => value.audioList,
+                          )!,
+                      playListName: playListName,
+                    ));
               },
             );
           },
@@ -73,16 +81,18 @@ class ScreenPlayList extends StatelessWidget {
                       margin: const EdgeInsets.all(AppMargin.m3),
                       child: ListTile(
                           onTap: () async {
-                            context
-                                .read<AudioControllerBloc>()
-                                .add(AudioControllerEvent.concatenatingAudios(
-                                  audios: state.audioList,
-                                  index: index,
-                                  currentScreen: playListName.getOrCrash(),
-                                ));
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ScreenPlay(),
-                            ));
+                            if (playListName.isValid()) {
+                              context
+                                  .read<AudioControllerBloc>()
+                                  .add(AudioControllerEvent.concatenatingAudios(
+                                    audios: state.audioList,
+                                    index: index,
+                                    currentScreen: playListName.getOrCrash(),
+                                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const ScreenPlay(),
+                              ));
+                            }
                           },
                           leading: CircleAvatar(
                             backgroundColor: ColorManager.primary,
@@ -114,9 +124,11 @@ class ScreenPlayList extends StatelessWidget {
                             icon: const Icon(Icons.delete),
                             onPressed: () {
                               context.read<PlayListHomeActionBloc>().add(
-                                  PlayListHomeActionEvent.addToPlayList(
-                                      playListName: playListName,
-                                      audioPath: audio.audioPath));
+                                      PlayListHomeActionEvent
+                                          .removeAudioFromPlayList(
+                                    playListName: playListName,
+                                    audioPath: audio.audioPath,
+                                  ));
                             },
                           )),
                     );

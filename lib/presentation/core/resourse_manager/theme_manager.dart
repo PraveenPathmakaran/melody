@@ -122,8 +122,10 @@ ThemeData getApplicationTheme() {
       progressIndicatorTheme:
           ProgressIndicatorThemeData(color: ColorManager.white),
       dialogTheme: DialogTheme(
-        elevation: 0,
-        backgroundColor: ColorManager.primary,
-        alignment: Alignment.center,
-      ));
+          elevation: 0,
+          backgroundColor: ColorManager.primary,
+          alignment: Alignment.center,
+          
+          titleTextStyle:
+              getRegularStyle(color: ColorManager.white, fontSize: 20)));
 }

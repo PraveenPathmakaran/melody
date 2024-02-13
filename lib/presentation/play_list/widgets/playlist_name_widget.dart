@@ -47,30 +47,42 @@ class PlayListNameWidget extends StatelessWidget {
                             showDialog(
                               context: context,
                               builder: (context) {
-                                return AlertDialog(
-                                  alignment: Alignment.center,
-                                  actionsAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  content: const Text(StringManger.delete),
-                                  actions: [
-                                    TextButton(
+                                return SizedBox(
+                                  height: 50,
+                                  child: AlertDialog(
+                                    alignment: Alignment.center,
+                                    actionsAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    content: const Text(
+                                      StringManger.youWontAbleToRevertThis,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    title: const Text(
+                                      StringManger.areYouSure,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child:
+                                              const Text(StringManger.cancel)),
+                                      TextButton(
                                         onPressed: () {
+                                          context
+                                              .read<PlayListHomeActionBloc>()
+                                              .add(PlayListHomeActionEvent
+                                                  .deletePlaylist(
+                                                      playListName:
+                                                          value.playListNames[
+                                                              index]));
                                           Navigator.of(context).pop();
                                         },
-                                        child: const Text(StringManger.cancel)),
-                                    TextButton(
-                                      onPressed: () {
-                                        context
-                                            .read<PlayListHomeActionBloc>()
-                                            .add(PlayListHomeActionEvent
-                                                .deletePlaylist(
-                                                    playListName: value
-                                                        .playListNames[index]));
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text(StringManger.create),
-                                    ),
-                                  ],
+                                        child: const Text(StringManger.delete),
+                                      ),
+                                    ],
+                                  ),
                                 );
                               },
                             );

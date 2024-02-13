@@ -17,17 +17,38 @@ class DataBaseRepository implements IDataBaseRepository {
       final data = box.get(playListName, defaultValue: []) as List;
       final pathList = data.map((e) => e.toString()).toList();
 
-      if (pathList.contains(audioPath)) {
-        pathList.remove(audioPath);
-      } else {
+      if (!pathList.contains(audioPath)) {
         pathList.add(audioPath);
+        await box
+            .put(playListName, pathList)
+            .then((value) async => await box.close());
+        return unit;
+      } else {
+        return throw const PlayListFailure.audioExist();
       }
-      await box
-          .put(playListName, pathList)
-          .then((value) async => await box.close());
-      return unit;
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-addAudioToPlayList");
+      return throw const PlayListFailure.dataBaseFailure();
+    }
+  }
+
+  @override
+  Future<Unit> removeAudioFromPlayList(
+      {required String audioPath, required String playListName}) async {
+    try {
+      Box box = await Hive.openBox(boxName);
+      final data = box.get(playListName, defaultValue: []) as List;
+      final pathList = data.map((e) => e.toString()).toList();
+
+      if (pathList.contains(audioPath)) {
+        pathList.remove(audioPath);
+        await box
+            .put(playListName, pathList)
+            .then((value) async => await box.close());
+      }
+      return unit;
+    } catch (e) {
+      log(e.toString(), name: "DataBaseRepository-removeAudioFromPlayList");
       return throw const PlayListFailure.dataBaseFailure();
     }
   }

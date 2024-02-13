@@ -68,6 +68,22 @@ class PlayListHomeActionBloc
                 failureOrSuccessOption: optionOf(failureOrSuccess)));
           }
         },
+        removeAudioFromPlayList: (value) async {
+          if (value.playListName.isValid()) {
+            emit(state.copyWith(
+                isSubmitting: true, failureOrSuccessOption: none()));
+
+            final failureOrSuccess =
+                await _audioRepository.removeAudioFromPlayList(
+              audioPath: value.audioPath,
+              playListName: value.playListName,
+            );
+            emit(state.copyWith(
+                isSubmitting: false,
+                showErrorMessage: true,
+                failureOrSuccessOption: optionOf(failureOrSuccess)));
+          }
+        },
       );
     });
   }

@@ -16,38 +16,47 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FavouriteEvent {
-  List<Audio> get audios => throw _privateConstructorUsedError;
   PlayListName get playListName => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Audio> audios, PlayListName playListName)
         loadAudio,
+    required TResult Function(Audio audio, PlayListName playListName)
+        favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Audio> audios, PlayListName playListName)? loadAudio,
+    TResult? Function(Audio audio, PlayListName playListName)?
+        favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Audio> audios, PlayListName playListName)? loadAudio,
+    TResult Function(Audio audio, PlayListName playListName)?
+        favouriteButtonClicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadAudio value) loadAudio,
+    required TResult Function(_FavouriteButtonClicked value)
+        favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadAudio value)? loadAudio,
+    TResult? Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadAudio value)? loadAudio,
+    TResult Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +72,7 @@ abstract class $FavouriteEventCopyWith<$Res> {
           FavouriteEvent value, $Res Function(FavouriteEvent) then) =
       _$FavouriteEventCopyWithImpl<$Res, FavouriteEvent>;
   @useResult
-  $Res call({List<Audio> audios, PlayListName playListName});
+  $Res call({PlayListName playListName});
 }
 
 /// @nodoc
@@ -79,14 +88,9 @@ class _$FavouriteEventCopyWithImpl<$Res, $Val extends FavouriteEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? audios = null,
     Object? playListName = null,
   }) {
     return _then(_value.copyWith(
-      audios: null == audios
-          ? _value.audios
-          : audios // ignore: cast_nullable_to_non_nullable
-              as List<Audio>,
       playListName: null == playListName
           ? _value.playListName
           : playListName // ignore: cast_nullable_to_non_nullable
@@ -181,6 +185,8 @@ class _$LoadAudioImpl implements _LoadAudio {
   TResult when<TResult extends Object?>({
     required TResult Function(List<Audio> audios, PlayListName playListName)
         loadAudio,
+    required TResult Function(Audio audio, PlayListName playListName)
+        favouriteButtonClicked,
   }) {
     return loadAudio(audios, playListName);
   }
@@ -189,6 +195,8 @@ class _$LoadAudioImpl implements _LoadAudio {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Audio> audios, PlayListName playListName)? loadAudio,
+    TResult? Function(Audio audio, PlayListName playListName)?
+        favouriteButtonClicked,
   }) {
     return loadAudio?.call(audios, playListName);
   }
@@ -197,6 +205,8 @@ class _$LoadAudioImpl implements _LoadAudio {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Audio> audios, PlayListName playListName)? loadAudio,
+    TResult Function(Audio audio, PlayListName playListName)?
+        favouriteButtonClicked,
     required TResult orElse(),
   }) {
     if (loadAudio != null) {
@@ -209,6 +219,8 @@ class _$LoadAudioImpl implements _LoadAudio {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadAudio value) loadAudio,
+    required TResult Function(_FavouriteButtonClicked value)
+        favouriteButtonClicked,
   }) {
     return loadAudio(this);
   }
@@ -217,6 +229,7 @@ class _$LoadAudioImpl implements _LoadAudio {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadAudio value)? loadAudio,
+    TResult? Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
   }) {
     return loadAudio?.call(this);
   }
@@ -225,6 +238,7 @@ class _$LoadAudioImpl implements _LoadAudio {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadAudio value)? loadAudio,
+    TResult Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
     required TResult orElse(),
   }) {
     if (loadAudio != null) {
@@ -239,7 +253,6 @@ abstract class _LoadAudio implements FavouriteEvent {
       {required final List<Audio> audios,
       required final PlayListName playListName}) = _$LoadAudioImpl;
 
-  @override
   List<Audio> get audios;
   @override
   PlayListName get playListName;
@@ -250,25 +263,194 @@ abstract class _LoadAudio implements FavouriteEvent {
 }
 
 /// @nodoc
+abstract class _$$FavouriteButtonClickedImplCopyWith<$Res>
+    implements $FavouriteEventCopyWith<$Res> {
+  factory _$$FavouriteButtonClickedImplCopyWith(
+          _$FavouriteButtonClickedImpl value,
+          $Res Function(_$FavouriteButtonClickedImpl) then) =
+      __$$FavouriteButtonClickedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Audio audio, PlayListName playListName});
+
+  $AudioCopyWith<$Res> get audio;
+}
+
+/// @nodoc
+class __$$FavouriteButtonClickedImplCopyWithImpl<$Res>
+    extends _$FavouriteEventCopyWithImpl<$Res, _$FavouriteButtonClickedImpl>
+    implements _$$FavouriteButtonClickedImplCopyWith<$Res> {
+  __$$FavouriteButtonClickedImplCopyWithImpl(
+      _$FavouriteButtonClickedImpl _value,
+      $Res Function(_$FavouriteButtonClickedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? audio = null,
+    Object? playListName = null,
+  }) {
+    return _then(_$FavouriteButtonClickedImpl(
+      audio: null == audio
+          ? _value.audio
+          : audio // ignore: cast_nullable_to_non_nullable
+              as Audio,
+      playListName: null == playListName
+          ? _value.playListName
+          : playListName // ignore: cast_nullable_to_non_nullable
+              as PlayListName,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AudioCopyWith<$Res> get audio {
+    return $AudioCopyWith<$Res>(_value.audio, (value) {
+      return _then(_value.copyWith(audio: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$FavouriteButtonClickedImpl implements _FavouriteButtonClicked {
+  const _$FavouriteButtonClickedImpl(
+      {required this.audio, required this.playListName});
+
+  @override
+  final Audio audio;
+  @override
+  final PlayListName playListName;
+
+  @override
+  String toString() {
+    return 'FavouriteEvent.favouriteButtonClicked(audio: $audio, playListName: $playListName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FavouriteButtonClickedImpl &&
+            (identical(other.audio, audio) || other.audio == audio) &&
+            (identical(other.playListName, playListName) ||
+                other.playListName == playListName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, audio, playListName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FavouriteButtonClickedImplCopyWith<_$FavouriteButtonClickedImpl>
+      get copyWith => __$$FavouriteButtonClickedImplCopyWithImpl<
+          _$FavouriteButtonClickedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Audio> audios, PlayListName playListName)
+        loadAudio,
+    required TResult Function(Audio audio, PlayListName playListName)
+        favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked(audio, playListName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<Audio> audios, PlayListName playListName)? loadAudio,
+    TResult? Function(Audio audio, PlayListName playListName)?
+        favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked?.call(audio, playListName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Audio> audios, PlayListName playListName)? loadAudio,
+    TResult Function(Audio audio, PlayListName playListName)?
+        favouriteButtonClicked,
+    required TResult orElse(),
+  }) {
+    if (favouriteButtonClicked != null) {
+      return favouriteButtonClicked(audio, playListName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadAudio value) loadAudio,
+    required TResult Function(_FavouriteButtonClicked value)
+        favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadAudio value)? loadAudio,
+    TResult? Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
+  }) {
+    return favouriteButtonClicked?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadAudio value)? loadAudio,
+    TResult Function(_FavouriteButtonClicked value)? favouriteButtonClicked,
+    required TResult orElse(),
+  }) {
+    if (favouriteButtonClicked != null) {
+      return favouriteButtonClicked(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FavouriteButtonClicked implements FavouriteEvent {
+  const factory _FavouriteButtonClicked(
+      {required final Audio audio,
+      required final PlayListName playListName}) = _$FavouriteButtonClickedImpl;
+
+  Audio get audio;
+  @override
+  PlayListName get playListName;
+  @override
+  @JsonKey(ignore: true)
+  _$$FavouriteButtonClickedImplCopyWith<_$FavouriteButtonClickedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$FavouriteState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Audio> audioList) loaded,
+    required TResult Function(List<Audio> audioList, List<Audio> newList)
+        loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Audio> audioList)? loaded,
+    TResult? Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Audio> audioList)? loaded,
+    TResult Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -354,7 +536,8 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Audio> audioList) loaded,
+    required TResult Function(List<Audio> audioList, List<Audio> newList)
+        loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -364,7 +547,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Audio> audioList)? loaded,
+    TResult? Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -374,7 +557,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Audio> audioList)? loaded,
+    TResult Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -429,7 +612,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Audio> audioList});
+  $Res call({List<Audio> audioList, List<Audio> newList});
 }
 
 /// @nodoc
@@ -444,11 +627,16 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? audioList = null,
+    Object? newList = null,
   }) {
     return _then(_$LoadedImpl(
       audioList: null == audioList
           ? _value._audioList
           : audioList // ignore: cast_nullable_to_non_nullable
+              as List<Audio>,
+      newList: null == newList
+          ? _value._newList
+          : newList // ignore: cast_nullable_to_non_nullable
               as List<Audio>,
     ));
   }
@@ -457,8 +645,11 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<Audio> audioList})
-      : _audioList = audioList;
+  const _$LoadedImpl(
+      {required final List<Audio> audioList,
+      required final List<Audio> newList})
+      : _audioList = audioList,
+        _newList = newList;
 
   final List<Audio> _audioList;
   @override
@@ -468,9 +659,17 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_audioList);
   }
 
+  final List<Audio> _newList;
+  @override
+  List<Audio> get newList {
+    if (_newList is EqualUnmodifiableListView) return _newList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_newList);
+  }
+
   @override
   String toString() {
-    return 'FavouriteState.loaded(audioList: $audioList)';
+    return 'FavouriteState.loaded(audioList: $audioList, newList: $newList)';
   }
 
   @override
@@ -479,12 +678,15 @@ class _$LoadedImpl implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             const DeepCollectionEquality()
-                .equals(other._audioList, _audioList));
+                .equals(other._audioList, _audioList) &&
+            const DeepCollectionEquality().equals(other._newList, _newList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_audioList));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_audioList),
+      const DeepCollectionEquality().hash(_newList));
 
   @JsonKey(ignore: true)
   @override
@@ -496,32 +698,33 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Audio> audioList) loaded,
+    required TResult Function(List<Audio> audioList, List<Audio> newList)
+        loaded,
     required TResult Function() error,
   }) {
-    return loaded(audioList);
+    return loaded(audioList, newList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Audio> audioList)? loaded,
+    TResult? Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(audioList);
+    return loaded?.call(audioList, newList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Audio> audioList)? loaded,
+    TResult Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(audioList);
+      return loaded(audioList, newList);
     }
     return orElse();
   }
@@ -562,9 +765,12 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements FavouriteState {
-  const factory _Loaded({required final List<Audio> audioList}) = _$LoadedImpl;
+  const factory _Loaded(
+      {required final List<Audio> audioList,
+      required final List<Audio> newList}) = _$LoadedImpl;
 
   List<Audio> get audioList;
+  List<Audio> get newList;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -609,7 +815,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Audio> audioList) loaded,
+    required TResult Function(List<Audio> audioList, List<Audio> newList)
+        loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -619,7 +826,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Audio> audioList)? loaded,
+    TResult? Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -629,7 +836,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Audio> audioList)? loaded,
+    TResult Function(List<Audio> audioList, List<Audio> newList)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {

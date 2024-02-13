@@ -20,15 +20,14 @@ class PlayLIstCreateWidget extends StatelessWidget {
             () {},
             (either) => either.fold((failure) {
                   snackBar(
-                      context: context,
-                      content: failure.map(
-                          nameAlreadyInUse: (_) =>
-                              StringManger.playListNameExist,
-                          emptyPlayListName: (_) => StringManger.invalidName,
-                          dataBaseFailure: (_) =>
-                              StringManger.somethingWentWrong,
-                          deleteFailure: (_) =>
-                              StringManger.somethingWentWrong));
+                    context: context,
+                    content: failure.maybeMap(
+                        orElse: () => "",
+                        nameAlreadyInUse: (_) => StringManger.playListNameExist,
+                        emptyPlayListName: (_) => StringManger.invalidName,
+                        dataBaseFailure: (_) => StringManger.somethingWentWrong,
+                        deleteFailure: (_) => StringManger.somethingWentWrong),
+                  );
                 }, (r) {
                   snackBar(
                     context: context,
@@ -78,7 +77,6 @@ class PlayLIstCreateWidget extends StatelessWidget {
                           ),
                           actions: [
                             TextButton(
-                              
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },

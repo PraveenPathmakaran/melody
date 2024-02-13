@@ -246,6 +246,21 @@ class AudioRepository implements IAudioRepository {
   }
 
   @override
+  Future<Either<PlayListFailure, Unit>> removeAudioFromPlayList(
+      {required AudioPath audioPath,
+      required PlayListName playListName}) async {
+    try {
+      final name = playListName.getOrCrash();
+      final path = audioPath.getOrCrash();
+      await _dataBaseRepository.removeAudioFromPlayList(
+          audioPath: path, playListName: name);
+      return right(unit);
+    } catch (e) {
+      return left(const PlayListFailure.dataBaseFailure());
+    }
+  }
+
+  @override
   Future<Either<PlayListFailure, Unit>> createPlaylist(
       {required PlayListName playList}) async {
     try {

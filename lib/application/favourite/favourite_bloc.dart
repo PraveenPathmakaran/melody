@@ -1,9 +1,12 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:melody/domain/songs/audio_value_objects.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../domain/songs/audio.dart';
 import '../../domain/songs/i_audio_repository.dart';
+import '../../domain/songs/playlist_failures.dart';
 
 part 'favourite_bloc.freezed.dart';
 part 'favourite_event.dart';
@@ -25,8 +28,39 @@ class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
             List<Audio> newList = value.audios
                 .where((element) => audioPath.contains(element.audioPath))
                 .toList();
-            emit(FavouriteState.loaded(audioList: newList));
+            emit(FavouriteState.loaded(
+              audioList: value.audios,
+              newList: newList,
+            ));
           });
+        },
+        favouriteButtonClicked: (event) async {
+          final isContains = state.maybeMap(
+            orElse: () => false,
+            loaded: (value) => value.newList.contains(event.audio),
+          );
+          Either<PlayListFailure, Unit> failureOrSucess;
+          if (isContains) {
+            failureOrSucess = await _audioRepository.removeAudioFromPlayList(
+              playListName: event.playListName,
+              audioPath: event.audio.audioPath,
+            );
+          } else {
+            failureOrSucess = await _audioRepository.addAudioToPlayList(
+              playListName: event.playListName,
+              audioPath: event.audio.audioPath,
+            );
+          }
+
+          failureOrSucess.fold(
+              (l) => emit(const FavouriteState.error()),
+              (r) => add(FavouriteEvent.loadAudio(
+                    audios: state.maybeMap(
+                      orElse: () => [],
+                      loaded: (value) => value.audioList,
+                    ),
+                    playListName: PlayListName(StringManger.favourites),
+                  )));
         },
       );
     });

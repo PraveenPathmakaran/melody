@@ -5,6 +5,10 @@ abstract interface class IDataBaseRepository {
     required String audioPath,
     required String playListName,
   });
+    Future<Unit> removeAudioFromPlayList({
+    required String audioPath,
+    required String playListName,
+  });
   Future<List<String>> getPlayListAudios({
     required String playListName,
   });
