@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/favourite/favourite_bloc.dart';
+import 'package:melody/presentation/core/empty_data_widget.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 import 'package:melody/presentation/core/widgets.dart';
@@ -30,6 +31,9 @@ class ScreenFavourites extends StatelessWidget {
           return state.map(loading: (value) {
             return circularPindicator;
           }, loaded: (state) {
+            if (state.favouriteAudios.isEmpty) {
+              return const EmptyDataWidget();
+            }
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 final audio = state.favouriteAudios[index];

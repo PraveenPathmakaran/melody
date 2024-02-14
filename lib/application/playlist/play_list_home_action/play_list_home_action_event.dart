@@ -11,7 +11,7 @@ class PlayListHomeActionEvent with _$PlayListHomeActionEvent {
       required AudioPath audioPath}) = _AddToPlayList;
     const factory PlayListHomeActionEvent.removeAudioFromPlayList(
       {required PlayListName playListName,
-      required AudioPath audioPath}) = _RemoveAudioFromPlayList;
+      required AudioPath audioPath,required int index}) = _RemoveAudioFromPlayList;
   
   const factory PlayListHomeActionEvent.deletePlaylist(
       {required PlayListName playListName}) = _DeletePlaylist;

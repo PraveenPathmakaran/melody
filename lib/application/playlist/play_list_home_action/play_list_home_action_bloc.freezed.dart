@@ -22,7 +22,8 @@ mixin _$PlayListHomeActionEvent {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
-    required TResult Function(PlayListName playListName, AudioPath audioPath)
+    required TResult Function(
+            PlayListName playListName, AudioPath audioPath, int index)
         removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) =>
@@ -33,7 +34,8 @@ mixin _$PlayListHomeActionEvent {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+    TResult? Function(
+            PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) =>
@@ -44,7 +46,7 @@ mixin _$PlayListHomeActionEvent {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult Function(PlayListName playListName, AudioPath audioPath)?
+    TResult Function(PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
@@ -149,7 +151,8 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
-    required TResult Function(PlayListName playListName, AudioPath audioPath)
+    required TResult Function(
+            PlayListName playListName, AudioPath audioPath, int index)
         removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
@@ -163,7 +166,8 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+    TResult? Function(
+            PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
@@ -177,7 +181,7 @@ class _$PlayListCreateButtonClickImpl implements _PlayListCreateButtonClick {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult Function(PlayListName playListName, AudioPath audioPath)?
+    TResult Function(PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
@@ -308,7 +312,8 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
-    required TResult Function(PlayListName playListName, AudioPath audioPath)
+    required TResult Function(
+            PlayListName playListName, AudioPath audioPath, int index)
         removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
@@ -322,7 +327,8 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+    TResult? Function(
+            PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
@@ -336,7 +342,7 @@ class _$PlayListNameChangedImpl implements _PlayListNameChanged {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult Function(PlayListName playListName, AudioPath audioPath)?
+    TResult Function(PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
@@ -481,7 +487,8 @@ class _$AddToPlayListImpl implements _AddToPlayList {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
-    required TResult Function(PlayListName playListName, AudioPath audioPath)
+    required TResult Function(
+            PlayListName playListName, AudioPath audioPath, int index)
         removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
@@ -495,7 +502,8 @@ class _$AddToPlayListImpl implements _AddToPlayList {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+    TResult? Function(
+            PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
@@ -509,7 +517,7 @@ class _$AddToPlayListImpl implements _AddToPlayList {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult Function(PlayListName playListName, AudioPath audioPath)?
+    TResult Function(PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
@@ -584,7 +592,7 @@ abstract class _$$RemoveAudioFromPlayListImplCopyWith<$Res> {
           $Res Function(_$RemoveAudioFromPlayListImpl) then) =
       __$$RemoveAudioFromPlayListImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PlayListName playListName, AudioPath audioPath});
+  $Res call({PlayListName playListName, AudioPath audioPath, int index});
 }
 
 /// @nodoc
@@ -602,6 +610,7 @@ class __$$RemoveAudioFromPlayListImplCopyWithImpl<$Res>
   $Res call({
     Object? playListName = null,
     Object? audioPath = null,
+    Object? index = null,
   }) {
     return _then(_$RemoveAudioFromPlayListImpl(
       playListName: null == playListName
@@ -612,6 +621,10 @@ class __$$RemoveAudioFromPlayListImplCopyWithImpl<$Res>
           ? _value.audioPath
           : audioPath // ignore: cast_nullable_to_non_nullable
               as AudioPath,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -620,16 +633,20 @@ class __$$RemoveAudioFromPlayListImplCopyWithImpl<$Res>
 
 class _$RemoveAudioFromPlayListImpl implements _RemoveAudioFromPlayList {
   const _$RemoveAudioFromPlayListImpl(
-      {required this.playListName, required this.audioPath});
+      {required this.playListName,
+      required this.audioPath,
+      required this.index});
 
   @override
   final PlayListName playListName;
   @override
   final AudioPath audioPath;
+  @override
+  final int index;
 
   @override
   String toString() {
-    return 'PlayListHomeActionEvent.removeAudioFromPlayList(playListName: $playListName, audioPath: $audioPath)';
+    return 'PlayListHomeActionEvent.removeAudioFromPlayList(playListName: $playListName, audioPath: $audioPath, index: $index)';
   }
 
   @override
@@ -640,11 +657,12 @@ class _$RemoveAudioFromPlayListImpl implements _RemoveAudioFromPlayList {
             (identical(other.playListName, playListName) ||
                 other.playListName == playListName) &&
             (identical(other.audioPath, audioPath) ||
-                other.audioPath == audioPath));
+                other.audioPath == audioPath) &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, playListName, audioPath);
+  int get hashCode => Object.hash(runtimeType, playListName, audioPath, index);
 
   @JsonKey(ignore: true)
   @override
@@ -660,11 +678,12 @@ class _$RemoveAudioFromPlayListImpl implements _RemoveAudioFromPlayList {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
-    required TResult Function(PlayListName playListName, AudioPath audioPath)
+    required TResult Function(
+            PlayListName playListName, AudioPath audioPath, int index)
         removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
-    return removeAudioFromPlayList(playListName, audioPath);
+    return removeAudioFromPlayList(playListName, audioPath, index);
   }
 
   @override
@@ -674,11 +693,12 @@ class _$RemoveAudioFromPlayListImpl implements _RemoveAudioFromPlayList {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+    TResult? Function(
+            PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
-    return removeAudioFromPlayList?.call(playListName, audioPath);
+    return removeAudioFromPlayList?.call(playListName, audioPath, index);
   }
 
   @override
@@ -688,13 +708,13 @@ class _$RemoveAudioFromPlayListImpl implements _RemoveAudioFromPlayList {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult Function(PlayListName playListName, AudioPath audioPath)?
+    TResult Function(PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),
   }) {
     if (removeAudioFromPlayList != null) {
-      return removeAudioFromPlayList(playListName, audioPath);
+      return removeAudioFromPlayList(playListName, audioPath, index);
     }
     return orElse();
   }
@@ -747,10 +767,12 @@ class _$RemoveAudioFromPlayListImpl implements _RemoveAudioFromPlayList {
 abstract class _RemoveAudioFromPlayList implements PlayListHomeActionEvent {
   const factory _RemoveAudioFromPlayList(
       {required final PlayListName playListName,
-      required final AudioPath audioPath}) = _$RemoveAudioFromPlayListImpl;
+      required final AudioPath audioPath,
+      required final int index}) = _$RemoveAudioFromPlayListImpl;
 
   PlayListName get playListName;
   AudioPath get audioPath;
+  int get index;
   @JsonKey(ignore: true)
   _$$RemoveAudioFromPlayListImplCopyWith<_$RemoveAudioFromPlayListImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -826,7 +848,8 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
     required TResult Function(String playListName) playListNameChanged,
     required TResult Function(PlayListName playListName, AudioPath audioPath)
         addToPlayList,
-    required TResult Function(PlayListName playListName, AudioPath audioPath)
+    required TResult Function(
+            PlayListName playListName, AudioPath audioPath, int index)
         removeAudioFromPlayList,
     required TResult Function(PlayListName playListName) deletePlaylist,
   }) {
@@ -840,7 +863,8 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
     TResult? Function(String playListName)? playListNameChanged,
     TResult? Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult? Function(PlayListName playListName, AudioPath audioPath)?
+    TResult? Function(
+            PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult? Function(PlayListName playListName)? deletePlaylist,
   }) {
@@ -854,7 +878,7 @@ class _$DeletePlaylistImpl implements _DeletePlaylist {
     TResult Function(String playListName)? playListNameChanged,
     TResult Function(PlayListName playListName, AudioPath audioPath)?
         addToPlayList,
-    TResult Function(PlayListName playListName, AudioPath audioPath)?
+    TResult Function(PlayListName playListName, AudioPath audioPath, int index)?
         removeAudioFromPlayList,
     TResult Function(PlayListName playListName)? deletePlaylist,
     required TResult orElse(),

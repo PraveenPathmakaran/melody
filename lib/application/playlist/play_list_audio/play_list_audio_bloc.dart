@@ -15,21 +15,29 @@ class PlayListAudioBloc extends Bloc<PlayListAudioEvent, PlayListAudioState> {
       : super(const PlayListAudioState.loading()) {
     on<PlayListAudioEvent>((event, emit) async {
       await event.map(
-        concatenatingAudios: (value) async {
+        loadAudio: (value) async {
           emit(const PlayListAudioState.loading());
           final playListName = value.playListName;
           if (playListName.isValid()) {
-            final failureOrSuceesSongs = await _audioRepository.getPlayList(
-                playListName: PlayListName(value.playListName.getOrCrash()));
+            final failureOrSuceesSongs =
+                await _audioRepository.getPlayList(playListName: playListName);
             await failureOrSuceesSongs
                 .fold((failure) async => emit(const PlayListAudioState.error()),
                     (audioPath) async {
               List<Audio> newList = value.audios
                   .where((element) => audioPath.contains(element.audioPath))
                   .toList();
-              emit(PlayListAudioState.loaded(audioList: newList));
+              emit(PlayListAudioState.loaded(
+                playList: newList,
+                audioList: value.audios,
+              ));
             });
+            return;
           }
+          emit(PlayListAudioState.loaded(
+            playList: [],
+            audioList: value.audios,
+          ));
         },
       );
     });

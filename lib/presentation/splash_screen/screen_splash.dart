@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/favourite/favourite_bloc.dart';
 import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/application/permission_bloc/permission_handler_bloc.dart';
+import 'package:melody/application/playlist/play_list_audio/play_list_audio_bloc.dart';
 import 'package:melody/application/playlist/play_list_home/play_list_home_bloc.dart';
 import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
@@ -83,6 +84,10 @@ class _ScreenSplashState extends State<ScreenSplash>
                 context
                     .read<PlayListHomeBloc>()
                     .add(const PlayListHomeEvent.loadPlayList());
+                context.read<PlayListAudioBloc>().add(
+                    PlayListAudioEvent.loadAudio(
+                        audios: value.audioList,
+                        playListName: PlayListName("")));
                 context.read<FavouriteBloc>().add(FavouriteEvent.loadAudio(
                     audios: value.audioList,
                     playListName: PlayListName(StringManger.favourites)));

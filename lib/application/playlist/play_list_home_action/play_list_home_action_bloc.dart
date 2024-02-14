@@ -78,6 +78,7 @@ class PlayListHomeActionBloc
               audioPath: value.audioPath,
               playListName: value.playListName,
             );
+            await _audioRepository.removeFromPlayList(index: value.index);
             emit(state.copyWith(
                 isSubmitting: false,
                 showErrorMessage: true,

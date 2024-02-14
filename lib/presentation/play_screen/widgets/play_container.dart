@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/presentation/core/constant.dart';
+import 'package:melody/presentation/core/empty_data_widget.dart';
+import 'package:melody/presentation/core/error_widget.dart';
+import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/utils.dart';
 
 import '../../../application/audio_controller/audio_controller_bloc.dart';
@@ -21,44 +24,51 @@ class PlayContainer extends StatelessWidget {
       buildWhen: (p, c) =>
           (p.audio != c.audio) || (p.currentScreen != c.currentScreen),
       builder: (context, state) {
-        if (state.loadingState == LoadingState.loaded) {
-          final audio = state.audio.fold(() => null, (a) => a);
-
-          if (audio != null) {
-            return Container(
-              height: size.height,
-              width: size.width,
-              padding: const EdgeInsets.all(AppPadding.p30),
-              child: Column(
-                children: <Widget>[
-                  //image
-                  PlayScreenImageWidget(audio: audio),
-                  const SizedBox(
-                    height: AppSize.s50,
-                  ),
-                  PlayScreenTextWidgets(audio: audio),
-                  const SizedBox(
-                    height: AppSize.s50,
-                  ),
-                  //controller and details
-                  const SizedBox(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          PlayTopControllerWidget(),
-                          PlayProgressSlideWidget(),
-                          AudioControllerWidget()
-                        ],
+        switch (state.loadingState) {
+          case LoadingState.loaded:
+            final audio = state.audio.fold(() => null, (a) => a);
+            if (audio != null) {
+              return Container(
+                height: size.height,
+                width: size.width,
+                padding: const EdgeInsets.all(AppPadding.p30),
+                child: Column(
+                  children: <Widget>[
+                    //image
+                    PlayScreenImageWidget(audio: audio),
+                    const SizedBox(
+                      height: AppSize.s50,
+                    ),
+                    PlayScreenTextWidgets(audio: audio),
+                    const SizedBox(
+                      height: AppSize.s50,
+                    ),
+                    //controller and details
+                    const SizedBox(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            PlayTopControllerWidget(),
+                            PlayProgressSlideWidget(),
+                            AudioControllerWidget()
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              );
+            } else {
+              return const EmptyDataWidget();
+            }
+          case LoadingState.loading:
+            return circularPindicator;
+          case LoadingState.initial:
+            return circularPindicator;
+          case LoadingState.failed:
+            return const AppErrorWidget(
+              errorMessage: StringManger.somethingWentWrong,
             );
-          }
-          return circularPindicator;
-        } else {
-          return circularPindicator;
         }
       },
     );

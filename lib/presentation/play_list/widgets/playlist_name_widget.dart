@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:melody/presentation/core/empty_data_widget.dart';
 
 import '../../../application/playlist/play_list_home/play_list_home_bloc.dart';
 import '../../../application/playlist/play_list_home_action/play_list_home_action_bloc.dart';
@@ -20,6 +21,9 @@ class PlayListNameWidget extends StatelessWidget {
         return state.map(
           loading: (_) => circularPindicator,
           loaded: (value) {
+            if (value.playListNames.isEmpty) {
+              return const EmptyDataWidget();
+            }
             return ListView.builder(
               controller: ScrollController(),
               itemBuilder: (BuildContext context, int index) {
@@ -33,8 +37,10 @@ class PlayListNameWidget extends StatelessWidget {
                     child: ListTile(
                         onTap: () async {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ScreenPlayList(
-                                playListName: value.playListNames[index]),
+                            builder: (context) {
+                              return ScreenPlayList(
+                                  playListName: value.playListNames[index]);
+                            },
                           ));
                         },
                         title: Text(

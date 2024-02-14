@@ -7,6 +7,7 @@ import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 
 import '../../application/splash/splash_bloc.dart';
+import '../core/empty_data_widget.dart';
 import '../core/error_widget.dart';
 import '../core/resourse_manager/color_manager.dart';
 import '../core/utils.dart';
@@ -30,6 +31,9 @@ class ScreenHome extends StatelessWidget {
           return state.map(loading: (value) {
             return circularPindicator;
           }, loaded: (state) {
+            if (state.audioList.isEmpty) {
+              return const EmptyDataWidget();
+            }
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return Card(
