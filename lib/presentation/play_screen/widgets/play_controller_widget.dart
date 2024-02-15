@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
-import 'package:melody/domain/songs/audio.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 
+import '../../../domain/audio/audio.dart';
 import 'button_state_widget.dart';
 import 'icon_widgets.dart';
 

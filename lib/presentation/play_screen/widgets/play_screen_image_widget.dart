@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/splash/splash_bloc.dart';
-import '../../../domain/songs/audio.dart';
+import '../../../domain/audio/audio.dart';
 import '../../core/app_size_manage.dart';
 import '../../core/widgets.dart';
 

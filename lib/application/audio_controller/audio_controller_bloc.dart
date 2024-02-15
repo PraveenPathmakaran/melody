@@ -4,12 +4,13 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:melody/domain/songs/audio.dart';
-import 'package:melody/domain/songs/audio_failure.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart';
-import 'package:melody/domain/songs/i_audio_repository.dart';
 import 'package:melody/presentation/core/constant.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../../domain/audio/audio.dart';
+import '../../domain/audio/audio_failure.dart';
+import '../../domain/audio/audio_value_objects.dart';
+import '../../domain/audio/i_audio_repository.dart';
 
 part 'audio_controller_bloc.freezed.dart';
 part 'audio_controller_event.dart';
@@ -20,8 +21,9 @@ class AudioControllerBloc
   final IAudioRepository _audioRepository;
   StreamSubscription? combinedStreamSubscription;
 
-  AudioControllerBloc(this._audioRepository)
-      : super(AudioControllerState.initial()) {
+  AudioControllerBloc(
+    this._audioRepository,
+  ) : super(AudioControllerState.initial()) {
     on<AudioControllerEvent>((event, emit) async {
       await event.map(
         listenAllStreams: (value) async {
@@ -148,6 +150,4 @@ class AudioControllerBloc
   void setAudioLoopMode({required AudioLoopMode loopMode}) {
     _audioRepository.setAudioLoopMode(audioLoopMode: loopMode);
   }
-
-  
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'playlist_failures.dart';
+part of 'database_failures.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$PlayListFailure {
+mixin _$DataBaseFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() nameAlreadyInUse,
@@ -75,16 +75,16 @@ mixin _$PlayListFailure {
 }
 
 /// @nodoc
-abstract class $PlayListFailureCopyWith<$Res> {
-  factory $PlayListFailureCopyWith(
-          PlayListFailure value, $Res Function(PlayListFailure) then) =
-      _$PlayListFailureCopyWithImpl<$Res, PlayListFailure>;
+abstract class $DataBaseFailureCopyWith<$Res> {
+  factory $DataBaseFailureCopyWith(
+          DataBaseFailure value, $Res Function(DataBaseFailure) then) =
+      _$DataBaseFailureCopyWithImpl<$Res, DataBaseFailure>;
 }
 
 /// @nodoc
-class _$PlayListFailureCopyWithImpl<$Res, $Val extends PlayListFailure>
-    implements $PlayListFailureCopyWith<$Res> {
-  _$PlayListFailureCopyWithImpl(this._value, this._then);
+class _$DataBaseFailureCopyWithImpl<$Res, $Val extends DataBaseFailure>
+    implements $DataBaseFailureCopyWith<$Res> {
+  _$DataBaseFailureCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -101,7 +101,7 @@ abstract class _$$NameAlreadyInUseImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$NameAlreadyInUseImplCopyWithImpl<$Res>
-    extends _$PlayListFailureCopyWithImpl<$Res, _$NameAlreadyInUseImpl>
+    extends _$DataBaseFailureCopyWithImpl<$Res, _$NameAlreadyInUseImpl>
     implements _$$NameAlreadyInUseImplCopyWith<$Res> {
   __$$NameAlreadyInUseImplCopyWithImpl(_$NameAlreadyInUseImpl _value,
       $Res Function(_$NameAlreadyInUseImpl) _then)
@@ -115,7 +115,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
 
   @override
   String toString() {
-    return 'PlayListFailure.nameAlreadyInUse()';
+    return 'DataBaseFailure.nameAlreadyInUse()';
   }
 
   @override
@@ -208,7 +208,7 @@ class _$NameAlreadyInUseImpl implements _NameAlreadyInUse {
   }
 }
 
-abstract class _NameAlreadyInUse implements PlayListFailure {
+abstract class _NameAlreadyInUse implements DataBaseFailure {
   const factory _NameAlreadyInUse() = _$NameAlreadyInUseImpl;
 }
 
@@ -221,7 +221,7 @@ abstract class _$$EmptyPlayListNameImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$EmptyPlayListNameImplCopyWithImpl<$Res>
-    extends _$PlayListFailureCopyWithImpl<$Res, _$EmptyPlayListNameImpl>
+    extends _$DataBaseFailureCopyWithImpl<$Res, _$EmptyPlayListNameImpl>
     implements _$$EmptyPlayListNameImplCopyWith<$Res> {
   __$$EmptyPlayListNameImplCopyWithImpl(_$EmptyPlayListNameImpl _value,
       $Res Function(_$EmptyPlayListNameImpl) _then)
@@ -235,7 +235,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
 
   @override
   String toString() {
-    return 'PlayListFailure.emptyPlayListName()';
+    return 'DataBaseFailure.emptyPlayListName()';
   }
 
   @override
@@ -328,7 +328,7 @@ class _$EmptyPlayListNameImpl implements _EmptyPlayListName {
   }
 }
 
-abstract class _EmptyPlayListName implements PlayListFailure {
+abstract class _EmptyPlayListName implements DataBaseFailure {
   const factory _EmptyPlayListName() = _$EmptyPlayListNameImpl;
 }
 
@@ -341,7 +341,7 @@ abstract class _$$DataBaseFailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DataBaseFailureImplCopyWithImpl<$Res>
-    extends _$PlayListFailureCopyWithImpl<$Res, _$DataBaseFailureImpl>
+    extends _$DataBaseFailureCopyWithImpl<$Res, _$DataBaseFailureImpl>
     implements _$$DataBaseFailureImplCopyWith<$Res> {
   __$$DataBaseFailureImplCopyWithImpl(
       _$DataBaseFailureImpl _value, $Res Function(_$DataBaseFailureImpl) _then)
@@ -355,7 +355,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
 
   @override
   String toString() {
-    return 'PlayListFailure.dataBaseFailure()';
+    return 'DataBaseFailure.dataBaseFailure()';
   }
 
   @override
@@ -448,7 +448,7 @@ class _$DataBaseFailureImpl implements _DataBaseFailure {
   }
 }
 
-abstract class _DataBaseFailure implements PlayListFailure {
+abstract class _DataBaseFailure implements DataBaseFailure {
   const factory _DataBaseFailure() = _$DataBaseFailureImpl;
 }
 
@@ -461,7 +461,7 @@ abstract class _$$DeleteFailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DeleteFailureImplCopyWithImpl<$Res>
-    extends _$PlayListFailureCopyWithImpl<$Res, _$DeleteFailureImpl>
+    extends _$DataBaseFailureCopyWithImpl<$Res, _$DeleteFailureImpl>
     implements _$$DeleteFailureImplCopyWith<$Res> {
   __$$DeleteFailureImplCopyWithImpl(
       _$DeleteFailureImpl _value, $Res Function(_$DeleteFailureImpl) _then)
@@ -475,7 +475,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
 
   @override
   String toString() {
-    return 'PlayListFailure.deleteFailure()';
+    return 'DataBaseFailure.deleteFailure()';
   }
 
   @override
@@ -568,7 +568,7 @@ class _$DeleteFailureImpl implements _DeleteFailure {
   }
 }
 
-abstract class _DeleteFailure implements PlayListFailure {
+abstract class _DeleteFailure implements DataBaseFailure {
   const factory _DeleteFailure() = _$DeleteFailureImpl;
 }
 
@@ -581,7 +581,7 @@ abstract class _$$AudioExistImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$AudioExistImplCopyWithImpl<$Res>
-    extends _$PlayListFailureCopyWithImpl<$Res, _$AudioExistImpl>
+    extends _$DataBaseFailureCopyWithImpl<$Res, _$AudioExistImpl>
     implements _$$AudioExistImplCopyWith<$Res> {
   __$$AudioExistImplCopyWithImpl(
       _$AudioExistImpl _value, $Res Function(_$AudioExistImpl) _then)
@@ -595,7 +595,7 @@ class _$AudioExistImpl implements _AudioExist {
 
   @override
   String toString() {
-    return 'PlayListFailure.audioExist()';
+    return 'DataBaseFailure.audioExist()';
   }
 
   @override
@@ -688,6 +688,6 @@ class _$AudioExistImpl implements _AudioExist {
   }
 }
 
-abstract class _AudioExist implements PlayListFailure {
+abstract class _AudioExist implements DataBaseFailure {
   const factory _AudioExist() = _$AudioExistImpl;
 }

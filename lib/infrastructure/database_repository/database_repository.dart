@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-abstract interface class IDataBaseRepository {
+abstract interface class DataBaseRepository {
   Future<Unit> addAudioToPlayList({
     required String audioPath,
     required String playListName,
@@ -15,9 +15,6 @@ abstract interface class IDataBaseRepository {
   Future<Unit> deletePlayList({
     required String playListName,
   });
-
-  Future<bool> isContainAudio(
-      {required String playList, required String audioPath});
   Future<Unit> createPlaylist({required String playList});
   Future<List<String>> getAllPlaylist();
 }

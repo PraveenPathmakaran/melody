@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../../application/audio_controller/audio_controller_bloc.dart';
 import '../../../application/favourite/favourite_bloc.dart';
-import '../../../domain/songs/audio.dart';
+import '../../../domain/audio/audio.dart';
+import '../../../domain/audio/audio_value_objects.dart';
 import '../../core/resourse_manager/color_manager.dart';
 import '../../core/resourse_manager/icon_manager.dart';
 import '../../play_list/widgets/play_list_bottom_sheet.dart';

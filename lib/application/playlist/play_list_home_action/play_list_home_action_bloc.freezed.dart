@@ -949,7 +949,7 @@ mixin _$PlayListHomeActionState {
   PlayListName get playListName => throw _privateConstructorUsedError;
   bool get showErrorMessage => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
-  Option<Either<PlayListFailure, Unit>> get failureOrSuccessOption =>
+  Option<Either<DataBaseFailure, Unit>> get failureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -967,7 +967,7 @@ abstract class $PlayListHomeActionStateCopyWith<$Res> {
       {PlayListName playListName,
       bool showErrorMessage,
       bool isSubmitting,
-      Option<Either<PlayListFailure, Unit>> failureOrSuccessOption});
+      Option<Either<DataBaseFailure, Unit>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -1005,7 +1005,7 @@ class _$PlayListHomeActionStateCopyWithImpl<$Res,
       failureOrSuccessOption: null == failureOrSuccessOption
           ? _value.failureOrSuccessOption
           : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<PlayListFailure, Unit>>,
+              as Option<Either<DataBaseFailure, Unit>>,
     ) as $Val);
   }
 }
@@ -1023,7 +1023,7 @@ abstract class _$$PlayListHomeActionStateImplCopyWith<$Res>
       {PlayListName playListName,
       bool showErrorMessage,
       bool isSubmitting,
-      Option<Either<PlayListFailure, Unit>> failureOrSuccessOption});
+      Option<Either<DataBaseFailure, Unit>> failureOrSuccessOption});
 }
 
 /// @nodoc
@@ -1060,7 +1060,7 @@ class __$$PlayListHomeActionStateImplCopyWithImpl<$Res>
       failureOrSuccessOption: null == failureOrSuccessOption
           ? _value.failureOrSuccessOption
           : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<PlayListFailure, Unit>>,
+              as Option<Either<DataBaseFailure, Unit>>,
     ));
   }
 }
@@ -1081,7 +1081,7 @@ class _$PlayListHomeActionStateImpl implements _PlayListHomeActionState {
   @override
   final bool isSubmitting;
   @override
-  final Option<Either<PlayListFailure, Unit>> failureOrSuccessOption;
+  final Option<Either<DataBaseFailure, Unit>> failureOrSuccessOption;
 
   @override
   String toString() {
@@ -1120,7 +1120,7 @@ abstract class _PlayListHomeActionState implements PlayListHomeActionState {
       {required final PlayListName playListName,
       required final bool showErrorMessage,
       required final bool isSubmitting,
-      required final Option<Either<PlayListFailure, Unit>>
+      required final Option<Either<DataBaseFailure, Unit>>
           failureOrSuccessOption}) = _$PlayListHomeActionStateImpl;
 
   @override
@@ -1130,7 +1130,7 @@ abstract class _PlayListHomeActionState implements PlayListHomeActionState {
   @override
   bool get isSubmitting;
   @override
-  Option<Either<PlayListFailure, Unit>> get failureOrSuccessOption;
+  Option<Either<DataBaseFailure, Unit>> get failureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$$PlayListHomeActionStateImplCopyWith<_$PlayListHomeActionStateImpl>

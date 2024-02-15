@@ -7,7 +7,7 @@ part of 'audio_dtos.dart';
 // **************************************************************************
 
 Uint8ListConverter _$Uint8ListConverterFromJson(Map<String, dynamic> json) =>
-    Uint8ListConverter();
+    const Uint8ListConverter();
 
 Map<String, dynamic> _$Uint8ListConverterToJson(Uint8ListConverter instance) =>
     <String, dynamic>{};

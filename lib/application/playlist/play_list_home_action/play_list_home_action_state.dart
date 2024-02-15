@@ -6,7 +6,7 @@ class PlayListHomeActionState with _$PlayListHomeActionState {
     required PlayListName playListName,
     required bool showErrorMessage,
     required bool isSubmitting,
-    required Option<Either<PlayListFailure, Unit>> failureOrSuccessOption,
+    required Option<Either<DataBaseFailure, Unit>> failureOrSuccessOption,
   }) = _PlayListHomeActionState;
 
   factory PlayListHomeActionState.initial() => PlayListHomeActionState(

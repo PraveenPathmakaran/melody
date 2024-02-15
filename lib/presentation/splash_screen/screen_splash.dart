@@ -9,7 +9,7 @@ import 'package:melody/presentation/core/app_size_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
 import '../../application/splash/splash_bloc.dart';
-import '../../domain/songs/audio_value_objects.dart';
+import '../../domain/audio/audio_value_objects.dart';
 import '../core/utils.dart';
 import '../home_screen/screen_home_tab.dart';
 import 'widgets/permission_denied_widget.dart';

@@ -1,6 +1,7 @@
-import 'package:melody/domain/songs/audio.dart';
 
-abstract interface class IPlatformRepository {
+import '../../domain/audio/audio.dart';
+
+abstract interface class PlatformRepository {
   Future<List<Audio>> getAllAudio();
   Future<AudioImage> getAudioMetaData({required String path});
 }

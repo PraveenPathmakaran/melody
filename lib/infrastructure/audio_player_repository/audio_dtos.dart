@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:melody/domain/songs/audio.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart';
+
+import '../../../domain/audio/audio.dart';
+import '../../../domain/audio/audio_value_objects.dart';
 
 part 'audio_dtos.freezed.dart';
 part 'audio_dtos.g.dart';

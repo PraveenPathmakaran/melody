@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../domain/songs/audio.dart';
+import '../../domain/audio/audio.dart';
 
-abstract interface class IAudioPlayerRepository {
+abstract interface class AudioPlayerRepository {
   Future<Unit> concatenatingAudios({required List<Audio> audioSongs});
   Future<Unit> setAudioSource();
 

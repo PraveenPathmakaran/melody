@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:melody/domain/songs/audio_value_objects.dart';
-import 'package:melody/domain/songs/i_audio_repository.dart';
+import 'package:melody/domain/database/database_failures.dart';
 
-import '../../../domain/songs/playlist_failures.dart';
+import '../../../domain/audio/audio_value_objects.dart';
+import '../../../domain/audio/i_audio_repository.dart';
+import '../../../domain/database/i_data_base_repository.dart';
 
 part 'play_list_home_action_bloc.freezed.dart';
 part 'play_list_home_action_event.dart';
@@ -12,8 +13,9 @@ part 'play_list_home_action_state.dart';
 
 class PlayListHomeActionBloc
     extends Bloc<PlayListHomeActionEvent, PlayListHomeActionState> {
+  final IDataBaseRepository _dataBaseRepository;
   final IAudioRepository _audioRepository;
-  PlayListHomeActionBloc(this._audioRepository)
+  PlayListHomeActionBloc(this._dataBaseRepository, this._audioRepository)
       : super(PlayListHomeActionState.initial()) {
     on<PlayListHomeActionEvent>((event, emit) async {
       await event.map(
@@ -25,7 +27,7 @@ class PlayListHomeActionBloc
               failureOrSuccessOption: none(),
             ));
 
-            final failureOrSuccess = await _audioRepository.createPlaylist(
+            final failureOrSuccess = await _dataBaseRepository.createPlaylist(
                 playList: state.playListName);
             emit(state.copyWith(
                 isSubmitting: false,
@@ -45,7 +47,7 @@ class PlayListHomeActionBloc
             emit(state.copyWith(
                 isSubmitting: true, failureOrSuccessOption: none()));
 
-            final failureOrSuccess = await _audioRepository.deletePlaylist(
+            final failureOrSuccess = await _dataBaseRepository.deletePlaylist(
                 playList: value.playListName);
             emit(state.copyWith(
                 isSubmitting: false,
@@ -58,7 +60,8 @@ class PlayListHomeActionBloc
             emit(state.copyWith(
                 isSubmitting: true, failureOrSuccessOption: none()));
 
-            final failureOrSuccess = await _audioRepository.addAudioToPlayList(
+            final failureOrSuccess =
+                await _dataBaseRepository.addAudioToPlayList(
               audioPath: value.audioPath,
               playListName: value.playListName,
             );
@@ -74,7 +77,7 @@ class PlayListHomeActionBloc
                 isSubmitting: true, failureOrSuccessOption: none()));
 
             final failureOrSuccess =
-                await _audioRepository.removeAudioFromPlayList(
+                await _dataBaseRepository.removeAudioFromPlayList(
               audioPath: value.audioPath,
               playListName: value.playListName,
             );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/songs/audio.dart';
+import '../../../domain/audio/audio.dart';
 import '../../core/resourse_manager/color_manager.dart';
 import '../../core/resourse_manager/icon_manager.dart';
 import 'icon_widgets.dart';

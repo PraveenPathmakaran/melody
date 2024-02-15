@@ -2,13 +2,13 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:melody/domain/songs/audio_failure.dart';
-import 'package:melody/infrastructure/audio/audio_player_repository/i_audio_player_repository.dart';
+import 'package:melody/infrastructure/audio_player_repository/i_audio_player_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../domain/songs/audio.dart';
+import '../../domain/audio/audio.dart';
+import '../../domain/audio/audio_failure.dart';
 
-class AudioPlayerRepository implements IAudioPlayerRepository {
+class AudioPlayerRepositoryImpl implements AudioPlayerRepository {
   final AudioPlayer _audioPlayer;
   final ConcatenatingAudioSource playlist = ConcatenatingAudioSource(
     // Start loading next item just before reaching it
@@ -20,7 +20,7 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   );
 
   static const name = "AudioPlayerRepository";
-  AudioPlayerRepository(
+  AudioPlayerRepositoryImpl(
     this._audioPlayer,
   );
 
@@ -237,7 +237,7 @@ class AudioPlayerRepository implements IAudioPlayerRepository {
   }
 
   @override
-  Future<void> removeFromPlayList({required int index}) async{
-   await playlist.removeAt(index);
+  Future<void> removeFromPlayList({required int index}) async {
+    await playlist.removeAt(index);
   }
 }

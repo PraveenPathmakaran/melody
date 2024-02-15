@@ -1,13 +1,13 @@
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
-import 'package:melody/domain/songs/audio.dart';
-import 'package:melody/domain/songs/audio_failure.dart';
-import 'package:melody/infrastructure/audio/platform_repository/i_platform_repository.dart';
 
-import '../audio_dtos.dart';
+import '../../domain/audio/audio.dart';
+import '../../domain/plat_form/platform_channel_failure.dart';
+import '../audio_player_repository/audio_dtos.dart';
+import 'platform_repository.dart';
 
-class PlatformRepository implements IPlatformRepository {
+class PlatformRepositoryImpl implements PlatformRepository {
   static const String channelName = "audio";
   static const String getAllAudioName = "getAudios";
   static const String getAlbumMetaData = "getAlbumMetaData";
@@ -28,8 +28,8 @@ class PlatformRepository implements IPlatformRepository {
       }
       return [];
     } catch (e) {
-      log(e.toString(), name: "PlatformRepository-getAllAudio");
-      throw const AudioFailure.platFormFailure();
+      log(e.toString(), name: "PlatformRepositoryImpl-getAllAudio");
+      throw const PlatFormChannelFailure.platFormFailure();
     }
   }
 
@@ -42,11 +42,10 @@ class PlatformRepository implements IPlatformRepository {
       if (image != null) {
         return ImageDto(byteImage: image).toDomain();
       } else {
-        return AudioImage.empty();
+        throw const PlatFormChannelFailure.metaDataFailure();
       }
     } catch (e) {
-      log(e.toString(), name: "PlatformRepository-getAudioMetaData");
-      throw const AudioFailure.platFormFailure();
+      throw const PlatFormChannelFailure.metaDataFailure();
     }
   }
 }

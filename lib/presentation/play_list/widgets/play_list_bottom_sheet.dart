@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/audio_controller/audio_controller_bloc.dart';
 import '../../../application/playlist/play_list_home/play_list_home_bloc.dart';
 import '../../../application/playlist/play_list_home_action/play_list_home_action_bloc.dart';
-import '../../../domain/songs/audio.dart';
+import '../../../domain/audio/audio.dart';
 import '../../core/resourse_manager/color_manager.dart';
 import '../../core/resourse_manager/string_manage.dart';
 import '../../core/resourse_manager/value_manager.dart';

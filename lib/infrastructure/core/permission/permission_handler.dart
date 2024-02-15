@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../domain/permission/i_permission_handler.dart';
-import '../../domain/permission/permission_failure.dart';
+import '../../../domain/permission/i_permission_handler.dart';
+import '../../../domain/permission/permission_failure.dart';
 
 //check audio permission
 //if permission is denied then call request audio permission
