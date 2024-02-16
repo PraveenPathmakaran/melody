@@ -19,6 +19,7 @@ class PlayLIstCreateWidget extends StatelessWidget {
         state.failureOrSuccessOption.fold(
             () {},
             (either) => either.fold((failure) {
+                 
                   snackBar(
                     context: context,
                     content: failure.maybeMap(
@@ -31,7 +32,7 @@ class PlayLIstCreateWidget extends StatelessWidget {
                 }, (r) {
                   snackBar(
                     context: context,
-                    content: StringManger.successfull,
+                    content: StringManger.success,
                     color: ColorManager.black,
                   );
                   context

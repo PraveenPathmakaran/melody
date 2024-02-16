@@ -35,6 +35,11 @@ class IDataBaseRepoImpl implements IDataBaseRepository {
       await _dataBaseRepository.addAudioToPlayList(
           audioPath: path, playListName: name);
       return right(unit);
+    } on DataBaseFailure catch (e) {
+      return left(e.maybeMap(
+        orElse: DataBaseFailure.dataBaseFailure,
+        audioExist: (value) => const DataBaseFailure.audioExist(),
+      ));
     } catch (e) {
       return left(const DataBaseFailure.dataBaseFailure());
     }
@@ -97,6 +102,4 @@ class IDataBaseRepoImpl implements IDataBaseRepository {
       return left(const DataBaseFailure.dataBaseFailure());
     }
   }
-
- 
 }

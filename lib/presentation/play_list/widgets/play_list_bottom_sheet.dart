@@ -42,17 +42,18 @@ class PlayLIstCreateWidgetSheet extends StatelessWidget {
             (either) => either.fold((failure) {
                   snackBar(
                       context: context,
-                      content: failure.map(
+                      content: failure.maybeMap(
+                        orElse: () => StringManger.somethingWentWrong,
                         nameAlreadyInUse: (_) => StringManger.playListNameExist,
                         emptyPlayListName: (_) => StringManger.invalidName,
-                        dataBaseFailure: (_) => StringManger.somethingWentWrong,
-                        deleteFailure: (_) => StringManger.somethingWentWrong,
-                        audioExist: (_) => StringManger.somethingWentWrong,
+                        audioExist: (_) =>
+                            StringManger.failed + StringManger.audioExist,
+                            
                       ));
                 }, (r) {
                   snackBar(
                     context: context,
-                    content: StringManger.successfull,
+                    content: StringManger.success,
                     color: ColorManager.black,
                   );
                   context

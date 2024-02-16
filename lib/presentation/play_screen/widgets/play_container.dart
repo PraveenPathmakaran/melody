@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/presentation/core/constant.dart';
-import 'package:melody/presentation/core/empty_data_widget.dart';
 import 'package:melody/presentation/core/error_widget.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/utils.dart';
@@ -59,7 +58,7 @@ class PlayContainer extends StatelessWidget {
                 ),
               );
             } else {
-              return const EmptyDataWidget();
+              return const SizedBox();
             }
           case LoadingState.loading:
             return circularPindicator;

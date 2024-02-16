@@ -25,11 +25,13 @@ class DataBaseRepositoryImpl implements DataBaseRepository {
             .then((value) async => await box.close());
         return unit;
       } else {
-        return throw const DataBaseFailure.audioExist();
+        throw const DataBaseFailure.audioExist();
       }
+    } on DataBaseFailure {
+      throw const DataBaseFailure.audioExist();
     } catch (e) {
       log(e.toString(), name: "DataBaseRepository-addAudioToPlayList");
-      return throw const DataBaseFailure.dataBaseFailure();
+      throw const DataBaseFailure.dataBaseFailure();
     }
   }
 
