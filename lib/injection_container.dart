@@ -34,15 +34,11 @@ Future<void> initGetIt() async {
   registerDomain();
   registerBloc();
   registerRepository();
-  registerPackage();
+  await registerPackage();
 }
-
-
-
 
 //domain
 void registerDomain() {
-
   getIt.registerLazySingleton<IPermissionHandler>(
       () => PermissionsHandler(permission: getIt()));
   getIt.registerLazySingleton<IAudioRepository>(
@@ -55,9 +51,9 @@ void registerDomain() {
     () => IDataBaseRepoImpl(getIt()),
   );
 }
-  //bloc
-void registerBloc() {
 
+//bloc
+void registerBloc() {
   getIt.registerFactory<PermissionHandlerBloc>(
       () => PermissionHandlerBloc(getIt()));
   getIt
@@ -70,10 +66,9 @@ void registerBloc() {
       () => PlayListHomeActionBloc(getIt(), getIt()));
   getIt.registerFactory<PlayListAudioBloc>(() => PlayListAudioBloc(getIt()));
 }
-  //repository
+
+//repository
 void registerRepository() {
-
-
   getIt.registerLazySingleton<DataBaseRepository>(
       () => DataBaseRepositoryImpl());
   getIt.registerLazySingleton<IDeviceInformation>(
@@ -83,6 +78,7 @@ void registerRepository() {
   getIt.registerLazySingleton<AudioPlayerRepository>(
       () => AudioPlayerRepositoryImpl(getIt()));
 }
+
 //package
 Future<void> registerPackage() async {
   getIt.registerLazySingleton<AudioPlayer>(() => AudioPlayer());
