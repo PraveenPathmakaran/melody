@@ -22,7 +22,7 @@ class PermissionGrantedWidget extends StatelessWidget {
         ),
         const SizedBox(height: AppSize.s12),
         Text(
-          StringManger.musicPlayer,
+          StringManger.appName,
           style: getMediumStyle(color: ColorManager.white),
         ),
         const SizedBox(height: AppSize.s18),

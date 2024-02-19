@@ -7,7 +7,6 @@ class StringManger {
   static const String pleaseOpenAppSettingsAndAllowPermission =
       'Please open app settings and allow permission';
   static const String somethingWentWrong = 'Something went wrong';
-  static const String musicPlayer = 'Music Player';
   static const String home = 'Home';
   static const String favourites = 'Favourites';
   static const String playlist = 'Playlist';
@@ -17,6 +16,7 @@ class StringManger {
   static const String playListNameExist = 'PlayList Name Exist';
   static const String create = 'Create';
   static const String delete = 'Delete';
+  static const String exit = 'Exit';
   static const String cancel = 'Cancel';
   static const String areYouSure = 'Are You Sure?';
   static const String invalidName = 'Invalid Name';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
@@ -13,6 +14,41 @@ class ScreenHomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
+      onPopInvoked: (didPop) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return SizedBox(
+              height: 50,
+              child: AlertDialog(
+                alignment: Alignment.center,
+                actionsAlignment: MainAxisAlignment.spaceBetween,
+                content: const Text(
+                  StringManger.youWontAbleToRevertThis,
+                  textAlign: TextAlign.center,
+                ),
+                title: const Text(
+                  StringManger.areYouSure,
+                  textAlign: TextAlign.center,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(StringManger.cancel)),
+                  TextButton(
+                    onPressed: () {
+                      SystemNavigator.pop();
+                    },
+                    child: const Text(StringManger.exit),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
       canPop: false,
       child: DefaultTabController(
         length: 3,
@@ -20,7 +56,7 @@ class ScreenHomeTab extends StatelessWidget {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             title: const Text(
-              StringManger.musicPlayer,
+              StringManger.appName,
             ),
             leading: const SizedBox(),
             centerTitle: true,
