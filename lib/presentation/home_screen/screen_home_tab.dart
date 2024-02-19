@@ -24,7 +24,7 @@ class ScreenHomeTab extends StatelessWidget {
                 alignment: Alignment.center,
                 actionsAlignment: MainAxisAlignment.spaceBetween,
                 content: const Text(
-                  StringManger.youWontAbleToRevertThis,
+                  StringManger.doYouWantToExist,
                   textAlign: TextAlign.center,
                 ),
                 title: const Text(
@@ -36,12 +36,12 @@ class ScreenHomeTab extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: const Text(StringManger.cancel)),
+                      child: const Text(StringManger.no)),
                   TextButton(
                     onPressed: () {
                       SystemNavigator.pop();
                     },
-                    child: const Text(StringManger.exit),
+                    child: const Text(StringManger.yes),
                   ),
                 ],
               ),

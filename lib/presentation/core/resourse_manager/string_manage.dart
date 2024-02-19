@@ -16,7 +16,8 @@ class StringManger {
   static const String playListNameExist = 'PlayList Name Exist';
   static const String create = 'Create';
   static const String delete = 'Delete';
-  static const String exit = 'Exit';
+  static const String yes = 'Yes';
+  static const String no = 'No';
   static const String cancel = 'Cancel';
   static const String areYouSure = 'Are You Sure?';
   static const String invalidName = 'Invalid Name';
@@ -26,4 +27,5 @@ class StringManger {
       'You won\'t be able to revert this!';
   static const String failed = 'Failed';
   static const String audioExist = 'Audio Exist';
+  static const String doYouWantToExist = 'Do you want to exit?';
 }
