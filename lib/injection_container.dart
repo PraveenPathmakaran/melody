@@ -39,8 +39,10 @@ Future<void> initGetIt() async {
 
 //domain
 void registerDomain() {
-  getIt.registerLazySingleton<IPermissionHandler>(
-      () => PermissionsHandler(permission: getIt()));
+  getIt.registerLazySingleton<IPermissionHandler>(() => PermissionsHandler(
+      getIt(instanceName: 'storage'),
+      getIt(instanceName: 'audio'),
+      getIt(instanceName: 'manageExternalStorage')));
   getIt.registerLazySingleton<IAudioRepository>(
     () => IAudioRepositoryImpl(getIt()),
   );
@@ -59,7 +61,7 @@ void registerBloc() {
   getIt
       .registerFactory<AudioControllerBloc>(() => AudioControllerBloc(getIt()));
   getIt.registerFactory<SplashBloc>(() => SplashBloc(getIt()));
-  getIt.registerFactory<HomeBloc>(() => HomeBloc());
+  getIt.registerFactory<HomeBloc>(() => HomeBloc(getIt()));
   getIt.registerFactory<FavouriteBloc>(() => FavouriteBloc(getIt(), getIt()));
   getIt.registerFactory<PlayListHomeBloc>(() => PlayListHomeBloc(getIt()));
   getIt.registerFactory<PlayListHomeActionBloc>(
@@ -83,16 +85,26 @@ void registerRepository() {
 Future<void> registerPackage() async {
   getIt.registerLazySingleton<AudioPlayer>(() => AudioPlayer());
   getIt.registerLazySingleton<DeviceInfoPlugin>(() => DeviceInfoPlugin());
-  await getIt<IDeviceInformation>().getAndroidVersion().then((value) {
-    value.fold(
-        (l) =>
-            getIt.registerLazySingleton<Permission>(() => Permission.storage),
-        (androidVersion) {
-      if (androidVersion < 32) {
-        getIt.registerLazySingleton<Permission>(() => Permission.storage);
-      } else {
-        getIt.registerLazySingleton<Permission>(() => Permission.audio);
-      }
-    });
-  });
+  getIt.registerLazySingleton<Permission>(() => Permission.storage,
+      instanceName: "storage");
+  getIt.registerLazySingleton<Permission>(
+      () => Permission.manageExternalStorage,
+      instanceName: "manageExternalStorage");
+  getIt.registerLazySingleton<Permission>(() => Permission.audio,
+      instanceName: "audio");
+
+  // await getIt<IDeviceInformation>().getAndroidVersion().then(
+  //   (value) {
+  //     value.fold(
+  //         (l) =>
+  //             getIt.registerLazySingleton<Permission>(() => Permission.storage),
+  //         (androidVersion) {
+  //       if (androidVersion < 32) {
+  //         getIt.registerLazySingleton<Permission>(() => Permission.storage);
+  //       } else {
+  //         getIt.registerLazySingleton<Permission>(() => Permission.audio);
+  //       }
+  //     });
+  //   },
+  // );
 }

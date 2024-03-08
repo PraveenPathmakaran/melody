@@ -7,13 +7,14 @@ import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import java.io.File
 
 
 class MainActivity : FlutterActivity() {
     private val AUDIO_CHANNEL = "audio"
     private lateinit var channel: MethodChannel
 
-    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+    override fun configureFlutterEngine( flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, AUDIO_CHANNEL)
         channel.setMethodCallHandler { call, result ->
@@ -28,6 +29,8 @@ class MainActivity : FlutterActivity() {
                 val audioMetaData = getAlbumMetaData(path)
                 result.success(audioMetaData)
             }
+
+
 
 
         }
@@ -87,13 +90,3 @@ class MainActivity : FlutterActivity() {
 
 
 
-
-//val allAudios = mutableMapOf<String, Map<String, Any?>>()
-//val audioInfo = mapOf(
-//    "name" to cursor.getString(1),
-//    "path" to cursor.getString(2),
-//    "artist" to cursor.getString(3),
-//    "image" to imageData,
-//)
-//
-//allAudios[cursor.getString(0)] = audioInfo

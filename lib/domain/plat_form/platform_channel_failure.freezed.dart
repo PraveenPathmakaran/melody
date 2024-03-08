@@ -20,18 +20,21 @@ mixin _$PlatFormChannelFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() platFormFailure,
     required TResult Function() metaDataFailure,
+    required TResult Function() deleteFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? platFormFailure,
     TResult? Function()? metaDataFailure,
+    TResult? Function()? deleteFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? platFormFailure,
     TResult Function()? metaDataFailure,
+    TResult Function()? deleteFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$PlatFormChannelFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_PlatFormFailure value) platFormFailure,
     required TResult Function(_MetaDataFailure value) metaDataFailure,
+    required TResult Function(_DeleteFailure value) deleteFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PlatFormFailure value)? platFormFailure,
     TResult? Function(_MetaDataFailure value)? metaDataFailure,
+    TResult? Function(_DeleteFailure value)? deleteFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PlatFormFailure value)? platFormFailure,
     TResult Function(_MetaDataFailure value)? metaDataFailure,
+    TResult Function(_DeleteFailure value)? deleteFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,6 +121,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() platFormFailure,
     required TResult Function() metaDataFailure,
+    required TResult Function() deleteFailure,
   }) {
     return platFormFailure();
   }
@@ -124,6 +131,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? platFormFailure,
     TResult? Function()? metaDataFailure,
+    TResult? Function()? deleteFailure,
   }) {
     return platFormFailure?.call();
   }
@@ -133,6 +141,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? platFormFailure,
     TResult Function()? metaDataFailure,
+    TResult Function()? deleteFailure,
     required TResult orElse(),
   }) {
     if (platFormFailure != null) {
@@ -146,6 +155,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_PlatFormFailure value) platFormFailure,
     required TResult Function(_MetaDataFailure value) metaDataFailure,
+    required TResult Function(_DeleteFailure value) deleteFailure,
   }) {
     return platFormFailure(this);
   }
@@ -155,6 +165,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PlatFormFailure value)? platFormFailure,
     TResult? Function(_MetaDataFailure value)? metaDataFailure,
+    TResult? Function(_DeleteFailure value)? deleteFailure,
   }) {
     return platFormFailure?.call(this);
   }
@@ -164,6 +175,7 @@ class _$PlatFormFailureImpl implements _PlatFormFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PlatFormFailure value)? platFormFailure,
     TResult Function(_MetaDataFailure value)? metaDataFailure,
+    TResult Function(_DeleteFailure value)? deleteFailure,
     required TResult orElse(),
   }) {
     if (platFormFailure != null) {
@@ -217,6 +229,7 @@ class _$MetaDataFailureImpl implements _MetaDataFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() platFormFailure,
     required TResult Function() metaDataFailure,
+    required TResult Function() deleteFailure,
   }) {
     return metaDataFailure();
   }
@@ -226,6 +239,7 @@ class _$MetaDataFailureImpl implements _MetaDataFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? platFormFailure,
     TResult? Function()? metaDataFailure,
+    TResult? Function()? deleteFailure,
   }) {
     return metaDataFailure?.call();
   }
@@ -235,6 +249,7 @@ class _$MetaDataFailureImpl implements _MetaDataFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? platFormFailure,
     TResult Function()? metaDataFailure,
+    TResult Function()? deleteFailure,
     required TResult orElse(),
   }) {
     if (metaDataFailure != null) {
@@ -248,6 +263,7 @@ class _$MetaDataFailureImpl implements _MetaDataFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_PlatFormFailure value) platFormFailure,
     required TResult Function(_MetaDataFailure value) metaDataFailure,
+    required TResult Function(_DeleteFailure value) deleteFailure,
   }) {
     return metaDataFailure(this);
   }
@@ -257,6 +273,7 @@ class _$MetaDataFailureImpl implements _MetaDataFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PlatFormFailure value)? platFormFailure,
     TResult? Function(_MetaDataFailure value)? metaDataFailure,
+    TResult? Function(_DeleteFailure value)? deleteFailure,
   }) {
     return metaDataFailure?.call(this);
   }
@@ -266,6 +283,7 @@ class _$MetaDataFailureImpl implements _MetaDataFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PlatFormFailure value)? platFormFailure,
     TResult Function(_MetaDataFailure value)? metaDataFailure,
+    TResult Function(_DeleteFailure value)? deleteFailure,
     required TResult orElse(),
   }) {
     if (metaDataFailure != null) {
@@ -277,4 +295,112 @@ class _$MetaDataFailureImpl implements _MetaDataFailure {
 
 abstract class _MetaDataFailure implements PlatFormChannelFailure {
   const factory _MetaDataFailure() = _$MetaDataFailureImpl;
+}
+
+/// @nodoc
+abstract class _$$DeleteFailureImplCopyWith<$Res> {
+  factory _$$DeleteFailureImplCopyWith(
+          _$DeleteFailureImpl value, $Res Function(_$DeleteFailureImpl) then) =
+      __$$DeleteFailureImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeleteFailureImplCopyWithImpl<$Res>
+    extends _$PlatFormChannelFailureCopyWithImpl<$Res, _$DeleteFailureImpl>
+    implements _$$DeleteFailureImplCopyWith<$Res> {
+  __$$DeleteFailureImplCopyWithImpl(
+      _$DeleteFailureImpl _value, $Res Function(_$DeleteFailureImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeleteFailureImpl implements _DeleteFailure {
+  const _$DeleteFailureImpl();
+
+  @override
+  String toString() {
+    return 'PlatFormChannelFailure.deleteFailure()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeleteFailureImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() platFormFailure,
+    required TResult Function() metaDataFailure,
+    required TResult Function() deleteFailure,
+  }) {
+    return deleteFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? platFormFailure,
+    TResult? Function()? metaDataFailure,
+    TResult? Function()? deleteFailure,
+  }) {
+    return deleteFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? platFormFailure,
+    TResult Function()? metaDataFailure,
+    TResult Function()? deleteFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteFailure != null) {
+      return deleteFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PlatFormFailure value) platFormFailure,
+    required TResult Function(_MetaDataFailure value) metaDataFailure,
+    required TResult Function(_DeleteFailure value) deleteFailure,
+  }) {
+    return deleteFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PlatFormFailure value)? platFormFailure,
+    TResult? Function(_MetaDataFailure value)? metaDataFailure,
+    TResult? Function(_DeleteFailure value)? deleteFailure,
+  }) {
+    return deleteFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PlatFormFailure value)? platFormFailure,
+    TResult Function(_MetaDataFailure value)? metaDataFailure,
+    TResult Function(_DeleteFailure value)? deleteFailure,
+    required TResult orElse(),
+  }) {
+    if (deleteFailure != null) {
+      return deleteFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteFailure implements PlatFormChannelFailure {
+  const factory _DeleteFailure() = _$DeleteFailureImpl;
 }

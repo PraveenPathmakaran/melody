@@ -8,4 +8,5 @@ abstract interface class IPlatformRepository {
   Future<Either<PlatFormChannelFailure, AudioImage>> getAudioImageMetadata(
       {required AudioPath audioPath});
   Future<Either<PlatFormChannelFailure, List<Audio>>> getAllAudioFromDevice();
+  Future<Either<PlatFormChannelFailure, Unit>> deleteAudioFromDevice({required AudioPath audioPath});
 }

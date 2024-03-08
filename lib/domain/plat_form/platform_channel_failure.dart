@@ -5,4 +5,5 @@ part 'platform_channel_failure.freezed.dart';
 class PlatFormChannelFailure with _$PlatFormChannelFailure{
   const factory PlatFormChannelFailure.platFormFailure() = _PlatFormFailure;
   const factory PlatFormChannelFailure.metaDataFailure() = _MetaDataFailure;
+  const factory PlatFormChannelFailure.deleteFailure() = _DeleteFailure;
 }

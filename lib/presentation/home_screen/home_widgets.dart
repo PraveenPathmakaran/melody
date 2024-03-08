@@ -43,6 +43,9 @@ class ScreenHome extends StatelessWidget {
                   ),
                   margin: const EdgeInsets.all(AppMargin.m3),
                   child: ListTile(
+                    onLongPress: () => context.read<HomeBloc>().add(
+                        HomeEvent.deleteButtonPressed(
+                            audios: [state.audioList[index].audioPath])),
                     onTap: () async {
                       context
                           .read<AudioControllerBloc>()

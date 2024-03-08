@@ -16,42 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeEvent {
-  List<Audio> get audios => throw _privateConstructorUsedError;
+  List<Object> get audios => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Audio> audios) loadAudios,
+    required TResult Function(List<AudioPath> audios) deleteButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Audio> audios)? loadAudios,
+    TResult? Function(List<AudioPath> audios)? deleteButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Audio> audios)? loadAudios,
+    TResult Function(List<AudioPath> audios)? deleteButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadAudios value) loadAudios,
+    required TResult Function(_DeleteButtonPressed value) deleteButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadAudios value)? loadAudios,
+    TResult? Function(_DeleteButtonPressed value)? deleteButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadAudios value)? loadAudios,
+    TResult Function(_DeleteButtonPressed value)? deleteButtonPressed,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeEventCopyWith<HomeEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -59,8 +61,6 @@ mixin _$HomeEvent {
 abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res, HomeEvent>;
-  @useResult
-  $Res call({List<Audio> audios});
 }
 
 /// @nodoc
@@ -72,28 +72,13 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? audios = null,
-  }) {
-    return _then(_value.copyWith(
-      audios: null == audios
-          ? _value.audios
-          : audios // ignore: cast_nullable_to_non_nullable
-              as List<Audio>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoadAudiosImplCopyWith<$Res>
-    implements $HomeEventCopyWith<$Res> {
+abstract class _$$LoadAudiosImplCopyWith<$Res> {
   factory _$$LoadAudiosImplCopyWith(
           _$LoadAudiosImpl value, $Res Function(_$LoadAudiosImpl) then) =
       __$$LoadAudiosImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({List<Audio> audios});
 }
@@ -161,6 +146,7 @@ class _$LoadAudiosImpl implements _LoadAudios {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Audio> audios) loadAudios,
+    required TResult Function(List<AudioPath> audios) deleteButtonPressed,
   }) {
     return loadAudios(audios);
   }
@@ -169,6 +155,7 @@ class _$LoadAudiosImpl implements _LoadAudios {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Audio> audios)? loadAudios,
+    TResult? Function(List<AudioPath> audios)? deleteButtonPressed,
   }) {
     return loadAudios?.call(audios);
   }
@@ -177,6 +164,7 @@ class _$LoadAudiosImpl implements _LoadAudios {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Audio> audios)? loadAudios,
+    TResult Function(List<AudioPath> audios)? deleteButtonPressed,
     required TResult orElse(),
   }) {
     if (loadAudios != null) {
@@ -189,6 +177,7 @@ class _$LoadAudiosImpl implements _LoadAudios {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadAudios value) loadAudios,
+    required TResult Function(_DeleteButtonPressed value) deleteButtonPressed,
   }) {
     return loadAudios(this);
   }
@@ -197,6 +186,7 @@ class _$LoadAudiosImpl implements _LoadAudios {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadAudios value)? loadAudios,
+    TResult? Function(_DeleteButtonPressed value)? deleteButtonPressed,
   }) {
     return loadAudios?.call(this);
   }
@@ -205,6 +195,7 @@ class _$LoadAudiosImpl implements _LoadAudios {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadAudios value)? loadAudios,
+    TResult Function(_DeleteButtonPressed value)? deleteButtonPressed,
     required TResult orElse(),
   }) {
     if (loadAudios != null) {
@@ -220,9 +211,151 @@ abstract class _LoadAudios implements HomeEvent {
 
   @override
   List<Audio> get audios;
-  @override
   @JsonKey(ignore: true)
   _$$LoadAudiosImplCopyWith<_$LoadAudiosImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteButtonPressedImplCopyWith<$Res> {
+  factory _$$DeleteButtonPressedImplCopyWith(_$DeleteButtonPressedImpl value,
+          $Res Function(_$DeleteButtonPressedImpl) then) =
+      __$$DeleteButtonPressedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<AudioPath> audios});
+}
+
+/// @nodoc
+class __$$DeleteButtonPressedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$DeleteButtonPressedImpl>
+    implements _$$DeleteButtonPressedImplCopyWith<$Res> {
+  __$$DeleteButtonPressedImplCopyWithImpl(_$DeleteButtonPressedImpl _value,
+      $Res Function(_$DeleteButtonPressedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? audios = null,
+  }) {
+    return _then(_$DeleteButtonPressedImpl(
+      audios: null == audios
+          ? _value._audios
+          : audios // ignore: cast_nullable_to_non_nullable
+              as List<AudioPath>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteButtonPressedImpl implements _DeleteButtonPressed {
+  const _$DeleteButtonPressedImpl({required final List<AudioPath> audios})
+      : _audios = audios;
+
+  final List<AudioPath> _audios;
+  @override
+  List<AudioPath> get audios {
+    if (_audios is EqualUnmodifiableListView) return _audios;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_audios);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.deleteButtonPressed(audios: $audios)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteButtonPressedImpl &&
+            const DeepCollectionEquality().equals(other._audios, _audios));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_audios));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteButtonPressedImplCopyWith<_$DeleteButtonPressedImpl> get copyWith =>
+      __$$DeleteButtonPressedImplCopyWithImpl<_$DeleteButtonPressedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Audio> audios) loadAudios,
+    required TResult Function(List<AudioPath> audios) deleteButtonPressed,
+  }) {
+    return deleteButtonPressed(audios);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<Audio> audios)? loadAudios,
+    TResult? Function(List<AudioPath> audios)? deleteButtonPressed,
+  }) {
+    return deleteButtonPressed?.call(audios);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Audio> audios)? loadAudios,
+    TResult Function(List<AudioPath> audios)? deleteButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (deleteButtonPressed != null) {
+      return deleteButtonPressed(audios);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadAudios value) loadAudios,
+    required TResult Function(_DeleteButtonPressed value) deleteButtonPressed,
+  }) {
+    return deleteButtonPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadAudios value)? loadAudios,
+    TResult? Function(_DeleteButtonPressed value)? deleteButtonPressed,
+  }) {
+    return deleteButtonPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadAudios value)? loadAudios,
+    TResult Function(_DeleteButtonPressed value)? deleteButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (deleteButtonPressed != null) {
+      return deleteButtonPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteButtonPressed implements HomeEvent {
+  const factory _DeleteButtonPressed({required final List<AudioPath> audios}) =
+      _$DeleteButtonPressedImpl;
+
+  @override
+  List<AudioPath> get audios;
+  @JsonKey(ignore: true)
+  _$$DeleteButtonPressedImplCopyWith<_$DeleteButtonPressedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

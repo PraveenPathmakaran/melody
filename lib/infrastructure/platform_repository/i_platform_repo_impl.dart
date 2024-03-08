@@ -34,4 +34,16 @@ class IPlatformRepositoryImpl implements IPlatformRepository {
       return left(const PlatFormChannelFailure.metaDataFailure());
     }
   }
+
+  @override
+  Future<Either<PlatFormChannelFailure, Unit>> deleteAudioFromDevice(
+      {required AudioPath audioPath}) async {
+    try {
+      final path = audioPath.getOrCrash();
+      await _platformRepository.deleteFile(path: path);
+      return right(unit);
+    } catch (e) {
+      return left(const PlatFormChannelFailure.deleteFailure());
+    }
+  }
 }
