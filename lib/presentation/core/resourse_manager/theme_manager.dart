@@ -84,6 +84,10 @@ ThemeData getApplicationTheme() {
       ),
       // input decoration theme (text form field)
 
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: ColorManager.white,
+        unselectedItemColor: ColorManager.white,
+      ),
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: const EdgeInsets.all(AppPadding.p8),
         // hint style
@@ -125,7 +129,6 @@ ThemeData getApplicationTheme() {
           elevation: 0,
           backgroundColor: ColorManager.primary,
           alignment: Alignment.center,
-          
           titleTextStyle:
               getRegularStyle(color: ColorManager.white, fontSize: 20)));
 }

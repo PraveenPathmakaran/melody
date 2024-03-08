@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:melody/presentation/core/resourse_manager/icon_manager.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 
+import '../core/widgets.dart';
 import '../favourite/favourite_screen.dart';
 import '../play_list/play_list_home.dart';
 import 'home_widgets.dart';
@@ -15,38 +16,10 @@ class ScreenHomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       onPopInvoked: (didPop) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return SizedBox(
-              height: 50,
-              child: AlertDialog(
-                alignment: Alignment.center,
-                actionsAlignment: MainAxisAlignment.spaceBetween,
-                content: const Text(
-                  StringManger.doYouWantToExist,
-                  textAlign: TextAlign.center,
-                ),
-                title: const Text(
-                  StringManger.areYouSure,
-                  textAlign: TextAlign.center,
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text(StringManger.no)),
-                  TextButton(
-                    onPressed: () {
-                      SystemNavigator.pop();
-                    },
-                    child: const Text(StringManger.yes),
-                  ),
-                ],
-              ),
-            );
-          },
+        conFirmDialogue(
+          context,
+          StringManger.doYouWantToExist,
+          () => SystemNavigator.pop(),
         );
       },
       canPop: false,
@@ -78,15 +51,6 @@ class ScreenHomeTab extends StatelessWidget {
               ],
             ),
             elevation: 0,
-            // actions: <Widget>[
-            //   IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-            // ],
-            // leading: Builder(
-            //   builder: (BuildContext context) {
-            //     return IconButton(
-            //         onPressed: () {}, icon: const Icon(Icons.settings));
-            //   },
-            // ),
           ),
           body: const TabBarView(
             children: <Widget>[
@@ -100,4 +64,6 @@ class ScreenHomeTab extends StatelessWidget {
       ),
     );
   }
+
+  
 }

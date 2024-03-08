@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:melody/domain/audio/audio_value_objects.dart';
 import 'package:melody/domain/plat_form/i_platform_repository.dart';
 
 import '../../domain/audio/audio.dart';
@@ -22,7 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
           for (var i = 0; i < value.audios.length; i++) {
             await _iPlatformRepository.deleteAudioFromDevice(
-                audioPath: value.audios[i]);
+                audio: value.audios[i]);
           }
           final failureOrSuccess =
               await _iPlatformRepository.getAllAudioFromDevice();

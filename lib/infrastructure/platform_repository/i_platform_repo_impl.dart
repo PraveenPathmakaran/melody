@@ -37,9 +37,9 @@ class IPlatformRepositoryImpl implements IPlatformRepository {
 
   @override
   Future<Either<PlatFormChannelFailure, Unit>> deleteAudioFromDevice(
-      {required AudioPath audioPath}) async {
+      {required Audio audio}) async {
     try {
-      final path = audioPath.getOrCrash();
+      final path = audio.audioPath.getOrCrash();
       await _platformRepository.deleteFile(path: path);
       return right(unit);
     } catch (e) {
