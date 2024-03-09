@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/audio_controller/audio_controller_bloc.dart';
@@ -7,9 +6,9 @@ import 'package:melody/domain/audio/audio.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
 
-import '../../application/splash/splash_bloc.dart';
 import '../core/empty_data_widget.dart';
 import '../core/error_widget.dart';
+import '../core/resourse_manager/assets_manager.dart';
 import '../core/resourse_manager/color_manager.dart';
 import '../core/utils.dart';
 import '../core/widgets.dart';
@@ -97,23 +96,9 @@ class ScreenHome extends StatelessWidget {
                               backgroundColor: ColorManager.primary,
                               radius: AppSize.s25,
                               child: ClipOval(
-                                  child: FutureBuilder<Uint8List?>(
-                                      future: context
-                                          .read<SplashBloc>()
-                                          .fetchAudioData(
-                                              audioPath: state
-                                                  .audioList[index].audioPath),
-                                      builder: (context, snapshot) {
-                                        if (snapshot.connectionState ==
-                                            ConnectionState.waiting) {
-                                          return circularPindicator;
-                                        }
-                                        return CustomImageWidget(
-                                          image: snapshot.data,
-                                          height: AppSize.s50,
-                                          width: AppSize.s50,
-                                        );
-                                      })),
+                                  child: Image.asset(
+                                ImageAssets.musicImage,
+                              )),
                             ),
                             title: Text(
                               state.audioList[index].title.getOrCrash(),

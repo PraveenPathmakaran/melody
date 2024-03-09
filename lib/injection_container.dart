@@ -61,7 +61,7 @@ void registerBloc() {
   getIt
       .registerFactory<AudioControllerBloc>(() => AudioControllerBloc(getIt()));
   getIt.registerFactory<SplashBloc>(() => SplashBloc(getIt()));
-  getIt.registerFactory<HomeBloc>(() => HomeBloc(getIt()));
+  getIt.registerFactory<HomeBloc>(() => HomeBloc(getIt(), getIt()));
   getIt.registerFactory<FavouriteBloc>(() => FavouriteBloc(getIt(), getIt()));
   getIt.registerFactory<PlayListHomeBloc>(() => PlayListHomeBloc(getIt()));
   getIt.registerFactory<PlayListHomeActionBloc>(
@@ -92,19 +92,4 @@ Future<void> registerPackage() async {
       instanceName: "manageExternalStorage");
   getIt.registerLazySingleton<Permission>(() => Permission.audio,
       instanceName: "audio");
-
-  // await getIt<IDeviceInformation>().getAndroidVersion().then(
-  //   (value) {
-  //     value.fold(
-  //         (l) =>
-  //             getIt.registerLazySingleton<Permission>(() => Permission.storage),
-  //         (androidVersion) {
-  //       if (androidVersion < 32) {
-  //         getIt.registerLazySingleton<Permission>(() => Permission.storage);
-  //       } else {
-  //         getIt.registerLazySingleton<Permission>(() => Permission.audio);
-  //       }
-  //     });
-  //   },
-  // );
 }

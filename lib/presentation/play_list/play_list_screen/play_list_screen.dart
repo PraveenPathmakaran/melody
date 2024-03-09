@@ -1,17 +1,15 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melody/application/playlist/play_list_audio/play_list_audio_bloc.dart';
 import 'package:melody/application/playlist/play_list_home_action/play_list_home_action_bloc.dart';
-import 'package:melody/application/splash/splash_bloc.dart';
 import 'package:melody/presentation/core/empty_data_widget.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
-import 'package:melody/presentation/core/widgets.dart';
 
 import '../../../application/audio_controller/audio_controller_bloc.dart';
 import '../../../domain/audio/audio_value_objects.dart';
 import '../../core/error_widget.dart';
+import '../../core/resourse_manager/assets_manager.dart';
 import '../../core/resourse_manager/color_manager.dart';
 import '../../core/utils.dart';
 import '../../home_screen/widgets/miniplayer.dart';
@@ -100,19 +98,9 @@ class ScreenPlayList extends StatelessWidget {
                             backgroundColor: ColorManager.primary,
                             radius: AppSize.s25,
                             child: ClipOval(
-                              child: FutureBuilder<Uint8List?>(
-                                  future: context
-                                      .read<SplashBloc>()
-                                      .fetchAudioData(
-                                          audioPath: audio.audioPath),
-                                  builder: (context, snapshot) {
-                                    return CustomImageWidget(
-                                      image: snapshot.data,
-                                      height: AppSize.s50,
-                                      width: AppSize.s50,
-                                    );
-                                  }),
-                            ),
+                                child: Image.asset(
+                              ImageAssets.musicImage,
+                            )),
                           ),
                           title: Text(
                             audio.title.getOrCrash(),
