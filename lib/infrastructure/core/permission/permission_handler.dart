@@ -15,12 +15,12 @@ import '../../../injection_container.dart';
 class PermissionsHandler implements IPermissionHandler {
   final Permission _storagePermission;
   final Permission _audioPermission;
-  final Permission _manageExternalPermission;
+  // final Permission _manageExternalPermission;
 
   PermissionsHandler(
     this._storagePermission,
     this._audioPermission,
-    this._manageExternalPermission,
+    //this._manageExternalPermission,
   );
 
   @override
@@ -61,7 +61,7 @@ class PermissionsHandler implements IPermissionHandler {
         status = await _storagePermission.request();
       } else {
         status = await _audioPermission.request();
-        status = await _manageExternalPermission.request();
+        // status = await _manageExternalPermission.request();
       }
       if (status.isGranted) {
         return right(unit);

@@ -5,13 +5,13 @@ import 'package:melody/application/home/home_bloc.dart';
 import 'package:melody/domain/audio/audio.dart';
 import 'package:melody/presentation/core/resourse_manager/string_manage.dart';
 import 'package:melody/presentation/core/resourse_manager/value_manager.dart';
+import 'package:melody/presentation/core/widgets.dart';
 
 import '../core/empty_data_widget.dart';
 import '../core/error_widget.dart';
 import '../core/resourse_manager/assets_manager.dart';
 import '../core/resourse_manager/color_manager.dart';
 import '../core/utils.dart';
-import '../core/widgets.dart';
 import '../play_screen/screen_play.dart';
 
 ValueNotifier<List<Audio>> selectedList = ValueNotifier(<Audio>[]);
@@ -108,10 +108,10 @@ class ScreenHome extends StatelessWidget {
                               state.audioList[index].artist.getOrCrash(),
                               maxLines: ConstantValues.one,
                             ),
-                            // trailing: IconButton(
-                            //   icon: const Icon(Icons.more_vert),
-                            //   onPressed: () {},
-                            // ),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.more_vert),
+                              onPressed: () {},
+                            ),
                           ),
                         );
                       },
@@ -122,6 +122,7 @@ class ScreenHome extends StatelessWidget {
                   bottomNavigationBar: selectedList.value.isEmpty
                       ? null
                       : BottomNavigationBar(
+                          backgroundColor: ColorManager.primary,
                           unselectedItemColor:
                               isEqual ? ColorManager.secondary : null,
                           unselectedLabelStyle: TextStyle(

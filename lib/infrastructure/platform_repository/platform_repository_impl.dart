@@ -56,13 +56,16 @@ class PlatformRepositoryImpl implements PlatformRepository {
     try {
       if (await Permission.manageExternalStorage.isGranted) {
         if (File(path).existsSync()) {
-          File(path).deleteSync();
+          await File(path).delete();
         }
       } else {
-        await Permission.manageExternalStorage.request();
-        if (File(path).existsSync()) {
-          File(path).deleteSync();
+       final permission= await Permission.manageExternalStorage.request();
+       if(permission.isGranted){
+  if (File(path).existsSync()) {
+          await File(path).delete();
         }
+       }
+      
       }
     } catch (e) {
       log(e.toString());

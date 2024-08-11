@@ -12,8 +12,10 @@ ThemeData getApplicationTheme() {
       primaryColorLight: ColorManager.primaryOpacity70,
       primaryColorDark: ColorManager.darkPrimary,
       disabledColor: ColorManager.white,
+      scaffoldBackgroundColor: ColorManager.primary,
       // ripple color
       splashColor: ColorManager.lightGrey,
+      useMaterial3: true,
       // card view theme
       cardTheme: CardTheme(
         color: ColorManager.primary,
@@ -121,6 +123,9 @@ ThemeData getApplicationTheme() {
                 BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
             borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8))),
       ),
+      bottomSheetTheme:
+          BottomSheetThemeData(backgroundColor: ColorManager.primary),
+      bottomAppBarTheme: BottomAppBarTheme(color: ColorManager.primary),
       colorScheme:
           ColorScheme.fromSwatch().copyWith(background: ColorManager.primary),
       progressIndicatorTheme:

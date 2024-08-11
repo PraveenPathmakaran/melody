@@ -1,4 +1,4 @@
-package com.example.melody
+package apps.praveen.melody
 
 import android.media.MediaMetadataRetriever
 import android.os.Build

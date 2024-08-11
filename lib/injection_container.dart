@@ -39,10 +39,13 @@ Future<void> initGetIt() async {
 
 //domain
 void registerDomain() {
-  getIt.registerLazySingleton<IPermissionHandler>(() => PermissionsHandler(
+  getIt.registerLazySingleton<IPermissionHandler>(
+    () => PermissionsHandler(
       getIt(instanceName: 'storage'),
       getIt(instanceName: 'audio'),
-      getIt(instanceName: 'manageExternalStorage')));
+      // getIt(instanceName: 'manageExternalStorage'),
+    ),
+  );
   getIt.registerLazySingleton<IAudioRepository>(
     () => IAudioRepositoryImpl(getIt()),
   );
@@ -87,9 +90,6 @@ Future<void> registerPackage() async {
   getIt.registerLazySingleton<DeviceInfoPlugin>(() => DeviceInfoPlugin());
   getIt.registerLazySingleton<Permission>(() => Permission.storage,
       instanceName: "storage");
-  getIt.registerLazySingleton<Permission>(
-      () => Permission.manageExternalStorage,
-      instanceName: "manageExternalStorage");
   getIt.registerLazySingleton<Permission>(() => Permission.audio,
       instanceName: "audio");
 }
